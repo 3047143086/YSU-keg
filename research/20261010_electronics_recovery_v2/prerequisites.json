@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "ready_for_training": false,
+  "reason": "spectral_gpu_completed_fail",
+  "projector_sha256": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+  "excluded_eval_cache": true,
+  "entries": {
+    "spectral_cpu": {
+      "path": "/data/sunzixuan/spectral_projector_audit_20261010_v1/replay_audit_receipt.json",
+      "sha256": "28989a19328662fe6aa0baa1b3d2e98b7b14cb3bf0bb5dcff998a57df324d10c",
+      "source_config_path": "/data/sunzixuan/spectral_projector_audit_20261010_v1/audit_config.json",
+      "source_config_sha256": "6d868cc19666f30834a0d6306c24d4f82ce844e2161f15fcf95fa6312ae1ef22",
+      "source_revision": "a12c750dbba12205ae049cc143a123b59c6b766f",
+      "payload_sha256": {
+        "projector.py": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+        "test_projector.py": "ffb1de4e9e90e356557f99e95dfec23c5ca582b27ef560d94b58f8e087098ea4",
+        "remote_audit.py": "eefe76b6ed84994b03462ed11224894d167f7c0d8156c5904581dc001ea3e5ec",
+        "replay_cpu.py": "7485ba9607d3b7fcbb960a27e0046fa9aa657c2a823ca258c0bd97827bdba512",
+        "test_cpu_remote.py": "c3d35f52ca33a7060dceb0f4391cb31570db53fe86f913e4e74268b638695a18",
+        "PROTOCOL.md": "ab1743e3310877ead9a34cd858793cad88d6a6046da0ad0141a26c4819016956",
+        "program.md": "c33af824e037d660add2b269f6e650bd232f10bd0f49fcfd1dee3ea67240e0bc"
+      }
+    },
+    "spectral_gpu": {
+      "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/gpu_audit_receipt.json",
+      "sha256": "a840a3a1d952a8300d44951af77d8068b28770057a0ba3ca1dc833e0c21b7eb0",
+      "source_config_path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/audit_config.json",
+      "source_config_sha256": "42364aa8cb84e44d243fc58fbdd89420fbe7c2a68804897a625ceceaa5460cdd",
+      "source_revision": "fd42959e0a97f24169196851cd6d291477b31c59",
+      "payload_sha256": {
+        "remote_gpu.py": "2b395f5aeddd6e3983a563e1787c1fa27b0ba366f9ead59d4d5eff7a4ae409f8",
+        "guards.py": "ceb9c4c46c6287318b9cbcef682967620bfed8947e9bc75242ef789a362d1a46",
+        "audit_gate.py": "96d6fd782602867b9b2a7c618bbbd789b96bebbb55afb657863a7afa3b539b40",
+        "test_audit_gate.py": "f8b8aa4ace5c652ac8a9f3ee9d107ae31c1ad56956829eaafa13678181ce57e3",
+        "manage.py": "6f0d5afe7fa757ccc3c113e57193e15bf5e7f0ba25afe8dc2a6d4b7bbb9c16d4",
+        "PROTOCOL.md": "87331da58825ccb0fa39a7310555b8d476aeb6885a37ceb5fe6ccd86ea3e1136",
+        "program.md": "1ec5bc24cea037d2e7a44d77d5d3182b809ff3bcffdc24c051a9d4de7d20f518",
+        "ROOT_REVIEW.md": "bf41b7d806f25e2b7b64391b71f9b22e98896dc0d43ec43c1d24b955af1a8e34"
+      }
+    },
+    "excluded_cache_gpu": {
+      "path": "/data/sunzixuan/electronics_eval_cache_gpu_audit_20261010_v1/electronics_gpu_receipt.json",
+      "sha256": "3df214b97ee633e71e4c8f616150ed8abe7fd29ecc7f78cabe85843d3d882d59",
+      "source_config_path": "/data/sunzixuan/electronics_eval_cache_gpu_audit_20261010_v1/deployment.json",
+      "source_config_sha256": "a20342b1ac5c5d0864b691c764ecad6f5d3ad56537266b686ffa5810296680dc",
+      "source_revision": null,
+      "payload_sha256": {
+        "electronics_gpu_audit.py": "ec509e5fb7f0493aa1dedbf5e8d98340f13e0c74f4f8651000c00a045a223e0a",
+        "gpu_manage.py": "cdbf48d28edcf84eb811bcf50eeed39d1de1336e657a98556a385f4412e8bb7e",
+        "ELECTRONICS_GPU_REVIEW.md": "9a5d7557dd9eee48ae025bbd80209da4f100fc769209845368c2b7cb26393e3f",
+        "eval_cache.py": "c9617ab7bd45a9d97af91a2bfae58118b98e29d3ab2778bfecf980c3f91c0c3c",
+        "checkpoint_structure.py": "660019aa9a011a286b5c035194f075ac83bfbbfd486da1cec2efd3412a129266",
+        "test_eval_cache.py": "08747972d01c03dbd17c8a14f6805e6ce371f2aad2dafa3616f06bae86480eb6",
+        "test_cache_lifecycle.py": "a6fe062e718aa021080b69922b363880f9357536f7927ace730786fc82abb80c",
+        "test_checkpoint_structure.py": "53cfc82ccf4c35fe58a914d5305e2c685d56ac30c2fa17fb7d7050e4c28db4f7",
+        "source_revision.json": "7f09f96b7fdcc4a8a098ddd639f9f0a9c6741a45f43ce1fcd310bfdd3a711b09"
+      }
+    }
+  }
+}

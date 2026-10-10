@@ -26,8 +26,8 @@ parameters, all finite gradients. All27 gradient comparisons pass. Losses
 state_dict is unchanged. Protected source/data/packet hashes match before
 and after.
 
-However, none of the12 original-run internal inputs matches the historical
-archive exactly, and inputs of the two current model runs differ slightly.
+However, only3/12 internal inputs in each run match the historical archive
+exactly, and inputs of the two current model runs differ slightly.
 At call0 their relative input difference is4.49555e-8, maxabs1.19209e-7,
 while the three band relative errors are6.61514e-5,9.56081e-4,9.94640e-4.
 Six calls (0,1,2,3,5,9) contain bands exceeding the fixed5e-5 relative gate.

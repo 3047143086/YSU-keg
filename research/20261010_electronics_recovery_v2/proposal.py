@@ -1,10 +1,13 @@
 """Numerically repaired original BRIDGE; import only inside its audited runner."""
 import hashlib
 import importlib.util
+import json
 from pathlib import Path
 
 from models.bridge import BRIDGE
 from integration import install_projector
+from prerequisite_gate import PROJECTOR_SHA256
+from recovery_protocol import assert_algorithm_config
 
 
 def load_frozen_projector(path, expected_sha256):
@@ -22,6 +25,13 @@ def load_frozen_projector(path, expected_sha256):
 class ProjectorRecoveryBRIDGE(BRIDGE):
     """Same parameters/scoring, original SVD forward and band-level first VJP."""
     def __init__(self, config, dataset):
+        bundle = Path(__file__).resolve().parent
+        reference = json.loads((bundle / 'v1_reference_config.json').read_text())['effective_config']
+        assert_algorithm_config(config.final_config_dict, reference)
+        if Path(config['spectral_projector_file']).resolve() != bundle / 'projector.py':
+            raise RuntimeError('The numerical plugin belongs to this exact frozen bundle')
+        if config['spectral_projector_sha256'] != PROJECTOR_SHA256:
+            raise RuntimeError('Projector numerical version changed')
         super().__init__(config, dataset)
         for name in ('use_activity_simplex', 'use_behavior_proto',
                      'use_private_residual', 'use_residual_gate', 'use_user_graph'):

@@ -67,6 +67,11 @@ PID `3117155` 已退出，耗时 73.451 秒。CPU 通过不能替代 GPU 证据�
 历史故障也没有完整精确复现。恢复训练尚未启动；不放宽阈值，下一步另立原模型
 重复前向诊断定位差异。完整记录：
 [RUN_REPORT.md](../research/20261010_failure_model_gpu_audit/RUN_REPORT.md)。
+原模型两次前向诊断 v1 已以 `technical_failure` 退出（PID `3130285`，
+源提交 `8a1d757`，77.153 秒）。旧 Torch 不支持参数枚举的 `remove_duplicate`
+关键字，失败发生在第一次前向之前，`forward_count=0`，不能据此判断重复性。
+v1 保留不覆盖；正在准备只修复接口兼容性的独立 v2，比较阈值和两次原始
+calculate_loss 范围不变，无 backward/optimizer/测试集，30 分钟预算。
 
 用户已指定实验远程仓库 [YSU-keg](https://github.com/3047143086/YSU-keg)，
 代码及结果按实质进展更新；同步约定见 [REPOSITORY_SYNC.md](REPOSITORY_SYNC.md)。

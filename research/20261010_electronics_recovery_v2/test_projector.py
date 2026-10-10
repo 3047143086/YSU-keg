@@ -1,7 +1,11 @@
 """Scientific checks of the formula, including the original failure geometry."""
 import unittest
-import torch
-from projector import original_svd_bands, projector_bands, split_sizes
+try:
+    import torch
+except ModuleNotFoundError:
+    torch = None
+if torch is not None:
+    from projector import original_svd_bands, projector_bands, split_sizes
 
 
 def diagonal_tall(values, extra_rows=2):
@@ -15,6 +19,7 @@ def weighted_loss(outputs, generator):
     return sum((weight * output).sum() for weight, output in zip(weights, outputs))
 
 
+@unittest.skipUnless(torch is not None, 'Actual MMRec CPU tests require PyTorch')
 class ProjectorTests(unittest.TestCase):
     def test_original_band_split_is_preserved(self):
         self.assertEqual(split_sizes(64, 3), (22, 21, 21))

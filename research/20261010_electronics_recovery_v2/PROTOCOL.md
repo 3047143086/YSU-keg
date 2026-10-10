@@ -67,7 +67,8 @@ never use GPU0 or terminate unrelated tasks. Queue budget72h including waits;
 each training seed at most24h. This changes v1's six-hour wall-time limit,
 while leaving its epoch, optimizer and selection rules unchanged. Original
 v1 completed nine epochs in about3.8h; six hours is insufficient even for the
-earliest21-epoch patience stop. A24h seed limit permits about56 epochs at that
+earliest22-completed-epoch patience stop (initial best plus21 bad epochs).
+A24h seed limit permits about57 epochs at that
 observed rate and does not guarantee convergence or300 epochs. Five seeds at
 the limit cannot all fit in72h. Queue exhaustion preserves incomplete states
 and is not a completed baseline. See BUDGET_ASSESSMENT.md for measured times.

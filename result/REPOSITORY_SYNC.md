@@ -13,3 +13,7 @@ https://github.com/3047143086/YSU-keg.git，并在有进展时更新。
 `SOURCE_MANIFEST.json` 记录每个导出文件的 SHA256 和各局部实验版本。
 首次发布和每次更新后，用 `git ls-remote origin refs/heads/main` 核对远端提交。
 本约定授权后续任务沿用，不需要再次请求推送许可。
+
+已确认远端更新：首次快照 `9539e5c`；GPU 失败证据与 35 文件冻结基线源码
+`cc32a9c`，均通过 `ls-remote` 核对。当前机器直连 GitHub 曾连接重置，
+现有本地代理 `http://127.0.0.1:7897` 可用于该仓库的 push/ls-remote。
