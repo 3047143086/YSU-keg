@@ -59,7 +59,14 @@ Electronics GPU 缓存审计现已结束，判定 `non_equivalent`：6 个固定
 PID `3117155` 已退出，耗时 73.451 秒。CPU 通过不能替代 GPU 证据，因此拒绝将
 缓存集成到恢复训练，不放宽阈值；使用原始评估路径。详细记录：
 [electronics_gpu_receipt.json](../research/20261009_eval_cache_audit/archives/gpu_v1/electronics_gpu_receipt.json)。
-完整故障模型 GPU 重放审计正在准备，恢复训练尚未启动。
+完整故障模型 GPU 重放审计已结束，判定 `completed_fail`，PID `3124882` 已退出，
+耗时 101.909 秒，冻结提交 `fd42959`。同一 archived 输入的 36 个频带前向精确一致，
+12 个修复梯度探针均有限；第 0 输入原 GPU 梯度非有限，修复梯度有限。
+但完整模型原/候选两次运行的内部输入存在微小差异，6/12 次分解的部分频带
+超过固定相对误差门槛。损失、27 项梯度比较、状态及文件哈希通过不能替代这项失败。
+历史故障也没有完整精确复现。恢复训练尚未启动；不放宽阈值，下一步另立原模型
+重复前向诊断定位差异。完整记录：
+[RUN_REPORT.md](../research/20261010_failure_model_gpu_audit/RUN_REPORT.md)。
 
 用户已指定实验远程仓库 [YSU-keg](https://github.com/3047143086/YSU-keg)，
 代码及结果按实质进展更新；同步约定见 [REPOSITORY_SYNC.md](REPOSITORY_SYNC.md)。

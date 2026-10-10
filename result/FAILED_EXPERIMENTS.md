@@ -648,8 +648,14 @@ Evidence: `../research/20261009_review_identifiability/RUN_REPORT.md`.
 The review-bank geometry diagnostic F27 has completed and failed. The next
 independent signal hypothesis is under read-only study, with no new training
 launched. Actual Baby CPU cache equivalence passed, as did all twelve saved
-Electronics SVD-input CPU projector audits; actual Electronics GPU/model
-audits are being prepared before any numerical recovery training. These are
+Electronics SVD-input CPU projector audits. Electronics GPU cache then failed
+its fixed score and exact Top50 gates and is excluded from recovery. The
+full-model GPU projector audit also completed_fail: archived-input probes
+passed (capture0 generic gradient nonfinite/repaired finite), but six model
+calls exceeded the fixed band-forward relative tolerance under slightly
+different upstream GPU inputs. Full historical replay was not exact. Recovery
+training has not started; a separate original-model repeated-forward diagnostic
+will locate the discrepancy without changing thresholds. These are
 infrastructure work, not innovation gains. Preserve all frozen failures.
 
 Publication confirmation follows `PUBLICATION_PROTOCOL.md`. Electronics

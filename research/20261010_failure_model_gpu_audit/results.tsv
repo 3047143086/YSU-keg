@@ -1,0 +1,2 @@
+source_revision	status	elapsed_seconds	archived_inputs_passed	full_model_integration_passed	optimizer_updates	decision
+fd42959e0a97f24169196851cd6d291477b31c59	completed_fail	101.90875744819641	12	false	0	hold_recovery_training_investigate_original_forward_variability

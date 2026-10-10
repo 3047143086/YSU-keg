@@ -11,6 +11,7 @@ import time
 import traceback
 from pathlib import Path
 from guards import BASELINE, CPU_AUDIT, RUN, idle_gpu_resources, verify
+from audit_gate import archived_candidate_passed, model_candidate_passed
 
 ROOT = Path(__file__).resolve().parent
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
@@ -115,7 +116,7 @@ def phase_archived(captures, projector):
                                          if generic_finite and candidate_finite else
                                          {'passed': False, 'status': 'unavailable_nonfinite_reference',
                                           'equivalence_claimed': False})
-            row['candidate_passed'] = all(row['exact_forward_bands']) and candidate_finite
+            row['candidate_passed'] = archived_candidate_passed(row)
         except Exception as error:
             if 'out of memory' in str(error).lower():
                 raise
@@ -246,8 +247,9 @@ def phase_model(packet, projector):
         abs(new - old) <= 5e-6 + 5e-5 * abs(old)
         for old, new in zip(original['loss_values'], candidate['loss_values']))
     gradients = {}
+    participating_match = set(original['gradients']) == set(candidate['gradients'])
     if original['all_gradients_finite'] and candidate['all_gradients_finite']:
-        if set(original['gradients']) != set(candidate['gradients']):
+        if not participating_match:
             raise RuntimeError('Participating parameter sets differ between finite-gradient probes')
         gradients = {name: compare(candidate['gradients'][name], original['gradients'][name], 1e-3, 1e-3)
                      for name in original['gradients']}
@@ -258,6 +260,8 @@ def phase_model(packet, projector):
               'original_loss_values': original['loss_values'], 'candidate_loss_values': candidate['loss_values'],
               'loss_matches': loss_match, 'candidate_all_gradients_finite': candidate['all_gradients_finite'],
               'candidate_gradient_finite': candidate['gradient_finite'],
+              'participating_parameters_match': participating_match,
+              'participating_parameter_count': len(candidate['gradients']),
               'original_all_gradients_finite': original['all_gradients_finite'],
               'original_nonfinite_parameters': original['nonfinite_gradient_parameters'],
               'exact_archive_inputs_reproduced': archive_exact,
@@ -265,10 +269,7 @@ def phase_model(packet, projector):
               'finite_original_gradient_comparisons': gradients,
               'generic_gradient_equivalence_available': original['all_gradients_finite'],
               'generic_gradient_equivalence_passed': bool(gradients) and all(row['passed'] for row in gradients.values())}
-    result['candidate_integration_passed'] = (state_unchanged and loss_match and candidate['all_gradients_finite']
-        and all(row['candidate_vs_original_input']['passed']
-                and all(band['passed'] for band in row['candidate_vs_original_bands']) for row in rows)
-        and (not original['all_gradients_finite'] or result['generic_gradient_equivalence_passed']))
+    result['candidate_integration_passed'] = model_candidate_passed(result)
     return result
 
 

@@ -1,0 +1,158 @@
+{
+  "created_utc": "2026-10-10T03:22:48.661582+00:00",
+  "remote_source_root": "/data/sunzixuan/electronics_baseline_20261009_v1/carrier/src",
+  "expected_manifest": "research\\20261009_electronics_baseline\\input_audit.json",
+  "expected_manifest_sha256": "109caa06a4eb24526438bda5d71ffc51e1d9d7d4c40d75525daa5ea32000c5d2",
+  "purpose": "original frozen baseline source snapshot; not a new method",
+  "file_count": 35,
+  "all_sha256_match": true,
+  "line_endings_preserved": true,
+  "files": {
+    "__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "common/__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "common/abstract_recommender.py": {
+      "sha256": "2294e003e1ea523c1ef02df165954434545355490e482446c3c889e0a014c156",
+      "bytes": 3697
+    },
+    "common/encoders.py": {
+      "sha256": "9845154a3fe488d1ed3b4f32e1d85d1c470a672966e0ab6b2b8b97f3b6e0ba45",
+      "bytes": 4898
+    },
+    "common/init.py": {
+      "sha256": "1141665794a83eb8f660b0e394f3fb4be9b39906efb5cae1e99359cc3116f32e",
+      "bytes": 1499
+    },
+    "common/loss.py": {
+      "sha256": "729b4b078b266944907e617fabf61244f301b61b4b9b6cb3e5e436fdcccbbf24",
+      "bytes": 1554
+    },
+    "common/trainer.py": {
+      "sha256": "3b8df986616002d4ea7fecda1cb686a8675001f048ecbfff7365339ce38c3199",
+      "bytes": 15679
+    },
+    "configs/dataset/baby.yaml": {
+      "sha256": "8426650aed8a0eb60999b2534573d45e03f363b1c1a0f8b996b39dbc650c3caa",
+      "bytes": 361
+    },
+    "configs/dataset/elec.yaml": {
+      "sha256": "0c4984031c96cad8d0aa2aedf006208087748daf217d5ee44756c1d401cd5f5e",
+      "bytes": 361
+    },
+    "configs/dataset/sports.yaml": {
+      "sha256": "42e1ccd21045441f84f57d0bd19d703539bfcaaeb99bf194967d40ea0db766fb",
+      "bytes": 363
+    },
+    "configs/model/BRIDGE.yaml": {
+      "sha256": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3",
+      "bytes": 2518
+    },
+    "configs/model/BRIDGE_C2R.yaml": {
+      "sha256": "1db988faaa1b1deb7c98252a4b406b5c64c7b2259e97808082034ef422d4a9f4",
+      "bytes": 2369
+    },
+    "configs/model/BRIDGE_CBCR.yaml": {
+      "sha256": "82aa327e45d353e87edca88cd122fea6098b70f3215313852d2810592051d6c4",
+      "bytes": 2211
+    },
+    "configs/overall.yaml": {
+      "sha256": "e9ba9e64d2936caae9e6e429ede7f9c89a5dbb79df4bc623d97efbd985e2637f",
+      "bytes": 1126
+    },
+    "diagnose_ecli.py": {
+      "sha256": "99e2297cd877fd72668d2768680fa9cf2ae1fbf22b8aba66532bc19c7206bf88",
+      "bytes": 10759
+    },
+    "diagnose_tace.py": {
+      "sha256": "69d3654527dc1bf22d7a09cf44c6debd8a89710b2c24dbd703dded7648c1f992",
+      "bytes": 8514
+    },
+    "main.py": {
+      "sha256": "d9f0f93d92e1f4d7f0f7292e20f56c1f1b29b099ef843c1f1fad49037410fe36",
+      "bytes": 6303
+    },
+    "models/__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "models/bridge.py": {
+      "sha256": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+      "bytes": 40372
+    },
+    "models/bridge_c2r.py": {
+      "sha256": "de61156ac5758a12834097ea20d4182e7805a0f6610ee3f522a44eb0871ed1af",
+      "bytes": 7766
+    },
+    "models/bridge_cbcr.py": {
+      "sha256": "385762f429e2b29acef8a5f08808b8595496f0f162195d30824cd36e1b4855f4",
+      "bytes": 8913
+    },
+    "models/dual_frequency_encoder.py": {
+      "sha256": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+      "bytes": 59312
+    },
+    "utils/__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "utils/configurator.py": {
+      "sha256": "dde0ebdd2a45fae206da6ffe8728a2fd89b2064d8655e08e11b4869231ed41ac",
+      "bytes": 5693
+    },
+    "utils/data_utils.py": {
+      "sha256": "7aad1f06787d7141a4a5b4166a8e50c2f5f2707fc1f41070d32246831cae9869",
+      "bytes": 14359
+    },
+    "utils/dataloader.py": {
+      "sha256": "8fb4deb89ba256adf53cfc773050ee5b9ae8eb55b972613cbebf3ffd7a36f3fb",
+      "bytes": 16791
+    },
+    "utils/dataset.py": {
+      "sha256": "c5814605da7c6e9ec1f52fe11edbfeaf89dec87f3b6f629265b0547412d2d00c",
+      "bytes": 4975
+    },
+    "utils/ecli.py": {
+      "sha256": "fcb99c64f41c236c7600a30aa210573ff48b86f064471560617dfc9ece7727ee",
+      "bytes": 6464
+    },
+    "utils/logger.py": {
+      "sha256": "65a09bb943398f72da4c1128603fcf843284f23d779a163e8e812e6a8abcd8e7",
+      "bytes": 2006
+    },
+    "utils/metrics.py": {
+      "sha256": "a722ea36f3a9b78c5e1121819ead2333361cf929bbcbb925cadcf85c77dae13d",
+      "bytes": 4382
+    },
+    "utils/misc.py": {
+      "sha256": "06fbc7afddc35e08f9f7ea0370b3c0b0729e0280450a381dec4fdd15961f987d",
+      "bytes": 583
+    },
+    "utils/quick_start.py": {
+      "sha256": "7846b35faa5ee9498565c567d57d3ed2dfbeacf547f3c7b2d7e6d035f5c6f8b2",
+      "bytes": 4559
+    },
+    "utils/tace.py": {
+      "sha256": "89304b62287d67c057674b6d03c5a68302d1a53dbef78cf8af574822491219e3",
+      "bytes": 8443
+    },
+    "utils/topk_evaluator.py": {
+      "sha256": "4d23dc2a347372eceb831e74ef8fcc2d02530af969212284345e76e1c1f003f6",
+      "bytes": 5918
+    },
+    "utils/utils.py": {
+      "sha256": "23a36fc0cb1174eca46107a590715907304de50a3ffd4a0c9866c556d666fc78",
+      "bytes": 5495
+    }
+  },
+  "license_source": "baselines\\BRIDGE-official\\LICENSE",
+  "license_sha256": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
+  "data_downloaded": false,
+  "weights_downloaded": false,
+  "credentials_downloaded": false,
+  "remote_files_modified": false
+}

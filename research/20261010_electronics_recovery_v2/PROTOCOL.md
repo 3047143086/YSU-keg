@@ -32,17 +32,14 @@ gradients. If original input replay differs due to missing transient state,
 report that limitation and do not claim exact reproduction of the old failure.
 No optimizer update occurs during this equivalence audit.
 
-An optional single-pass evaluation cache is separate infrastructure. Integrate
-it only after its actual original-BRIDGE Baby CPU and Electronics GPU audits
-pass fixed full-sort score and exact masked Top50 checks, state/RNG/hash
-guards and cache lifecycle tests. A cache is valid for one model in one
-exclusive eval/no_grad pass with no training transitions or checkpoint loads.
-Train loss and optimizer steps never use this cache. Measure its wall time;
-it is not a recommendation improvement.
-
-The two numerical/cache changes must retain separate audit receipts and
-attribution. A passing audit permits preparing the new recovery queue; it
-does not establish convergence or an algorithm contribution.
+The optional evaluation cache is explicitly excluded. Its Electronics GPU
+audit failed the fixed score and masked-Top50 gates: maximum absolute score
+difference 0.00026226 and three of six batches with different Top50 IDs.
+The Baby CPU pass does not override that failure. Trainer.evaluate and final
+validation use the original uncached paths, and no cache code is deployed.
+Archive the negative GPU receipt as exclusion evidence, not a passing gate.
+A passing projector audit permits preparing the new recovery queue; it does
+not establish convergence or an algorithm contribution.
 
 ## Protected inputs and training
 
@@ -67,12 +64,23 @@ Only physical GPU1, one own GPU process at a time, four CPU threads,
 per-process CUDA memory fraction0.55, available GPU RAM>=14GiB and host
 RAM>=12GiB. Refresh process identities and resources before each GPU job;
 never use GPU0 or terminate unrelated tasks. Queue budget72h including waits;
-each training seed at most6h. Stop the queue on numerical or source failure,
+each training seed at most24h. This changes v1's six-hour wall-time limit,
+while leaving its epoch, optimizer and selection rules unchanged. Original
+v1 completed nine epochs in about3.8h; six hours is insufficient even for the
+earliest21-epoch patience stop. A24h seed limit permits about56 epochs at that
+observed rate and does not guarantee convergence or300 epochs. Five seeds at
+the limit cannot all fit in72h. Queue exhaustion preserves incomplete states
+and is not a completed baseline. See BUDGET_ASSESSMENT.md for measured times.
+Stop the queue on numerical or source failure,
 not on an unfavorable validation score, and preserve all queued seed states.
 
 Remote root: /data/sunzixuan/electronics_baseline_20261010_recovery_v2.
 Freeze a dedicated branch and committed payload before deployment. Use a
 single-use launch receipt and exact process-command verification. Root review
 and actual environment tests precede the detached bounded queue launch.
+The backward implementation changed; the solver, optimizer and parameter
+space did not. Receipts must state those facts without the ambiguous claim
+that all learning arithmetic is unchanged. Missing or nonpassing prerequisite
+receipts fail closed, and the preparation commit does not authorize a launch.
 Report numerical recovery separately from innovative methods and publication
 confirmation; the latter still follows result/PUBLICATION_PROTOCOL.md.

@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_finite_full_gradient_requires_equivalence (test_audit_gate.AuditGateTests) ... ok\ntest_finite_generic_requires_comparison_pass (test_audit_gate.AuditGateTests) ... ok\ntest_full_model_rejects_any_missing_capture_or_mismatch (test_audit_gate.AuditGateTests) ... ok\ntest_full_model_rejects_empty_or_different_parameters (test_audit_gate.AuditGateTests) ... ok\ntest_missing_band_never_passes (test_audit_gate.AuditGateTests) ... ok\ntest_nonfinite_generic_is_unavailable_not_equivalence (test_audit_gate.AuditGateTests) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nOK\n",
+  "cuda_visible_devices": "",
+  "audit_config_sha256": "42364aa8cb84e44d243fc58fbdd89420fbe7c2a68804897a625ceceaa5460cdd"
+}
