@@ -654,9 +654,17 @@ full-model GPU projector audit also completed_fail: archived-input probes
 passed (capture0 generic gradient nonfinite/repaired finite), but six model
 calls exceeded the fixed band-forward relative tolerance under slightly
 different upstream GPU inputs. Full historical replay was not exact. Recovery
-training has not started; a separate original-model repeated-forward diagnostic
-will locate the discrepancy without changing thresholds. These are
-infrastructure work, not innovation gains. Preserve all frozen failures.
+training has not started. The separate original-model repeated-forward v1 had
+an old-Torch parameter-enumeration compatibility failure before any forward;
+its immutable evidence is retained. Compatibility-only v2, source dd55a8d,
+passed 17 actual CPU tests and completed_different in105.733s with exactly two
+original forwards. Only3/12 inputs and9/36 bands were exact;13 bands exceeded
+the unchanged inherited bounds. State, RNG and123 protected hashes matched.
+PID3133577 exited; report e4b155d is frozen. The unchanged original path itself
+differed in this pair, so independent-forward differences cannot be attributed
+entirely to the projector. This does not isolate the kernel, accept the repair,
+reproduce the historical crash or authorize training. These are infrastructure
+work, not innovation gains. Preserve all frozen failures.
 
 Publication confirmation follows `PUBLICATION_PROTOCOL.md`. Electronics
 assets have independently been restored on host213 to

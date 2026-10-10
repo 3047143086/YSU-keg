@@ -1,0 +1,2 @@
+source_revision	status	forward_count	inputs_exact	bands_exact	losses_exact	elapsed_seconds	description
+dd55a8d1de4a72226847fbe1f629745184ea2d5f	completed_different	2	3/12	9/36	0/1	105.73251581192017	Original-only repeat differs; 13/36 bands exceed unchanged inherited bounds; all lineage/state/RNG guards intact; no training

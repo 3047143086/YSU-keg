@@ -1,0 +1,27 @@
+{
+  "root": "/data/sunzixuan/forward_repeat_diagnostic_20261010_v1",
+  "pid": 3130285,
+  "process_alive": false,
+  "status": "technical_failure",
+  "files": {
+    "diagnostic_config.json": {
+      "sha256": "a336f9183b3046f58a21d8db6942b536ec458e0c3537a8b56f3395686e8d8fb4",
+      "bytes": 887
+    },
+    "tests.json": {
+      "sha256": "3458b7682db282a2b717e5bc450c752b23701dbd7158c8b058125691d48e4268",
+      "bytes": 1317
+    },
+    "launch.json": {
+      "sha256": "19f4ab29a658e5209a02577e5f5da82221b00381cb3f6536e5ea912f5efc0ff0",
+      "bytes": 2387
+    },
+    "repeat_receipt.json": {
+      "sha256": "64d8f166b39fdf9302f0feb7c0daa80faf4d93ffb4a3a42a561dcbd9ae7b967c",
+      "bytes": 86549
+    }
+  },
+  "gpu_query_exit_code": 0,
+  "gpu1": "GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a, 24232\n",
+  "compute_apps": "GPU-30201e9a-a9f2-14b9-78e7-7a1f86a6476f, 600045, 22704\n"
+}

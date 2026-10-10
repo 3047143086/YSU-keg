@@ -1,2 +1,3 @@
 source_revision	status	forward_count	inputs_exact	bands_exact	losses_exact	elapsed_seconds	description
-pending_review	prepared	0	NA	NA	NA	NA	Two original forwards diagnostic prepared; no GPU run
+8a1d7579588f55c7e9ad09530182bbd53c00c4c8	technical_failure	0	NA	NA	NA	77.15288805961609	v1 incompatible named_parameters keyword before first measured forward; retained immutable
+dd55a8d1de4a72226847fbe1f629745184ea2d5f	completed_different	2	3/12	9/36	0/1	105.73251581192017	v2 original-only repeat differs; 13/36 bands exceed unchanged inherited bounds; all lineage/state/RNG guards intact; no training

@@ -1,0 +1,59 @@
+{
+  "status": "started",
+  "pid": 3130285,
+  "unix": 1791603156.0937223,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/forward_repeat_diagnostic_20261010_v1/repeat_diagnostic.py"
+  ],
+  "time_budget_seconds": 1800,
+  "resource_gate": {
+    "physical_gpu_index": 1,
+    "uuid": "GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a",
+    "free_gpu_bytes": 25409093632,
+    "gpu_compute_processes": [],
+    "ram_available_bytes": 130160951296,
+    "available_cpu_count": 20
+  },
+  "source_revision": "8a1d7579588f55c7e9ad09530182bbd53c00c4c8",
+  "predecessor": {
+    "all_match": true,
+    "anchor_rows": [
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/remote_gpu.py",
+        "expected_sha256": "2b395f5aeddd6e3983a563e1787c1fa27b0ba366f9ead59d4d5eff7a4ae409f8",
+        "actual_sha256": "2b395f5aeddd6e3983a563e1787c1fa27b0ba366f9ead59d4d5eff7a4ae409f8",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/guards.py",
+        "expected_sha256": "ceb9c4c46c6287318b9cbcef682967620bfed8947e9bc75242ef789a362d1a46",
+        "actual_sha256": "ceb9c4c46c6287318b9cbcef682967620bfed8947e9bc75242ef789a362d1a46",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/audit_gate.py",
+        "expected_sha256": "96d6fd782602867b9b2a7c618bbbd789b96bebbb55afb657863a7afa3b539b40",
+        "actual_sha256": "96d6fd782602867b9b2a7c618bbbd789b96bebbb55afb657863a7afa3b539b40",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/audit_config.json",
+        "expected_sha256": "42364aa8cb84e44d243fc58fbdd89420fbe7c2a68804897a625ceceaa5460cdd",
+        "actual_sha256": "42364aa8cb84e44d243fc58fbdd89420fbe7c2a68804897a625ceceaa5460cdd",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/gpu_audit_receipt.json",
+        "expected_sha256": "a840a3a1d952a8300d44951af77d8068b28770057a0ba3ca1dc833e0c21b7eb0",
+        "actual_sha256": "a840a3a1d952a8300d44951af77d8068b28770057a0ba3ca1dc833e0c21b7eb0",
+        "matches": true
+      }
+    ],
+    "source_revision": "fd42959e0a97f24169196851cd6d291477b31c59",
+    "status": "completed_fail",
+    "payload_count": 8
+  },
+  "protected_count": 121
+}
