@@ -1,0 +1,46 @@
+{
+  "checked_unix": 1791619136.1031508,
+  "queue_status": "running",
+  "queue_stage": "running",
+  "preparation": {
+    "status": "completed",
+    "elapsed_seconds": 57.42842573602684,
+    "cuda_initialized": false,
+    "array_sha256": "e8f512cd8072f2afa5ddd81f7a49607384ae7273613034beeb7234a3510f97e3",
+    "diagnostics_sha256": "553d362befbf61d1ed27c760afd914145cc599019828a2ade33308dd4ca43761",
+    "protected_count": 162,
+    "dataset": "baby"
+  },
+  "processes": [
+    {
+      "role": "queue",
+      "pid": 3210514,
+      "alive": true,
+      "cmdline": "/data/sunzixuan/miniconda3/envs/MMRec/bin/python -u /data/sunzixuan/interest_negative_20261010_v1/pipeline.py",
+      "same_uid": true,
+      "status": [
+        "State:\tS (sleeping)",
+        "PPid:\t1",
+        "VmRSS:\t   33208 kB",
+        "Threads:\t1",
+        "Cpus_allowed_list:\t0-19"
+      ],
+      "pgid": 3210514
+    },
+    {
+      "role": "current_child",
+      "pid": 3218693,
+      "alive": true,
+      "cmdline": "/data/sunzixuan/miniconda3/envs/MMRec/bin/python -u /data/sunzixuan/interest_negative_20261010_v1/train.py --dataset baby --assets /data/sunzixuan/interest_negative_20261010_v1/groups/baby --mode semantic --output /data/sunzixuan/interest_negative_20261010_v1/runs/baby_semantic_s2026_formal",
+      "same_uid": true,
+      "status": [
+        "State:\tR (running)",
+        "PPid:\t3210514",
+        "VmRSS:\t 2914652 kB",
+        "Threads:\t11",
+        "Cpus_allowed_list:\t0-19"
+      ],
+      "pgid": 3218693
+    }
+  ]
+}

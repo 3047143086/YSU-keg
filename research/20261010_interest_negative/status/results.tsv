@@ -1,5 +1,5 @@
 dataset	mode	status	completion	control	recall@10	ndcg@10	recall@20	ndcg@20	seconds	finite_updates	epochs
-baby	uniform	pending	missing	1	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+baby	uniform	keep	completed	1	0.06716171374695416	0.036664605293919315	0.10289840698429023	0.04575919990670344	425.0395944840275	3828	66
 baby	semantic	pending	missing	0	n/a	n/a	n/a	n/a	n/a	n/a	n/a
 baby	shuffled	pending	missing	1	n/a	n/a	n/a	n/a	n/a	n/a	n/a
 sports	uniform	pending	missing	1	n/a	n/a	n/a	n/a	n/a	n/a	n/a

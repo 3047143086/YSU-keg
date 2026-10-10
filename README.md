@@ -6,6 +6,7 @@
 
 ## 当前结果（2026-10-10）
 
+- 新兴趣组负采样实验已进入正式 GPU 训练：Baby 两次工程 smoke 各完成 58 次有限更新；新鲜 MSCA 均匀基线已完成 66 轮，验证 R@20 = 0.102898、N@20 = 0.045759。正式兴趣组候选正在训练，固定同池乱组对照待执行。见 [实验协议](research/20261010_interest_negative/PROTOCOL.md) 和 [实时状态](research/20261010_interest_negative/status/latest_status.json)。
 - **尚无足以支持论文的新推荐性能证据。** 完整状态见
   [INNOVATION_STATUS.md](result/INNOVATION_STATUS.md)。
 - F27 评论残差与其他作者评论库匹配的训练内诊断失败：AUC 0.588003，
