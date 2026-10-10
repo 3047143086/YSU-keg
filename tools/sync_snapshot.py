@@ -52,7 +52,14 @@ def allowed(path, workspace):
         return False
     if any(part in SKIP_PARTS for part in rel.parts) or path.name in SKIP_NAMES:
         return False
-    if path.suffix.lower() not in TEXT_SUFFIXES and path.name not in {'LICENSE', 'LICENSE.txt'}:
+    # Include only declared epoch-progress receipts in the small status archives.
+    # Do not enable arbitrary JSONL datasets or raw training directories.
+    status_progress = (len(rel.parts) == 6
+                       and rel.parts[:2] == ('research', '20261010_electronics_recovery_status')
+                       and rel.parts[3] == 'seeds'
+                       and rel.parts[4] in {'elec_projector_recovery_s' + str(seed) for seed in range(2026, 2031)}
+                       and path.name == 'progress.jsonl')
+    if path.suffix.lower() not in TEXT_SUFFIXES and path.name not in {'LICENSE', 'LICENSE.txt'} and not status_progress:
         return False
     return path.stat().st_size <= 8 * 1024 * 1024
 

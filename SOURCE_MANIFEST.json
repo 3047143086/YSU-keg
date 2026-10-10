@@ -2922,6 +2922,10 @@
       "sha256": "b6e36489cc08365c66e2cd828acc82f5c79fe2b0d70ce1f0ff09a13c0c218fb3",
       "bytes": 44465
     },
+    "research/20261010_electronics_recovery_status/startup_v3/seeds/elec_projector_recovery_s2026/progress.jsonl": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
     "research/20261010_electronics_recovery_status/startup_v3/source_revision.json": {
       "sha256": "922ecc66173f4d5c19d69273d7ca980ee9e894739261a1ee8bcb5f2d01266014",
       "bytes": 15108
@@ -4615,8 +4619,8 @@
       "bytes": 9221
     },
     "result/REPOSITORY_SYNC.md": {
-      "sha256": "9ea360b5dcb5ab85ae009d1a231069af5db8152c9be54f99bf63023f4d048af1",
-      "bytes": 2648
+      "sha256": "eb3acad5eaee8c2442090ada27bb682b684b8295f4c7a4313d62068b3af9c721",
+      "bytes": 3075
     },
     "result/REVIEW_RESEARCH_NOTE.md": {
       "sha256": "c6bb0e031006a89651064576a666d8ce2feffc226804de88e68b240f7a696e3e",
