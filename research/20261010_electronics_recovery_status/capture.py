@@ -24,11 +24,13 @@ def main():
 import base64,hashlib,json,subprocess
 from pathlib import Path
 root=Path(%r)
-names=['deployment.json','source_revision.json','test_receipt.json','launch.json','pipeline_status.json','results.tsv']
+names=['deployment.json','source_revision.json','test_receipt.json','launch.json',
+    'launch.reservation.json','execution.reservation.json','pipeline_status.json','results.tsv']
 state=json.loads((root/'pipeline_status.json').read_text()) if (root/'pipeline_status.json').exists() else {}
 for seed in range(2026,2031):
     folder='runs/elec_projector_recovery_s'+str(seed)+'/'
-    names += [folder+name for name in ['config.json','failure.json','numerics_receipt.json','result.json','progress.jsonl']]
+    names += [folder+name for name in ['config.json','inputs.json','failure.json',
+        'numerics_receipt.json','post_run_guard.json','result.json','progress.jsonl']]
 def owned(entry):
     try:
         actual=Path('/proc',str(entry['pid']),'cmdline').read_bytes().split(b'\0')[:-1]
@@ -44,13 +46,17 @@ for name in names:
         content=path.read_bytes()
         files[name]={'sha256':hashlib.sha256(content).hexdigest(),'bytes':len(content),'base64':base64.b64encode(content).decode('ascii')}
 gpu=subprocess.run(['nvidia-smi','--query-compute-apps=pid,gpu_uuid,used_gpu_memory','--format=csv,noheader,nounits'],capture_output=True,text=True,timeout=20)
+devices=subprocess.run(['nvidia-smi','--query-gpu=index,uuid,utilization.gpu,memory.used,memory.total','--format=csv,noheader,nounits'],capture_output=True,text=True,timeout=20)
 logs={}
-for path in (root/'logs').glob('*.log') if (root/'logs').exists() else []:
+log_paths=list((root/'logs').glob('*.log')) if (root/'logs').exists() else []
+if (root/'queue.log').is_file():log_paths.append(root/'queue.log')
+for path in log_paths:
     with path.open('rb') as stream:
         stream.seek(max(0,path.stat().st_size-4000));logs[path.name]=stream.read().decode(errors='replace')
 print(json.dumps({'root':str(root),'files':files,'queue_alive_matching_command':owned(launch),
     'active_job_alive_matching_command':owned(state.get('active_job') or {}),
     'gpu_process_query_succeeded':gpu.returncode==0,'gpu_compute_processes':gpu.stdout.strip(),
+    'gpu_device_query_succeeded':devices.returncode==0,'gpu_devices':devices.stdout.strip(),
     'pipeline_summary':{key:state.get(key) for key in ['status','stage','current_seed','completed_seeds','seed_states','active_job','error']},
     'owned_log_tails':logs}))
 ''' % REMOTE
@@ -75,6 +81,7 @@ print(json.dumps({'root':str(root),'files':files,'queue_alive_matching_command':
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(content)
     receipt['captured_at_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    receipt['capture_source_sha256'] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     (target / 'capture_receipt.json').write_text(json.dumps(receipt, indent=2)+'\n', encoding='utf-8')
     print(json.dumps({key: receipt[key] for key in ('queue_alive_matching_command',
         'active_job_alive_matching_command', 'pipeline_summary', 'owned_log_tails')}, indent=2))

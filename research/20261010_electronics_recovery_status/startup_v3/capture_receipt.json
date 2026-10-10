@@ -1,0 +1,97 @@
+{
+  "root": "/data/sunzixuan/electronics_baseline_20261010_recovery_v3",
+  "files": {
+    "deployment.json": {
+      "sha256": "d3ac7ec9ffb6a98ff205ea3f954e7215bbe9c004cf0f31cd5fa911b30ec36e68",
+      "bytes": 19049,
+      "archive_path": "deployment.json"
+    },
+    "source_revision.json": {
+      "sha256": "922ecc66173f4d5c19d69273d7ca980ee9e894739261a1ee8bcb5f2d01266014",
+      "bytes": 15108,
+      "archive_path": "source_revision.json"
+    },
+    "test_receipt.json": {
+      "sha256": "8f82a9e2e375aafd8782767ee1b3b90862e82be3ada50c0b72f1b88436fe7a6e",
+      "bytes": 50398,
+      "archive_path": "test_receipt.json"
+    },
+    "launch.json": {
+      "sha256": "b127b465ff60e2a7ba7edf10926b9a324f0dc773e970762ab7b5385b34f30556",
+      "bytes": 540,
+      "archive_path": "launch.json"
+    },
+    "launch.reservation.json": {
+      "sha256": "7d79ee15a52a4cd55b3b1d7ee973de345f3df2d5a24a601ada4ff9f48201e549",
+      "bytes": 97,
+      "archive_path": "launch.reservation.json"
+    },
+    "execution.reservation.json": {
+      "sha256": "5477af31305bb098249efd1b422ace30b94dcede83852cff16681718c01b0f14",
+      "bytes": 64,
+      "archive_path": "execution.reservation.json"
+    },
+    "pipeline_status.json": {
+      "sha256": "3b01c164fe28cb4e2a8f4ad1ff5be3891e6dde965eb076a8d3a10b48f625b65d",
+      "bytes": 2647,
+      "archive_path": "pipeline_status.json"
+    },
+    "results.tsv": {
+      "sha256": "a6fe6a6d2af5a0bcae21ebc4a96de31be0867d64b8b559e02581ac566ae28f6b",
+      "bytes": 262,
+      "archive_path": "results.tsv"
+    },
+    "runs/elec_projector_recovery_s2026/config.json": {
+      "sha256": "539fcbb3845a8297029b64bcc3b772528a461882c9938e3bc8a586febe55615e",
+      "bytes": 6198,
+      "archive_path": "seeds/elec_projector_recovery_s2026/config.json"
+    },
+    "runs/elec_projector_recovery_s2026/inputs.json": {
+      "sha256": "8ad1b9f324f652b8bec02d6d706dc6548340a34d0246b165fd35f69c17311b1d",
+      "bytes": 6521,
+      "archive_path": "seeds/elec_projector_recovery_s2026/inputs.json"
+    },
+    "runs/elec_projector_recovery_s2026/failure.json": {
+      "sha256": "390b9a80dbeaa291e344f7fe8658ce07a508627d3e379b2e77ea79913a7d989b",
+      "bytes": 618,
+      "archive_path": "seeds/elec_projector_recovery_s2026/failure.json"
+    },
+    "runs/elec_projector_recovery_s2026/post_run_guard.json": {
+      "sha256": "b6e36489cc08365c66e2cd828acc82f5c79fe2b0d70ce1f0ff09a13c0c218fb3",
+      "bytes": 44465,
+      "archive_path": "seeds/elec_projector_recovery_s2026/post_run_guard.json"
+    },
+    "runs/elec_projector_recovery_s2026/progress.jsonl": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "archive_path": "seeds/elec_projector_recovery_s2026/progress.jsonl"
+    }
+  },
+  "queue_alive_matching_command": false,
+  "active_job_alive_matching_command": false,
+  "gpu_process_query_succeeded": true,
+  "gpu_compute_processes": "600045, GPU-30201e9a-a9f2-14b9-78e7-7a1f86a6476f, 22704",
+  "gpu_device_query_succeeded": true,
+  "gpu_devices": "0, GPU-30201e9a-a9f2-14b9-78e7-7a1f86a6476f, 0, 22721, 24576\n1, GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a, 0, 26, 24576",
+  "pipeline_summary": {
+    "status": "technical_failure",
+    "stage": "training",
+    "current_seed": 2026,
+    "completed_seeds": [],
+    "seed_states": {
+      "2026": "crash",
+      "2027": "not_started",
+      "2028": "not_started",
+      "2029": "not_started",
+      "2030": "not_started"
+    },
+    "active_job": null,
+    "error": "RuntimeError('Seed failed; queue stops without retry or fallback')"
+  },
+  "owned_log_tails": {
+    "seed2026.log": "nics_baseline_20261010_recovery_v3/numerics.py\", line 79, in loss\n    losses = self.original_loss(interaction)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier/src/models/bridge.py\", line 544, in calculate_loss\n    raw_user_emb_all, item_emb_all, ib_loss, user_frequencies, item_frequencies = DualFrequencyEncoder.forward(self)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier/src/models/dual_frequency_encoder.py\", line 450, in forward\n    user_rep_multi, item_rep_multi, ib_loss, user_frequencies, item_frequencies = self.FeqDecomposeOperator(\n  File \"/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier/src/models/dual_frequency_encoder.py\", line 1114, in forward\n    item_fre = self.frequency_decompose_svd_separate(h)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier/src/models/dual_frequency_encoder.py\", line 1088, in frequency_decompose_svd_separate\n    text_frequencies = self.frequency_decompose(text_rep)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier/src/models/dual_frequency_encoder.py\", line 1068, in frequency_decompose\n    return self.frequency_decompose_svd(rep)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/integration.py\", line 28, in recovered\n    guard.projector_call(representation, instance.M, projector_function))\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/recovery_guard.py\", line 38, in projector_call\n    return function(rep, bands)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/projector.py\", line 119, in projector_bands\n    return _ProjectorBands.apply(value, bands)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/projector.py\", line 62, in forward\n    check_boundary_gaps(singular, sizes)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/projector.py\", line 40, in check_boundary_gaps\n    raise FloatingPointError('Unresolved spectral band boundary at index ' + str(end))\nFloatingPointError: Unresolved spectral band boundary at index 43\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py\", line 106, in <module>\n    main()\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py\", line 82, in main\n    train.main()\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/train.py\", line 289, in main\n    selection, epochs = training_loop(trainer, train, valid, args.max_epochs, 20, checked_loss, save, emit)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py\", line 76, in guarded_loop\n    return original_loop(trainer, train_data, valid, max_epochs, patience,\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/train.py\", line 52, in training_loop\n    losses, _ = trainer._train_epoch(train, epoch, loss_func=loss_func)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py\", line 51, in guarded_epoch\n    return original_epoch(self, train_data, epoch_idx, loss_func=loss_func)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier/src/common/trainer.py\", line 191, in _train_epoch\n    losses = loss_func(interaction)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/train.py\", line 269, in checked_loss\n    losses = model.calculate_loss(interaction)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/numerics.py\", line 81, in loss\n    self.fail('forward', str(error))\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/recovery_guard.py\", line 163, in fail\n    raise FloatingPointError(message)\nFloatingPointError: Unresolved spectral band boundary at index 43\n",
+    "queue.log": "_v3/carrier\", \"--dataset\", \"elec\", \"--seed\", \"2026\", \"--output\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/runs/elec_projector_recovery_s2026\", \"--device\", \"cuda\", \"--gpu-id\", \"1\", \"--cuda-memory-fraction\", \".55\", \"--plugin-module\", \"proposal\", \"--plugin-class\", \"ProjectorRecoveryBRIDGE\", \"--plugin-config\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/plugin_config.json\"], \"elapsed_seconds\": 0.17148672207258642, \"peak_sampled_gpu_mib\": null, \"peak_host_rss_kib\": 15492}}\n{\"active_job\": {\"pid\": 3152157, \"command\": [\"/data/sunzixuan/miniconda3/envs/MMRec/bin/python\", \"-u\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py\", \"--bridge-root\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier\", \"--dataset\", \"elec\", \"--seed\", \"2026\", \"--output\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/runs/elec_projector_recovery_s2026\", \"--device\", \"cuda\", \"--gpu-id\", \"1\", \"--cuda-memory-fraction\", \".55\", \"--plugin-module\", \"proposal\", \"--plugin-class\", \"ProjectorRecoveryBRIDGE\", \"--plugin-config\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/plugin_config.json\"], \"elapsed_seconds\": 30.231791382888332, \"peak_sampled_gpu_mib\": null, \"peak_host_rss_kib\": 203540}}\n{\"active_job\": {\"pid\": 3152157, \"command\": [\"/data/sunzixuan/miniconda3/envs/MMRec/bin/python\", \"-u\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py\", \"--bridge-root\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier\", \"--dataset\", \"elec\", \"--seed\", \"2026\", \"--output\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/runs/elec_projector_recovery_s2026\", \"--device\", \"cuda\", \"--gpu-id\", \"1\", \"--cuda-memory-fraction\", \".55\", \"--plugin-module\", \"proposal\", \"--plugin-class\", \"ProjectorRecoveryBRIDGE\", \"--plugin-config\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/plugin_config.json\"], \"elapsed_seconds\": 60.322563752066344, \"peak_sampled_gpu_mib\": 10774, \"peak_host_rss_kib\": 5279816}}\n{\"active_job\": {\"pid\": 3152157, \"command\": [\"/data/sunzixuan/miniconda3/envs/MMRec/bin/python\", \"-u\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py\", \"--bridge-root\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier\", \"--dataset\", \"elec\", \"--seed\", \"2026\", \"--output\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/runs/elec_projector_recovery_s2026\", \"--device\", \"cuda\", \"--gpu-id\", \"1\", \"--cuda-memory-fraction\", \".55\", \"--plugin-module\", \"proposal\", \"--plugin-class\", \"ProjectorRecoveryBRIDGE\", \"--plugin-config\", \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/plugin_config.json\"], \"elapsed_seconds\": 90.40300113707781, \"peak_sampled_gpu_mib\": 14518, \"peak_host_rss_kib\": 6137392}}\n{\"active_job\": null}\n{\"status\": \"technical_failure\", \"error\": \"RuntimeError('Seed failed; queue stops without retry or fallback')\", \"traceback\": \"Traceback (most recent call last):\\n  File \\\"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\\\", line 237, in <module>\\n    main()\\n  File \\\"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\\\", line 218, in main\\n    execute(seed)\\n  File \\\"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\\\", line 168, in execute\\n    raise RuntimeError('Seed failed; queue stops without retry or fallback')\\nRuntimeError: Seed failed; queue stops without retry or fallback\\n\", \"finished_unix\": 1791608458.3329}\nTraceback (most recent call last):\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\", line 237, in <module>\n    main()\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\", line 218, in main\n    execute(seed)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\", line 168, in execute\n    raise RuntimeError('Seed failed; queue stops without retry or fallback')\nRuntimeError: Seed failed; queue stops without retry or fallback\n"
+  },
+  "captured_at_utc": "2026-10-10T05:09:58.616521+00:00",
+  "capture_source_sha256": "d9c3de4f934c7ee8d8a51da57175cd84d1ac1abe07a2b5de653ccd454dff0eff"
+}

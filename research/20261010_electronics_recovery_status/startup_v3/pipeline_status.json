@@ -1,0 +1,79 @@
+{
+  "pid": 3151746,
+  "status": "technical_failure",
+  "jobs": [
+    {
+      "seed": 2026,
+      "pid": 3152157,
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py",
+        "--bridge-root",
+        "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier",
+        "--dataset",
+        "elec",
+        "--seed",
+        "2026",
+        "--output",
+        "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/runs/elec_projector_recovery_s2026",
+        "--device",
+        "cuda",
+        "--gpu-id",
+        "1",
+        "--cuda-memory-fraction",
+        ".55",
+        "--plugin-module",
+        "proposal",
+        "--plugin-class",
+        "ProjectorRecoveryBRIDGE",
+        "--plugin-config",
+        "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/plugin_config.json"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 107.98425449803472,
+      "peak_sampled_gpu_mib": 14518,
+      "peak_host_rss_kib": 6137392
+    }
+  ],
+  "completed_seeds": [],
+  "seed_states": {
+    "2026": "crash",
+    "2027": "not_started",
+    "2028": "not_started",
+    "2029": "not_started",
+    "2030": "not_started"
+  },
+  "test_evaluated": false,
+  "test_loader_constructed": false,
+  "eval_cache_integrated": false,
+  "wall_time_budget_changed_from_v1": true,
+  "job_seconds": 86400,
+  "queue_seconds": 259200,
+  "backward_implementation_changed": true,
+  "started_unix": 1791608291.2601547,
+  "seed_order": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030
+  ],
+  "updated_unix": 1791608458.3329034,
+  "resources": {
+    "physical_gpu": 1,
+    "gpu_free_bytes": 25409093632,
+    "gpu1_compute_processes": [],
+    "query_succeeded": true,
+    "ram_available_bytes": 130173628416,
+    "available_cpu_count": 20,
+    "cpu_threads": 4,
+    "cuda_memory_fraction": 0.55
+  },
+  "stage": "training",
+  "current_seed": 2026,
+  "active_job": null,
+  "error": "RuntimeError('Seed failed; queue stops without retry or fallback')",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\", line 237, in <module>\n    main()\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\", line 218, in main\n    execute(seed)\n  File \"/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py\", line 168, in execute\n    raise RuntimeError('Seed failed; queue stops without retry or fallback')\nRuntimeError: Seed failed; queue stops without retry or fallback\n",
+  "finished_unix": 1791608458.3329
+}

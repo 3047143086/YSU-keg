@@ -1,0 +1,21 @@
+{
+  "pid": 3151746,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/run_queue.py"
+  ],
+  "unix": 1791608261.88298,
+  "resource_snapshot": {
+    "physical_gpu": 1,
+    "gpu_free_bytes": 25409093632,
+    "gpu1_compute_processes": [],
+    "query_succeeded": true,
+    "ram_available_bytes": 130167631872,
+    "available_cpu_count": 20,
+    "cpu_threads": 4,
+    "cuda_memory_fraction": 0.55
+  },
+  "queue_seconds": 259200,
+  "job_seconds": 86400
+}

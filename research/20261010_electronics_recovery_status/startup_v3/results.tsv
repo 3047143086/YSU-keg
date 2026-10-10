@@ -1,0 +1,6 @@
+seed	status	recall@10	ndcg@10	recall@20	ndcg@20	epochs	seconds
+2026	crash	n/a	n/a	n/a	n/a	n/a	n/a
+2027	not_started	n/a	n/a	n/a	n/a	n/a	n/a
+2028	not_started	n/a	n/a	n/a	n/a	n/a	n/a
+2029	not_started	n/a	n/a	n/a	n/a	n/a	n/a
+2030	not_started	n/a	n/a	n/a	n/a	n/a	n/a

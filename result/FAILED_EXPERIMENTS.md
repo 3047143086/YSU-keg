@@ -654,7 +654,7 @@ full-model GPU projector audit also completed_fail: archived-input probes
 passed (capture0 generic gradient nonfinite/repaired finite), but six model
 calls exceeded the fixed band-forward relative tolerance under slightly
 different upstream GPU inputs. Full historical replay was not exact. Recovery
-training has not started. The separate original-model repeated-forward v1 had
+training had not started at that audit milestone. The separate original-model repeated-forward v1 had
 an old-Torch parameter-enumeration compatibility failure before any forward;
 its immutable evidence is retained. Compatibility-only v2, source dd55a8d,
 passed 17 actual CPU tests and completed_different in105.733s with exactly two
@@ -675,12 +675,41 @@ passed. Raw receipt SHA256 is
 87251d388816ec3d395f477a096a7f67e1ea6e25cfaf84116b517c6a36c64f2c.
 This narrower instrumented-batch result does not reclassify fd42959, replay
 the historical crash, establish unobserved training stability or show a
-recommendation gain. A separate numerical recovery v3 is being prepared;
-no recovery training has started. Preserve the ineligible v2 preparation.
+recommendation gain. This pass preceded the separately reviewed numerical
+recovery v3 described below. Preserve the ineligible v2 preparation.
 V3 candidate8094f25 and conditional approvalcb7bc6b passed50 actual CPU checks,
 zero skips; the first one-error CPU receipt is preserved separately. V3 remains
 a new numerical feasibility version, with fixed24h per-seed/72h total bounds,
-not a rescued old failure or an innovation metric. Deployment is in progress.
+not a rescued old failure or an innovation metric. Deployment completed and its
+actual deployed MMRec tests passed50/50 with zero skips. Queue PID3151746
+launched fresh seed2026 as child PID3152157. Both actual command identities
+were checked in the client2026-10-10 05:08UTC read-only snapshot. The queue
+reports stage=training, but the first captured child log was empty and no GPU
+forward, optimizer update or completed epoch was yet observed. Completed
+seeds remain0/5;2027-2030 are not_started. Exact deployment, tests, launch and
+pipeline receipts are archived outside the frozen reviewed payload at
+`../research/20261010_electronics_recovery_status/launch_v3/`. The client05:09UTC
+follow-up snapshot confirms technical_failure after4 finite optimizer updates:
+at zero-based epoch0/batch4, forward rejected an unresolved spectral band
+boundary at index43 before that batch's optimizer update. Parameters remained
+finite. Child3152157 exited1 after107.984s; queue3151746 also exited. No epoch
+or seed completed and no validation/test metric exists. Client capture and
+remote event clocks were not synchronized;107.984s is child monotonic elapsed
+time. The post-run264 path
+hash checks match and v1_preserved=true. Exact failure SHA256 is
+390b9a80dbeaa291e344f7fe8658ce07a508627d3e379b2e77ea79913a7d989b.
+Raw failure, post-run and empty progress receipts are preserved in
+`../research/20261010_electronics_recovery_status/startup_v3/`; see RUN_STATUS.md
+in its parent. V3 now remains frozen as a failed numerical feasibility run.
+Do not restart it, relax the boundary threshold or count it as recommendation
+gain. Independently inspect the saved boundary values before proposing a new
+version. The old failure versions remain unchanged. A separate read-only CPU
+diagnostic is frozen at6fd840b, with no SVD replay/backward/training: the sole
+rejected saved gap is0.7442226918 vs fixed0.7574242599 (1.743% below). Stored
+singular values are distinct; this is a guard rejection, not evidence of an
+exact cross-band repeated root or stable unexecuted gradients. All24 decisions
+and264 protection hashes were independently checked. See
+`../research/20261010_recovery_boundary_diagnostic/AUDIT.md`.
 Evidence: `../research/20261010_same_input_integration_audit/archives/v1/receipts/integration_receipt.json`.
 The independently frozen report is commit8c47b48, `AUDIT_RESULT.md` in that directory.
 

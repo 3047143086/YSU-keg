@@ -1,0 +1,83 @@
+{
+  "root": "/data/sunzixuan/electronics_baseline_20261010_recovery_v3",
+  "files": {
+    "deployment.json": {
+      "sha256": "d3ac7ec9ffb6a98ff205ea3f954e7215bbe9c004cf0f31cd5fa911b30ec36e68",
+      "bytes": 19049,
+      "archive_path": "deployment.json"
+    },
+    "source_revision.json": {
+      "sha256": "922ecc66173f4d5c19d69273d7ca980ee9e894739261a1ee8bcb5f2d01266014",
+      "bytes": 15108,
+      "archive_path": "source_revision.json"
+    },
+    "test_receipt.json": {
+      "sha256": "8f82a9e2e375aafd8782767ee1b3b90862e82be3ada50c0b72f1b88436fe7a6e",
+      "bytes": 50398,
+      "archive_path": "test_receipt.json"
+    },
+    "launch.json": {
+      "sha256": "b127b465ff60e2a7ba7edf10926b9a324f0dc773e970762ab7b5385b34f30556",
+      "bytes": 540,
+      "archive_path": "launch.json"
+    },
+    "pipeline_status.json": {
+      "sha256": "4c75bfbdc2e5e68deffafb86b72ae379101d7046a13682af8039c5e185637dba",
+      "bytes": 1863,
+      "archive_path": "pipeline_status.json"
+    }
+  },
+  "queue_alive_matching_command": true,
+  "active_job_alive_matching_command": true,
+  "gpu_process_query_succeeded": true,
+  "gpu_compute_processes": "600045, GPU-30201e9a-a9f2-14b9-78e7-7a1f86a6476f, 22704",
+  "pipeline_summary": {
+    "status": "running",
+    "stage": "training",
+    "current_seed": 2026,
+    "completed_seeds": [],
+    "seed_states": {
+      "2026": "running",
+      "2027": "not_started",
+      "2028": "not_started",
+      "2029": "not_started",
+      "2030": "not_started"
+    },
+    "active_job": {
+      "pid": 3152157,
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/guarded_train.py",
+        "--bridge-root",
+        "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/carrier",
+        "--dataset",
+        "elec",
+        "--seed",
+        "2026",
+        "--output",
+        "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/runs/elec_projector_recovery_s2026",
+        "--device",
+        "cuda",
+        "--gpu-id",
+        "1",
+        "--cuda-memory-fraction",
+        ".55",
+        "--plugin-module",
+        "proposal",
+        "--plugin-class",
+        "ProjectorRecoveryBRIDGE",
+        "--plugin-config",
+        "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/plugin_config.json"
+      ],
+      "elapsed_seconds": 0.17148672207258642,
+      "peak_sampled_gpu_mib": null,
+      "peak_host_rss_kib": 15492
+    },
+    "error": null
+  },
+  "owned_log_tails": {
+    "seed2026.log": ""
+  },
+  "captured_at_utc": "2026-10-10T05:08:11.359818+00:00"
+}

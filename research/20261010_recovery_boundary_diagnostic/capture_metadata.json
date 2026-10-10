@@ -1,0 +1,8 @@
+{
+  "client_transport_started_utc": "2026-10-10T05:13:08.481215+00:00",
+  "client_captured_utc": "2026-10-10T05:14:36.521264+00:00",
+  "clock_offset_measured": false,
+  "remote_receipt_sha256": "afb5b187039ae15e2577ebaeb67e45e2edd6b3defdcb7d154545472804722f90",
+  "remote_receipt_bytes": 168229,
+  "remote_script_sha256": "6b034a5ec2d72d8b1450291da98eb68cf00a09d4fdcb73abfc574898a073995e"
+}
