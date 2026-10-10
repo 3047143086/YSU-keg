@@ -78,8 +78,8 @@
       "git_metadata_readable": true
     },
     "research/20261010_feature_perturbation_precheck": {
-      "commit": "8010c0c674ee17724a7e09c91a59de9f8f10f72b",
-      "working_tree_has_changes": true,
+      "commit": "54728a40a4ff4c4ea90c4fb76c1d711272730cd2",
+      "working_tree_has_changes": false,
       "git_metadata_readable": true
     },
     "research/20261010_forward_repeat_diagnostic": {
