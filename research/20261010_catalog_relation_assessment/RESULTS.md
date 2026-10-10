@@ -1,0 +1,23 @@
+# Catalog relation qualification result
+
+The committed diagnostic source was `354fa8d3a0d05515a0e062cb738c641f91fb134a`. Its SHA256 before and after the remote run was `7764f54b46941dd0cf758c26057e72b72799eeee0f2a330115ecace3c7d83ad2`. The run was CPU-only and recorded `gpu_initialized=false`, `reviews_read=false`, and `validation_or_test_used=false`.
+
+Baby used the explicit metadata asset `/data/sunzixuan/rave_20260905_inputs/baby/items.jsonl` (7,050 rows; SHA256 `632b837f13ae6ba58e8cd9a1f72d7964fc3045e2cfdee04269c97d34a9b35cac`) and official MSCA TRAIN source `/data/sunzixuan/MSCA-main/data/baby/baby.inter` (SHA256 `e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940`). The metadata schema had `item_id`, `asin`, `brand`, `categories`, `title`, `description`, `imUrl`; all 7,050 IDs were integer and unique, categories were nested lists with one explicit path per row, 7,037 titles and 6,386 descriptions were nonempty. No title or description was parsed for a relation.
+
+The explicit mapping `/data/sunzixuan/rave_20260905_inputs/baby/item_id_to_asin.json` has 7,050 unique mappings and every metadata ASIN matched. Its certificate `/data/sunzixuan/rave_20260905_inputs/baby/mapping_audit.json` records unique exact per-item `(timestamp,rating)` multiset matching, 7,050 mapped items and zero unresolved items. The mapping source interaction, official MSCA interaction, and frozen BRIDGE interaction had identical bytes and SHA256. Therefore the item join is trusted and does not rely on row order or numeric ID range.
+
+The 7,047-item split-zero TRAIN union had complete metadata mapping and category coverage, but only 4,923 explicit nonempty brands: brand coverage was `0.698595146871009`, below the preregistered 0.70 threshold. All 7,047 mapped items had categories, but every category signature was the same single explicit path. Degree-stratified private null permutation changed joint brand/category labels for 98.76% of fitting endpoints and 98.15% of heldout endpoints, so null variation itself passed.
+
+The required deterministic matching (20% item hash heldout, two endpoints in the same partition, at most one partner per item per relation class, unordered deduplication) yielded:
+
+| Relation class | Fitting pairs | Heldout pairs | Qualification |
+| --- | ---: | ---: | --- |
+| same-brand / different-category | 0 | 0 | fail |
+| same-category / different-brand | 1,974 | 487 | pass |
+| neither | 0 | 0 | fail |
+
+Baby therefore fails the brand coverage gate and two of the three pair-class gates. `overall_training_eligible=false`. No model training was launched because eligibility gates failed. Sports was intentionally not audited after Baby failed the first-domain gate. Only known Sports catalog candidate paths were listed; no row-order inference or missing Sports metadata claim was made.
+
+Recovery provenance was checked with `rg`: `research/20260905/recover_baby_inputs.py:96` selects the raw `meta_Baby.json.gz` archive, lines 105–106 copy each metadata record's existing `categories` field using `row.get(key)`, and lines 109–113 export those copied fields into `items.jsonl`. The code contains no assignment of a fabricated fixed `[['Baby']]` category. This establishes the exporter behavior; a separate bounded raw-metadata category comparison is recorded in `taxonomy_provenance_audit.json` after its source is committed. Nonempty category coverage in this audit describes an explicit field, not a usable fine-grained taxonomy: the observed exported field has no category variation.
+
+The raw provenance check was a separate committed CPU run (`51bfe2c15d689babfc36b6485ed90679ed59bf96`, source SHA256 `2888e4ef24e00300e451824d49f9fd25a4d3a486f2e44c697237a62c675c4bfa`). The raw archive SHA256 `89013c16b38dc03dd7252dac7fb4f33a7945a7ffd8d5dcf1788bb0a301dff70e` matched the mapping certificate. All 7,050 selected ASIN records matched exported category fields exactly, with zero duplicates; raw categories had one explicit path and one signature for all 7,050 records. The one-signature result is therefore present in the original raw catalog, not inserted by the exporter. The full aggregate result, input paths/hashes, schema counts, mapping certificate, partition distributions, null-label audit and pair endpoint digests are in `catalog_relation_audit.json`; provenance details are in `taxonomy_provenance_audit.json`. The independent CPU fixtures in `test_audit.py` passed five tests, including partial taxonomy overlap behavior, strict split-zero selection, one-partner matching, endpoint-disjoint hash partitions and degree-stratified null determinism.

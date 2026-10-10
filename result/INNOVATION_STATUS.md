@@ -18,6 +18,10 @@
 
 下一项独立假设是 TRAIN 商品的品牌与类别关系辅助监督，先检查现有元数据及内部商品 ID 对齐是否满足资格门。方案及论文来源见 [NEXT_INDEPENDENT.md](../research/20261010_literature_innovation_search/NEXT_INDEPENDENT.md)。该方案尚未启动推荐训练；元数据覆盖和对照构造合格后才冻结实现并运行。
 
+CPU 资格审计已完成并判为 `ineligible`，没有启动 GPU：Baby split-0 TRAIN 的 7,047 个商品全部完成显式 ID 映射，品牌非空覆盖 4,923/7,047 = 69.8595%，低于预先冻结的 70% 门槛；类别字段虽有 100% 覆盖，但 7,050 行都只有同一个单路径签名。三类配对中 `same-brand/different-category` 与 `neither` 都是 0，只有 `same-category/different-brand` 有 1,974 个 fitting、487 个 held-out 配对，故 pair gate 也失败。degree-stratified null 的标签变化率为 fitting 98.76%、held-out 98.15%，只说明 null 本身可构造，不能挽救数据资格。Sports 按预注册条件未继续审计，避免在首域失败后选择性推进。审计过程是 CPU-only，未读评论、验证集或测试集，未初始化 GPU。详细结果见 [RESULTS.md](../research/20261010_catalog_relation_assessment/RESULTS.md) 与 [catalog_relation_audit.json](../research/20261010_catalog_relation_assessment/catalog_relation_audit.json)。
+
+当前转入独立的 MASAM-motivated block-sharpness 只读诊断：由于 MSCA 没有 MASAM 的独立 unimodal prediction head，它只检查固定 TRAIN batch 上 image/text 参数块的对称局部曲率，不声称复现 MASAM 或已经得到推荐收益。正式训练需等诊断和新协议分别冻结。
+
 以下保留此前实验的结果记录。
 
 更新于 2026-10-10（北京时间）。F27 已完成并判为 `discard_this_fixed_bank_geometry`。

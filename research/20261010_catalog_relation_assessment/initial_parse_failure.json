@@ -1,0 +1,12 @@
+{
+  "status": "crash",
+  "stage": "embedded_remote_python_parse",
+  "error_type": "SyntaxError",
+  "error": "closing parenthesis ')' does not match opening parenthesis '{' in row.update",
+  "before_result_source_commit": true,
+  "metadata_opened": false,
+  "interactions_opened": false,
+  "metrics_computed": false,
+  "gpu_initialized": false,
+  "recovery": "Corrected syntax; added relation/matching/split/null fixtures; froze exact definitions and committed 354fa8d before the successful bounded audit."
+}

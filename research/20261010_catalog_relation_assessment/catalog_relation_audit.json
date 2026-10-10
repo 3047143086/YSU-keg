@@ -1,0 +1,377 @@
+{
+  "checked_unix": 1791622656.5785873,
+  "read_only": true,
+  "gpu_initialized": false,
+  "reviews_read": false,
+  "validation_or_test_used": false,
+  "datasets": {
+    "baby": {
+      "dataset": "baby",
+      "metadata_candidates": [
+        {
+          "path": "/data/sunzixuan/bridge_official/data/baby/inter.json",
+          "bytes": 119558,
+          "sha256": "3b84c71b119195f2247bc0cd99522f4247f2ffe1d5eeabfa3fac44d24441dc78"
+        },
+        {
+          "path": "/data/sunzixuan/bridge_official/data/baby/pop_item_msk-0.9.npy",
+          "bytes": 7178,
+          "sha256": "e18fd8b9ce4c50fb3db6265d7cb50d3f4244662c2afa788e7425a58fbcbba392"
+        },
+        {
+          "path": "/data/sunzixuan/bridge_official/data/baby/tail_item_msk-0.1.npy",
+          "bytes": 7178,
+          "sha256": "f32eadba073e42ef219d1b67d4b56edf05e0b4deb1e899adec5afa1c6af43c6a"
+        },
+        {
+          "path": "/data/sunzixuan/MSCA-main/data/baby/inter.json",
+          "bytes": 119558,
+          "sha256": "3b84c71b119195f2247bc0cd99522f4247f2ffe1d5eeabfa3fac44d24441dc78"
+        },
+        {
+          "path": "/data/sunzixuan/MSCA-main/data/baby/pop_item_msk-0.9.npy",
+          "bytes": 7178,
+          "sha256": "e18fd8b9ce4c50fb3db6265d7cb50d3f4244662c2afa788e7425a58fbcbba392"
+        },
+        {
+          "path": "/data/sunzixuan/MSCA-main/data/baby/tail_item_msk-0.1.npy",
+          "bytes": 7178,
+          "sha256": "f32eadba073e42ef219d1b67d4b56edf05e0b4deb1e899adec5afa1c6af43c6a"
+        },
+        {
+          "path": "/data/sunzixuan/PRAVI_remote/data/baby/inter.json",
+          "bytes": 119558,
+          "sha256": "3b84c71b119195f2247bc0cd99522f4247f2ffe1d5eeabfa3fac44d24441dc78"
+        },
+        {
+          "path": "/data/sunzixuan/PRAVI_remote/data/baby/pop_item_msk-0.9.npy",
+          "bytes": 7178,
+          "sha256": "e18fd8b9ce4c50fb3db6265d7cb50d3f4244662c2afa788e7425a58fbcbba392"
+        },
+        {
+          "path": "/data/sunzixuan/PRAVI_remote/data/baby/tail_item_msk-0.1.npy",
+          "bytes": 7178,
+          "sha256": "f32eadba073e42ef219d1b67d4b56edf05e0b4deb1e899adec5afa1c6af43c6a"
+        }
+      ],
+      "metadata_path": "/data/sunzixuan/rave_20260905_inputs/baby/items.jsonl",
+      "inter_path": "/data/sunzixuan/MSCA-main/data/baby/baby.inter",
+      "status": "audited",
+      "metadata": {
+        "rows": 7050,
+        "malformed": 0,
+        "duplicate_ids": 0,
+        "fields": [
+          "asin",
+          "brand",
+          "categories",
+          "description",
+          "imUrl",
+          "item_id",
+          "title"
+        ],
+        "id_types": {
+          "int": 7050
+        },
+        "category_schema_counts": {
+          "list:nested_lists": 7050
+        },
+        "taxonomy_path_length_counts": {
+          "1": 7050
+        },
+        "nonempty_text_counts": {
+          "title": 7037,
+          "description": 6386
+        },
+        "sha256": "632b837f13ae6ba58e8cd9a1f72d7964fc3045e2cfdee04269c97d34a9b35cac",
+        "bytes": 5406171
+      },
+      "inter": {
+        "path": "/data/sunzixuan/MSCA-main/data/baby/baby.inter",
+        "sha256": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+        "bytes": 4362239,
+        "fields": [
+          "userID",
+          "itemID",
+          "rating",
+          "timestamp",
+          "x_label"
+        ],
+        "physical_rows_scanned_for_split0_only": 160792,
+        "train_events": 118551,
+        "item_types": {
+          "str": 118551
+        }
+      },
+      "explicit_mapping_join": {
+        "mapping_path": "/data/sunzixuan/rave_20260905_inputs/baby/item_id_to_asin.json",
+        "mapping_exists": true,
+        "mapping_audit_path": "/data/sunzixuan/rave_20260905_inputs/baby/mapping_audit.json",
+        "mapping_audit_exists": true,
+        "trusted": true,
+        "mapping_sha256": "451c8cfa29ad517a427f5f7f6278fe0761959f94508562a173f8306c9c02ed2c",
+        "mapping_rows": 7050,
+        "mapping_unique_asins": 7050,
+        "metadata_asin_matches": 7050,
+        "metadata_asin_mismatches": 0,
+        "mapping_audit_sha256": "205b1d44862e6408a0126eab28a01dbeb1dba9a7d93e0fc285bd6c4da35842da",
+        "mapping_method": "unique exact per-item multiset of (timestamp, rating), across full source records",
+        "mapped_items": 7050,
+        "unresolved_items_count": 0,
+        "original_bridge_inter_path": "/data/sunzixuan/bridge_official/data/baby/baby.inter",
+        "original_bridge_inter_sha256": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+        "original_bridge_same_bytes_as_msca": true,
+        "mapping_source_inter_path": "/data/sunzixuan/expirement/LOBSTER/data/baby/baby.inter",
+        "mapping_source_inter_sha256": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+        "mapping_source_same_bytes_as_msca": true
+      },
+      "train_unique_items": 7047,
+      "mapped_train_items": 7047,
+      "mapping_coverage": 1.0,
+      "metadata_missing_train_items": 0,
+      "brand_known": 4923,
+      "brand_coverage": 0.698595146871009,
+      "category_known": 7047,
+      "category_coverage": 1.0,
+      "both_known": 4923,
+      "both_coverage": 0.698595146871009,
+      "metadata_null_brand_on_mapped": 2124,
+      "metadata_null_category_on_mapped": 0,
+      "relation_definition": {
+        "normalization": "NFKC, trim, whitespace collapse, casefold",
+        "categories": "explicit root-to-leaf sorted unique path sets; same-category iff exact signature equals; different iff unequal; partial overlap remains different",
+        "brand": "normalized explicit brand; unknown labels excluded",
+        "excluded": "same-brand and same-category pairs",
+        "pair_cap_per_class_partition": 20000,
+        "partner_limit": "greedy ascending TRAIN itemID matching; each item at most one partner per relation class per partition; unordered deduplicated",
+        "hash_partition": "SHA256(dataset:item)%5==0 heldout; both endpoints heldout for diagnostic pairs"
+      },
+      "pairs": {
+        "usable_items": 4923,
+        "fit_items": 3948,
+        "holdout_items": 975,
+        "fit_fraction": 0.8019500304692261,
+        "holdout_fraction": 0.19804996953077392,
+        "relations": {
+          "same-brand_diff-category": {
+            "fitting": {
+              "unique_matching_pair_count": 0,
+              "available_count_semantics": "deterministic matching under one-partner-per-item constraint; not total combinatorial pairs",
+              "stored_count": 0,
+              "meets_1000_fit": false,
+              "meets_200_holdout": true,
+              "endpoint_sha256_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            "heldout": {
+              "unique_matching_pair_count": 0,
+              "available_count_semantics": "deterministic matching under one-partner-per-item constraint; not total combinatorial pairs",
+              "stored_count": 0,
+              "meets_1000_fit": true,
+              "meets_200_holdout": false,
+              "endpoint_sha256_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          },
+          "same-category_diff-brand": {
+            "fitting": {
+              "unique_matching_pair_count": 1974,
+              "available_count_semantics": "deterministic matching under one-partner-per-item constraint; not total combinatorial pairs",
+              "stored_count": 1974,
+              "meets_1000_fit": true,
+              "meets_200_holdout": true,
+              "endpoint_sha256_digest": "6ec861c2556c36e156ac6b45c883fa625f01f031cfee919c22108a86c97f5699"
+            },
+            "heldout": {
+              "unique_matching_pair_count": 487,
+              "available_count_semantics": "deterministic matching under one-partner-per-item constraint; not total combinatorial pairs",
+              "stored_count": 487,
+              "meets_1000_fit": true,
+              "meets_200_holdout": true,
+              "endpoint_sha256_digest": "0f8b772d402d3a592f9350a0e062eb7738669ebd8760e9a6aabd71a67bfa745a"
+            }
+          },
+          "neither": {
+            "fitting": {
+              "unique_matching_pair_count": 0,
+              "available_count_semantics": "deterministic matching under one-partner-per-item constraint; not total combinatorial pairs",
+              "stored_count": 0,
+              "meets_1000_fit": false,
+              "meets_200_holdout": true,
+              "endpoint_sha256_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            },
+            "heldout": {
+              "unique_matching_pair_count": 0,
+              "available_count_semantics": "deterministic matching under one-partner-per-item constraint; not total combinatorial pairs",
+              "stored_count": 0,
+              "meets_1000_fit": true,
+              "meets_200_holdout": false,
+              "endpoint_sha256_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+            }
+          }
+        },
+        "partition_distributions": {
+          "fitting": {
+            "known_items": 3948,
+            "brand_count": 658,
+            "brand_frequency_histogram": {
+              "1": 321,
+              "91": 1,
+              "109": 1,
+              "105": 1,
+              "2": 106,
+              "23": 2,
+              "129": 1,
+              "4": 27,
+              "38": 2,
+              "63": 1,
+              "44": 2,
+              "75": 1,
+              "29": 1,
+              "47": 2,
+              "18": 1,
+              "3": 41,
+              "77": 1,
+              "8": 13,
+              "7": 10,
+              "32": 4,
+              "11": 2,
+              "61": 1,
+              "16": 2,
+              "17": 4,
+              "43": 1,
+              "10": 9,
+              "92": 1,
+              "5": 25,
+              "20": 3,
+              "30": 2,
+              "9": 7,
+              "51": 1,
+              "14": 4,
+              "12": 7,
+              "13": 8,
+              "6": 15,
+              "40": 1,
+              "27": 1,
+              "55": 1,
+              "15": 5,
+              "45": 1,
+              "22": 4,
+              "25": 1,
+              "21": 2,
+              "79": 1,
+              "31": 2,
+              "19": 4,
+              "33": 1,
+              "46": 2,
+              "42": 1
+            },
+            "category_signature_count": 1,
+            "category_frequency_histogram": {
+              "3948": 1
+            }
+          },
+          "heldout": {
+            "known_items": 975,
+            "brand_count": 310,
+            "brand_frequency_histogram": {
+              "41": 1,
+              "17": 4,
+              "1": 167,
+              "9": 5,
+              "21": 1,
+              "10": 3,
+              "22": 1,
+              "6": 7,
+              "3": 18,
+              "8": 5,
+              "2": 59,
+              "18": 1,
+              "11": 3,
+              "4": 15,
+              "15": 2,
+              "38": 1,
+              "14": 1,
+              "7": 3,
+              "31": 1,
+              "5": 10,
+              "12": 1,
+              "20": 1
+            },
+            "category_signature_count": 1,
+            "category_frequency_histogram": {
+              "975": 1
+            }
+          }
+        }
+      },
+      "pre_gate": false,
+      "null_label_audit_completed": true,
+      "null_label_audit": {
+        "seed": 2026,
+        "degree_strata": "floor(log2(split0 item event degree))",
+        "permutation_scope": "within each item-hash partition and degree bin; joint brand/category labels",
+        "partitions": {
+          "fit": {
+            "known_items": 3948,
+            "joint_label_changed": 3899,
+            "joint_label_changed_rate": 0.9875886524822695,
+            "brand_changed_rate": 0.9875886524822695,
+            "category_changed_rate": 0.0,
+            "degree_bin_counts": {
+              "0": 9,
+              "1": 262,
+              "2": 1290,
+              "3": 1115,
+              "4": 682,
+              "5": 375,
+              "6": 149,
+              "7": 62,
+              "8": 3,
+              "9": 1
+            },
+            "passes_50pct_joint_changed": true
+          },
+          "holdout": {
+            "known_items": 975,
+            "joint_label_changed": 957,
+            "joint_label_changed_rate": 0.9815384615384616,
+            "brand_changed_rate": 0.9815384615384616,
+            "category_changed_rate": 0.0,
+            "degree_bin_counts": {
+              "0": 3,
+              "1": 57,
+              "2": 319,
+              "3": 287,
+              "4": 167,
+              "5": 86,
+              "6": 47,
+              "7": 6,
+              "8": 3
+            },
+            "passes_50pct_joint_changed": true
+          }
+        },
+        "passes_both_partitions": true
+      },
+      "overall_training_eligible": false,
+      "pair_gate": false
+    },
+    "sports": {
+      "status": "not_audited_after_baby_pregate_failure",
+      "limited_known_candidates": [
+        "/data/sunzixuan/bridge_official/data/sports/inter.json",
+        "/data/sunzixuan/bridge_official/data/sports/pop_item_msk-0.9.npy",
+        "/data/sunzixuan/bridge_official/data/sports/tail_item_msk-0.1.npy",
+        "/data/sunzixuan/MSCA-main/data/sports/inter.json",
+        "/data/sunzixuan/MSCA-main/data/sports/pop_item_msk-0.9.npy",
+        "/data/sunzixuan/MSCA-main/data/sports/tail_item_msk-0.1.npy",
+        "/data/sunzixuan/PRAVI_remote/data/sports/inter.json",
+        "/data/sunzixuan/PRAVI_remote/data/sports/pop_item_msk-0.9.npy",
+        "/data/sunzixuan/PRAVI_remote/data/sports/tail_item_msk-0.1.npy"
+      ],
+      "overall_training_eligible": false
+    }
+  },
+  "source_commit": "354fa8d3a0d05515a0e062cb738c641f91fb134a",
+  "source_sha256": "7764f54b46941dd0cf758c26057e72b72799eeee0f2a330115ecace3c7d83ad2",
+  "post_source_sha256": "7764f54b46941dd0cf758c26057e72b72799eeee0f2a330115ecace3c7d83ad2"
+}

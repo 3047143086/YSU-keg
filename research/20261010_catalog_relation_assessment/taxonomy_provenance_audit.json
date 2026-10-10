@@ -1,0 +1,32 @@
+{
+  "checked_unix": 1791623270.2731755,
+  "gpu_initialized": false,
+  "reviews_read": false,
+  "interactions_read": false,
+  "raw_metadata_path": "/data/sunzixuan/rave_20260905_inputs/baby/meta_Baby.json.gz",
+  "exported_metadata_path": "/data/sunzixuan/rave_20260905_inputs/baby/items.jsonl",
+  "certificate_path": "/data/sunzixuan/rave_20260905_inputs/baby/mapping_audit.json",
+  "raw_sha256": "89013c16b38dc03dd7252dac7fb4f33a7945a7ffd8d5dcf1788bb0a301dff70e",
+  "exported_sha256": "632b837f13ae6ba58e8cd9a1f72d7964fc3045e2cfdee04269c97d34a9b35cac",
+  "certificate_sha256": "205b1d44862e6408a0126eab28a01dbeb1dba9a7d93e0fc285bd6c4da35842da",
+  "raw_hash_matches_mapping_certificate": true,
+  "status": "completed",
+  "selected_asins": 7050,
+  "matched_asins": 7050,
+  "raw_exported_categories_equal_count": 7050,
+  "raw_exported_category_mismatch_count": 0,
+  "duplicate_selected_asins": 0,
+  "raw_category_signature_count": 1,
+  "raw_selected_path_length_counts": {
+    "1": 7050
+  },
+  "raw_category_schema_counts": {
+    "list": 7050
+  },
+  "raw_category_frequency_histogram": {
+    "7050": 1
+  },
+  "source_commit": "51bfe2c15d689babfc36b6485ed90679ed59bf96",
+  "source_sha256": "2888e4ef24e00300e451824d49f9fd25a4d3a486f2e44c697237a62c675c4bfa",
+  "post_source_sha256": "2888e4ef24e00300e451824d49f9fd25a4d3a486f2e44c697237a62c675c4bfa"
+}

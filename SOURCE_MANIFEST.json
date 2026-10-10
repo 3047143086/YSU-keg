@@ -52,6 +52,11 @@
       "working_tree_has_changes": false,
       "git_metadata_readable": true
     },
+    "research/20261010_catalog_relation_assessment": {
+      "commit": "bb1d061c88071f36cc9aec9e5e6da53e4e5dc7bb",
+      "working_tree_has_changes": false,
+      "git_metadata_readable": true
+    },
     "research/20261010_electronics_recovery_v2": {
       "commit": "28f6ac9237eff48667d054dbda9e8adbcd232dc9",
       "working_tree_has_changes": false,
@@ -2823,6 +2828,50 @@
       "sha256": "a482f99e4c9ead7b27d96f881d2620c89e5d7125e23a98c68d6946d5b670dadb",
       "bytes": 2034
     },
+    "research/20261010_catalog_relation_assessment/PROTOCOL.md": {
+      "sha256": "4b15e6f1e5eb7110e069786b48c32d8c1ad78c94109370bdd4c382ee76e19234",
+      "bytes": 3863
+    },
+    "research/20261010_catalog_relation_assessment/PROVENANCE_PROTOCOL.md": {
+      "sha256": "467e8b4f1fad96afb163f6082ebacb140deb5b67554a99d8dfc2543044926c5e",
+      "bytes": 1033
+    },
+    "research/20261010_catalog_relation_assessment/RESULTS.md": {
+      "sha256": "6ccfaf6bedf71bc6688dfe074f761f9ceecc280127988a92a0c0862d439a1c1b",
+      "bytes": 4613
+    },
+    "research/20261010_catalog_relation_assessment/audit_catalog.py": {
+      "sha256": "7764f54b46941dd0cf758c26057e72b72799eeee0f2a330115ecace3c7d83ad2",
+      "bytes": 21276
+    },
+    "research/20261010_catalog_relation_assessment/audit_taxonomy_provenance.py": {
+      "sha256": "2888e4ef24e00300e451824d49f9fd25a4d3a486f2e44c697237a62c675c4bfa",
+      "bytes": 3902
+    },
+    "research/20261010_catalog_relation_assessment/catalog_relation_audit.json": {
+      "sha256": "24a02743629fb9a2d01884bf200a164f31c5d3561baa2df72489a5fc54a5b4c1",
+      "bytes": 14359
+    },
+    "research/20261010_catalog_relation_assessment/initial_parse_failure.json": {
+      "sha256": "891b2bebcaef0c201908391ba94c87484b6b06bdf374b524d161efb461897341",
+      "bytes": 508
+    },
+    "research/20261010_catalog_relation_assessment/program.md": {
+      "sha256": "117f8279c1bebaa6aa635074675b67248bc57812bd003fdd3e52b93857afa9f0",
+      "bytes": 637
+    },
+    "research/20261010_catalog_relation_assessment/results.tsv": {
+      "sha256": "22453aead98c8d8a8772bbb0d8b0fa0f3350567f1732199a7fc2d671d37699c6",
+      "bytes": 441
+    },
+    "research/20261010_catalog_relation_assessment/taxonomy_provenance_audit.json": {
+      "sha256": "19fff2ebb37526481cc5adedfde543552d42931aeb82867c7dd78e5b55b37065",
+      "bytes": 1379
+    },
+    "research/20261010_catalog_relation_assessment/test_audit.py": {
+      "sha256": "43b421d327240a408107c43b60717c8b903120270e3b660a3c10c2c3f6748d68",
+      "bytes": 3702
+    },
     "research/20261010_electronics_failure/AUDIT.md": {
       "sha256": "240c41aebe48f907ecfaa53b70ae2de910866a296c5e97a3d0dba33f976a0749",
       "bytes": 6485
@@ -4507,6 +4556,10 @@
       "sha256": "94481e1acf1c7aafdba2650aa9b3798e595b6953022ff7d6de5a81de831d4de3",
       "bytes": 21841
     },
+    "research/20261010_literature_innovation_search/BACKUP_AUDIT.md": {
+      "sha256": "2b23e4c1cb052724ec578255c0f8ff8d296b9c9e0c0fc18064276e3ff99c16db",
+      "bytes": 10882
+    },
     "research/20261010_literature_innovation_search/CARRIER_AUDIT.md": {
       "sha256": "87e03544c5e758931506aacbd38e267ca4c4708886c4108d02b985c488e54edf",
       "bytes": 11406
@@ -4928,16 +4981,16 @@
       "bytes": 46614
     },
     "result/INNOVATION_STATUS.md": {
-      "sha256": "dfef5fc51b5c3b57e07e8c5f1b8ba010b96648934277400eba35f356ead889d3",
-      "bytes": 28458
+      "sha256": "d5a2b352cfcb6b885a51698ed6d01239f73afbdee0d8ff43105fb4e8a078f80b",
+      "bytes": 29780
     },
     "result/PUBLICATION_PROTOCOL.md": {
       "sha256": "ad0c87c8c3e25c193fa23a830e4f19f456084d4feb9f292926c65866bea1b536",
       "bytes": 9221
     },
     "result/REPOSITORY_SYNC.md": {
-      "sha256": "5b75b5d87ab6bf334f2082d8c87035457312a686bd3f3118bfac6159aed2a4be",
-      "bytes": 3568
+      "sha256": "ed2826d86306da331b796fc575d76c63c95b0d76c5200b9b0e0b74e46a697927",
+      "bytes": 4104
     },
     "result/REVIEW_RESEARCH_NOTE.md": {
       "sha256": "c6bb0e031006a89651064576a666d8ce2feffc226804de88e68b240f7a696e3e",

@@ -1,0 +1,5 @@
+# Bounded raw category provenance check, after failed qualification
+
+This is a separate committed CPU diagnostic, requested to determine whether the one-path category in the frozen exported catalog was inserted by the recovery code or copied from the original metadata. It does not change the eligibility result, relation definition or frozen source. No GPU, reviews, interactions, features, labels or model/evaluator are read.
+
+Inspect only the existing `/data/sunzixuan/rave_20260905_inputs/baby/meta_Baby.json.gz`, exported `items.jsonl` and `mapping_audit.json`. Confirm raw archive SHA256 matches the original recovery certificate. Select only exported ASIN identities and compare their literal explicit `categories` fields to the export. Report category schema, path-length and category-signature frequency counts, matches/mismatches and hashes. Never print metadata values or ASIN/item identifiers. No download or category enrichment occurs. Use a 240-second execution budget, preserve pre/post source hash and source commit.

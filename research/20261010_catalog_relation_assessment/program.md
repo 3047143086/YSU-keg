@@ -1,0 +1,3 @@
+# Autoresearch adapter: catalog eligibility only
+
+One question: do explicit frozen catalog brand/category relations have sufficient trustworthy TRAIN item mapping, coverage, disjoint fitting/heldout pairs and effective degree-stratified null variation? Read PROTOCOL.md. Freeze and commit source/tests on the independent `autoresearch/oct10-catalog-qualification` branch, run the bounded CPU diagnostic once, preserve technical failures separately, and record the fixed eligibility criterion in results.tsv. No GPU or recommendation evaluator runs are authorized in this diagnostic. Never modify the frozen interest-negative experiment.
