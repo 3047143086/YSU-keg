@@ -1,5 +1,9 @@
 # 当前结果：新三臂训练未通过收益门槛，曲率诊断未满足训练前提
 
+用户关机前已启动独立的 Baby 官方 MSCA 均匀基线复核，seed2026，最长 8 小时，验证集选择、不读测试集。它是复现及完整性记录，不是新候选或创新收益。冻结监督器提交 `10a8244`；远端监督 PID3319607、子进程 PID3319611，启动后快照确认 50 次有限更新、GPU1 利用率 99%，监督器 PPID=1，已独立于本地 SSH。日志、checkpoint 和结果保存在 `/data/sunzixuan/baseline_confirmation_20261010_v1`；即使本地电脑关机也继续执行，完成/失败后监督器写 `queue_result.json` 并退出。见 [启动状态](../research/20261010_baseline_confirmation/current_status.json)。此状态是快照，不保证之后没有故障。
+
+特征扰动分类预检查最终收到远端回执：状态 `blocked`，batch0 的 2,858 个选定行中零特征行0、零 BPR 梯度行26，均无非有限值，clean functional/official BPR 完全相同，耗时4.178秒。没有计算攻击或随机 null，也没有更新参数；按固定非零行前提停止。此前两次 runner 技术故障和一次连接中断保留为独立历史，不将 `targeted_gt_random_count=0` 解释为实测攻击失败。该方向没有推荐收益。
+
 2026-10-10 最新完成 MASAM-motivated 参数块曲率诊断，冻结源码 `ebc83c9`，在 GPU1 上运行 41.361 秒，状态为 `diagnostic_inconclusive`。它比较初始化与固定的均匀基线最佳 checkpoint，在三个相同 TRAIN 批次上，对 image/text transform 与 gate 施加相同相对范数的正负扰动；同时检查 BPR/完整损失、原始对称损失增量/范数平方归一化曲率。初始化没有任何方向形成有效赢家；最佳 checkpoint 的 image 块仅在两个完整梯度方向胜出，三个随机方向均没有有效赢家，各批次胜出方向数为 `[0,1,1]`，不足预先规定的每批次 3/4、至少两个批次且两状态一致。不能选择其中两个方向作为整体成功，也不调整半径或门槛重试。
 
 48/48 探针数值有效，参数/buffers 精确恢复、全局 RNG 和图张量不变，170 项受保护路径前后哈希一致。没有优化器、参数更新、验证/测试 loader 或推荐评估；固定最佳 checkpoint 本身是此前验证集选择的，不能称为纯 TRAIN-only 状态。PID 3265836 已退出，结束快照显示 GPU1 没有计算进程，峰值 CUDA allocated 为 714,024,448 bytes。该诊断没有建立模态稳定主导的训练前提，未启动 SAM/MASAM 推荐训练，也不构成推荐收益或原创算法证据。见 [诊断结果](../research/20261010_curvature_diagnostic/result.json) 与 [固定协议](../research/20261010_curvature_diagnostic/PROTOCOL.md)。最新独立方向是特征空间扰动的源码资格审计，尚未形成可运行训练方案。

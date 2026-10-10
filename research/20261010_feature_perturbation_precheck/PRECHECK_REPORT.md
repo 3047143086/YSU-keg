@@ -1,5 +1,18 @@
 # Image-feature perturbation precheck receipt
 
+Final root follow-up: the already committed classification-only v4 runner was
+executed after confirming the disconnected agent had not created its run root.
+Its remote receipt was then fetched independently. The current terminal status
+is **blocked**, superseding the earlier missing-receipt aggregate below.
+Batch0 had 2,858 selected rows, zero feature rows0, zero image-BPR gradient
+rows26, and zero nonfinite norms. Clean official and functional BPR were both
+0.6929951906204224 (parity error0). The unchanged nonzero-gradient prerequisite
+stopped the run before any targeted or random attack. Elapsed4.177655s;
+optimizer0, state/RNG restoration true, no validation/test evaluation. The
+reported targeted-greater-random count0 is an unevaluated placeholder, not a
+three-batch attack comparison. Raw aggregate is `precheck.json`. No training
+follows. Earlier source/interface failures remain historical evidence.
+
 This report is a conservative aggregate of the bounded attempts. It does not
 claim an attack result and it does not authorize recommendation training.
 

@@ -1,5 +1,19 @@
 # Current adapter: official MSCA interest-negative pilot
 
+Latest steering: user asked to leave a server job running before shutting down
+the local PC. The separately frozen baseline-confirmation protocol lives in
+research/20261010_baseline_confirmation; supervisor source committed10a8244.
+Host213 remote root /data/sunzixuan/baseline_confirmation_20261010_v1,
+supervisor3319607 (PPID1), child3319611. Startup snapshot confirms50 finite
+optimizer updates, GPU1 utilization99%, no test loader/evaluation. It runs the
+existing protected Baby uniform runner at seed2026 for at most8h; it is baseline
+reproducibility, not an innovation candidate or a rescue of F28. Read its live
+receipts before launching anything else. It survives the local PC shutdown,
+records result/failure server-side and exits; no autonomous new-hypothesis loop.
+The image-feature precheck finally returned blocked: batch0 selected2858rows,
+26 zero BPR-gradient rows, zero zero-feature/nonfinite rows, exact clean parity;
+no attack/null or training was evaluated. Earlier interface failures retained.
+
 Workspace: `C:/Users/zixua/Desktop/exp/exp/exp`.
 Current completed adapter: `research/20261010_interest_negative/program.md`.
 Protocol: `research/20261010_interest_negative/PROTOCOL.md`.

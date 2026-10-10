@@ -6,6 +6,9 @@
 
 ## 当前结果（2026-10-10）
 
+- 关机前已在服务器后台启动 Baby 官方 MSCA 均匀基线复核，seed2026，最多8小时；启动快照确认50次有限优化更新、GPU1利用率99%，监督器已脱离SSH。此任务是复现记录，不计作创新收益。见 [启动状态](research/20261010_baseline_confirmation/current_status.json)。
+- 图像特征扰动预检查最终 `blocked`：首个固定TRAIN批次选定2,858行，其中26行BPR梯度为零，按预注册非零条件停止，尚未评估攻击或随机对照。见 [回执与历史故障](research/20261010_feature_perturbation_precheck/PRECHECK_REPORT.md)。
+
 - 兴趣组负采样三臂实验已完成：Baby 均匀基线 R@20/N@20 = 0.102898/0.045759，兴趣组候选 0.103790/0.045870，固定同池乱组对照 0.103472/0.045755。候选 N@20 收益不足且 R@10 回退，未通过冻结门，记为 F28/discard；按协议没有进入 Sports。见 [实验协议](research/20261010_interest_negative/PROTOCOL.md) 和 [独立结果复核](research/20261010_interest_negative/status/FINAL_AUDIT.md)。
 - 品牌/类别关系辅助监督的 CPU 资格审计已完成但不合格：Baby 品牌覆盖 69.8595% 低于 70% 门槛，类别只有一个签名，两个关系类没有可用配对；未启动 GPU，Sports 未继续审计。见 [资格结果](research/20261010_catalog_relation_assessment/RESULTS.md)。
 - MASAM-motivated 固定参数块曲率诊断已完成：48/48 探针有效、170 项保护哈希一致，但未满足跨批次/方向/状态的稳定模态主导门，状态为 `diagnostic_inconclusive`。仅计算 TRAIN 批次的局部曲率，无优化更新或验证/测试评估，未启动后续 SAM 训练。见 [诊断结果](research/20261010_curvature_diagnostic/result.json) 与 [预注册协议](research/20261010_curvature_diagnostic/PROTOCOL.md)。

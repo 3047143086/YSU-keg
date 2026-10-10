@@ -1,0 +1,103 @@
+{
+  "checked_unix": 1791637171.4448712,
+  "files": {
+    "launch.json": {
+      "supervisor_pid": 3319607,
+      "child_pid": 3319611,
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/interest_negative_20261010_v1/train.py",
+        "--dataset",
+        "baby",
+        "--mode",
+        "uniform",
+        "--assets",
+        "/data/sunzixuan/interest_negative_20261010_v1/groups/baby",
+        "--output",
+        "/data/sunzixuan/baseline_confirmation_20261010_v1/run"
+      ],
+      "started_unix": 1791637137.721629,
+      "status": "training",
+      "physical_gpu": 1,
+      "timeout_seconds": 28800,
+      "source_commit": "e1775dad7b57f2b1ffae08609d720e8122eccfa9"
+    },
+    "run/progress.json": {
+      "status": "training",
+      "dataset": "baby",
+      "mode": "uniform",
+      "seed": 2026,
+      "smoke": false,
+      "finite_optimizer_updates": 50,
+      "completed_epochs": 0,
+      "test_loader_constructed": false,
+      "test_evaluated": false,
+      "epoch": 0,
+      "batch": 50,
+      "last_finite_loss": 13.244786262512207,
+      "elapsed_seconds": 14.199343926971778
+    }
+  },
+  "log_tail": "/data/sunzixuan/interest_negative_20261010_v1/train.py:107: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.\nDeprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations\n  np_float_alias_needed = not hasattr(np, 'float')\n/data/sunzixuan/interest_negative_20261010_v1/carrier/src/models/msca.py:99: RuntimeWarning: divide by zero encountered in power\n  d_item = np.power(item_degrees, -0.5)\n/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:124: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate\n  warnings.warn(\"Seems like `optimizer.step()` has been overridden after learning rate scheduler \"\n",
+  "gpu1": "20931, 3326, 99",
+  "processes": "    PID    PPID     ELAPSED STAT COMMAND\n3319607       1       00:34 Ss   /data/sunzixuan/miniconda3/envs/MMRec/bin/python -u /data/sunzixuan/baseline_confirmation_20261010_v1/supervisor.py\n3319611 3319607       00:34 Rl   /data/sunzixuan/miniconda3/envs/MMRec/bin/python -u /data/sunzixuan/interest_negative_20261010_v1/train.py --dataset baby --mode uniform --assets /data/sunzixuan/interest_negative_20261010_v1/groups/baby --output /data/sunzixuan/baseline_confirmation_20261010_v1/run\n",
+  "feature_v4": {
+    "batch_receipt.json": {
+      "path": "/data/sunzixuan/curvature_diagnostic_20261010_v1/data/batches.npz",
+      "sha256": "8ab545d3e8d5015655fa57f2c5766ef51e5fbb184641e67729f391b55d84ef55",
+      "shape": [
+        3,
+        3,
+        2048
+      ],
+      "batch_hashes": [
+        "c88e2add0a9dc487d634c601b20a05ee1b0e431efe80b7e298c338fdb1e870b3",
+        "66c79df9721c6a1be382cb94c700fac1021c09f0008c9f89bec04de9d1c5eca6",
+        "c734538f70399787e5b39e8747c998c36d6fc281f6db433265342393a32ed8b8"
+      ],
+      "private_ids": true,
+      "TRAIN_only": true
+    },
+    "precheck.json": {
+      "schema_version": 1,
+      "status": "blocked",
+      "dataset": "baby",
+      "source_sha256": "066aafcf2e5373b20b2fdf9b3660302b8dfcaf580710d3ab864fac4f19e2360b",
+      "model_initial_state_sha256": "4aacd659cec4a99f4e2e1898c681bb44fd302479b71f031af1794af7a5900c40",
+      "graph_sha256": {
+        "norm_R": "71d6eb56e152071a62935b2ef6890dfa83b8f4d99cac6cd16577a67378a9db32",
+        "norm_adj": "bf96e060a8c9d905bb4f238112e23e19aa90007b5a8c528cd7d2258415225e94",
+        "struct_original_adj": "22a599618872d2821af791608d2eb1f4557c7e7accb8480b9afcb0532b193c8c",
+        "image_original_adj": "bbbe31bda580d0d5c9d7678ac010f836c37d8b69596b5ca141fe1db7fabdee9b",
+        "text_original_adj": "adb9cb0ec0978777b52cf4a610c746c595cd246cbeb1d77cc138f262c314cc15"
+      },
+      "records": [
+        {
+          "batch_id": 0,
+          "batch_hash": "c88e2add0a9dc487d634c601b20a05ee1b0e431efe80b7e298c338fdb1e870b3",
+          "selected_rows": 2858,
+          "clean_official": 0.6929951906204224,
+          "clean_functional": 0.6929951906204224,
+          "parity_abs": 0.0,
+          "parity_floor": 1e-05,
+          "row_checks": {
+            "zero_feature_rows": 0,
+            "zero_gradient_rows": 26,
+            "nonfinite_feature_norms": 0,
+            "nonfinite_gradient_norms": 0
+          },
+          "attack_evaluated": false
+        }
+      ],
+      "targeted_gt_random_count": 0,
+      "optimizer_instantiated": false,
+      "optimizer_steps": 0,
+      "validation_or_test": false,
+      "state_restored": true,
+      "global_rng_unchanged": true,
+      "reason": "invalid feature or image-BPR gradient row",
+      "elapsed_seconds": 4.177654957165942
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "status": "blocked",
+  "dataset": "baby",
+  "source_sha256": "066aafcf2e5373b20b2fdf9b3660302b8dfcaf580710d3ab864fac4f19e2360b",
+  "model_initial_state_sha256": "4aacd659cec4a99f4e2e1898c681bb44fd302479b71f031af1794af7a5900c40",
+  "graph_sha256": {
+    "norm_R": "71d6eb56e152071a62935b2ef6890dfa83b8f4d99cac6cd16577a67378a9db32",
+    "norm_adj": "bf96e060a8c9d905bb4f238112e23e19aa90007b5a8c528cd7d2258415225e94",
+    "struct_original_adj": "22a599618872d2821af791608d2eb1f4557c7e7accb8480b9afcb0532b193c8c",
+    "image_original_adj": "bbbe31bda580d0d5c9d7678ac010f836c37d8b69596b5ca141fe1db7fabdee9b",
+    "text_original_adj": "adb9cb0ec0978777b52cf4a610c746c595cd246cbeb1d77cc138f262c314cc15"
+  },
+  "records": [
+    {
+      "batch_id": 0,
+      "batch_hash": "c88e2add0a9dc487d634c601b20a05ee1b0e431efe80b7e298c338fdb1e870b3",
+      "selected_rows": 2858,
+      "clean_official": 0.6929951906204224,
+      "clean_functional": 0.6929951906204224,
+      "parity_abs": 0.0,
+      "parity_floor": 1e-05,
+      "row_checks": {
+        "zero_feature_rows": 0,
+        "zero_gradient_rows": 26,
+        "nonfinite_feature_norms": 0,
+        "nonfinite_gradient_norms": 0
+      },
+      "attack_evaluated": false
+    }
+  ],
+  "targeted_gt_random_count": 0,
+  "optimizer_instantiated": false,
+  "optimizer_steps": 0,
+  "validation_or_test": false,
+  "state_restored": true,
+  "global_rng_unchanged": true,
+  "reason": "invalid feature or image-BPR gradient row",
+  "elapsed_seconds": 4.177654957165942
+}
