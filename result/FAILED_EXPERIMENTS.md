@@ -734,6 +734,34 @@ not evaluated, and the original version remains immutable. A recovery must
 be a separately declared version with equivalence evidence before retraining.
 Evidence: `../research/20261010_electronics_failure/AUDIT.md`.
 
+## F28 — Fixed TRAIN-history interest-group negative sampler
+
+Frozen source e1775dad7b57f2b1ffae08609d720e8122eccfa9, deployment
+40e4aecd07a5ae6c38d3980fb8d801c4a8fa7df187586938b0f87323b5ea9a21.
+The PerPEFT-inspired transplant used K=8 raw multimodal TRAIN-history mean
+groups and a fixed 0.5 group-pool / 0.5 original TRAIN-union uniform mixture
+on the unmodified official MSCA carrier. The null shuffled user group labels
+within exact TRAIN-degree strata and preserved the same true-group item pools.
+It did not reproduce PerPEFT's foundation encoder or internal personalized PEFT.
+
+All three Baby validation-only arms completed normally at seed2026:
+uniform 66 epochs/3828 updates, semantic 56/3248, shuffled 56/3248. R20/N20
+were 0.102898406984/0.045759199907, 0.103789932533/0.045869779291,
+and 0.103472308954/0.045755449922, respectively. Semantic vs uniform has
+R20 +0.8664% but N20 +0.2417% and R10 -0.00042856; vs shuffled it has
+R20 +0.3070%, N20 +0.2499%, and R10 -0.00033856. Both predeclared
+comparisons fail the conjunction (each R20/N20 >=+0.5%, each R10/N10
+delta >=-0.0002). Overall completed_fail/discard, not a technical crash.
+The conditional Sports gate stayed closed; no Sports arm or test evaluation
+ran. Identical initialization, assets, validation population and positive
+order over all 56 shared epochs were independently verified. All protected
+paths and saved artifact hashes match; local and deployed 29/29 tests passed.
+
+Freeze this fixed negative-only recipe: do not search K, mixture or seed to
+rescue it. This result does not establish the failure of other internal-PEFT
+interventions. It provides no publication evidence. Final independent audit:
+`../research/20261010_interest_negative/status/FINAL_AUDIT.md`.
+
 ## Lessons that constrain future ideas
 
 1. Stop editing graph topology from current model predictions or fixed content

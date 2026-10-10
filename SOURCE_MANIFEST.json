@@ -1772,8 +1772,8 @@
       "bytes": 2112
     },
     "research/20261008_autoresearch/skill/auto-research/references/current-experiment.md": {
-      "sha256": "18a2ef22307a73e5a115c95d8ef95feb4e6458fea2bd42c74cbdac691a372f11",
-      "bytes": 1666
+      "sha256": "83c58a877064868b82805911442c3b1acba911c0a598cdda29466b1cbdf199ea",
+      "bytes": 3754
     },
     "research/20261008_autoresearch/sports_screen.json": {
       "sha256": "4226954f22e8a20e84e49da824ea45af841b1b3e16d1eea9c8c375531ea8e8eb",
@@ -2822,6 +2822,10 @@
     "research/20261009_review_signal/verify_receipt.txt": {
       "sha256": "a482f99e4c9ead7b27d96f881d2620c89e5d7125e23a98c68d6946d5b670dadb",
       "bytes": 2034
+    },
+    "research/20261010_catalog_relation_assessment/audit_catalog.py": {
+      "sha256": "62398be6198f154afafcac520f4ebaaf178cb6cfc3eec09dca0029f371f5a5e5",
+      "bytes": 12350
     },
     "research/20261010_electronics_failure/AUDIT.md": {
       "sha256": "240c41aebe48f907ecfaa53b70ae2de910866a296c5e97a3d0dba33f976a0749",
@@ -4423,6 +4427,34 @@
       "sha256": "33be0d776bdac27e7ec1ff01f30d356cbb891d6a2dee95134d52188cb22da341",
       "bytes": 259377
     },
+    "research/20261010_interest_negative/status/20261010_161506_158253_status.json": {
+      "sha256": "31fca69f7d545b6cfc97e16765ffcd253e3f1561cd1e26afee236f37cafc094a",
+      "bytes": 293710
+    },
+    "research/20261010_interest_negative/status/20261010_161506_158253_status.txt": {
+      "sha256": "84ebe55435d7eda1b17543031f3582866b74e58d2c3fb886fc1a645143a79a5f",
+      "bytes": 293738
+    },
+    "research/20261010_interest_negative/status/20261010_161956_407944_status.json": {
+      "sha256": "5dd8b081ca9a2c147e4d88a312596255cea57a44b964262ba047d196b24843e7",
+      "bytes": 326274
+    },
+    "research/20261010_interest_negative/status/20261010_161956_407944_status.txt": {
+      "sha256": "f1adba07a62eee081a13f5c36e55cebb8dd275e1e458256bee7ef089fc097aac",
+      "bytes": 326302
+    },
+    "research/20261010_interest_negative/status/FINAL_AUDIT.md": {
+      "sha256": "6d9d9018b18682c5888f0474bdb81b65ae4681d64220f4ff0b6b3ae07736b476",
+      "bytes": 3942
+    },
+    "research/20261010_interest_negative/status/REPORT.md": {
+      "sha256": "7031356daed0e2b5fe5ecb203e64ddd34d4dc543a952c0adc4de29c296eeab32",
+      "bytes": 449
+    },
+    "research/20261010_interest_negative/status/baby_gate.json": {
+      "sha256": "8b835945ad567a1faebc9063db23a6d162256d42ad1571f5d9ead65fb5088412",
+      "bytes": 788
+    },
     "research/20261010_interest_negative/status/carrier_manifest.json": {
       "sha256": "4fc77e827cf242928098893a71b59118f82ff44ecf1666fc5e53ab9eb8d6cbcc",
       "bytes": 16754
@@ -4436,20 +4468,24 @@
       "bytes": 1563
     },
     "research/20261010_interest_negative/status/latest_status.json": {
-      "sha256": "7e1b0c2824fad519fec6bc7d13c146fecff1fb34c801c5ce848a0668bd6fb468",
-      "bytes": 259349
+      "sha256": "5dd8b081ca9a2c147e4d88a312596255cea57a44b964262ba047d196b24843e7",
+      "bytes": 326274
     },
     "research/20261010_interest_negative/status/launch.json": {
       "sha256": "457a3b94423fcbddb2c618e7f11290123b660ea924c650d03249b9857d54eec6",
       "bytes": 1557
     },
     "research/20261010_interest_negative/status/pipeline_status.json": {
-      "sha256": "fdef082d2d6f905ececec10761794f69f3df243ecbf2052bfc84a35a17b499f2",
-      "bytes": 89734
+      "sha256": "8d0692bee102cb576f39965ba1c2265a532d42164a0f69bcc27efcc6fb8070a2",
+      "bytes": 89993
+    },
+    "research/20261010_interest_negative/status/research_report.json": {
+      "sha256": "d5758339a09dcabab74a845caf3a0dbaba327a972a667236b627ececacb477dc",
+      "bytes": 5918
     },
     "research/20261010_interest_negative/status/results.tsv": {
-      "sha256": "1356c677260fde07e4e1da9b9cccc1fa9e3454b6256842074b83188886c74876",
-      "bytes": 554
+      "sha256": "798e5c80b577eb09dd6cf6484e42848a0f7e56d260d5f71d3c974ba7ad12d573",
+      "bytes": 713
     },
     "research/20261010_interest_negative/status/source_protection.json": {
       "sha256": "7ccc33c8d5b2df76b249dd437015079c547e7ee499ed2599d64211daf9c88dab",
@@ -4486,6 +4522,10 @@
     "research/20261010_literature_innovation_search/LITERATURE_B.md": {
       "sha256": "69358e8ffe618ec6c503eb051055bee985548ac242a60f2fabc1a4afb02ecba5",
       "bytes": 13273
+    },
+    "research/20261010_literature_innovation_search/NEXT_INDEPENDENT.md": {
+      "sha256": "21e8d6865616ccd10e9922b3700aa431e59cb79fa65bac6809c27235ca9d91d7",
+      "bytes": 11646
     },
     "research/20261010_literature_innovation_search/carrier_inventory.json": {
       "sha256": "36ca926a6488454b7ce3f1a0c12949d47e9b94443a0da7e0d1e6382f6a614c9d",
@@ -4888,20 +4928,20 @@
       "bytes": 6424
     },
     "result/FAILED_EXPERIMENTS.md": {
-      "sha256": "fae64758b15ee8fd62422a88c7f833735eff00e1b2cee8fef4c4682bf7fd95c0",
-      "bytes": 44866
+      "sha256": "49f567c0719cb344b867b325b6409f186bcbdb8a852f32113b3677b63ed64013",
+      "bytes": 46614
     },
     "result/INNOVATION_STATUS.md": {
-      "sha256": "0577bfdd0579340598c8490611ed83f7634d396a5e77bf1e0a451f8940cdd52f",
-      "bytes": 27140
+      "sha256": "dfef5fc51b5c3b57e07e8c5f1b8ba010b96648934277400eba35f356ead889d3",
+      "bytes": 28458
     },
     "result/PUBLICATION_PROTOCOL.md": {
       "sha256": "ad0c87c8c3e25c193fa23a830e4f19f456084d4feb9f292926c65866bea1b536",
       "bytes": 9221
     },
     "result/REPOSITORY_SYNC.md": {
-      "sha256": "eb3acad5eaee8c2442090ada27bb682b684b8295f4c7a4313d62068b3af9c721",
-      "bytes": 3075
+      "sha256": "5b75b5d87ab6bf334f2082d8c87035457312a686bd3f3118bfac6159aed2a4be",
+      "bytes": 3568
     },
     "result/REVIEW_RESEARCH_NOTE.md": {
       "sha256": "c6bb0e031006a89651064576a666d8ce2feffc226804de88e68b240f7a696e3e",

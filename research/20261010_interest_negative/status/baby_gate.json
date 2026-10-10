@@ -1,0 +1,28 @@
+{
+  "comparability": {
+    "arms": 3,
+    "overlap_epochs": 56,
+    "passed": true,
+    "same_initialization_assets_population_positive_order": true
+  },
+  "comparisons": {
+    "shuffled": {
+      "delta_ndcg10": -6.782923111178091e-05,
+      "delta_recall10": -0.0003385617553784137,
+      "pass": false,
+      "reference_completed": true,
+      "relative_ndcg20": 0.0024987049304221465,
+      "relative_recall20": 0.0030696481146630372
+    },
+    "uniform": {
+      "delta_ndcg10": -0.00017794516900748042,
+      "delta_recall10": -0.0004285591840233055,
+      "pass": false,
+      "reference_completed": true,
+      "relative_ndcg20": 0.0024165497709882633,
+      "relative_recall20": 0.008664133628285997
+    }
+  },
+  "passed": false,
+  "status": "fail"
+}

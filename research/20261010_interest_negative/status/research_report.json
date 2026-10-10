@@ -1,0 +1,180 @@
+{
+  "completed_formal_arms": 3,
+  "elapsed_queue_seconds": 1584.3475454410072,
+  "formal_arm_target": 6,
+  "gates": {
+    "baby": {
+      "comparability": {
+        "arms": 3,
+        "overlap_epochs": 56,
+        "passed": true,
+        "same_initialization_assets_population_positive_order": true
+      },
+      "comparisons": {
+        "shuffled": {
+          "delta_ndcg10": -6.782923111178091e-05,
+          "delta_recall10": -0.0003385617553784137,
+          "pass": false,
+          "reference_completed": true,
+          "relative_ndcg20": 0.0024987049304221465,
+          "relative_recall20": 0.0030696481146630372
+        },
+        "uniform": {
+          "delta_ndcg10": -0.00017794516900748042,
+          "delta_recall10": -0.0004285591840233055,
+          "pass": false,
+          "reference_completed": true,
+          "relative_ndcg20": 0.0024165497709882633,
+          "relative_recall20": 0.008664133628285997
+        }
+      },
+      "passed": false,
+      "status": "fail"
+    }
+  },
+  "jobs": [
+    {
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/interest_negative_20261010_v1/train.py",
+        "--dataset",
+        "baby",
+        "--assets",
+        "/data/sunzixuan/interest_negative_20261010_v1/groups/baby",
+        "--prepare-assets"
+      ],
+      "elapsed_seconds": 76.74379037297331,
+      "exit_code": 0,
+      "log": "/data/sunzixuan/interest_negative_20261010_v1/logs/baby_prepare.log",
+      "name": "baby_prepare",
+      "pid": 3210981,
+      "prepare": true,
+      "smoke": false
+    },
+    {
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/interest_negative_20261010_v1/train.py",
+        "--dataset",
+        "baby",
+        "--assets",
+        "/data/sunzixuan/interest_negative_20261010_v1/groups/baby",
+        "--mode",
+        "uniform",
+        "--output",
+        "/data/sunzixuan/interest_negative_20261010_v1/runs/baby_uniform_s2026_smoke",
+        "--smoke"
+      ],
+      "elapsed_seconds": 48.24490820802748,
+      "exit_code": 0,
+      "log": "/data/sunzixuan/interest_negative_20261010_v1/logs/baby_uniform_s2026_smoke.log",
+      "name": "baby_uniform_s2026_smoke",
+      "pid": 3212120,
+      "prepare": false,
+      "smoke": true
+    },
+    {
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/interest_negative_20261010_v1/train.py",
+        "--dataset",
+        "baby",
+        "--assets",
+        "/data/sunzixuan/interest_negative_20261010_v1/groups/baby",
+        "--mode",
+        "semantic",
+        "--output",
+        "/data/sunzixuan/interest_negative_20261010_v1/runs/baby_semantic_s2026_smoke",
+        "--smoke"
+      ],
+      "elapsed_seconds": 48.707146116066724,
+      "exit_code": 0,
+      "log": "/data/sunzixuan/interest_negative_20261010_v1/logs/baby_semantic_s2026_smoke.log",
+      "name": "baby_semantic_s2026_smoke",
+      "pid": 3213018,
+      "prepare": false,
+      "smoke": true
+    },
+    {
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/interest_negative_20261010_v1/train.py",
+        "--dataset",
+        "baby",
+        "--assets",
+        "/data/sunzixuan/interest_negative_20261010_v1/groups/baby",
+        "--mode",
+        "uniform",
+        "--output",
+        "/data/sunzixuan/interest_negative_20261010_v1/runs/baby_uniform_s2026_formal"
+      ],
+      "elapsed_seconds": 443.4024445149116,
+      "exit_code": 0,
+      "log": "/data/sunzixuan/interest_negative_20261010_v1/logs/baby_uniform_s2026_formal.log",
+      "name": "baby_uniform_s2026_formal",
+      "pid": 3214148,
+      "prepare": false,
+      "smoke": false
+    },
+    {
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/interest_negative_20261010_v1/train.py",
+        "--dataset",
+        "baby",
+        "--assets",
+        "/data/sunzixuan/interest_negative_20261010_v1/groups/baby",
+        "--mode",
+        "semantic",
+        "--output",
+        "/data/sunzixuan/interest_negative_20261010_v1/runs/baby_semantic_s2026_formal"
+      ],
+      "elapsed_seconds": 379.38632511510514,
+      "exit_code": 0,
+      "log": "/data/sunzixuan/interest_negative_20261010_v1/logs/baby_semantic_s2026_formal.log",
+      "name": "baby_semantic_s2026_formal",
+      "pid": 3218693,
+      "prepare": false,
+      "smoke": false
+    },
+    {
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/interest_negative_20261010_v1/train.py",
+        "--dataset",
+        "baby",
+        "--assets",
+        "/data/sunzixuan/interest_negative_20261010_v1/groups/baby",
+        "--mode",
+        "shuffled",
+        "--output",
+        "/data/sunzixuan/interest_negative_20261010_v1/runs/baby_shuffled_s2026_formal"
+      ],
+      "elapsed_seconds": 382.0314606798347,
+      "exit_code": 0,
+      "log": "/data/sunzixuan/interest_negative_20261010_v1/logs/baby_shuffled_s2026_formal.log",
+      "name": "baby_shuffled_s2026_formal",
+      "pid": 3221325,
+      "prepare": false,
+      "smoke": false
+    }
+  ],
+  "novelty_established": false,
+  "publication_evidence_established": false,
+  "results_tsv_sha256": "9da891466d2ee2d3572883e06ec8b89fec4bda891c97b8f0fbac18ccc13d4100",
+  "seed": 2026,
+  "source_revision": {
+    "commit": "e1775dad7b57f2b1ffae08609d720e8122eccfa9",
+    "local_directory": "C:/Users/zixua/Desktop/exp/exp/exp/research/20261010_interest_negative",
+    "vcs": "git",
+    "working_tree_clean": true
+  },
+  "status": "completed_fail",
+  "test_evaluated": false
+}

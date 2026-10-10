@@ -1,7 +1,7 @@
 dataset	mode	status	completion	control	recall@10	ndcg@10	recall@20	ndcg@20	seconds	finite_updates	epochs
 baby	uniform	keep	completed	1	0.06716171374695416	0.036664605293919315	0.10289840698429023	0.04575919990670344	425.0395944840275	3828	66
-baby	semantic	pending	missing	0	n/a	n/a	n/a	n/a	n/a	n/a	n/a
-baby	shuffled	pending	missing	1	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+baby	semantic	discard	completed	0	0.06673315456293086	0.036486660124911835	0.10378993253253987	0.0458697792907586	361.19539188593626	3248	56
+baby	shuffled	keep	completed	1	0.06707171631830927	0.036554489356023616	0.10347230895443804	0.0457554499224437	363.89661373686977	3248	56
 sports	uniform	pending	missing	1	n/a	n/a	n/a	n/a	n/a	n/a	n/a
 sports	semantic	pending	missing	0	n/a	n/a	n/a	n/a	n/a	n/a	n/a
 sports	shuffled	pending	missing	1	n/a	n/a	n/a	n/a	n/a	n/a	n/a
