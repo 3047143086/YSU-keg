@@ -1,0 +1,31 @@
+{
+  "prepared": "/data/sunzixuan/interest_negative_20261010_v1",
+  "source_files": 25,
+  "carrier_manifest_sha256": "8f07a6bdfa1447e72c919627a41516e71283c674eb611041522c657790896652",
+  "source_protection_sha256": "67d099d345f12ab426fc9b8c2a0422a0562832e7598dbc9f3f429d344d80728a",
+  "data_path": "/data/sunzixuan/interest_negative_20261010_v1/carrier/data/",
+  "preflight": {
+    "checked_unix": 1791613807.1334164,
+    "owned_research_processes": [],
+    "gpu1": {
+      "index": 1,
+      "exit_code": 0,
+      "stdout": "1, GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a, NVIDIA GeForce RTX 3090, 24576, 24232, 26, 0",
+      "uuid": "GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a",
+      "name": "NVIDIA GeForce RTX 3090",
+      "memory_total_mib": 24576,
+      "memory_free_mib": 24232,
+      "memory_used_mib": 26,
+      "utilization": 0,
+      "compute_processes": []
+    },
+    "packages": {
+      "torch": "1.12.1+cu113",
+      "numpy": "1.24.4",
+      "scipy": "1.7.3",
+      "torch-geometric": "2.3.1",
+      "pandas": "1.3.5"
+    },
+    "cuda_initialized": false
+  }
+}

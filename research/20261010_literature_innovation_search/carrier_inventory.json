@@ -1,0 +1,498 @@
+{
+  "checked_unix": 1791613089.690878,
+  "host": "213",
+  "read_only": true,
+  "cuda_initialized": false,
+  "training_started": false,
+  "python_version": "3.8.20",
+  "packages": {
+    "torch": "1.12.1+cu113",
+    "numpy": "1.24.4",
+    "scipy": "1.7.3",
+    "torch-geometric": "2.3.1",
+    "transformers": null,
+    "sentence-transformers": null,
+    "open-clip-torch": null,
+    "pandas": "1.3.5",
+    "psutil": "7.2.2"
+  },
+  "owned_research_processes": [],
+  "roots": {
+    "/data/sunzixuan/bridge_official": {
+      "exists": true,
+      "core_sha256": {
+        "models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+        "models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+        "common/trainer.py": "3b8df986616002d4ea7fecda1cb686a8675001f048ecbfff7365339ce38c3199",
+        "utils/dataloader.py": "8fb4deb89ba256adf53cfc773050ee5b9ae8eb55b972613cbebf3ffd7a36f3fb",
+        "utils/topk_evaluator.py": "4d23dc2a347372eceb831e74ef8fcc2d02530af969212284345e76e1c1f003f6",
+        "configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+      },
+      "receipts": {},
+      "baselines": {}
+    },
+    "/data/sunzixuan/target_isolated_20261008_autoresearch_v1": {
+      "exists": true,
+      "core_sha256": {
+        "models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+        "models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+        "common/trainer.py": "3b8df986616002d4ea7fecda1cb686a8675001f048ecbfff7365339ce38c3199",
+        "utils/dataloader.py": "8fb4deb89ba256adf53cfc773050ee5b9ae8eb55b972613cbebf3ffd7a36f3fb",
+        "utils/topk_evaluator.py": "4d23dc2a347372eceb831e74ef8fcc2d02530af969212284345e76e1c1f003f6",
+        "configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+      },
+      "receipts": {
+        "launch.json": {
+          "pid": 2471228
+        },
+        "pipeline_status.json": {
+          "status": "closed_validation_gate",
+          "stage": "sports",
+          "finished_unix": 1791455442.123316
+        }
+      },
+      "baselines": {
+        "baby": {
+          "output": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/baby_baseline_s2026",
+          "result_sha256": "889f2619fef34bd16393e954b663f31b5d8331c23162643ac682d343e3f316f9",
+          "result": {
+            "status": "completed",
+            "dataset": "baby",
+            "seed": 2026,
+            "model": "BRIDGE",
+            "best_epoch": 89,
+            "epochs_completed": 111,
+            "selection_metric": "rounded_4_validation_recall@20",
+            "selection_score": 0.1055,
+            "metrics": {
+              "recall@5": 0.04798075157036329,
+              "ndcg@5": 0.032837760528477825,
+              "recall@10": 0.07111762112919222,
+              "ndcg@10": 0.040386094675721566,
+              "recall@20": 0.10546504793740588,
+              "ndcg@20": 0.04910749907453286,
+              "recall@50": 0.17414190206810415,
+              "ndcg@50": 0.06281293587582008
+            },
+            "validation_users": 19445,
+            "train_interactions": 118551,
+            "validation_interactions": 20559,
+            "test_evaluated": false,
+            "test_loader_constructed": false,
+            "inputs_unchanged": true,
+            "fresh_initialization": true,
+            "checkpoint_sha256": "6deb59326f61137d658565d4c19fc892d7a5cb50578a120abc12497bcbc469a9",
+            "per_user_sha256": "83c162d38cbe181e965fd5a6e488cdaa97646c23d21609028321c86128b4e407",
+            "elapsed_seconds": 2074.1110788409133
+          },
+          "checkpoint_hash_matches": true,
+          "per_user_hash_matches": true
+        },
+        "sports": {
+          "output": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/sports_baseline_s2026",
+          "result_sha256": "7d113c50d90a0bcc83e3861b0471ba667f6a91df9363cdc43dc8d503e31422af",
+          "result": {
+            "status": "completed",
+            "dataset": "sports",
+            "seed": 2026,
+            "model": "BRIDGE",
+            "best_epoch": 108,
+            "epochs_completed": 130,
+            "selection_metric": "rounded_4_validation_recall@20",
+            "selection_score": 0.1195,
+            "metrics": {
+              "recall@5": 0.05551538959312255,
+              "ndcg@5": 0.038232859523293736,
+              "recall@10": 0.08301179566908366,
+              "ndcg@10": 0.047186443228226675,
+              "recall@20": 0.1195296505011454,
+              "ndcg@20": 0.05647686319160367,
+              "recall@50": 0.18395571151547369,
+              "ndcg@50": 0.0693519084692436
+            },
+            "validation_users": 35598,
+            "train_interactions": 218409,
+            "validation_interactions": 37899,
+            "test_evaluated": false,
+            "test_loader_constructed": false,
+            "inputs_unchanged": true,
+            "fresh_initialization": true,
+            "checkpoint_sha256": "75da60539924743bb9c7a5aeb89689859cce5c8e914def4b9fd8040ee1dd402e",
+            "per_user_sha256": "8f39b8dfec2f81b927c320806e2a11a246aa36b751f73102a06475623f269356",
+            "elapsed_seconds": 5955.562906982144
+          },
+          "checkpoint_hash_matches": true,
+          "per_user_hash_matches": true
+        }
+      }
+    },
+    "/data/sunzixuan/decoupled_gate_20261008_recovery_v1": {
+      "exists": true,
+      "core_sha256": {
+        "models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+        "models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+        "common/trainer.py": "3b8df986616002d4ea7fecda1cb686a8675001f048ecbfff7365339ce38c3199",
+        "utils/dataloader.py": "8fb4deb89ba256adf53cfc773050ee5b9ae8eb55b972613cbebf3ffd7a36f3fb",
+        "utils/topk_evaluator.py": "4d23dc2a347372eceb831e74ef8fcc2d02530af969212284345e76e1c1f003f6",
+        "configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+      },
+      "receipts": {
+        "launch.json": {
+          "pid": 2567421
+        },
+        "pipeline_status.json": {
+          "status": "closed_validation_gate",
+          "stage": "baby",
+          "finished_unix": 1791466733.0467892
+        },
+        "source_revision.json": {
+          "commit": "478a541f83abde45bcc3375e0b9f5a824a4cc122"
+        }
+      },
+      "baselines": {}
+    },
+    "/data/sunzixuan/candidate_gate_20261009_v1": {
+      "exists": true,
+      "core_sha256": {
+        "models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+        "models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+        "common/trainer.py": "3b8df986616002d4ea7fecda1cb686a8675001f048ecbfff7365339ce38c3199",
+        "utils/dataloader.py": "8fb4deb89ba256adf53cfc773050ee5b9ae8eb55b972613cbebf3ffd7a36f3fb",
+        "utils/topk_evaluator.py": "4d23dc2a347372eceb831e74ef8fcc2d02530af969212284345e76e1c1f003f6",
+        "configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+      },
+      "receipts": {
+        "launch.json": {
+          "pid": 2772330
+        },
+        "pipeline_status.json": {
+          "status": "closed_validation_gate",
+          "stage": "sports",
+          "finished_unix": 1791535267.173514
+        },
+        "source_revision.json": {
+          "commit": "f46078aea1c32e61901ad94be86ab534be57f633"
+        }
+      },
+      "baselines": {}
+    },
+    "/data/sunzixuan/electronics_baseline_20261009_v1": {
+      "exists": true,
+      "core_sha256": {
+        "models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+        "models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+        "common/trainer.py": "3b8df986616002d4ea7fecda1cb686a8675001f048ecbfff7365339ce38c3199",
+        "utils/dataloader.py": "8fb4deb89ba256adf53cfc773050ee5b9ae8eb55b972613cbebf3ffd7a36f3fb",
+        "utils/topk_evaluator.py": "4d23dc2a347372eceb831e74ef8fcc2d02530af969212284345e76e1c1f003f6",
+        "configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+      },
+      "receipts": {
+        "launch.json": {
+          "pid": 2933472
+        },
+        "pipeline_status.json": {
+          "status": "technical_failure",
+          "stage": "elec_baseline_s2026",
+          "pid": 2933472,
+          "error": "RuntimeError('elec_baseline_s2026 failed; see /data/sunzixuan/electronics_baseline_20261009_v1/logs/elec_baseline_s2026.log')",
+          "finished_unix": 1791563325.1272256
+        },
+        "source_revision.json": {
+          "commit": "06bcd212af31cd7c7ccd6ccc63de9778130b9f6b"
+        }
+      },
+      "baselines": {}
+    },
+    "/data/sunzixuan/electronics_recovery_20261010_v3": {
+      "exists": false,
+      "core_sha256": {},
+      "receipts": {},
+      "baselines": {}
+    },
+    "/data/sunzixuan/msca_official": {
+      "exists": false,
+      "core_sha256": {},
+      "receipts": {},
+      "baselines": {}
+    },
+    "/data/sunzixuan/rave_20260906_stage1": {
+      "exists": true,
+      "core_sha256": {},
+      "receipts": {
+        "pipeline_status.json": {
+          "stage": "completed",
+          "pid": 2645820
+        }
+      },
+      "baselines": {}
+    }
+  },
+  "assets": {
+    "/data/sunzixuan/bridge_official/data/baby": {
+      "exists": true,
+      "files": [
+        {
+          "name": "baby.inter",
+          "bytes": 4362239
+        },
+        {
+          "name": "image_adj_10.pt",
+          "bytes": 198810731
+        },
+        {
+          "name": "image_adj_10_True.pt",
+          "bytes": 1411111
+        },
+        {
+          "name": "image_adj_15_True.pt",
+          "bytes": 2116135
+        },
+        {
+          "name": "image_adj_20_True.pt",
+          "bytes": 2821095
+        },
+        {
+          "name": "image_adj_40_True.pt",
+          "bytes": 5641127
+        },
+        {
+          "name": "image_feat.npy",
+          "bytes": 231014528
+        },
+        {
+          "name": "image_interest_10_5.pt",
+          "bytes": 10561255
+        },
+        {
+          "name": "inter.json",
+          "bytes": 119558
+        },
+        {
+          "name": "mm_adj_10.pt",
+          "bytes": 2821095
+        },
+        {
+          "name": "mm_adj_20.pt",
+          "bytes": 5641127
+        },
+        {
+          "name": "mm_adj_GUIDERdsp_20_1.pt",
+          "bytes": 5641127
+        },
+        {
+          "name": "mm_adj_freedomdsp_10_1.pt",
+          "bytes": 2821746
+        },
+        {
+          "name": "pop_item_msk-0.9.npy",
+          "bytes": 7178
+        },
+        {
+          "name": "tail_item_msk-0.1.npy",
+          "bytes": 7178
+        },
+        {
+          "name": "text_adj_10.pt",
+          "bytes": 198810731
+        },
+        {
+          "name": "text_adj_10_True.pt",
+          "bytes": 1411111
+        },
+        {
+          "name": "text_adj_15_True.pt",
+          "bytes": 2116135
+        },
+        {
+          "name": "text_adj_20_True.pt",
+          "bytes": 2821095
+        },
+        {
+          "name": "text_adj_40_True.pt",
+          "bytes": 5641127
+        },
+        {
+          "name": "text_feat.npy",
+          "bytes": 10828928
+        },
+        {
+          "name": "text_interest_10_5.pt",
+          "bytes": 10561255
+        },
+        {
+          "name": "user_graph_dict.npy",
+          "bytes": 38955963
+        }
+      ]
+    },
+    "/data/sunzixuan/bridge_official/data/sports": {
+      "exists": true,
+      "files": [
+        {
+          "name": "README.md",
+          "bytes": 486
+        },
+        {
+          "name": "image_adj_10.pt",
+          "bytes": 1347918507
+        },
+        {
+          "name": "image_adj_10_True.pt",
+          "bytes": 3672551
+        },
+        {
+          "name": "image_adj_15_True.pt",
+          "bytes": 5508199
+        },
+        {
+          "name": "image_adj_20_True.pt",
+          "bytes": 7343911
+        },
+        {
+          "name": "image_adj_40_True.pt",
+          "bytes": 14686695
+        },
+        {
+          "name": "image_feat.npy",
+          "bytes": 601522304
+        },
+        {
+          "name": "image_interest_10_5.pt",
+          "bytes": 23204647
+        },
+        {
+          "name": "inter.json",
+          "bytes": 330799
+        },
+        {
+          "name": "mm_adj_10.pt",
+          "bytes": 7343911
+        },
+        {
+          "name": "mm_adj_GUIDERdsp_20_1.pt",
+          "bytes": 14686695
+        },
+        {
+          "name": "mm_adj_freedomdsp_10_1.pt",
+          "bytes": 7344562
+        },
+        {
+          "name": "mm_attractive_6.pt",
+          "bytes": 17125031
+        },
+        {
+          "name": "mm_attractive_6_R.pt",
+          "bytes": 8563111
+        },
+        {
+          "name": "pop_item_msk-0.9.npy",
+          "bytes": 18485
+        },
+        {
+          "name": "sports.inter",
+          "bytes": 8278383
+        },
+        {
+          "name": "tail_item_msk-0.1.npy",
+          "bytes": 18485
+        },
+        {
+          "name": "text_adj_10.pt",
+          "bytes": 1347918507
+        },
+        {
+          "name": "text_adj_10_True.pt",
+          "bytes": 3672551
+        },
+        {
+          "name": "text_adj_15_True.pt",
+          "bytes": 5508199
+        },
+        {
+          "name": "text_adj_20_True.pt",
+          "bytes": 7343911
+        },
+        {
+          "name": "text_adj_40_True.pt",
+          "bytes": 14686695
+        },
+        {
+          "name": "text_feat.npy",
+          "bytes": 28196480
+        },
+        {
+          "name": "text_interest_10_5.pt",
+          "bytes": 23204647
+        },
+        {
+          "name": "user_graph_dict.npy",
+          "bytes": 58075141
+        }
+      ]
+    },
+    "/data/sunzixuan/bridge_extra_assets_20261009/elec": {
+      "exists": true,
+      "files": [
+        {
+          "name": "elec.inter",
+          "bytes": 49216870
+        },
+        {
+          "name": "image_feat.npy",
+          "bytes": 2064416896
+        },
+        {
+          "name": "text_feat.npy",
+          "bytes": 96769664
+        }
+      ]
+    },
+    "/data/sunzixuan/rave_20260906_stage1/weights": {
+      "exists": true,
+      "files": [
+        {
+          "name": "ViT-B-16.pt",
+          "bytes": 350837078
+        }
+      ]
+    }
+  },
+  "gpu": {
+    "exit_code": 0,
+    "stdout": "0, NVIDIA GeForce RTX 3090, 24576, 1537, 22721, 0\n1, NVIDIA GeForce RTX 3090, 24576, 24232, 26, 1"
+  },
+  "gpu_compute_processes": {
+    "exit_code": 0,
+    "stdout": "GPU-30201e9a-a9f2-14b9-78e7-7a1f86a6476f, 600045, 22704"
+  },
+  "baseline_name_candidates": {
+    "MSCA": [
+      {
+        "path": "/data/sunzixuan/MSCA_baby_provided_download",
+        "is_dir": false
+      },
+      {
+        "path": "/data/sunzixuan/MSCA_official_20260827.zip",
+        "is_dir": false
+      },
+      {
+        "path": "/data/sunzixuan/MSCA-main",
+        "is_dir": true
+      }
+    ],
+    "BM3": [],
+    "FREEDOM": [],
+    "LATTICE": [],
+    "LightGCN": [],
+    "MGCN": [],
+    "SGL": [],
+    "UltraGCN": [],
+    "SG-URInit": [],
+    "MRLib": [
+      {
+        "path": "/data/sunzixuan/MRLib_pravi_20260827.zip",
+        "is_dir": false
+      }
+    ]
+  }
+}

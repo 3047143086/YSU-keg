@@ -1,0 +1,7 @@
+{
+  "deployed": "/data/sunzixuan/interest_negative_20261010_v1",
+  "bundle_files": 12,
+  "deployment_sha256": "40e4aecd07a5ae6c38d3980fb8d801c4a8fa7df187586938b0f87323b5ea9a21",
+  "carrier_files": 25
+}
+(base) sunzixuan@213keg:~$

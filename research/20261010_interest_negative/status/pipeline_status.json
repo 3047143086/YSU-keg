@@ -1,0 +1,54 @@
+{
+  "completed": [],
+  "completed_formal_arms": 0,
+  "current_job": {
+    "command": [
+      "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+      "-u",
+      "/data/sunzixuan/interest_negative_20261010_v1/train.py",
+      "--dataset",
+      "baby",
+      "--assets",
+      "/data/sunzixuan/interest_negative_20261010_v1/groups/baby",
+      "--prepare-assets"
+    ],
+    "elapsed_seconds": 60.00656492100097,
+    "name": "baby_prepare",
+    "output": "/data/sunzixuan/interest_negative_20261010_v1/unused_prepare_baby",
+    "pid": 3210981,
+    "prepare": true,
+    "timeout_seconds": 1800
+  },
+  "dataset": "baby",
+  "deadline_unix": 1791790973.5966187,
+  "integrity": {
+    "deployment_sha256": "40e4aecd07a5ae6c38d3980fb8d801c4a8fa7df187586938b0f87323b5ea9a21",
+    "protected_paths_count": 159,
+    "protected_paths_match": true
+  },
+  "jobs": [],
+  "queue_pid": 3210514,
+  "requested_job": {
+    "dataset": "baby",
+    "mode": "uniform",
+    "prepare": true,
+    "smoke": false
+  },
+  "resource_reason": "admitted",
+  "resources": {
+    "cpu_affinity_count": 20,
+    "cpu_threads": 4,
+    "gpu_compute_processes": [],
+    "gpu_free_bytes": 25409093632,
+    "gpu_index": 1,
+    "gpu_process_query_ok": true,
+    "gpu_uuid": "GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a",
+    "ram_available_bytes": 127295512576
+  },
+  "stage": "running",
+  "started_unix": 1791618173.5966184,
+  "status": "running",
+  "test_evaluated": false,
+  "time_budget_seconds": 172800,
+  "updated_unix": 1791618259.0560968
+}

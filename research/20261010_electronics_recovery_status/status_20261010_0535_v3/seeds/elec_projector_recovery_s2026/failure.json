@@ -1,0 +1,16 @@
+{
+  "stage": "forward",
+  "error": "Unresolved spectral band boundary at index 43",
+  "epoch": 0,
+  "batch": 4,
+  "finite_steps_completed": 4,
+  "unix": 1791608412.8053644,
+  "parameters_finite": true,
+  "optimizer_update_blocked": true,
+  "nonfinite_parameter_gradients": [],
+  "bad_svd_backward": [],
+  "test_evaluated": false,
+  "replay_packet": "/data/sunzixuan/electronics_baseline_20261010_recovery_v3/runs/elec_projector_recovery_s2026/failure_replay.pt",
+  "backward_implementation_changed": true,
+  "capture_semantics": "actual SVD input/singular values; actual dL/dX when reached; no fabricated dL/dU,S,Vh"
+}
