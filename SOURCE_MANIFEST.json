@@ -2842,6 +2842,10 @@
       "sha256": "5d7bf715c1e9002a6ad46182f38692fd14fbe3e15b815e8b6446d5ec844f13ae",
       "bytes": 939
     },
+    "research/20261010_baseline_confirmation/launch.py": {
+      "sha256": "97326087b7e82633fa4c7f781bd8200f48ed78da7d50ea3f0c96c5b856b5ee2d",
+      "bytes": 4493
+    },
     "research/20261010_baseline_confirmation/program.md": {
       "sha256": "045e1a9c1867905a0227f91ee51df9c54e53c914f96b09ac5fb725458e81ef07",
       "bytes": 664
