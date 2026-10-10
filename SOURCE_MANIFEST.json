@@ -2823,10 +2823,6 @@
       "sha256": "a482f99e4c9ead7b27d96f881d2620c89e5d7125e23a98c68d6946d5b670dadb",
       "bytes": 2034
     },
-    "research/20261010_catalog_relation_assessment/audit_catalog.py": {
-      "sha256": "62398be6198f154afafcac520f4ebaaf178cb6cfc3eec09dca0029f371f5a5e5",
-      "bytes": 12350
-    },
     "research/20261010_electronics_failure/AUDIT.md": {
       "sha256": "240c41aebe48f907ecfaa53b70ae2de910866a296c5e97a3d0dba33f976a0749",
       "bytes": 6485
