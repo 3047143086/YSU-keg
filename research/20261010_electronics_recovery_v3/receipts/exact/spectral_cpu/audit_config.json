@@ -1,0 +1,15 @@
+{
+  "root": "/data/sunzixuan/spectral_projector_audit_20261010_v1",
+  "source_revision": "a12c750dbba12205ae049cc143a123b59c6b766f",
+  "payload_sha256": {
+    "projector.py": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+    "test_projector.py": "ffb1de4e9e90e356557f99e95dfec23c5ca582b27ef560d94b58f8e087098ea4",
+    "remote_audit.py": "eefe76b6ed84994b03462ed11224894d167f7c0d8156c5904581dc001ea3e5ec",
+    "replay_cpu.py": "7485ba9607d3b7fcbb960a27e0046fa9aa657c2a823ca258c0bd97827bdba512",
+    "test_cpu_remote.py": "c3d35f52ca33a7060dceb0f4391cb31570db53fe86f913e4e74268b638695a18",
+    "PROTOCOL.md": "ab1743e3310877ead9a34cd858793cad88d6a6046da0ad0141a26c4819016956",
+    "program.md": "c33af824e037d660add2b269f6e650bd232f10bd0f49fcfd1dee3ea67240e0bc"
+  },
+  "root_review_required": true,
+  "cpu_only": true
+}

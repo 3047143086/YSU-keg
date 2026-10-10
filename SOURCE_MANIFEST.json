@@ -57,6 +57,11 @@
       "working_tree_has_changes": false,
       "git_metadata_readable": true
     },
+    "research/20261010_electronics_recovery_v3": {
+      "commit": "cb7bc6bfff811040f0499bf5ac5b07020bb5c4ba",
+      "working_tree_has_changes": false,
+      "git_metadata_readable": true
+    },
     "research/20261010_failure_model_gpu_audit": {
       "commit": "28636020870d6b9970e0ed1fcd4d81a78d22e99d",
       "working_tree_has_changes": false,
@@ -69,6 +74,11 @@
     },
     "research/20261010_review_bank_alignment": {
       "commit": "125fd9529a1bdc79525267bf29dfd1c1d3d9f410",
+      "working_tree_has_changes": false,
+      "git_metadata_readable": true
+    },
+    "research/20261010_same_input_integration_audit": {
+      "commit": "8c47b4820b1b8d7fd064119321c5f826fe37dffa",
       "working_tree_has_changes": false,
       "git_metadata_readable": true
     },
@@ -2831,6 +2841,10 @@
       "sha256": "882c087badb6ebee1efc4d11db1aca1d975e48ca621f5ac127714db4fc1321c3",
       "bytes": 104233
     },
+    "research/20261010_electronics_recovery_status/capture.py": {
+      "sha256": "5fc909d3e7115a25cc1b9c95e3fe0e1cafa441c01e8a6728431dccd53ac1ecaf",
+      "bytes": 4174
+    },
     "research/20261010_electronics_recovery_v2/BUDGET_ASSESSMENT.md": {
       "sha256": "4abd40336f72c089dfdc8faf676fe1995e4f557fb01204dc947e0f5b17c2087f",
       "bytes": 1840
@@ -2948,6 +2962,666 @@
       "bytes": 16385
     },
     "research/20261010_electronics_recovery_v2/v1_reference_config.json": {
+      "sha256": "0d9a763ee6bf18abb8551e29e3931d2c227c0004938d13734073a984cbc6995c",
+      "bytes": 5596
+    },
+    "research/20261010_electronics_recovery_v3/BUDGET_ASSESSMENT.md": {
+      "sha256": "128e3f357cdbd945e3afcb04350d88f18be18e9dbe9de0a1e8c7b37f4164530c",
+      "bytes": 2465
+    },
+    "research/20261010_electronics_recovery_v3/PROTOCOL.md": {
+      "sha256": "70a35155d296e59d757cd1111d4d04f87e65508213523af51d7df62ac32fbdc4",
+      "bytes": 8813
+    },
+    "research/20261010_electronics_recovery_v3/README.md": {
+      "sha256": "38e57b3d49d83a6ed4ddb6897615619f1bfae8b0cb3c547fda621309cb629f74",
+      "bytes": 3572
+    },
+    "research/20261010_electronics_recovery_v3/SOURCE_LINEAGE.json": {
+      "sha256": "b3cc8182115407bd1453b2649f644f06c90c6b7e60530154e598972ceb5d54b3",
+      "bytes": 8293
+    },
+    "research/20261010_electronics_recovery_v3/archive_evidence.py": {
+      "sha256": "0622f3a487e8cbe5ffc10add5d0c47a994969a3067b4de13b2b242630fb1ab7d",
+      "bytes": 4073
+    },
+    "research/20261010_electronics_recovery_v3/budget_evidence.json": {
+      "sha256": "00a4bf1c39d942855187ff06ae4c939510c9cc9b5ea09b251bb1ff247b701299",
+      "bytes": 15134
+    },
+    "research/20261010_electronics_recovery_v3/carrier/LICENSE": {
+      "sha256": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
+      "bytes": 35823
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/common/__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/common/abstract_recommender.py": {
+      "sha256": "2294e003e1ea523c1ef02df165954434545355490e482446c3c889e0a014c156",
+      "bytes": 3697
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/common/encoders.py": {
+      "sha256": "9845154a3fe488d1ed3b4f32e1d85d1c470a672966e0ab6b2b8b97f3b6e0ba45",
+      "bytes": 4898
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/common/init.py": {
+      "sha256": "1141665794a83eb8f660b0e394f3fb4be9b39906efb5cae1e99359cc3116f32e",
+      "bytes": 1499
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/common/loss.py": {
+      "sha256": "729b4b078b266944907e617fabf61244f301b61b4b9b6cb3e5e436fdcccbbf24",
+      "bytes": 1554
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/common/trainer.py": {
+      "sha256": "3b8df986616002d4ea7fecda1cb686a8675001f048ecbfff7365339ce38c3199",
+      "bytes": 15679
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/configs/dataset/baby.yaml": {
+      "sha256": "8426650aed8a0eb60999b2534573d45e03f363b1c1a0f8b996b39dbc650c3caa",
+      "bytes": 361
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/configs/dataset/elec.yaml": {
+      "sha256": "0c4984031c96cad8d0aa2aedf006208087748daf217d5ee44756c1d401cd5f5e",
+      "bytes": 361
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/configs/dataset/sports.yaml": {
+      "sha256": "42e1ccd21045441f84f57d0bd19d703539bfcaaeb99bf194967d40ea0db766fb",
+      "bytes": 363
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/configs/model/BRIDGE.yaml": {
+      "sha256": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3",
+      "bytes": 2518
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/configs/model/BRIDGE_C2R.yaml": {
+      "sha256": "1db988faaa1b1deb7c98252a4b406b5c64c7b2259e97808082034ef422d4a9f4",
+      "bytes": 2369
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/configs/model/BRIDGE_CBCR.yaml": {
+      "sha256": "82aa327e45d353e87edca88cd122fea6098b70f3215313852d2810592051d6c4",
+      "bytes": 2211
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/configs/overall.yaml": {
+      "sha256": "e9ba9e64d2936caae9e6e429ede7f9c89a5dbb79df4bc623d97efbd985e2637f",
+      "bytes": 1126
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/diagnose_ecli.py": {
+      "sha256": "99e2297cd877fd72668d2768680fa9cf2ae1fbf22b8aba66532bc19c7206bf88",
+      "bytes": 10759
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/diagnose_tace.py": {
+      "sha256": "69d3654527dc1bf22d7a09cf44c6debd8a89710b2c24dbd703dded7648c1f992",
+      "bytes": 8514
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/main.py": {
+      "sha256": "d9f0f93d92e1f4d7f0f7292e20f56c1f1b29b099ef843c1f1fad49037410fe36",
+      "bytes": 6303
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/models/__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/models/bridge.py": {
+      "sha256": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+      "bytes": 40372
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/models/bridge_c2r.py": {
+      "sha256": "de61156ac5758a12834097ea20d4182e7805a0f6610ee3f522a44eb0871ed1af",
+      "bytes": 7766
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/models/bridge_cbcr.py": {
+      "sha256": "385762f429e2b29acef8a5f08808b8595496f0f162195d30824cd36e1b4855f4",
+      "bytes": 8913
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/models/dual_frequency_encoder.py": {
+      "sha256": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+      "bytes": 59312
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/configurator.py": {
+      "sha256": "dde0ebdd2a45fae206da6ffe8728a2fd89b2064d8655e08e11b4869231ed41ac",
+      "bytes": 5693
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/data_utils.py": {
+      "sha256": "7aad1f06787d7141a4a5b4166a8e50c2f5f2707fc1f41070d32246831cae9869",
+      "bytes": 14359
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/dataloader.py": {
+      "sha256": "8fb4deb89ba256adf53cfc773050ee5b9ae8eb55b972613cbebf3ffd7a36f3fb",
+      "bytes": 16791
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/dataset.py": {
+      "sha256": "c5814605da7c6e9ec1f52fe11edbfeaf89dec87f3b6f629265b0547412d2d00c",
+      "bytes": 4975
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/ecli.py": {
+      "sha256": "fcb99c64f41c236c7600a30aa210573ff48b86f064471560617dfc9ece7727ee",
+      "bytes": 6464
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/logger.py": {
+      "sha256": "65a09bb943398f72da4c1128603fcf843284f23d779a163e8e812e6a8abcd8e7",
+      "bytes": 2006
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/metrics.py": {
+      "sha256": "a722ea36f3a9b78c5e1121819ead2333361cf929bbcbb925cadcf85c77dae13d",
+      "bytes": 4382
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/misc.py": {
+      "sha256": "06fbc7afddc35e08f9f7ea0370b3c0b0729e0280450a381dec4fdd15961f987d",
+      "bytes": 583
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/quick_start.py": {
+      "sha256": "7846b35faa5ee9498565c567d57d3ed2dfbeacf547f3c7b2d7e6d035f5c6f8b2",
+      "bytes": 4559
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/tace.py": {
+      "sha256": "89304b62287d67c057674b6d03c5a68302d1a53dbef78cf8af574822491219e3",
+      "bytes": 8443
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/topk_evaluator.py": {
+      "sha256": "4d23dc2a347372eceb831e74ef8fcc2d02530af969212284345e76e1c1f003f6",
+      "bytes": 5918
+    },
+    "research/20261010_electronics_recovery_v3/carrier/src/utils/utils.py": {
+      "sha256": "23a36fc0cb1174eca46107a590715907304de50a3ffd4a0c9866c556d666fc78",
+      "bytes": 5495
+    },
+    "research/20261010_electronics_recovery_v3/cpu_tests.py": {
+      "sha256": "13ad344457d978f92deb215ae4c9f3be62a86bf97d26d129af38bc438c052a8f",
+      "bytes": 3773
+    },
+    "research/20261010_electronics_recovery_v3/guarded_train.py": {
+      "sha256": "f54e83c6b6d3e0121b86afdca1eae3d3f9e72cbea7373a87d606f1038efb77c8",
+      "bytes": 5241
+    },
+    "research/20261010_electronics_recovery_v3/input_audit.json": {
+      "sha256": "aef20f9ce4052b8668d5dde6a279e5e51c922f46ae822ec879cfabb8d644d56e",
+      "bytes": 9266
+    },
+    "research/20261010_electronics_recovery_v3/integration.py": {
+      "sha256": "7ecd55f5fbafb4c247b8689c3bdb663a9ac37b29ce39e04084e12be589c79a15",
+      "bytes": 2186
+    },
+    "research/20261010_electronics_recovery_v3/manage.py": {
+      "sha256": "93dedcf9b0eea4f264ca2219e865dc918ebd7477945073a730b00fe333bc1aed",
+      "bytes": 8448
+    },
+    "research/20261010_electronics_recovery_v3/numerics.py": {
+      "sha256": "54a073c5a9adf0676e8369b33d9eb2fa01e487cf76e2ecc60343af77183dec19",
+      "bytes": 6274
+    },
+    "research/20261010_electronics_recovery_v3/payload_manifest.py": {
+      "sha256": "f0ece4fc985be8b04381d45f8be8f58fa3a37273d270ebcb3cfcd4ed277f6a71",
+      "bytes": 1051
+    },
+    "research/20261010_electronics_recovery_v3/plugin_config.json": {
+      "sha256": "88db53ba62b812732090de3b6ce719322ccedc6d099ceacf3820cc4a640cf819",
+      "bytes": 205
+    },
+    "research/20261010_electronics_recovery_v3/preparation_cpu_receipt.json": {
+      "sha256": "f3b297110ef2bfd298f0ae5e5cba2a6923a78553f47cb90c80997a106c4a3b44",
+      "bytes": 20722
+    },
+    "research/20261010_electronics_recovery_v3/prerequisite_gate.py": {
+      "sha256": "29295ec3d29ac8d02ee940dcc73f94203336acc2e2a9363d0f454bdc078d065a",
+      "bytes": 20827
+    },
+    "research/20261010_electronics_recovery_v3/prerequisites.json": {
+      "sha256": "d6790c98ed5f51b58899abda82473aad873b896144b242a9dd9984d337bdf24e",
+      "bytes": 12362
+    },
+    "research/20261010_electronics_recovery_v3/program.md": {
+      "sha256": "76d13b3ef457e29054d74ad53834cf9d0911a80fcca7bc975e5b0227e2d3f457",
+      "bytes": 1385
+    },
+    "research/20261010_electronics_recovery_v3/projector.py": {
+      "sha256": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+      "bytes": 5659
+    },
+    "research/20261010_electronics_recovery_v3/proposal.py": {
+      "sha256": "fd9504c1273bc9ab653772626ef9e759ce428487d65bc518f247877ed2cca72a",
+      "bytes": 2309
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/ELECTRONICS_GPU_REVIEW.md": {
+      "sha256": "9a5d7557dd9eee48ae025bbd80209da4f100fc769209845368c2b7cb26393e3f",
+      "bytes": 2274
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/checkpoint_structure.py": {
+      "sha256": "660019aa9a011a286b5c035194f075ac83bfbbfd486da1cec2efd3412a129266",
+      "bytes": 2891
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/deployment.json": {
+      "sha256": "a20342b1ac5c5d0864b691c764ecad6f5d3ad56537266b686ffa5810296680dc",
+      "bytes": 921
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/electronics_gpu_audit.py": {
+      "sha256": "ec509e5fb7f0493aa1dedbf5e8d98340f13e0c74f4f8651000c00a045a223e0a",
+      "bytes": 13864
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/electronics_gpu_receipt.json": {
+      "sha256": "3df214b97ee633e71e4c8f616150ed8abe7fd29ecc7f78cabe85843d3d882d59",
+      "bytes": 19807
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/eval_cache.py": {
+      "sha256": "c9617ab7bd45a9d97af91a2bfae58118b98e29d3ab2778bfecf980c3f91c0c3c",
+      "bytes": 8474
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/gpu_manage.py": {
+      "sha256": "cdbf48d28edcf84eb811bcf50eeed39d1de1336e657a98556a385f4412e8bb7e",
+      "bytes": 5185
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/source_revision.json": {
+      "sha256": "7f09f96b7fdcc4a8a098ddd639f9f0a9c6741a45f43ce1fcd310bfdd3a711b09",
+      "bytes": 809
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/test_cache_lifecycle.py": {
+      "sha256": "a6fe062e718aa021080b69922b363880f9357536f7927ace730786fc82abb80c",
+      "bytes": 7173
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/test_checkpoint_structure.py": {
+      "sha256": "53cfc82ccf4c35fe58a914d5305e2c685d56ac30c2fa17fb7d7050e4c28db4f7",
+      "bytes": 2738
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/excluded_cache_gpu/test_eval_cache.py": {
+      "sha256": "08747972d01c03dbd17c8a14f6805e6ce371f2aad2dafa3616f06bae86480eb6",
+      "bytes": 3536
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/PROTOCOL.md": {
+      "sha256": "87331da58825ccb0fa39a7310555b8d476aeb6885a37ceb5fe6ccd86ea3e1136",
+      "bytes": 5078
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/ROOT_REVIEW.md": {
+      "sha256": "bf41b7d806f25e2b7b64391b71f9b22e98896dc0d43ec43c1d24b955af1a8e34",
+      "bytes": 1369
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/audit_config.json": {
+      "sha256": "42364aa8cb84e44d243fc58fbdd89420fbe7c2a68804897a625ceceaa5460cdd",
+      "bytes": 863
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/audit_gate.py": {
+      "sha256": "96d6fd782602867b9b2a7c618bbbd789b96bebbb55afb657863a7afa3b539b40",
+      "bytes": 1186
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/gpu_audit_receipt.json": {
+      "sha256": "a840a3a1d952a8300d44951af77d8068b28770057a0ba3ca1dc833e0c21b7eb0",
+      "bytes": 207708
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/guards.py": {
+      "sha256": "ceb9c4c46c6287318b9cbcef682967620bfed8947e9bc75242ef789a362d1a46",
+      "bytes": 4979
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/manage.py": {
+      "sha256": "6f0d5afe7fa757ccc3c113e57193e15bf5e7f0ba25afe8dc2a6d4b7bbb9c16d4",
+      "bytes": 6259
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/program.md": {
+      "sha256": "1ec5bc24cea037d2e7a44d77d5d3182b809ff3bcffdc24c051a9d4de7d20f518",
+      "bytes": 393
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/remote_gpu.py": {
+      "sha256": "2b395f5aeddd6e3983a563e1787c1fa27b0ba366f9ead59d4d5eff7a4ae409f8",
+      "bytes": 17518
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/old_gpu_archived/test_audit_gate.py": {
+      "sha256": "f8b8aa4ace5c652ac8a9f3ee9d107ae31c1ad56956829eaafa13678181ce57e3",
+      "bytes": 3023
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/PROTOCOL.md": {
+      "sha256": "3f03b4685512bfc34dd6299f343a963e368ab03c6e1fbda3cb6398c2c756dd72",
+      "bytes": 8281
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/ROOT_REVIEW.md": {
+      "sha256": "3f45eca2e764cd7cdf7541095a1f1a5361ce4e633bb4f20e2a759e8693c78d8f",
+      "bytes": 3654
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/diagnostic_config.json": {
+      "sha256": "f5b433ab7962c890c3707b084ffd9c0f52f88adc930f8f23583f6b114a7b1526",
+      "bytes": 1086
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/manage.py": {
+      "sha256": "6f50bc0027b9fc64bdd6a7b31d50c4fde30d6b7fa53bd91868bbbcb9943f5863",
+      "bytes": 6970
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/parameter_snapshot.py": {
+      "sha256": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+      "bytes": 2663
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/program.md": {
+      "sha256": "2a7a800e983a659bbfc13a8bcf84e0e982fb2e08b95987bbc28fdaac8a6d2ec4",
+      "bytes": 657
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/repeat_diagnostic.py": {
+      "sha256": "02775ba2d3d1496d0ef39e7bae312b9579c83a133b43ac9dcf660a19e99492bc",
+      "bytes": 18100
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/repeat_guards.py": {
+      "sha256": "c6d40b5644c36ca9c5846f10536d1ea7c2145230cd4e0e0b2115adb3baef2480",
+      "bytes": 2878
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/repeat_receipt.json": {
+      "sha256": "651f5d066d03433a21926565d885050a14ecb63faae8cd5b0966aac20f565540",
+      "bytes": 218419
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/repeat_summary.py": {
+      "sha256": "555f6ddd43f23c90f0d226018504f7fdf7c0ebf3dfecf88605c36993ecfd8eb9",
+      "bytes": 3688
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/test_parameter_snapshot.py": {
+      "sha256": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+      "bytes": 2058
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/original_repeat/test_repeat_summary.py": {
+      "sha256": "b031567beb416544cdae8cffd43709471c15122c55b294d7e5a4ab86038af465",
+      "bytes": 4146
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/projector_cpu_tests/PROTOCOL.md": {
+      "sha256": "ab1743e3310877ead9a34cd858793cad88d6a6046da0ad0141a26c4819016956",
+      "bytes": 6920
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/projector_cpu_tests/audit_config.json": {
+      "sha256": "6d868cc19666f30834a0d6306c24d4f82ce844e2161f15fcf95fa6312ae1ef22",
+      "bytes": 839
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/projector_cpu_tests/program.md": {
+      "sha256": "c33af824e037d660add2b269f6e650bd232f10bd0f49fcfd1dee3ea67240e0bc",
+      "bytes": 465
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/projector_cpu_tests/projector.py": {
+      "sha256": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+      "bytes": 5659
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/projector_cpu_tests/remote_audit.py": {
+      "sha256": "eefe76b6ed84994b03462ed11224894d167f7c0d8156c5904581dc001ea3e5ec",
+      "bytes": 15144
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/projector_cpu_tests/replay_cpu.py": {
+      "sha256": "7485ba9607d3b7fcbb960a27e0046fa9aa657c2a823ca258c0bd97827bdba512",
+      "bytes": 3863
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/projector_cpu_tests/test_cpu_remote.py": {
+      "sha256": "c3d35f52ca33a7060dceb0f4391cb31570db53fe86f913e4e74268b638695a18",
+      "bytes": 2613
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/projector_cpu_tests/test_projector.py": {
+      "sha256": "ffb1de4e9e90e356557f99e95dfec23c5ca582b27ef560d94b58f8e087098ea4",
+      "bytes": 6175
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/PROTOCOL.md": {
+      "sha256": "10819c94bd211dfafa8dd80c8af656c42b0358b45481442cba8c26306b8edfc4",
+      "bytes": 9936
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/ROOT_REVIEW.md": {
+      "sha256": "649086bf7e1f95ea77c24e7312be960976f7fc0b649776bea58b7dae9cee3893",
+      "bytes": 3150
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/integration_config.json": {
+      "sha256": "9d217792556b38d685d79cad426a521d78bedfc4e28529e0040ed1774a5df84e",
+      "bytes": 1680
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/integration_gate.py": {
+      "sha256": "11bee90b47d623c6cd5a19c135c591ed4d40a6da43c5954f420b7837f7179579",
+      "bytes": 3921
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/manage.py": {
+      "sha256": "598d0ade36f706f372aa73bd1327967ad7fb39b00594b97840b9ce60e19f6131",
+      "bytes": 7656
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/method_observer.py": {
+      "sha256": "9df74ccdef4bffcd1cae21cedda6cb4c7a41d5816eacfb5ecc96ac11345a6921",
+      "bytes": 520
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/parameter_snapshot.py": {
+      "sha256": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+      "bytes": 2663
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/program.md": {
+      "sha256": "82f887506c557bc5dedecb3ca131e2e1fab023ccb0f0ac16ac94f21acc7e4b89",
+      "bytes": 676
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/remote_integration.py": {
+      "sha256": "f8e6b1fd409e9a90afdf0f8eb2fa0ef06d9b49eea466efc8f36361a3009eec4d",
+      "bytes": 18837
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/repeat_guards.py": {
+      "sha256": "cd03822412f4468b39257207339100caf57f0f6d97766291ad6e0704eb75cf54",
+      "bytes": 5554
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/runtime_checks.py": {
+      "sha256": "cce521eaba67c7fa0b61631680b98be60a8368c2ef896e0f994d37488944eb47",
+      "bytes": 4034
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/test_integration_gate.py": {
+      "sha256": "95213818c7afef72b9afe20e03569381ba7f002b99cd142939dc633ff35295e1",
+      "bytes": 5485
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/test_method_observer.py": {
+      "sha256": "28822d635b2a1509d997e92cafed52b8c18719290b3560c48cb4b9da53aa3a7e",
+      "bytes": 1203
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/test_parameter_snapshot.py": {
+      "sha256": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+      "bytes": 2058
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/test_runtime_compatibility.py": {
+      "sha256": "5ca261862d8a06cc70474cc1dcd04a469597b5524e66577ca46219bc98bd3a3b",
+      "bytes": 3333
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/test_warning_observer.py": {
+      "sha256": "4110b012843409fccd2cc3ff4d67dc171679bee5d9440e4ecbc5dc1ba020a917",
+      "bytes": 1285
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/tests.json": {
+      "sha256": "691fb0304b200c488186c3c63525ecf210da931a8a713989c3b91fc8ee13b57b",
+      "bytes": 3364
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_cpu_tests/warning_observer.py": {
+      "sha256": "6409f56307079f191ac0b28bb11d2bf2e4330b8887df0dead20291569e007f95",
+      "bytes": 998
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/PROTOCOL.md": {
+      "sha256": "10819c94bd211dfafa8dd80c8af656c42b0358b45481442cba8c26306b8edfc4",
+      "bytes": 9936
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/ROOT_REVIEW.md": {
+      "sha256": "649086bf7e1f95ea77c24e7312be960976f7fc0b649776bea58b7dae9cee3893",
+      "bytes": 3150
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/integration_config.json": {
+      "sha256": "9d217792556b38d685d79cad426a521d78bedfc4e28529e0040ed1774a5df84e",
+      "bytes": 1680
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/integration_gate.py": {
+      "sha256": "11bee90b47d623c6cd5a19c135c591ed4d40a6da43c5954f420b7837f7179579",
+      "bytes": 3921
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/integration_receipt.json": {
+      "sha256": "87251d388816ec3d395f477a096a7f67e1ea6e25cfaf84116b517c6a36c64f2c",
+      "bytes": 236009
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/manage.py": {
+      "sha256": "598d0ade36f706f372aa73bd1327967ad7fb39b00594b97840b9ce60e19f6131",
+      "bytes": 7656
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/method_observer.py": {
+      "sha256": "9df74ccdef4bffcd1cae21cedda6cb4c7a41d5816eacfb5ecc96ac11345a6921",
+      "bytes": 520
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/parameter_snapshot.py": {
+      "sha256": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+      "bytes": 2663
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/program.md": {
+      "sha256": "82f887506c557bc5dedecb3ca131e2e1fab023ccb0f0ac16ac94f21acc7e4b89",
+      "bytes": 676
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/remote_integration.py": {
+      "sha256": "f8e6b1fd409e9a90afdf0f8eb2fa0ef06d9b49eea466efc8f36361a3009eec4d",
+      "bytes": 18837
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/repeat_guards.py": {
+      "sha256": "cd03822412f4468b39257207339100caf57f0f6d97766291ad6e0704eb75cf54",
+      "bytes": 5554
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/runtime_checks.py": {
+      "sha256": "cce521eaba67c7fa0b61631680b98be60a8368c2ef896e0f994d37488944eb47",
+      "bytes": 4034
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/test_integration_gate.py": {
+      "sha256": "95213818c7afef72b9afe20e03569381ba7f002b99cd142939dc633ff35295e1",
+      "bytes": 5485
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/test_method_observer.py": {
+      "sha256": "28822d635b2a1509d997e92cafed52b8c18719290b3560c48cb4b9da53aa3a7e",
+      "bytes": 1203
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/test_parameter_snapshot.py": {
+      "sha256": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+      "bytes": 2058
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/test_runtime_compatibility.py": {
+      "sha256": "5ca261862d8a06cc70474cc1dcd04a469597b5524e66577ca46219bc98bd3a3b",
+      "bytes": 3333
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/test_warning_observer.py": {
+      "sha256": "4110b012843409fccd2cc3ff4d67dc171679bee5d9440e4ecbc5dc1ba020a917",
+      "bytes": 1285
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/same_input_gpu/warning_observer.py": {
+      "sha256": "6409f56307079f191ac0b28bb11d2bf2e4330b8887df0dead20291569e007f95",
+      "bytes": 998
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/PROTOCOL.md": {
+      "sha256": "ab1743e3310877ead9a34cd858793cad88d6a6046da0ad0141a26c4819016956",
+      "bytes": 6920
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/audit_config.json": {
+      "sha256": "6d868cc19666f30834a0d6306c24d4f82ce844e2161f15fcf95fa6312ae1ef22",
+      "bytes": 839
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/program.md": {
+      "sha256": "c33af824e037d660add2b269f6e650bd232f10bd0f49fcfd1dee3ea67240e0bc",
+      "bytes": 465
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/projector.py": {
+      "sha256": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+      "bytes": 5659
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/remote_audit.py": {
+      "sha256": "eefe76b6ed84994b03462ed11224894d167f7c0d8156c5904581dc001ea3e5ec",
+      "bytes": 15144
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/replay_audit_receipt.json": {
+      "sha256": "28989a19328662fe6aa0baa1b3d2e98b7b14cb3bf0bb5dcff998a57df324d10c",
+      "bytes": 196785
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/replay_cpu.py": {
+      "sha256": "7485ba9607d3b7fcbb960a27e0046fa9aa657c2a823ca258c0bd97827bdba512",
+      "bytes": 3863
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/test_cpu_remote.py": {
+      "sha256": "c3d35f52ca33a7060dceb0f4391cb31570db53fe86f913e4e74268b638695a18",
+      "bytes": 2613
+    },
+    "research/20261010_electronics_recovery_v3/receipts/exact/spectral_cpu/test_projector.py": {
+      "sha256": "ffb1de4e9e90e356557f99e95dfec23c5ca582b27ef560d94b58f8e087098ea4",
+      "bytes": 6175
+    },
+    "research/20261010_electronics_recovery_v3/receipts/excluded_cache_gpu.json": {
+      "sha256": "c3b2e3a5c80bc8837c8f3f019a3b012c07f08188c1ff920891224d0e48abb535",
+      "bytes": 19810
+    },
+    "research/20261010_electronics_recovery_v3/receipts/export_manifest.json": {
+      "sha256": "5a815b970063db31015eb83f07143fa90ea9b6c5e9b996e5b13bc43901f69b35",
+      "bytes": 1243
+    },
+    "research/20261010_electronics_recovery_v3/receipts/original_repeat_archive_receipt.json": {
+      "sha256": "31aee0834945f2451e5427b8a67be7368c08a2078bb69864808a5fe1899366c1",
+      "bytes": 1058
+    },
+    "research/20261010_electronics_recovery_v3/receipts/original_repeat_diagnostic_config.json": {
+      "sha256": "f5b433ab7962c890c3707b084ffd9c0f52f88adc930f8f23583f6b114a7b1526",
+      "bytes": 1086
+    },
+    "research/20261010_electronics_recovery_v3/receipts/original_repeat_repeat_receipt.json": {
+      "sha256": "651f5d066d03433a21926565d885050a14ecb63faae8cd5b0966aac20f565540",
+      "bytes": 218419
+    },
+    "research/20261010_electronics_recovery_v3/receipts/preparation_cpu_attempt1_failed.json": {
+      "sha256": "ab1423667759448db607ba79fff4825884334ae19ef7b165a4a789fcecbe8763",
+      "bytes": 21808
+    },
+    "research/20261010_electronics_recovery_v3/receipts/projector_cpu_tests.json": {
+      "sha256": "50672aedac6100976342c4afc54fd4092f708538b43c5a0ff5ad9c4eaab3772c",
+      "bytes": 2169
+    },
+    "research/20261010_electronics_recovery_v3/receipts/spectral_cpu.json": {
+      "sha256": "4060892c5b2ca57d38debbb3a74c35d0ecff3f1b092c81c0336c1292c80834a8",
+      "bytes": 196890
+    },
+    "research/20261010_electronics_recovery_v3/receipts/spectral_gpu.json": {
+      "sha256": "5b0122b1b8c46e7b6cc4eaa053461ac4b0736c5b315f486884d0b142799eb8b7",
+      "bytes": 207742
+    },
+    "research/20261010_electronics_recovery_v3/receipts/v2_preparation_cpu.json": {
+      "sha256": "fa0a495bb8ecae2a9a663c4fc15ef9dd5662d89fe569d2957d7ad55484814b4c",
+      "bytes": 5362
+    },
+    "research/20261010_electronics_recovery_v3/recovery_guard.py": {
+      "sha256": "fb0ce8afd74f438fad1c07f7aa59d4928c1f1536518edc40ac2f5a6088fc0828",
+      "bytes": 9088
+    },
+    "research/20261010_electronics_recovery_v3/recovery_protocol.py": {
+      "sha256": "8b6afab606a8bfa1d6fc453e8b5978d479906b72b2eda5f02bf2876dd573be02",
+      "bytes": 4399
+    },
+    "research/20261010_electronics_recovery_v3/root_review.json": {
+      "sha256": "20f1668223545097b9ff372b0441f80b1597cd00d0c28c98975b99962c699d53",
+      "bytes": 16602
+    },
+    "research/20261010_electronics_recovery_v3/run_queue.py": {
+      "sha256": "74f40ac4980ce65d517eef2cfaccd13d533976d25ac0a42854c9e79a895c010a",
+      "bytes": 12092
+    },
+    "research/20261010_electronics_recovery_v3/same_input_gate.py": {
+      "sha256": "11bee90b47d623c6cd5a19c135c591ed4d40a6da43c5954f420b7837f7179579",
+      "bytes": 3921
+    },
+    "research/20261010_electronics_recovery_v3/test_integration.py": {
+      "sha256": "a10bbfa1ec100ea76a08addf857c01b77f39115ce49f79e103ba47a69a9b42bb",
+      "bytes": 2102
+    },
+    "research/20261010_electronics_recovery_v3/test_numerics.py": {
+      "sha256": "fef3c5f42ed3b1d3d1561400449f1f98d8085b809aa4f70dcdc3a3f4fb622b79",
+      "bytes": 2960
+    },
+    "research/20261010_electronics_recovery_v3/test_projector.py": {
+      "sha256": "34289aaa263fe6467f5349f8dc1d6b9f9e8b66dc7fe7feca0643842d84c424e9",
+      "bytes": 6337
+    },
+    "research/20261010_electronics_recovery_v3/test_recovery.py": {
+      "sha256": "a5fb87922e22f0b99949b68a6744784e3c45f240e6cd222206136bfe8be1d102",
+      "bytes": 15023
+    },
+    "research/20261010_electronics_recovery_v3/test_recovery_guard.py": {
+      "sha256": "68e9ad00848616a8562dd18a7f8560f90e295d401468903461c563e4816a0fa3",
+      "bytes": 13905
+    },
+    "research/20261010_electronics_recovery_v3/test_train_protocol.py": {
+      "sha256": "e38c91bfc119354d03c8f45369ab953f891e452e653b291ec7cc52571a4092ef",
+      "bytes": 4767
+    },
+    "research/20261010_electronics_recovery_v3/train.py": {
+      "sha256": "769f11a19de1be8036a9c8e48bd03ab0dc29aee4f6f64e924fcb1011470649be",
+      "bytes": 16385
+    },
+    "research/20261010_electronics_recovery_v3/v1_reference_config.json": {
       "sha256": "0d9a763ee6bf18abb8551e29e3931d2c227c0004938d13734073a984cbc6995c",
       "bytes": 5596
     },
@@ -3575,6 +4249,214 @@
       "sha256": "875bc66bf8dfdac83cd6bcf740c32d68499cbd1d10da9e9d9256e8e83ce9360d",
       "bytes": 2268
     },
+    "research/20261010_same_input_integration_audit/AUDIT_RESULT.md": {
+      "sha256": "425b4cf2c7a7708f38586c8e8ec1e8f76d7f0b1631635d9c0fc3f3db306f2f93",
+      "bytes": 5627
+    },
+    "research/20261010_same_input_integration_audit/INTEGRATION_EVIDENCE.json": {
+      "sha256": "8ea5c0bb26e8123bc536ce09e3782a709e3fa74c4d2ba504e1baf23986ada8a4",
+      "bytes": 89717
+    },
+    "research/20261010_same_input_integration_audit/PROTOCOL.md": {
+      "sha256": "10819c94bd211dfafa8dd80c8af656c42b0358b45481442cba8c26306b8edfc4",
+      "bytes": 9936
+    },
+    "research/20261010_same_input_integration_audit/ROOT_REVIEW.md": {
+      "sha256": "649086bf7e1f95ea77c24e7312be960976f7fc0b649776bea58b7dae9cee3893",
+      "bytes": 3150
+    },
+    "research/20261010_same_input_integration_audit/archive.py": {
+      "sha256": "294ab3467d95c390fc0de688b15039f6c0111f23184b2f4ba22d4fb39521fe54",
+      "bytes": 2806
+    },
+    "research/20261010_same_input_integration_audit/archive_receipt.json": {
+      "sha256": "3dd88d090017ae6d202c67e5db0cae7457763d71e39c39d769199318cf41ccb9",
+      "bytes": 1067
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/PROTOCOL.md": {
+      "sha256": "10819c94bd211dfafa8dd80c8af656c42b0358b45481442cba8c26306b8edfc4",
+      "bytes": 9936
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/ROOT_REVIEW.md": {
+      "sha256": "649086bf7e1f95ea77c24e7312be960976f7fc0b649776bea58b7dae9cee3893",
+      "bytes": 3150
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/integration_gate.py": {
+      "sha256": "11bee90b47d623c6cd5a19c135c591ed4d40a6da43c5954f420b7837f7179579",
+      "bytes": 3921
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/manage.py": {
+      "sha256": "598d0ade36f706f372aa73bd1327967ad7fb39b00594b97840b9ce60e19f6131",
+      "bytes": 7656
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/method_observer.py": {
+      "sha256": "9df74ccdef4bffcd1cae21cedda6cb4c7a41d5816eacfb5ecc96ac11345a6921",
+      "bytes": 520
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/parameter_snapshot.py": {
+      "sha256": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+      "bytes": 2663
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/program.md": {
+      "sha256": "82f887506c557bc5dedecb3ca131e2e1fab023ccb0f0ac16ac94f21acc7e4b89",
+      "bytes": 676
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/remote_integration.py": {
+      "sha256": "f8e6b1fd409e9a90afdf0f8eb2fa0ef06d9b49eea466efc8f36361a3009eec4d",
+      "bytes": 18837
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/repeat_guards.py": {
+      "sha256": "cd03822412f4468b39257207339100caf57f0f6d97766291ad6e0704eb75cf54",
+      "bytes": 5554
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/runtime_checks.py": {
+      "sha256": "cce521eaba67c7fa0b61631680b98be60a8368c2ef896e0f994d37488944eb47",
+      "bytes": 4034
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/test_integration_gate.py": {
+      "sha256": "95213818c7afef72b9afe20e03569381ba7f002b99cd142939dc633ff35295e1",
+      "bytes": 5485
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/test_method_observer.py": {
+      "sha256": "28822d635b2a1509d997e92cafed52b8c18719290b3560c48cb4b9da53aa3a7e",
+      "bytes": 1203
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/test_parameter_snapshot.py": {
+      "sha256": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+      "bytes": 2058
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/test_runtime_compatibility.py": {
+      "sha256": "5ca261862d8a06cc70474cc1dcd04a469597b5524e66577ca46219bc98bd3a3b",
+      "bytes": 3333
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/test_warning_observer.py": {
+      "sha256": "4110b012843409fccd2cc3ff4d67dc171679bee5d9440e4ecbc5dc1ba020a917",
+      "bytes": 1285
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/payload/warning_observer.py": {
+      "sha256": "6409f56307079f191ac0b28bb11d2bf2e4330b8887df0dead20291569e007f95",
+      "bytes": 998
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/receipts/archive_receipt.json": {
+      "sha256": "3dd88d090017ae6d202c67e5db0cae7457763d71e39c39d769199318cf41ccb9",
+      "bytes": 1067
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/receipts/integration_config.json": {
+      "sha256": "9d217792556b38d685d79cad426a521d78bedfc4e28529e0040ed1774a5df84e",
+      "bytes": 1680
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/receipts/integration_progress.json": {
+      "sha256": "6113ecd81828db49425cc87627470dccd946ae8d410985c4aff26ee5d7cf831c",
+      "bytes": 143923
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/receipts/integration_receipt.json": {
+      "sha256": "87251d388816ec3d395f477a096a7f67e1ea6e25cfaf84116b517c6a36c64f2c",
+      "bytes": 236009
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/receipts/launch.json": {
+      "sha256": "4990def397e0a010de8976368610977a875a41aafe34808c04a6e305bd9c6da7",
+      "bytes": 4454
+    },
+    "research/20261010_same_input_integration_audit/archives/v1/receipts/tests.json": {
+      "sha256": "691fb0304b200c488186c3c63525ecf210da931a8a713989c3b91fc8ee13b57b",
+      "bytes": 3364
+    },
+    "research/20261010_same_input_integration_audit/deploy_receipt.json": {
+      "sha256": "65c0d81479eb08e10aa0ea119c64699e2d98fdd42a67eaeb2962beaf7b934309",
+      "bytes": 167
+    },
+    "research/20261010_same_input_integration_audit/integration_config.json": {
+      "sha256": "9d217792556b38d685d79cad426a521d78bedfc4e28529e0040ed1774a5df84e",
+      "bytes": 1680
+    },
+    "research/20261010_same_input_integration_audit/integration_gate.py": {
+      "sha256": "11bee90b47d623c6cd5a19c135c591ed4d40a6da43c5954f420b7837f7179579",
+      "bytes": 3921
+    },
+    "research/20261010_same_input_integration_audit/integration_progress.json": {
+      "sha256": "6113ecd81828db49425cc87627470dccd946ae8d410985c4aff26ee5d7cf831c",
+      "bytes": 143923
+    },
+    "research/20261010_same_input_integration_audit/integration_receipt.json": {
+      "sha256": "87251d388816ec3d395f477a096a7f67e1ea6e25cfaf84116b517c6a36c64f2c",
+      "bytes": 236009
+    },
+    "research/20261010_same_input_integration_audit/launch.json": {
+      "sha256": "4990def397e0a010de8976368610977a875a41aafe34808c04a6e305bd9c6da7",
+      "bytes": 4454
+    },
+    "research/20261010_same_input_integration_audit/manage.py": {
+      "sha256": "598d0ade36f706f372aa73bd1327967ad7fb39b00594b97840b9ce60e19f6131",
+      "bytes": 7656
+    },
+    "research/20261010_same_input_integration_audit/method_observer.py": {
+      "sha256": "9df74ccdef4bffcd1cae21cedda6cb4c7a41d5816eacfb5ecc96ac11345a6921",
+      "bytes": 520
+    },
+    "research/20261010_same_input_integration_audit/parameter_snapshot.py": {
+      "sha256": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+      "bytes": 2663
+    },
+    "research/20261010_same_input_integration_audit/program.md": {
+      "sha256": "dd0b32a79c4b337a37bb4cdaf10fd4c4b0a5c692236044d8dea47f8cc5e32a32",
+      "bytes": 1212
+    },
+    "research/20261010_same_input_integration_audit/remote_integration.py": {
+      "sha256": "f8e6b1fd409e9a90afdf0f8eb2fa0ef06d9b49eea466efc8f36361a3009eec4d",
+      "bytes": 18837
+    },
+    "research/20261010_same_input_integration_audit/repeat_guards.py": {
+      "sha256": "cd03822412f4468b39257207339100caf57f0f6d97766291ad6e0704eb75cf54",
+      "bytes": 5554
+    },
+    "research/20261010_same_input_integration_audit/report_evidence.py": {
+      "sha256": "8e2eec37d2375b25decc7476f36bde50651f4a6ce26833602bb21006e4ea5e4a",
+      "bytes": 4972
+    },
+    "research/20261010_same_input_integration_audit/results.tsv": {
+      "sha256": "6f5664df535aa270c4b46dc474b7e84de2f1fc6d57fc11ae4fc2871dfb65dbed",
+      "bytes": 369
+    },
+    "research/20261010_same_input_integration_audit/runtime_checks.py": {
+      "sha256": "cce521eaba67c7fa0b61631680b98be60a8368c2ef896e0f994d37488944eb47",
+      "bytes": 4034
+    },
+    "research/20261010_same_input_integration_audit/start_receipt.json": {
+      "sha256": "ed10fee60d626bd880fa6264fe93b34a28c4ed436308461f753b69f1082e6be4",
+      "bytes": 4565
+    },
+    "research/20261010_same_input_integration_audit/test_integration_gate.py": {
+      "sha256": "95213818c7afef72b9afe20e03569381ba7f002b99cd142939dc633ff35295e1",
+      "bytes": 5485
+    },
+    "research/20261010_same_input_integration_audit/test_method_observer.py": {
+      "sha256": "28822d635b2a1509d997e92cafed52b8c18719290b3560c48cb4b9da53aa3a7e",
+      "bytes": 1203
+    },
+    "research/20261010_same_input_integration_audit/test_parameter_snapshot.py": {
+      "sha256": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+      "bytes": 2058
+    },
+    "research/20261010_same_input_integration_audit/test_receipt.json": {
+      "sha256": "4bf1b7aff2eebd99d32401630506621f2020e78498ab7766c43202aea763786c",
+      "bytes": 3374
+    },
+    "research/20261010_same_input_integration_audit/test_runtime_compatibility.py": {
+      "sha256": "5ca261862d8a06cc70474cc1dcd04a469597b5524e66577ca46219bc98bd3a3b",
+      "bytes": 3333
+    },
+    "research/20261010_same_input_integration_audit/test_warning_observer.py": {
+      "sha256": "4110b012843409fccd2cc3ff4d67dc171679bee5d9440e4ecbc5dc1ba020a917",
+      "bytes": 1285
+    },
+    "research/20261010_same_input_integration_audit/tests.json": {
+      "sha256": "691fb0304b200c488186c3c63525ecf210da931a8a713989c3b91fc8ee13b57b",
+      "bytes": 3364
+    },
+    "research/20261010_same_input_integration_audit/warning_observer.py": {
+      "sha256": "6409f56307079f191ac0b28bb11d2bf2e4330b8887df0dead20291569e007f95",
+      "bytes": 998
+    },
     "research/20261010_spectral_projector_audit/PROTOCOL.md": {
       "sha256": "ab1743e3310877ead9a34cd858793cad88d6a6046da0ad0141a26c4819016956",
       "bytes": 6920
@@ -3616,20 +4498,20 @@
       "bytes": 6424
     },
     "result/FAILED_EXPERIMENTS.md": {
-      "sha256": "f7e337fb94872d9c80e6525e082ace600dd9f2520db87b4a9eafca1f62637c6c",
-      "bytes": 41441
+      "sha256": "a175b293086fcd66e1acffdbafeda755c0f216014e200b34b27565c6fddf5303",
+      "bytes": 42727
     },
     "result/INNOVATION_STATUS.md": {
-      "sha256": "d7d7d41ceb9c9940b8f75876fbf93ea89a5ff7d24e4a7bd491dce916ccbc4f7b",
-      "bytes": 21283
+      "sha256": "6f58311c2e5ba1c87729bca0f13cb99e04b74d85189f030e6bf9c216d4dc47b9",
+      "bytes": 23067
     },
     "result/PUBLICATION_PROTOCOL.md": {
       "sha256": "ad0c87c8c3e25c193fa23a830e4f19f456084d4feb9f292926c65866bea1b536",
       "bytes": 9221
     },
     "result/REPOSITORY_SYNC.md": {
-      "sha256": "3efa3d2a63205c98f466ff3a223ab7e3bfa006e85f459508aa38b29d875fc9a9",
-      "bytes": 1944
+      "sha256": "5a7f80ea8ff9d8250ba1e17fbd2da5d29efd572bbc4a1938d384e3f6222b4c54",
+      "bytes": 2145
     },
     "result/REVIEW_RESEARCH_NOTE.md": {
       "sha256": "c6bb0e031006a89651064576a666d8ce2feffc226804de88e68b240f7a696e3e",

@@ -1,0 +1,23 @@
+{
+  "format": "semantic JSON exports; source byte SHA belongs to original remote file",
+  "entries": {
+    "spectral_cpu": {
+      "local_path": "receipts\\spectral_cpu.json",
+      "local_sha256": "4060892c5b2ca57d38debbb3a74c35d0ecff3f1b092c81c0336c1292c80834a8",
+      "remote_path": "/data/sunzixuan/spectral_projector_audit_20261010_v1/replay_audit_receipt.json",
+      "remote_original_sha256": "28989a19328662fe6aa0baa1b3d2e98b7b14cb3bf0bb5dcff998a57df324d10c"
+    },
+    "spectral_gpu": {
+      "local_path": "receipts\\spectral_gpu.json",
+      "local_sha256": "5b0122b1b8c46e7b6cc4eaa053461ac4b0736c5b315f486884d0b142799eb8b7",
+      "remote_path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/gpu_audit_receipt.json",
+      "remote_original_sha256": "a840a3a1d952a8300d44951af77d8068b28770057a0ba3ca1dc833e0c21b7eb0"
+    },
+    "excluded_cache_gpu": {
+      "local_path": "receipts\\excluded_cache_gpu.json",
+      "local_sha256": "c3b2e3a5c80bc8837c8f3f019a3b012c07f08188c1ff920891224d0e48abb535",
+      "remote_path": "/data/sunzixuan/electronics_eval_cache_gpu_audit_20261010_v1/electronics_gpu_receipt.json",
+      "remote_original_sha256": "3df214b97ee633e71e4c8f616150ed8abe7fd29ecc7f78cabe85843d3d882d59"
+    }
+  }
+}

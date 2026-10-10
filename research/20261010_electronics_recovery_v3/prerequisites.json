@@ -1,0 +1,163 @@
+{
+  "schema_version": 3,
+  "ready_for_training": true,
+  "reason": "root_review_of_8094f25_after_actual_cpu50_pass_conditional_on_deployment_tests_and_resources",
+  "projector_sha256": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+  "excluded_eval_cache": true,
+  "entries": {
+    "spectral_cpu": {
+      "path": "/data/sunzixuan/spectral_projector_audit_20261010_v1/replay_audit_receipt.json",
+      "sha256": "28989a19328662fe6aa0baa1b3d2e98b7b14cb3bf0bb5dcff998a57df324d10c",
+      "source_config_path": "/data/sunzixuan/spectral_projector_audit_20261010_v1/audit_config.json",
+      "source_config_sha256": "6d868cc19666f30834a0d6306c24d4f82ce844e2161f15fcf95fa6312ae1ef22",
+      "source_revision": "a12c750dbba12205ae049cc143a123b59c6b766f",
+      "payload_sha256": {
+        "projector.py": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+        "test_projector.py": "ffb1de4e9e90e356557f99e95dfec23c5ca582b27ef560d94b58f8e087098ea4",
+        "remote_audit.py": "eefe76b6ed84994b03462ed11224894d167f7c0d8156c5904581dc001ea3e5ec",
+        "replay_cpu.py": "7485ba9607d3b7fcbb960a27e0046fa9aa657c2a823ca258c0bd97827bdba512",
+        "test_cpu_remote.py": "c3d35f52ca33a7060dceb0f4391cb31570db53fe86f913e4e74268b638695a18",
+        "PROTOCOL.md": "ab1743e3310877ead9a34cd858793cad88d6a6046da0ad0141a26c4819016956",
+        "program.md": "c33af824e037d660add2b269f6e650bd232f10bd0f49fcfd1dee3ea67240e0bc"
+      },
+      "local_source_config_path": "receipts/exact/spectral_cpu/audit_config.json",
+      "local_path": "receipts/exact/spectral_cpu/replay_audit_receipt.json"
+    },
+    "excluded_cache_gpu": {
+      "path": "/data/sunzixuan/electronics_eval_cache_gpu_audit_20261010_v1/electronics_gpu_receipt.json",
+      "sha256": "3df214b97ee633e71e4c8f616150ed8abe7fd29ecc7f78cabe85843d3d882d59",
+      "source_config_path": "/data/sunzixuan/electronics_eval_cache_gpu_audit_20261010_v1/deployment.json",
+      "source_config_sha256": "a20342b1ac5c5d0864b691c764ecad6f5d3ad56537266b686ffa5810296680dc",
+      "source_revision": null,
+      "payload_sha256": {
+        "electronics_gpu_audit.py": "ec509e5fb7f0493aa1dedbf5e8d98340f13e0c74f4f8651000c00a045a223e0a",
+        "gpu_manage.py": "cdbf48d28edcf84eb811bcf50eeed39d1de1336e657a98556a385f4412e8bb7e",
+        "ELECTRONICS_GPU_REVIEW.md": "9a5d7557dd9eee48ae025bbd80209da4f100fc769209845368c2b7cb26393e3f",
+        "eval_cache.py": "c9617ab7bd45a9d97af91a2bfae58118b98e29d3ab2778bfecf980c3f91c0c3c",
+        "checkpoint_structure.py": "660019aa9a011a286b5c035194f075ac83bfbbfd486da1cec2efd3412a129266",
+        "test_eval_cache.py": "08747972d01c03dbd17c8a14f6805e6ce371f2aad2dafa3616f06bae86480eb6",
+        "test_cache_lifecycle.py": "a6fe062e718aa021080b69922b363880f9357536f7927ace730786fc82abb80c",
+        "test_checkpoint_structure.py": "53cfc82ccf4c35fe58a914d5305e2c685d56ac30c2fa17fb7d7050e4c28db4f7",
+        "source_revision.json": "7f09f96b7fdcc4a8a098ddd639f9f0a9c6741a45f43ce1fcd310bfdd3a711b09"
+      },
+      "local_source_config_path": "receipts/exact/excluded_cache_gpu/deployment.json",
+      "local_path": "receipts/exact/excluded_cache_gpu/electronics_gpu_receipt.json"
+    },
+    "old_gpu_archived": {
+      "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/gpu_audit_receipt.json",
+      "sha256": "a840a3a1d952a8300d44951af77d8068b28770057a0ba3ca1dc833e0c21b7eb0",
+      "source_config_path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/audit_config.json",
+      "source_config_sha256": "42364aa8cb84e44d243fc58fbdd89420fbe7c2a68804897a625ceceaa5460cdd",
+      "source_revision": "fd42959e0a97f24169196851cd6d291477b31c59",
+      "payload_sha256": {
+        "remote_gpu.py": "2b395f5aeddd6e3983a563e1787c1fa27b0ba366f9ead59d4d5eff7a4ae409f8",
+        "guards.py": "ceb9c4c46c6287318b9cbcef682967620bfed8947e9bc75242ef789a362d1a46",
+        "audit_gate.py": "96d6fd782602867b9b2a7c618bbbd789b96bebbb55afb657863a7afa3b539b40",
+        "test_audit_gate.py": "f8b8aa4ace5c652ac8a9f3ee9d107ae31c1ad56956829eaafa13678181ce57e3",
+        "manage.py": "6f0d5afe7fa757ccc3c113e57193e15bf5e7f0ba25afe8dc2a6d4b7bbb9c16d4",
+        "PROTOCOL.md": "87331da58825ccb0fa39a7310555b8d476aeb6885a37ceb5fe6ccd86ea3e1136",
+        "program.md": "1ec5bc24cea037d2e7a44d77d5d3182b809ff3bcffdc24c051a9d4de7d20f518",
+        "ROOT_REVIEW.md": "bf41b7d806f25e2b7b64391b71f9b22e98896dc0d43ec43c1d24b955af1a8e34"
+      },
+      "local_source_config_path": "receipts/exact/old_gpu_archived/audit_config.json",
+      "local_path": "receipts/exact/old_gpu_archived/gpu_audit_receipt.json"
+    },
+    "projector_cpu_tests": {
+      "path": "receipts/projector_cpu_tests.json",
+      "sha256": "50672aedac6100976342c4afc54fd4092f708538b43c5a0ff5ad9c4eaab3772c",
+      "source_config_path": "/data/sunzixuan/spectral_projector_audit_20261010_v1/audit_config.json",
+      "source_config_sha256": "6d868cc19666f30834a0d6306c24d4f82ce844e2161f15fcf95fa6312ae1ef22",
+      "source_revision": "a12c750dbba12205ae049cc143a123b59c6b766f",
+      "payload_sha256": {
+        "projector.py": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+        "test_projector.py": "ffb1de4e9e90e356557f99e95dfec23c5ca582b27ef560d94b58f8e087098ea4",
+        "remote_audit.py": "eefe76b6ed84994b03462ed11224894d167f7c0d8156c5904581dc001ea3e5ec",
+        "replay_cpu.py": "7485ba9607d3b7fcbb960a27e0046fa9aa657c2a823ca258c0bd97827bdba512",
+        "test_cpu_remote.py": "c3d35f52ca33a7060dceb0f4391cb31570db53fe86f913e4e74268b638695a18",
+        "PROTOCOL.md": "ab1743e3310877ead9a34cd858793cad88d6a6046da0ad0141a26c4819016956",
+        "program.md": "c33af824e037d660add2b269f6e650bd232f10bd0f49fcfd1dee3ea67240e0bc"
+      },
+      "local_source_config_path": "receipts/exact/projector_cpu_tests/audit_config.json",
+      "local_path": "receipts/projector_cpu_tests.json"
+    },
+    "original_repeat": {
+      "path": "/data/sunzixuan/forward_repeat_diagnostic_20261010_v2/repeat_receipt.json",
+      "sha256": "651f5d066d03433a21926565d885050a14ecb63faae8cd5b0966aac20f565540",
+      "source_config_path": "/data/sunzixuan/forward_repeat_diagnostic_20261010_v2/diagnostic_config.json",
+      "source_config_sha256": "f5b433ab7962c890c3707b084ffd9c0f52f88adc930f8f23583f6b114a7b1526",
+      "source_revision": "dd55a8d1de4a72226847fbe1f629745184ea2d5f",
+      "payload_sha256": {
+        "repeat_diagnostic.py": "02775ba2d3d1496d0ef39e7bae312b9579c83a133b43ac9dcf660a19e99492bc",
+        "repeat_guards.py": "c6d40b5644c36ca9c5846f10536d1ea7c2145230cd4e0e0b2115adb3baef2480",
+        "repeat_summary.py": "555f6ddd43f23c90f0d226018504f7fdf7c0ebf3dfecf88605c36993ecfd8eb9",
+        "test_repeat_summary.py": "b031567beb416544cdae8cffd43709471c15122c55b294d7e5a4ab86038af465",
+        "parameter_snapshot.py": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+        "test_parameter_snapshot.py": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+        "manage.py": "6f50bc0027b9fc64bdd6a7b31d50c4fde30d6b7fa53bd91868bbbcb9943f5863",
+        "PROTOCOL.md": "3f03b4685512bfc34dd6299f343a963e368ab03c6e1fbda3cb6398c2c756dd72",
+        "program.md": "2a7a800e983a659bbfc13a8bcf84e0e982fb2e08b95987bbc28fdaac8a6d2ec4",
+        "ROOT_REVIEW.md": "3f45eca2e764cd7cdf7541095a1f1a5361ce4e633bb4f20e2a759e8693c78d8f"
+      },
+      "local_source_config_path": "receipts/exact/original_repeat/diagnostic_config.json",
+      "local_path": "receipts/exact/original_repeat/repeat_receipt.json"
+    },
+    "same_input_gpu": {
+      "path": "/data/sunzixuan/same_input_integration_audit_20261010_v1/integration_receipt.json",
+      "sha256": "87251d388816ec3d395f477a096a7f67e1ea6e25cfaf84116b517c6a36c64f2c",
+      "source_config_path": "/data/sunzixuan/same_input_integration_audit_20261010_v1/integration_config.json",
+      "source_config_sha256": "9d217792556b38d685d79cad426a521d78bedfc4e28529e0040ed1774a5df84e",
+      "source_revision": "e99e57b42f52f9e6494dd527e0c2eab6ce6d4fc6",
+      "payload_sha256": {
+        "remote_integration.py": "f8e6b1fd409e9a90afdf0f8eb2fa0ef06d9b49eea466efc8f36361a3009eec4d",
+        "repeat_guards.py": "cd03822412f4468b39257207339100caf57f0f6d97766291ad6e0704eb75cf54",
+        "runtime_checks.py": "cce521eaba67c7fa0b61631680b98be60a8368c2ef896e0f994d37488944eb47",
+        "integration_gate.py": "11bee90b47d623c6cd5a19c135c591ed4d40a6da43c5954f420b7837f7179579",
+        "method_observer.py": "9df74ccdef4bffcd1cae21cedda6cb4c7a41d5816eacfb5ecc96ac11345a6921",
+        "warning_observer.py": "6409f56307079f191ac0b28bb11d2bf2e4330b8887df0dead20291569e007f95",
+        "parameter_snapshot.py": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+        "test_parameter_snapshot.py": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+        "test_integration_gate.py": "95213818c7afef72b9afe20e03569381ba7f002b99cd142939dc633ff35295e1",
+        "test_method_observer.py": "28822d635b2a1509d997e92cafed52b8c18719290b3560c48cb4b9da53aa3a7e",
+        "test_warning_observer.py": "4110b012843409fccd2cc3ff4d67dc171679bee5d9440e4ecbc5dc1ba020a917",
+        "test_runtime_compatibility.py": "5ca261862d8a06cc70474cc1dcd04a469597b5524e66577ca46219bc98bd3a3b",
+        "manage.py": "598d0ade36f706f372aa73bd1327967ad7fb39b00594b97840b9ce60e19f6131",
+        "PROTOCOL.md": "10819c94bd211dfafa8dd80c8af656c42b0358b45481442cba8c26306b8edfc4",
+        "program.md": "82f887506c557bc5dedecb3ca131e2e1fab023ccb0f0ac16ac94f21acc7e4b89",
+        "ROOT_REVIEW.md": "649086bf7e1f95ea77c24e7312be960976f7fc0b649776bea58b7dae9cee3893"
+      },
+      "anchors_pending": false,
+      "local_source_config_path": "receipts/exact/same_input_gpu/integration_config.json",
+      "local_path": "receipts/exact/same_input_gpu/integration_receipt.json"
+    },
+    "same_input_cpu_tests": {
+      "path": "/data/sunzixuan/same_input_integration_audit_20261010_v1/tests.json",
+      "sha256": "691fb0304b200c488186c3c63525ecf210da931a8a713989c3b91fc8ee13b57b",
+      "source_config_path": "/data/sunzixuan/same_input_integration_audit_20261010_v1/integration_config.json",
+      "source_config_sha256": "9d217792556b38d685d79cad426a521d78bedfc4e28529e0040ed1774a5df84e",
+      "source_revision": "e99e57b42f52f9e6494dd527e0c2eab6ce6d4fc6",
+      "payload_sha256": {
+        "remote_integration.py": "f8e6b1fd409e9a90afdf0f8eb2fa0ef06d9b49eea466efc8f36361a3009eec4d",
+        "repeat_guards.py": "cd03822412f4468b39257207339100caf57f0f6d97766291ad6e0704eb75cf54",
+        "runtime_checks.py": "cce521eaba67c7fa0b61631680b98be60a8368c2ef896e0f994d37488944eb47",
+        "integration_gate.py": "11bee90b47d623c6cd5a19c135c591ed4d40a6da43c5954f420b7837f7179579",
+        "method_observer.py": "9df74ccdef4bffcd1cae21cedda6cb4c7a41d5816eacfb5ecc96ac11345a6921",
+        "warning_observer.py": "6409f56307079f191ac0b28bb11d2bf2e4330b8887df0dead20291569e007f95",
+        "parameter_snapshot.py": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+        "test_parameter_snapshot.py": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+        "test_integration_gate.py": "95213818c7afef72b9afe20e03569381ba7f002b99cd142939dc633ff35295e1",
+        "test_method_observer.py": "28822d635b2a1509d997e92cafed52b8c18719290b3560c48cb4b9da53aa3a7e",
+        "test_warning_observer.py": "4110b012843409fccd2cc3ff4d67dc171679bee5d9440e4ecbc5dc1ba020a917",
+        "test_runtime_compatibility.py": "5ca261862d8a06cc70474cc1dcd04a469597b5524e66577ca46219bc98bd3a3b",
+        "manage.py": "598d0ade36f706f372aa73bd1327967ad7fb39b00594b97840b9ce60e19f6131",
+        "PROTOCOL.md": "10819c94bd211dfafa8dd80c8af656c42b0358b45481442cba8c26306b8edfc4",
+        "program.md": "82f887506c557bc5dedecb3ca131e2e1fab023ccb0f0ac16ac94f21acc7e4b89",
+        "ROOT_REVIEW.md": "649086bf7e1f95ea77c24e7312be960976f7fc0b649776bea58b7dae9cee3893"
+      },
+      "anchors_pending": false,
+      "local_source_config_path": "receipts/exact/same_input_cpu_tests/integration_config.json",
+      "local_path": "receipts/exact/same_input_cpu_tests/tests.json"
+    }
+  },
+  "preparation_only": true,
+  "final_freeze": true
+}

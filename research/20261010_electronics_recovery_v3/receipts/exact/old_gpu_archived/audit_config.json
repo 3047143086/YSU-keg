@@ -1,0 +1,14 @@
+{
+  "root": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1",
+  "source_revision": "fd42959e0a97f24169196851cd6d291477b31c59",
+  "payload_sha256": {
+    "remote_gpu.py": "2b395f5aeddd6e3983a563e1787c1fa27b0ba366f9ead59d4d5eff7a4ae409f8",
+    "guards.py": "ceb9c4c46c6287318b9cbcef682967620bfed8947e9bc75242ef789a362d1a46",
+    "audit_gate.py": "96d6fd782602867b9b2a7c618bbbd789b96bebbb55afb657863a7afa3b539b40",
+    "test_audit_gate.py": "f8b8aa4ace5c652ac8a9f3ee9d107ae31c1ad56956829eaafa13678181ce57e3",
+    "manage.py": "6f0d5afe7fa757ccc3c113e57193e15bf5e7f0ba25afe8dc2a6d4b7bbb9c16d4",
+    "PROTOCOL.md": "87331da58825ccb0fa39a7310555b8d476aeb6885a37ceb5fe6ccd86ea3e1136",
+    "program.md": "1ec5bc24cea037d2e7a44d77d5d3182b809ff3bcffdc24c051a9d4de7d20f518",
+    "ROOT_REVIEW.md": "bf41b7d806f25e2b7b64391b71f9b22e98896dc0d43ec43c1d24b955af1a8e34"
+  }
+}

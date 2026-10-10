@@ -1,0 +1,22 @@
+{
+  "root": "/data/sunzixuan/same_input_integration_audit_20261010_v1",
+  "source_revision": "e99e57b42f52f9e6494dd527e0c2eab6ce6d4fc6",
+  "payload_sha256": {
+    "remote_integration.py": "f8e6b1fd409e9a90afdf0f8eb2fa0ef06d9b49eea466efc8f36361a3009eec4d",
+    "repeat_guards.py": "cd03822412f4468b39257207339100caf57f0f6d97766291ad6e0704eb75cf54",
+    "runtime_checks.py": "cce521eaba67c7fa0b61631680b98be60a8368c2ef896e0f994d37488944eb47",
+    "integration_gate.py": "11bee90b47d623c6cd5a19c135c591ed4d40a6da43c5954f420b7837f7179579",
+    "method_observer.py": "9df74ccdef4bffcd1cae21cedda6cb4c7a41d5816eacfb5ecc96ac11345a6921",
+    "warning_observer.py": "6409f56307079f191ac0b28bb11d2bf2e4330b8887df0dead20291569e007f95",
+    "parameter_snapshot.py": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+    "test_parameter_snapshot.py": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+    "test_integration_gate.py": "95213818c7afef72b9afe20e03569381ba7f002b99cd142939dc633ff35295e1",
+    "test_method_observer.py": "28822d635b2a1509d997e92cafed52b8c18719290b3560c48cb4b9da53aa3a7e",
+    "test_warning_observer.py": "4110b012843409fccd2cc3ff4d67dc171679bee5d9440e4ecbc5dc1ba020a917",
+    "test_runtime_compatibility.py": "5ca261862d8a06cc70474cc1dcd04a469597b5524e66577ca46219bc98bd3a3b",
+    "manage.py": "598d0ade36f706f372aa73bd1327967ad7fb39b00594b97840b9ce60e19f6131",
+    "PROTOCOL.md": "10819c94bd211dfafa8dd80c8af656c42b0358b45481442cba8c26306b8edfc4",
+    "program.md": "82f887506c557bc5dedecb3ca131e2e1fab023ccb0f0ac16ac94f21acc7e4b89",
+    "ROOT_REVIEW.md": "649086bf7e1f95ea77c24e7312be960976f7fc0b649776bea58b7dae9cee3893"
+  }
+}

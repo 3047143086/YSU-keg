@@ -666,6 +666,24 @@ entirely to the projector. This does not isolate the kernel, accept the repair,
 reproduce the historical crash or authorize training. These are infrastructure
 work, not innovation gains. Preserve all frozen failures.
 
+The separately registered same-realized-input audit at e99e57b then completed
+once with completed_pass: one full actual loss forward and one backward,
+36/36 exact shadow/candidate bands, all36 output and12 input gradient hooks
+reached with finite gradients, and27 finite participating parameter gradients.
+PID3142340 exited after107.835s;31 actual CPU tests and129 file hash guards
+passed. Raw receipt SHA256 is
+87251d388816ec3d395f477a096a7f67e1ea6e25cfaf84116b517c6a36c64f2c.
+This narrower instrumented-batch result does not reclassify fd42959, replay
+the historical crash, establish unobserved training stability or show a
+recommendation gain. A separate numerical recovery v3 is being prepared;
+no recovery training has started. Preserve the ineligible v2 preparation.
+V3 candidate8094f25 and conditional approvalcb7bc6b passed50 actual CPU checks,
+zero skips; the first one-error CPU receipt is preserved separately. V3 remains
+a new numerical feasibility version, with fixed24h per-seed/72h total bounds,
+not a rescued old failure or an innovation metric. Deployment is in progress.
+Evidence: `../research/20261010_same_input_integration_audit/archives/v1/receipts/integration_receipt.json`.
+The independently frozen report is commit8c47b48, `AUDIT_RESULT.md` in that directory.
+
 Publication confirmation follows `PUBLICATION_PROTOCOL.md`. Electronics
 assets have independently been restored on host213 to
 `/data/sunzixuan/bridge_extra_assets_20261009/elec`; all three source-file

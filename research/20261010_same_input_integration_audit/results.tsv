@@ -1,0 +1,2 @@
+source_revision	status	full_forward_count	same_input_exact_bands	participating_parameters	elapsed_seconds	description
+e99e57b42f52f9e6494dd527e0c2eab6ce6d4fc6	completed_pass	1	36/36	27/27	107.8345558643341	One actual same-X candidate loss forward and one backward; frozen exact/state/RNG/hash gates pass; minibatch numerical integration only, no training or gain claim

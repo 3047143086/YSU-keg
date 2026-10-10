@@ -1,0 +1,110 @@
+{
+  "status": "started",
+  "pid": 3142340,
+  "unix": 1791606096.9495401,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/same_input_integration_audit_20261010_v1/remote_integration.py"
+  ],
+  "time_budget_seconds": 1800,
+  "resource_gate": {
+    "physical_gpu_index": 1,
+    "uuid": "GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a",
+    "free_gpu_bytes": 25409093632,
+    "gpu_compute_processes": [],
+    "ram_available_bytes": 130164629504,
+    "available_cpu_count": 20
+  },
+  "source_revision": "e99e57b42f52f9e6494dd527e0c2eab6ce6d4fc6",
+  "predecessor": {
+    "all_match": true,
+    "anchor_rows": [
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/remote_gpu.py",
+        "expected_sha256": "2b395f5aeddd6e3983a563e1787c1fa27b0ba366f9ead59d4d5eff7a4ae409f8",
+        "actual_sha256": "2b395f5aeddd6e3983a563e1787c1fa27b0ba366f9ead59d4d5eff7a4ae409f8",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/guards.py",
+        "expected_sha256": "ceb9c4c46c6287318b9cbcef682967620bfed8947e9bc75242ef789a362d1a46",
+        "actual_sha256": "ceb9c4c46c6287318b9cbcef682967620bfed8947e9bc75242ef789a362d1a46",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/audit_gate.py",
+        "expected_sha256": "96d6fd782602867b9b2a7c618bbbd789b96bebbb55afb657863a7afa3b539b40",
+        "actual_sha256": "96d6fd782602867b9b2a7c618bbbd789b96bebbb55afb657863a7afa3b539b40",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/audit_config.json",
+        "expected_sha256": "42364aa8cb84e44d243fc58fbdd89420fbe7c2a68804897a625ceceaa5460cdd",
+        "actual_sha256": "42364aa8cb84e44d243fc58fbdd89420fbe7c2a68804897a625ceceaa5460cdd",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/failure_model_gpu_audit_20261010_v1/gpu_audit_receipt.json",
+        "expected_sha256": "a840a3a1d952a8300d44951af77d8068b28770057a0ba3ca1dc833e0c21b7eb0",
+        "actual_sha256": "a840a3a1d952a8300d44951af77d8068b28770057a0ba3ca1dc833e0c21b7eb0",
+        "matches": true
+      }
+    ],
+    "source_revision": "fd42959e0a97f24169196851cd6d291477b31c59",
+    "status": "completed_fail",
+    "payload_count": 8,
+    "repeat_anchor_rows": [
+      {
+        "path": "/data/sunzixuan/forward_repeat_diagnostic_20261010_v2/diagnostic_config.json",
+        "expected_sha256": "f5b433ab7962c890c3707b084ffd9c0f52f88adc930f8f23583f6b114a7b1526",
+        "actual_sha256": "f5b433ab7962c890c3707b084ffd9c0f52f88adc930f8f23583f6b114a7b1526",
+        "matches": true
+      },
+      {
+        "path": "/data/sunzixuan/forward_repeat_diagnostic_20261010_v2/repeat_receipt.json",
+        "expected_sha256": "651f5d066d03433a21926565d885050a14ecb63faae8cd5b0966aac20f565540",
+        "actual_sha256": "651f5d066d03433a21926565d885050a14ecb63faae8cd5b0966aac20f565540",
+        "matches": true
+      }
+    ],
+    "repeat_payload_count": 10,
+    "original_reference_parameters": [
+      "FeqDecomposeOperator.fusion_layer_item.freq_gate.0.bias",
+      "FeqDecomposeOperator.fusion_layer_item.freq_gate.0.weight",
+      "FeqDecomposeOperator.fusion_layer_item.freq_weights",
+      "FeqDecomposeOperator.fusion_layer_item.gate_scale",
+      "FeqDecomposeOperator.fusion_layer_user.freq_gate.0.bias",
+      "FeqDecomposeOperator.fusion_layer_user.freq_gate.0.weight",
+      "FeqDecomposeOperator.fusion_layer_user.freq_weights",
+      "FeqDecomposeOperator.fusion_layer_user.gate_scale",
+      "behavior_item_bias.weight",
+      "behavior_user_bias.weight",
+      "gate_base_scale",
+      "gate_behavior_scale",
+      "id_preference",
+      "image_embedding.weight",
+      "item_id_embedding.weight",
+      "t_gcn.MLP.bias",
+      "t_gcn.MLP.weight",
+      "t_gcn.MLP_1.bias",
+      "t_gcn.MLP_1.weight",
+      "t_preference",
+      "text_embedding.weight",
+      "v_gcn.MLP.bias",
+      "v_gcn.MLP.weight",
+      "v_gcn.MLP_1.bias",
+      "v_gcn.MLP_1.weight",
+      "v_preference",
+      "weight_u"
+    ],
+    "archived_input_evidence": {
+      "all_twelve_candidate_passed": true,
+      "generic_capture0_gradient_finite": false,
+      "projector_capture0_gradient_finite": true,
+      "generic_capture0_nonfinite_elements": 12313792,
+      "probe_is_actual_minibatch_gradient": false
+    }
+  },
+  "protected_count": 129
+}

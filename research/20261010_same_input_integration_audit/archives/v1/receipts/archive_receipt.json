@@ -1,0 +1,31 @@
+{
+  "root": "/data/sunzixuan/same_input_integration_audit_20261010_v1",
+  "pid": 3142340,
+  "process_alive": false,
+  "status": "completed_pass",
+  "files": {
+    "integration_config.json": {
+      "sha256": "9d217792556b38d685d79cad426a521d78bedfc4e28529e0040ed1774a5df84e",
+      "bytes": 1680
+    },
+    "tests.json": {
+      "sha256": "691fb0304b200c488186c3c63525ecf210da931a8a713989c3b91fc8ee13b57b",
+      "bytes": 3364
+    },
+    "launch.json": {
+      "sha256": "4990def397e0a010de8976368610977a875a41aafe34808c04a6e305bd9c6da7",
+      "bytes": 4454
+    },
+    "integration_progress.json": {
+      "sha256": "6113ecd81828db49425cc87627470dccd946ae8d410985c4aff26ee5d7cf831c",
+      "bytes": 143923
+    },
+    "integration_receipt.json": {
+      "sha256": "87251d388816ec3d395f477a096a7f67e1ea6e25cfaf84116b517c6a36c64f2c",
+      "bytes": 236009
+    }
+  },
+  "gpu_query_exit_code": 0,
+  "gpu1": "GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a, 24232\n",
+  "compute_apps": "GPU-30201e9a-a9f2-14b9-78e7-7a1f86a6476f, 600045, 22704\n"
+}

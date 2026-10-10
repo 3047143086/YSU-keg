@@ -1,0 +1,16 @@
+{
+  "root": "/data/sunzixuan/forward_repeat_diagnostic_20261010_v2",
+  "source_revision": "dd55a8d1de4a72226847fbe1f629745184ea2d5f",
+  "payload_sha256": {
+    "repeat_diagnostic.py": "02775ba2d3d1496d0ef39e7bae312b9579c83a133b43ac9dcf660a19e99492bc",
+    "repeat_guards.py": "c6d40b5644c36ca9c5846f10536d1ea7c2145230cd4e0e0b2115adb3baef2480",
+    "repeat_summary.py": "555f6ddd43f23c90f0d226018504f7fdf7c0ebf3dfecf88605c36993ecfd8eb9",
+    "test_repeat_summary.py": "b031567beb416544cdae8cffd43709471c15122c55b294d7e5a4ab86038af465",
+    "parameter_snapshot.py": "31e6a4b9a5eff5e7730430cf36cb19412fa0cbc38ef0ea4856723fe08a1d9bc2",
+    "test_parameter_snapshot.py": "73289be766610b77b2573d1f26d883b13ce79dc47351816a59d423c1f62c555b",
+    "manage.py": "6f50bc0027b9fc64bdd6a7b31d50c4fde30d6b7fa53bd91868bbbcb9943f5863",
+    "PROTOCOL.md": "3f03b4685512bfc34dd6299f343a963e368ab03c6e1fbda3cb6398c2c756dd72",
+    "program.md": "2a7a800e983a659bbfc13a8bcf84e0e982fb2e08b95987bbc28fdaac8a6d2ec4",
+    "ROOT_REVIEW.md": "3f45eca2e764cd7cdf7541095a1f1a5361ce4e633bb4f20e2a759e8693c78d8f"
+  }
+}
