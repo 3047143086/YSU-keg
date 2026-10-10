@@ -762,6 +762,27 @@ rescue it. This result does not establish the failure of other internal-PEFT
 interventions. It provides no publication evidence. Final independent audit:
 `../research/20261010_interest_negative/status/FINAL_AUDIT.md`.
 
+## 2026-10-10 — Fixed MSCA block-curvature diagnostic (not ranking training)
+
+Frozen source ebc83c9d6a2202e27fdb1bc44990e8f5d27db9cc completed once in
+41.361 seconds on GPU1. The fixed rho0.01, init+uniform_best, three TRAIN
+batches, gradient+three random direction screen returned diagnostic_inconclusive.
+At init neither block won any direction. At the validation-selected uniform
+checkpoint image won two full-gradient comparisons but no random direction;
+per-batch wins [0,1,1] fail the >=3/4 directions in >=2/3 batches gate, and
+the same block did not pass both states. All 48 probes were numerically valid;
+state/RNG/graph restoration and 170 protected file hashes matched. No optimizer,
+ranking validation/test evaluation or follow-up SAM training was run.
+
+Freeze this diagnostic, not all possible sharpness/robustness methods. Do not
+select a favorable direction, normalize after inspection, enlarge rho or lower
+the floor to rescue it. This only fails the stated stable-private-block premise
+at the registered states/radius/batches; it does not establish equal Hessians,
+the absence of all modality imbalance or a negative recommendation metric.
+MASAM motivates the classification-to-ranking transfer; BSAM/gSAM/MirrorGradient
+already occupy the relevant prior-art space. Evidence:
+`../research/20261010_curvature_diagnostic/result.json` and `PROTOCOL.md`.
+
 ## Lessons that constrain future ideas
 
 1. Stop editing graph topology from current model predictions or fixed content

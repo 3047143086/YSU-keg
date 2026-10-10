@@ -7,8 +7,8 @@
 ## 当前结果（2026-10-10）
 
 - 兴趣组负采样三臂实验已完成：Baby 均匀基线 R@20/N@20 = 0.102898/0.045759，兴趣组候选 0.103790/0.045870，固定同池乱组对照 0.103472/0.045755。候选 N@20 收益不足且 R@10 回退，未通过冻结门，记为 F28/discard；按协议没有进入 Sports。见 [实验协议](research/20261010_interest_negative/PROTOCOL.md) 和 [独立结果复核](research/20261010_interest_negative/status/FINAL_AUDIT.md)。
-- 最新论文检索后的下一项独立假设为品牌与类别关系辅助监督，正在检查现有元数据的覆盖与商品 ID 对齐；尚未启动该项推荐训练。见 [来源与资格门](research/20261010_literature_innovation_search/NEXT_INDEPENDENT.md)。
-- 品牌/类别关系辅助监督的 CPU 资格审计已完成但不合格：Baby 品牌覆盖 69.8595% 低于 70% 门槛，类别只有一个签名，两个关系类没有可用配对；未启动 GPU，Sports 未继续审计。见 [资格结果](research/20261010_catalog_relation_assessment/RESULTS.md)。下一项转为 MASAM-motivated 的固定 TRAIN batch block-sharpness 诊断，仍未形成推荐收益证据。
+- 品牌/类别关系辅助监督的 CPU 资格审计已完成但不合格：Baby 品牌覆盖 69.8595% 低于 70% 门槛，类别只有一个签名，两个关系类没有可用配对；未启动 GPU，Sports 未继续审计。见 [资格结果](research/20261010_catalog_relation_assessment/RESULTS.md)。
+- MASAM-motivated 固定参数块曲率诊断已完成：48/48 探针有效、170 项保护哈希一致，但未满足跨批次/方向/状态的稳定模态主导门，状态为 `diagnostic_inconclusive`。仅计算 TRAIN 批次的局部曲率，无优化更新或验证/测试评估，未启动后续 SAM 训练。见 [诊断结果](research/20261010_curvature_diagnostic/result.json) 与 [预注册协议](research/20261010_curvature_diagnostic/PROTOCOL.md)。
 - **尚无足以支持论文的新推荐性能证据。** 完整状态见
   [INNOVATION_STATUS.md](result/INNOVATION_STATUS.md)。
 - F27 评论残差与其他作者评论库匹配的训练内诊断失败：AUC 0.588003，

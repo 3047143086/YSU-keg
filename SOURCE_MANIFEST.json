@@ -57,6 +57,11 @@
       "working_tree_has_changes": false,
       "git_metadata_readable": true
     },
+    "research/20261010_curvature_diagnostic": {
+      "commit": "2d752a34624357d02b185d108fbceb51ab7369bd",
+      "working_tree_has_changes": false,
+      "git_metadata_readable": true
+    },
     "research/20261010_electronics_recovery_v2": {
       "commit": "28f6ac9237eff48667d054dbda9e8adbcd232dc9",
       "working_tree_has_changes": false,
@@ -71,6 +76,11 @@
       "commit": "28636020870d6b9970e0ed1fcd4d81a78d22e99d",
       "working_tree_has_changes": false,
       "git_metadata_readable": true
+    },
+    "research/20261010_feature_perturbation_precheck": {
+      "commit": null,
+      "working_tree_has_changes": true,
+      "git_metadata_readable": false
     },
     "research/20261010_forward_repeat_diagnostic": {
       "commit": "e4b155d8557bcb977a969a114fd809f11fe6d939",
@@ -1777,8 +1787,8 @@
       "bytes": 2112
     },
     "research/20261008_autoresearch/skill/auto-research/references/current-experiment.md": {
-      "sha256": "83c58a877064868b82805911442c3b1acba911c0a598cdda29466b1cbdf199ea",
-      "bytes": 3754
+      "sha256": "54bf9b83871115b4719e47ac76763cd5840aeabd846e2a57765deaef225db6f8",
+      "bytes": 15021
     },
     "research/20261008_autoresearch/sports_screen.json": {
       "sha256": "4226954f22e8a20e84e49da824ea45af841b1b3e16d1eea9c8c375531ea8e8eb",
@@ -2872,6 +2882,106 @@
       "sha256": "43b421d327240a408107c43b60717c8b903120270e3b660a3c10c2c3f6748d68",
       "bytes": 3702
     },
+    "research/20261010_curvature_diagnostic/LICENSE": {
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "bytes": 35149
+    },
+    "research/20261010_curvature_diagnostic/PRECHECK.md": {
+      "sha256": "5d9058bd95b799c06b8f6c22ad68536a49da6d63723952945f51c4905a6e1e96",
+      "bytes": 1325
+    },
+    "research/20261010_curvature_diagnostic/PROTOCOL.md": {
+      "sha256": "9ba89146d47193bf7363df1e5a780bac88c029028584dcce4db179769108b6aa",
+      "bytes": 9419
+    },
+    "research/20261010_curvature_diagnostic/RUN_REPORT.md": {
+      "sha256": "726f7b31efa0192d78280c0dd3ea6dcd3dd26a0938ff0784b4ea478bcfc82575",
+      "bytes": 3027
+    },
+    "research/20261010_curvature_diagnostic/audit.py": {
+      "sha256": "43ac53fba3a8402559066ac1d7a1c58316a1d86e315e54e062e0a2578ac4a336",
+      "bytes": 30091
+    },
+    "research/20261010_curvature_diagnostic/batch_receipt.json": {
+      "sha256": "628ebe72a1b23f065a8c0dfb112bf1db191b8a5aa48f85d24643e6e7bc3c3dbe",
+      "bytes": 701
+    },
+    "research/20261010_curvature_diagnostic/carrier_inventory.json": {
+      "sha256": "434cea5e552e6b6a9cda7af58b248eb1fc2ab36a971bcfeb2397c7c2aff597bb",
+      "bytes": 118830
+    },
+    "research/20261010_curvature_diagnostic/cpu_tests.py": {
+      "sha256": "7b1522a2ab12e4621d6202ebaf2d5a7d5dd5f413d289c9a860c690211a84bff9",
+      "bytes": 8484
+    },
+    "research/20261010_curvature_diagnostic/cpu_tests_initial_failure.json": {
+      "sha256": "627a74081e736829b295cb212bbf98279c00faeec84e32884ae0f9b8b47e6c4e",
+      "bytes": 264
+    },
+    "research/20261010_curvature_diagnostic/cpu_tests_receipt.json": {
+      "sha256": "bddc061261b442f1d4500e1d7bc7b73d3a0ddcce3f78f5331f194fcb7b959e2b",
+      "bytes": 264
+    },
+    "research/20261010_curvature_diagnostic/deployment.json": {
+      "sha256": "736fec068381137f69609b1d742f9170fcc766c79428c208d578cc4914981269",
+      "bytes": 1797
+    },
+    "research/20261010_curvature_diagnostic/environment.json": {
+      "sha256": "728063d922eda983eafebebc70da4b7246aca0edf42cb4527239f70026626f61",
+      "bytes": 573
+    },
+    "research/20261010_curvature_diagnostic/inspection_msca.py": {
+      "sha256": "066aafcf2e5373b20b2fdf9b3660302b8dfcaf580710d3ab864fac4f19e2360b",
+      "bytes": 12349
+    },
+    "research/20261010_curvature_diagnostic/inventory.py": {
+      "sha256": "ec3c721d153c375e0c3d3857c2bebb598b0736ba3081f2b529c1507ae9cca8cf",
+      "bytes": 3778
+    },
+    "research/20261010_curvature_diagnostic/local_execution_receipt.json": {
+      "sha256": "dccacd06f2a0a4204e94e0c6611ab6fc42276b49557ae429b709c44bc0ea3cf9",
+      "bytes": 161533
+    },
+    "research/20261010_curvature_diagnostic/manifest_post.json": {
+      "sha256": "cbfd35f568a3e3b1415eb347790f01f14b1f2bd4c49c3aaff95df60f08cc34cd",
+      "bytes": 24270
+    },
+    "research/20261010_curvature_diagnostic/manifest_pre.json": {
+      "sha256": "cbfd35f568a3e3b1415eb347790f01f14b1f2bd4c49c3aaff95df60f08cc34cd",
+      "bytes": 24270
+    },
+    "research/20261010_curvature_diagnostic/post_run_inventory.json": {
+      "sha256": "2cd9607b09b30055cf2e6f4d40ffdca6ec5386488670f2295ff68a5a891dca71",
+      "bytes": 216
+    },
+    "research/20261010_curvature_diagnostic/probes.tsv": {
+      "sha256": "edc1a291578a380fd56ce05423b5c3d6214f6986402ce4bdba69b5da8d9e7564",
+      "bytes": 108854
+    },
+    "research/20261010_curvature_diagnostic/program.md": {
+      "sha256": "bf219eb71ef950d954ee46154e118da9bc35dd4b6ce5cc66d5055bac5b5a62ee",
+      "bytes": 5170
+    },
+    "research/20261010_curvature_diagnostic/progress.json": {
+      "sha256": "b6baa580f7515b13360100e6d1eca121219bcac2469373ea81d9033d5112783e",
+      "bytes": 134
+    },
+    "research/20261010_curvature_diagnostic/result.json": {
+      "sha256": "e9b182a43f7a3966b3812df9330397c1f9501169770b09364ae4cd17171ba920",
+      "bytes": 156833
+    },
+    "research/20261010_curvature_diagnostic/results.tsv": {
+      "sha256": "39c19bf76f1849df1059e6f43b2531026bb3f6804d7755eb68c5815154c2e222",
+      "bytes": 270
+    },
+    "research/20261010_curvature_diagnostic/states.json": {
+      "sha256": "27d9d4bcebeabe34f5edc8adbaaa414964d830188cbc949976440ba8e54d6d97",
+      "bytes": 1159
+    },
+    "research/20261010_curvature_diagnostic/test_audit.py": {
+      "sha256": "2b4fe84284e2745f9ba41592dcfc6a04e7eb841fb5bc1230e70d78cb89f2897e",
+      "bytes": 2117
+    },
     "research/20261010_electronics_failure/AUDIT.md": {
       "sha256": "240c41aebe48f907ecfaa53b70ae2de910866a296c5e97a3d0dba33f976a0749",
       "bytes": 6485
@@ -3900,6 +4010,10 @@
       "sha256": "ecc1ac84ea34ef4fcf0dfd311f9ecd275590239a2df8e2ea66a65430ee11f113",
       "bytes": 819
     },
+    "research/20261010_feature_perturbation_precheck/msca_source_snapshot.py": {
+      "sha256": "066aafcf2e5373b20b2fdf9b3660302b8dfcaf580710d3ab864fac4f19e2360b",
+      "bytes": 12349
+    },
     "research/20261010_forward_repeat_diagnostic/AUDIT_RESULT.md": {
       "sha256": "2c24ba6e2359a26bcca578c878e1ee2b51d73060187923fc77efde7e47f20396",
       "bytes": 2567
@@ -4513,8 +4627,8 @@
       "bytes": 1563
     },
     "research/20261010_interest_negative/status/latest_status.json": {
-      "sha256": "5dd8b081ca9a2c147e4d88a312596255cea57a44b964262ba047d196b24843e7",
-      "bytes": 326274
+      "sha256": "fe3dd3eccb478f5d08ae0fe8b1efefc1ddfc00e52fc1d00a1bbafb31c75cbae4",
+      "bytes": 326273
     },
     "research/20261010_interest_negative/status/launch.json": {
       "sha256": "457a3b94423fcbddb2c618e7f11290123b660ea924c650d03249b9857d54eec6",
@@ -4557,12 +4671,16 @@
       "bytes": 21841
     },
     "research/20261010_literature_innovation_search/BACKUP_AUDIT.md": {
-      "sha256": "2b23e4c1cb052724ec578255c0f8ff8d296b9c9e0c0fc18064276e3ff99c16db",
-      "bytes": 10882
+      "sha256": "2d183de96720613978db46dd59fe538c6e2229c2e9f13014408a880a6332bfce",
+      "bytes": 12199
     },
     "research/20261010_literature_innovation_search/CARRIER_AUDIT.md": {
       "sha256": "87e03544c5e758931506aacbd38e267ca4c4708886c4108d02b985c488e54edf",
       "bytes": 11406
+    },
+    "research/20261010_literature_innovation_search/FEATURE_PERTURBATION_FEASIBILITY.md": {
+      "sha256": "a93c3f67161ee0a89463f361174fd0cb108b35e8b3c46d43df19f28c7c07eece",
+      "bytes": 9767
     },
     "research/20261010_literature_innovation_search/LITERATURE_A.md": {
       "sha256": "1dd5c2cbe7d8c91b4e4261d91da161a71181c58b2c5e8944c394ba51dbcf616e",
@@ -4977,12 +5095,12 @@
       "bytes": 6424
     },
     "result/FAILED_EXPERIMENTS.md": {
-      "sha256": "49f567c0719cb344b867b325b6409f186bcbdb8a852f32113b3677b63ed64013",
-      "bytes": 46614
+      "sha256": "b11059f2327bd93ca8ff1dffef5b3cb2b90a1a66b92b0b4ec6577e8608cf5920",
+      "bytes": 47985
     },
     "result/INNOVATION_STATUS.md": {
-      "sha256": "d5a2b352cfcb6b885a51698ed6d01239f73afbdee0d8ff43105fb4e8a078f80b",
-      "bytes": 29780
+      "sha256": "83260b25caaad4d7ab9d744d3a058b5e743329c54f8d4e77f22f7f499c34d7bb",
+      "bytes": 31380
     },
     "result/PUBLICATION_PROTOCOL.md": {
       "sha256": "ad0c87c8c3e25c193fa23a830e4f19f456084d4feb9f292926c65866bea1b536",

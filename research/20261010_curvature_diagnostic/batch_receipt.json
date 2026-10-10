@@ -1,0 +1,23 @@
+{
+  "path": "/data/sunzixuan/curvature_diagnostic_20261010_v1/data/batches.npz",
+  "sha256": "8ab545d3e8d5015655fa57f2c5766ef51e5fbb184641e67729f391b55d84ef55",
+  "bytes": 46524,
+  "shape": [
+    3,
+    3,
+    2048
+  ],
+  "batch_hashes": [
+    "c88e2add0a9dc487d634c601b20a05ee1b0e431efe80b7e298c338fdb1e870b3",
+    "66c79df9721c6a1be382cb94c700fac1021c09f0008c9f89bec04de9d1c5eca6",
+    "c734538f70399787e5b39e8747c998c36d6fc281f6db433265342393a32ed8b8"
+  ],
+  "train_rows": 118551,
+  "positive_rows_distinct": 6144,
+  "TRAIN_only": true,
+  "own_train_positive_excluded": true,
+  "positive_in_train": true,
+  "negative_universe_size": 7047,
+  "positive_seed": 20261010,
+  "negative_seed": 20261011
+}

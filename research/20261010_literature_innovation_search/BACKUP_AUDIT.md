@@ -35,7 +35,8 @@ any claim: (1) an independently audited metadata join on both domains, (2)
 item-disjoint TRAIN relation prediction above a frozen readout reference, (3)
 a label-shuffled null preserving endpoints, degree strata, and class counts,
 and (4) a ranking gain that survives popularity and degree controls. The
-current audit fails (1), and therefore this family is frozen. It must not be
+current audit fails the required coverage and relation-count prerequisites,
+and therefore this family is frozen. It must not be
 rescued by lowering coverage, using title regexes, or inferring Sports IDs.
 
 ## Backup A: MASAM-motivated branch sharpness diagnostic
@@ -87,7 +88,12 @@ require the same block to win a specified majority of probes, with the BPR and
 full-loss results agreeing after regularizer reporting. If the winner changes
 across batches, directions, or states, the dominant-branch premise is falsified.
 No validation or test score may choose `rho`, branch, direction, or checkpoint.
-This diagnostic is independent of F10's gradient-conflict audit: F10 measured
+Also report `K_m = 2*E_m/||delta_m||^2`. Raw relative-radius excess and
+Euclidean norm-squared curvature answer different questions because block
+norms and dimensions differ. If they disagree, the audit cannot select the
+preferred ruler. Three fixed batches and a few directions give a descriptive
+screening result, not a significant curvature claim or maximal Hessian
+eigenvalue estimate. This diagnostic is independent of F10's gradient-conflict audit: F10 measured
 gradient cosine/work alignment and found no material conflict; it did not test
 local curvature.
 
@@ -95,7 +101,7 @@ The prior-art boundary is strict. [BSAM (TKDE 2025)](https://zheyu-chen.github.i
 already evaluates sharpness-aware multimodal BPR recommendation on Amazon Baby
 and Sports, with visual/text features, random 8:1:1 splitting, batch size 2048,
 and comparisons to SAM, ASAM, and related flat-minima methods. It also reports a
-radius grid and 3090 runs, so “SAM improves MSCA” cannot be presented as a new
+radius grid and 3090 runs, so "SAM improves MSCA" cannot be presented as a new
 method. [gSAM (2023)](https://arxiv.org/abs/2307.08910) applies bi-level
 sharpness optimization to graph collaborative filtering; [Mirror Gradient
 (2024)](https://arxiv.org/abs/2402.11262) and [SGBD (ICCV Workshop 2025)](https://openaccess.thecvf.com/content/ICCV2025W/RetailVision/html/Srivastava_SGBD_Sharpness-Aware_Mirror_Gradient_with_BLIP-Based_Denoising_for_Robust_Multimodal_ICCVW_2025_paper.html)
@@ -108,10 +114,15 @@ same-norm random-direction update. The latter is a necessary null for generic
 extra noise. Keep the original BPR, contrastive terms, regularizer, negative
 sampler, split, evaluator and frozen configuration. The existing gate remains
 validation-only (both R@20/N@20 relative margins and R@10/N@10 absolute guard);
-test is untouched. A failed dominance diagnostic means no GPU pilot. Two
-forward/backward probes and three arms on two domains are plausibly 2--3 times
-ordinary training cost, roughly 48--72 GPU-hours depending on the official
-throughput; this is an estimate, not an allocation.
+test is untouched. The noise null isolates targeted direction from generic
+same-norm noise; it does not show an advantage over global SAM or over the
+other branch. Those controls and a direct BSAM/MASAM comparison are needed for
+a modality-specific mechanism claim. A failed dominance diagnostic means no
+GPU pilot. Three Baby arms with eight-hour per-arm caps would have a 24-hour
+formal ceiling; a conditional identical Sports trio adds another 24 hours.
+Two-pass updates may cost roughly twice ordinary training per epoch, but actual
+throughput and completion within these ceilings are unknown. This is a
+planning estimate, not an allocation or guaranteed completion time.
 
 ## Backup B: adversarial perturbation in fixed feature space
 
@@ -122,7 +133,7 @@ loss. It deliberately leaves the expensive image extractor fixed and updates
 the recommender transformation. This differs from MASAM's parameter-neighborhood
 curvature: the perturbation is applied to an item feature row, not to model
 parameters. MSCA already has image and text feature tensors for both domains
-(the carrier inventory records Baby image/text shapes 7050x4096/7050x384 and
+(the existing input inventory records Baby image/text shapes 7050x4096/7050x384 and
 Sports 18357x4096/18357x384), so no metadata, reviews, LLM, or new encoder is
 needed.
 
@@ -161,4 +172,10 @@ project requires a paper-level algorithmic novelty claim, this review found no
 qualified candidate under F01--F28, the random-split constraint, and the
 available Baby/Sports assets. Any subsequent run should be registered as a
 preexisting-mechanism transfer, with primary-art controls and a negative null,
-rather than renamed as a new algorithm.
+rather than renamed as a new algorithm. Publication-level evidence would need
+the same frozen configuration and exact evaluator across three domains and
+five matched seeds, uncertainty across seeds as well as users, measured GPU
+time/memory, direct prior-art baselines, and public source/protocol manifests
+before metrics. Private user/item batches stay private; publish only their
+digests and aggregate diagnostics. Protected original-source files and license
+must remain attributable in any public implementation.

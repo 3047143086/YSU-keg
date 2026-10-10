@@ -1,0 +1,3 @@
+state	status	protected_count	all_probes_numerically_valid	image_full_gradient_wins	image_direction_wins_per_batch	text_full_gradient_wins	gate_passed
+init	diagnostic_inconclusive	170	true	0	[0,0,0]	0	false
+uniform_best	diagnostic_inconclusive	170	true	2	[0,1,1]	0	false

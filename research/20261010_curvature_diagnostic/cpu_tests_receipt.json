@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "tests_run": 9,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "cuda_initialized": false,
+  "torch": "1.12.1+cu113",
+  "numpy": "1.22.4",
+  "source_sha256": "43ac53fba3a8402559066ac1d7a1c58316a1d86e315e54e062e0a2578ac4a336"
+}

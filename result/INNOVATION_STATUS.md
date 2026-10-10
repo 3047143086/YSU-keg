@@ -1,4 +1,8 @@
-# 当前结果：兴趣组负采样三臂实验完成，未通过收益门槛
+# 当前结果：新三臂训练未通过收益门槛，曲率诊断未满足训练前提
+
+2026-10-10 最新完成 MASAM-motivated 参数块曲率诊断，冻结源码 `ebc83c9`，在 GPU1 上运行 41.361 秒，状态为 `diagnostic_inconclusive`。它比较初始化与固定的均匀基线最佳 checkpoint，在三个相同 TRAIN 批次上，对 image/text transform 与 gate 施加相同相对范数的正负扰动；同时检查 BPR/完整损失、原始对称损失增量/范数平方归一化曲率。初始化没有任何方向形成有效赢家；最佳 checkpoint 的 image 块仅在两个完整梯度方向胜出，三个随机方向均没有有效赢家，各批次胜出方向数为 `[0,1,1]`，不足预先规定的每批次 3/4、至少两个批次且两状态一致。不能选择其中两个方向作为整体成功，也不调整半径或门槛重试。
+
+48/48 探针数值有效，参数/buffers 精确恢复、全局 RNG 和图张量不变，170 项受保护路径前后哈希一致。没有优化器、参数更新、验证/测试 loader 或推荐评估；固定最佳 checkpoint 本身是此前验证集选择的，不能称为纯 TRAIN-only 状态。PID 3265836 已退出，结束快照显示 GPU1 没有计算进程，峰值 CUDA allocated 为 714,024,448 bytes。该诊断没有建立模态稳定主导的训练前提，未启动 SAM/MASAM 推荐训练，也不构成推荐收益或原创算法证据。见 [诊断结果](../research/20261010_curvature_diagnostic/result.json) 与 [固定协议](../research/20261010_curvature_diagnostic/PROTOCOL.md)。最新独立方向是特征空间扰动的源码资格审计，尚未形成可运行训练方案。
 
 2026-10-10 已开展新的独立训练实验，借鉴 [PerPEFT（WWW2026）](https://arxiv.org/abs/2602.09445) 的组内负采样，在无 SVD 的官方 MSCA 上检验兴趣组对应关系是否有用。候选混合 50% 原 TRAIN-union 均匀采样与 50% 同兴趣组池采样，固定 K=8、seed2026。对照为新鲜均匀基线，以及共用同一商品池、精确 TRAIN 度数层内打乱用户分组的对照。只改变负采样，模型、损失、图、特征和评估保持相同。
 
@@ -16,11 +20,11 @@
 
 这是已发表采样机制的迁移试验，尚无原创性或论文级结果。协议见 [PROTOCOL.md](../research/20261010_interest_negative/PROTOCOL.md)，结果见 [research_report.json](../research/20261010_interest_negative/status/research_report.json)，独立复核见 [FINAL_AUDIT.md](../research/20261010_interest_negative/status/FINAL_AUDIT.md)。旧 F01–F27、此次 F28 及 Electronics 故障保持冻结。
 
-下一项独立假设是 TRAIN 商品的品牌与类别关系辅助监督，先检查现有元数据及内部商品 ID 对齐是否满足资格门。方案及论文来源见 [NEXT_INDEPENDENT.md](../research/20261010_literature_innovation_search/NEXT_INDEPENDENT.md)。该方案尚未启动推荐训练；元数据覆盖和对照构造合格后才冻结实现并运行。
+此后检查了 TRAIN 商品的品牌与类别关系辅助监督。方案及论文来源见 [NEXT_INDEPENDENT.md](../research/20261010_literature_innovation_search/NEXT_INDEPENDENT.md)。该方案未启动推荐训练。
 
 CPU 资格审计已完成并判为 `ineligible`，没有启动 GPU：Baby split-0 TRAIN 的 7,047 个商品全部完成显式 ID 映射，品牌非空覆盖 4,923/7,047 = 69.8595%，低于预先冻结的 70% 门槛；类别字段虽有 100% 覆盖，但 7,050 行都只有同一个单路径签名。三类配对中 `same-brand/different-category` 与 `neither` 都是 0，只有 `same-category/different-brand` 有 1,974 个 fitting、487 个 held-out 配对，故 pair gate 也失败。degree-stratified null 的标签变化率为 fitting 98.76%、held-out 98.15%，只说明 null 本身可构造，不能挽救数据资格。Sports 按预注册条件未继续审计，避免在首域失败后选择性推进。审计过程是 CPU-only，未读评论、验证集或测试集，未初始化 GPU。详细结果见 [RESULTS.md](../research/20261010_catalog_relation_assessment/RESULTS.md) 与 [catalog_relation_audit.json](../research/20261010_catalog_relation_assessment/catalog_relation_audit.json)。
 
-当前转入独立的 MASAM-motivated block-sharpness 只读诊断：由于 MSCA 没有 MASAM 的独立 unimodal prediction head，它只检查固定 TRAIN batch 上 image/text 参数块的对称局部曲率，不声称复现 MASAM 或已经得到推荐收益。正式训练需等诊断和新协议分别冻结。
+随后 MASAM-motivated block-sharpness 只读诊断也已完成，结果见本页顶部。由于 MSCA 没有 MASAM 的独立 unimodal prediction head，该检查是机制迁移，不能声称复现 MASAM。[MASAM（ICLR2026）](https://proceedings.iclr.cc/paper_files/paper/2026/hash/94ffbc2939e18adac36eedf8d38d1ef3-Abstract-Conference.html) 与 [BSAM（TKDE2025）](https://zheyu-chen.github.io/_pages/BSAM.pdf) 的先行工作也限制了原创性声明。
 
 以下保留此前实验的结果记录。
 

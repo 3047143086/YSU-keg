@@ -1,0 +1,43 @@
+{
+  "original": "/data/sunzixuan/interest_negative_20261010_v1",
+  "run_root": "/data/sunzixuan/curvature_diagnostic_20261010_v1",
+  "source_commit": "ebc83c9d6a2202e27fdb1bc44990e8f5d27db9cc",
+  "source_sha256": "43ac53fba3a8402559066ac1d7a1c58316a1d86e315e54e062e0a2578ac4a336",
+  "protocol_sha256": "9ba89146d47193bf7363df1e5a780bac88c029028584dcce4db179769108b6aa",
+  "checkpoint_sha": "6f6ee28429668b9bb7d54d4673252c8751978f22cd24db334d03d7b4234acbd8",
+  "initial_sha": "4aacd659cec4a99f4e2e1898c681bb44fd302479b71f031af1794af7a5900c40",
+  "bound_files": {
+    "carrier/src/models/msca.py": {
+      "sha256": "066aafcf2e5373b20b2fdf9b3660302b8dfcaf580710d3ab864fac4f19e2360b",
+      "bytes": 12349
+    },
+    "carrier_manifest.json": {
+      "sha256": "61117fee5451883a9e585bc4c5142c4a4cfcecf8a7c185c86b013941b7012434",
+      "bytes": 16373
+    },
+    "source_protection.json": {
+      "sha256": "82973a12cd72a83393623e430555d68871b8c606e2030bf1296697a1ecc7fa43",
+      "bytes": 16002
+    },
+    "deployment.json": {
+      "sha256": "40e4aecd07a5ae6c38d3980fb8d801c4a8fa7df187586938b0f87323b5ea9a21",
+      "bytes": 17087
+    },
+    "runs/baby_uniform_s2026_formal/config.json": {
+      "sha256": "e2669df0c0f8cecc7080e242e85a11e33f0ae3a9a14bea7398ccd2364b538c96",
+      "bytes": 1876
+    },
+    "runs/baby_uniform_s2026_formal/environment.json": {
+      "sha256": "9247f9aff695f398a5154298ed1f1400aa55d3b71c47f9766789e82d4b0769a7",
+      "bytes": 657
+    },
+    "runs/baby_uniform_s2026_formal/result.json": {
+      "sha256": "c6695b5b2eb940fd04aadce919b16e9aa1da95ed713b5baf43bdc49471e687b1",
+      "bytes": 20808
+    },
+    "runs/baby_uniform_s2026_formal/best.pt": {
+      "sha256": "6f6ee28429668b9bb7d54d4673252c8751978f22cd24db334d03d7b4234acbd8",
+      "bytes": 402966577
+    }
+  }
+}

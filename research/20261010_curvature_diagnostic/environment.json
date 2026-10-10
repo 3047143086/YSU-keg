@@ -1,0 +1,21 @@
+{
+  "python": "3.8.20 (default, Oct  3 2024, 15:24:27) \n[GCC 11.2.0]",
+  "numpy": "1.22.4",
+  "torch": "1.12.1+cu113",
+  "physical_gpu": 1,
+  "cpu_threads": 4,
+  "cuda_memory_fraction": 0.55,
+  "preflight": {
+    "gpu1": "1, GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a, 24232, 26, 0",
+    "owned_processes": [],
+    "host_available_kib": 123374428,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "initial_state_sha256": "4aacd659cec4a99f4e2e1898c681bb44fd302479b71f031af1794af7a5900c40",
+  "source_commit": "ebc83c9d6a2202e27fdb1bc44990e8f5d27db9cc"
+}
