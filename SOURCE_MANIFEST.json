@@ -78,9 +78,9 @@
       "git_metadata_readable": true
     },
     "research/20261010_feature_perturbation_precheck": {
-      "commit": null,
-      "working_tree_has_changes": true,
-      "git_metadata_readable": false
+      "commit": "8010c0c674ee17724a7e09c91a59de9f8f10f72b",
+      "working_tree_has_changes": false,
+      "git_metadata_readable": true
     },
     "research/20261010_forward_repeat_diagnostic": {
       "commit": "e4b155d8557bcb977a969a114fd809f11fe6d939",
@@ -2838,6 +2838,14 @@
       "sha256": "a482f99e4c9ead7b27d96f881d2620c89e5d7125e23a98c68d6946d5b670dadb",
       "bytes": 2034
     },
+    "research/20261010_baseline_confirmation/PROTOCOL.md": {
+      "sha256": "5d7bf715c1e9002a6ad46182f38692fd14fbe3e15b815e8b6446d5ec844f13ae",
+      "bytes": 939
+    },
+    "research/20261010_baseline_confirmation/program.md": {
+      "sha256": "045e1a9c1867905a0227f91ee51df9c54e53c914f96b09ac5fb725458e81ef07",
+      "bytes": 664
+    },
     "research/20261010_catalog_relation_assessment/PROTOCOL.md": {
       "sha256": "4b15e6f1e5eb7110e069786b48c32d8c1ad78c94109370bdd4c382ee76e19234",
       "bytes": 3863
@@ -4010,9 +4018,33 @@
       "sha256": "ecc1ac84ea34ef4fcf0dfd311f9ecd275590239a2df8e2ea66a65430ee11f113",
       "bytes": 819
     },
+    "research/20261010_feature_perturbation_precheck/PRECHECK_REPORT.md": {
+      "sha256": "39bf5ef3b4414d403e38334f84c2ede406efc8001b76893352a68fcc31206bb2",
+      "bytes": 2559
+    },
+    "research/20261010_feature_perturbation_precheck/PROTOCOL.md": {
+      "sha256": "8581e7a5c5eea3b8732ab6054933f4374ad12a363927d7426374a8a329467854",
+      "bytes": 2396
+    },
     "research/20261010_feature_perturbation_precheck/msca_source_snapshot.py": {
       "sha256": "066aafcf2e5373b20b2fdf9b3660302b8dfcaf580710d3ab864fac4f19e2360b",
       "bytes": 12349
+    },
+    "research/20261010_feature_perturbation_precheck/precheck.py": {
+      "sha256": "03a692fdfe577d7394216300f8efd9e752ae6e514351ca827575cdca6f065c34",
+      "bytes": 4207
+    },
+    "research/20261010_feature_perturbation_precheck/program.md": {
+      "sha256": "fe54a1223cd3c8654645f540e437732f40c66c067fed66d1503ff7cef989e221",
+      "bytes": 1657
+    },
+    "research/20261010_feature_perturbation_precheck/remote_precheck.py": {
+      "sha256": "14a021fedf85902a6813258545d0bb677850b9b70f4e37ab55736f0275f1d04d",
+      "bytes": 14790
+    },
+    "research/20261010_feature_perturbation_precheck/test_precheck.py": {
+      "sha256": "463950e70cc09ec960eff2a3071f70b0410b97e0e2d0e6ed4f4aa1b8a11ba2fc",
+      "bytes": 2013
     },
     "research/20261010_forward_repeat_diagnostic/AUDIT_RESULT.md": {
       "sha256": "2c24ba6e2359a26bcca578c878e1ee2b51d73060187923fc77efde7e47f20396",
