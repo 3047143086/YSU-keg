@@ -1,0 +1,74 @@
+{
+  "bridge_official_inputs_modified": false,
+  "files": {
+    "elec.inter": {
+      "bytes": 49216870,
+      "sha256": "3586c6ab2d4b2a7a0f69c5f6149dbdf7a229a092c37cfee1244f49734afa8fb5"
+    },
+    "image_feat.npy": {
+      "bytes": 2064416896,
+      "sha256": "1cdaa24a8493a66362845913412c868a011324f2e9060150245df026f8f89cb0"
+    },
+    "text_feat.npy": {
+      "bytes": 96769664,
+      "sha256": "ae49f620ad95301914b17eab868f9c06e4da02a699a8db036e1b077eeedbc239"
+    }
+  },
+  "finished_unix": 1791540916.7347803,
+  "source_host": "214",
+  "source_manifest": {
+    "files": {
+      "elec.inter": {
+        "bytes": 49216870,
+        "sha256": "3586c6ab2d4b2a7a0f69c5f6149dbdf7a229a092c37cfee1244f49734afa8fb5"
+      },
+      "image_feat.npy": {
+        "bytes": 2064416896,
+        "sha256": "1cdaa24a8493a66362845913412c868a011324f2e9060150245df026f8f89cb0"
+      },
+      "text_feat.npy": {
+        "bytes": 96769664,
+        "sha256": "ae49f620ad95301914b17eab868f9c06e4da02a699a8db036e1b077eeedbc239"
+      }
+    },
+    "root": "/data/[REDACTED]/sun_exp/LOBSTER/data/elec"
+  },
+  "source_modified": false,
+  "source_root": "/data/gongshanghui/sun_exp/LOBSTER/data/elec",
+  "started_unix": 1791540859.238625,
+  "status": "completed",
+  "target_host": "213",
+  "target_manifest": {
+    "files": {
+      "elec.inter": {
+        "bytes": 49216870,
+        "sha256": "3586c6ab2d4b2a7a0f69c5f6149dbdf7a229a092c37cfee1244f49734afa8fb5"
+      },
+      "image_feat.npy": {
+        "bytes": 2064416896,
+        "sha256": "1cdaa24a8493a66362845913412c868a011324f2e9060150245df026f8f89cb0"
+      },
+      "text_feat.npy": {
+        "bytes": 96769664,
+        "sha256": "ae49f620ad95301914b17eab868f9c06e4da02a699a8db036e1b077eeedbc239"
+      }
+    },
+    "free_bytes_after": 84473462784,
+    "root": "/data/sunzixuan/bridge_extra_assets_20261009/elec"
+  },
+  "target_preflight": {
+    "entries_before": [],
+    "free_bytes_before": 86686052352,
+    "required_free_bytes": 5368709120,
+    "source_input_root": "/data/sunzixuan/bridge_official/data",
+    "target": "/data/sunzixuan/bridge_extra_assets_20261009/elec"
+  },
+  "target_root": "/data/sunzixuan/bridge_extra_assets_20261009/elec",
+  "transfer": {
+    "finished_unix": 1791540906.781787,
+    "password_prompt_seen": true,
+    "remote_returncode": 0,
+    "started_unix": 1791540881.051581,
+    "transport_output_bytes": 5224
+  }
+}

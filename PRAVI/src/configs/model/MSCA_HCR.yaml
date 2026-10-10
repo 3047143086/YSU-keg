@@ -1,0 +1,17 @@
+embedding_size: 64
+n_layers: [2]
+knn_k: 10
+is_sparse: True
+fusion_coeff: [0.4]
+tau: 0.2
+cl_weight: [0.005]
+reg_weight: [3e-7]
+
+# Leave-one-out Calibrated History Residual (LCHR).
+hcr_enabled: True
+hcr_max_scale: 0.10
+hcr_activity_prior: 10.0
+hcr_coherence_temperature: 0.25
+hcr_min_context: 2
+
+hyper_parameters: ["n_layers", "fusion_coeff", "cl_weight", "reg_weight"]

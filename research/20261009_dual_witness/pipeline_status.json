@@ -1,0 +1,117 @@
+{
+  "status": "closed_mechanism_gate",
+  "stage": "baby_discard",
+  "started_unix": 1791540235.5290291,
+  "datasets": {
+    "baby": {
+      "dataset": "baby",
+      "status": "completed",
+      "decision": {
+        "status": "discard",
+        "passed": false,
+        "positive_nonzero_coverage": 0.05793113705659255,
+        "paired_vs_controls": {
+          "itemknn": {
+            "mean_delta": -0.15308479586524876,
+            "user_bootstrap_95ci": [
+              -0.1576053208894177,
+              -0.14869714202052503
+            ]
+          },
+          "userknn": {
+            "mean_delta": -0.06551182419870603,
+            "user_bootstrap_95ci": [
+              -0.0691907349222875,
+              -0.061859987357774975
+            ]
+          },
+          "min2": {
+            "mean_delta": -0.013004759425894252,
+            "user_bootstrap_95ci": [
+              -0.014608393136015469,
+              -0.011547533836543467
+            ]
+          },
+          "shuffled": {
+            "mean_delta": 0.012186733100319773,
+            "user_bootstrap_95ci": [
+              0.010217718171339332,
+              0.014239932698743208
+            ]
+          }
+        },
+        "user_hash_half_deltas": {
+          "itemknn": [
+            -0.1520476083032491,
+            -0.15409894837476099
+          ],
+          "userknn": [
+            -0.06680110559566788,
+            -0.06425117664362406
+          ],
+          "min2": [
+            -0.012442651925391094,
+            -0.013554382997499632
+          ]
+        },
+        "formal_training_authorized_by_this_screen": false,
+        "novelty_established": false,
+        "publication_evidence": false
+      },
+      "arms": {
+        "itemknn": {
+          "mean_auc": 0.6782762883914628,
+          "positive_nonzero_coverage": 0.5337249944225477,
+          "neighbor_weights_nnz": null,
+          "seconds": 1.0304601769894361
+        },
+        "userknn": {
+          "mean_auc": 0.59070331672492,
+          "positive_nonzero_coverage": 0.2199003495203391,
+          "neighbor_weights_nnz": 1742230,
+          "seconds": 2.4982918619643897
+        },
+        "min2": {
+          "mean_auc": 0.5381962519521083,
+          "positive_nonzero_coverage": 0.08916486948761805,
+          "neighbor_weights_nnz": 123465,
+          "seconds": 2.554601101903245
+        },
+        "dual": {
+          "mean_auc": 0.525191492526214,
+          "positive_nonzero_coverage": 0.05793113705659255,
+          "neighbor_weights_nnz": 68841,
+          "seconds": 3.2824588760267943
+        },
+        "shuffled": {
+          "mean_auc": 0.5130047594258943,
+          "positive_nonzero_coverage": 0.032497954934186064,
+          "neighbor_weights_nnz": 43700,
+          "seconds": 3.2662540581077337
+        }
+      },
+      "diagnostic_users": 13447,
+      "original_train_edges": 118551,
+      "support_edges": 105104,
+      "source_sha256": {
+        "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+        "/data/sunzixuan/bridge_official/data/baby/image_feat.npy": "36c3be592b98506189a7d5de71b21577cf626f0293b539d861534673b3e9fd70"
+      },
+      "elapsed_seconds": 14.904509139014408,
+      "validation_evaluated": false,
+      "test_evaluated": false,
+      "training_internal_only": true,
+      "all_internal_targets_absent": true,
+      "comparison_ties_count": 0.5,
+      "source_revision": "3b5b026c6a661fafa194c615c820aaa94d510749"
+    }
+  },
+  "updated_unix": 1791540250.6991742,
+  "predecessor": {
+    "root": "/data/sunzixuan/candidate_gate_20261009_v1",
+    "status": "closed_validation_gate",
+    "process_alive": false
+  },
+  "active_job": null,
+  "reason": "baby diagnostic failed"
+}

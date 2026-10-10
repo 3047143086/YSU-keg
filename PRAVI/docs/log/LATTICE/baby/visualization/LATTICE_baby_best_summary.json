@@ -1,0 +1,25 @@
+{
+  "model": "LATTICE",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "reg_weight": 1e-05,
+    "learning_rate": 0.001,
+    "n_layers": 2
+  },
+  "best_epoch": 65,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.086,
+  "best_valid_result": {
+    "recall@10": 0.0531,
+    "recall@20": 0.086,
+    "ndcg@10": 0.0284,
+    "ndcg@20": 0.0368
+  },
+  "best_test_result": {
+    "recall@10": 0.0584,
+    "recall@20": 0.0893,
+    "ndcg@10": 0.0314,
+    "ndcg@20": 0.0393
+  }
+}

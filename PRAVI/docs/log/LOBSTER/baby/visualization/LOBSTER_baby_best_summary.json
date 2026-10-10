@@ -1,0 +1,26 @@
+{
+  "model": "LOBSTER",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "dropout": 0.3,
+    "reg_weight": 0.01,
+    "factor_num_u": 6,
+    "factor_num_i": 2
+  },
+  "best_epoch": 117,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0842,
+  "best_valid_result": {
+    "recall@10": 0.0525,
+    "recall@20": 0.0842,
+    "ndcg@10": 0.0279,
+    "ndcg@20": 0.036
+  },
+  "best_test_result": {
+    "recall@10": 0.0551,
+    "recall@20": 0.0861,
+    "ndcg@10": 0.0296,
+    "ndcg@20": 0.0376
+  }
+}

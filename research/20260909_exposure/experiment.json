@@ -1,0 +1,21 @@
+{
+  "purpose": "baby_temporal_feasibility_screen",
+  "remote_output_root": "/data/sunzixuan/temporal_20260909_screen",
+  "interactions": "/data/sunzixuan/expirement/LOBSTER/data/baby/baby.inter",
+  "feature_bank": "/data/sunzixuan/rcmqr_20260908_screen_v2/features/global_bank.npy",
+  "seeds": [2026, 2027, 2028],
+  "variants": ["long_mean", "recent3", "learned_two_scale"],
+  "epochs": 20,
+  "batch_size": 256,
+  "negatives": 10,
+  "hidden": 64,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "threads": 4,
+  "allowed_gpus": [1],
+  "max_run_seconds": 1800,
+  "max_pipeline_seconds": 172800,
+  "official_validation_evaluated": false,
+  "official_test_evaluated": false,
+  "scope": "feasibility screen only; not a novelty claim"
+}

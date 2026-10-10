@@ -1,0 +1,36 @@
+{
+  "active_job": {
+    "command": [
+      "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+      "-u",
+      "/data/sunzixuan/electronics_baseline_20261009_v1/guarded_train.py",
+      "--bridge-root",
+      "/data/sunzixuan/electronics_baseline_20261009_v1/carrier",
+      "--dataset",
+      "elec",
+      "--seed",
+      "2026",
+      "--output",
+      "/data/sunzixuan/electronics_baseline_20261009_v1/runs/elec_baseline_s2026",
+      "--device",
+      "cuda",
+      "--gpu-id",
+      "1",
+      "--cuda-memory-fraction",
+      ".55"
+    ],
+    "elapsed_seconds": 1053.0640211105347,
+    "gpu_used": true,
+    "name": "elec_baseline_s2026",
+    "peak_sampled_gpu_memory_mib": 14024,
+    "pid": 2936814
+  },
+  "checked_unix": 1791550668.5281394,
+  "completed_seeds": [],
+  "epoch_rows": 0,
+  "error": null,
+  "log_tail": "self.dataset_path: /data/sunzixuan/electronics_baseline_20261009_v1/carrier/data/elec, i: elec.inter\n>>>> user_emb_file not found, skip loading: /data/sunzixuan/electronics_baseline_20261009_v1/carrier/data/elec/user_emb.npy\nDual-frequency feature controls: feature_ablation=all, use_image_feature=True, use_text_feature=True, use_item_graph=True\n>>>>>Loaded from:  /data/sunzixuan/electronics_baseline_20261009_v1/carrier/data/elec/mm_adj_10.pt\n/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/scipy/sparse/_index.py:125: SparseEfficiencyWarning: Changing the sparsity structure of a csr_matrix is expensive. lil_matrix is more efficient.\n  self._set_arrayXarray(i, j, x)\nBRIDGE behavior branch: BPI=False, BC=True, FRC=False, TCR=True, Gate=True, BGate=True, RGate=False, topk=1000, weight=0.4, eval_topk=200, train_candidate_aware=True, train_topk=200, scope=topk, norm=z, proto_weight=0.0, msr_weight=0.0, msr_delta=0.0, backend=sparse\n/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:124: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate\n  warnings.warn(\"Seems like `optimizer.step()` has been overridden after learning rate scheduler \"\n",
+  "stage": "elec_baseline_s2026",
+  "status": "running",
+  "traceback": null
+}

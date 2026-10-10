@@ -1,0 +1,1119 @@
+PAGE 1
+BeFA: A General Behavior-driven Feature Adapter for
+Multimedia Recommendation
+Qile Fan1 *, Penghang Yu1 *, Zhiyi Tan1, Bing-Kun Bao3, Guanming Lu1, 2 †
+1School of Communications and Information Engineering,
+Nanjing University of Posts and Telecommunications, Nanjing, China
+2Jiangsu Key Laboratory of Intelligent Information Processing and Communication Technology, Nanjing, China
+3School of Computer Science, Nanjing University of Posts and Telecommunications, Nanjing, China
+b21011331@njupt.edu.cn, 2022010201@njupt.edu.cn, tzy@njupt.edu.cn, bingkunbao@njupt.edu.cn, lugm@njupt.edu.cn
+Abstract
+Multimedia recommender systems focus on utilizing behav-
+ioral information and content information to model user pref-
+erences. Typically, it employs pre-trained feature encoders to
+extract content features, then fuses them with behavioral fea-
+tures. However, pre-trained feature encoders often extract fea-
+tures from the entire content simultaneously, including exces-
+sive preference-irrelevant details. We speculate that it may re-
+sult in the extracted features not containing sufficient features
+to accurately reflect user preferences. To verify our hypothe-
+sis, we introduce an attribution analysis method for visually
+and intuitively analyzing the content features. The results in-
+dicate that certain items’ content features exhibit the issues
+of information drift and information omission , reducing
+the expressive ability of features. Building upon this find-
+ing, we propose an effective and efficient general Behavior-
+driven Feature Adapter (BeFA) to tackle these issues. This
+adapter reconstructs the content feature with the guidance of
+behavioral information, enabling content features accurately
+reflecting user preferences. Extensive experiments demon-
+strate the effectiveness of the adapter across all multimedia
+recommendation methods. Our code is made publicly avail-
+able on https://github.com/fqldom/BeFA.
+Introduction
+Recommender systems have gained widespread adoption
+across various domains, aiming to assist users in discovering
+information that aligns with their preferences (Parchas et al.
+2020; Liu et al. 2017). In the case of multimedia platforms,
+the abundance of data resources provides recommender sys-
+tems with increased opportunities to accurately model user
+preferences (Zhou et al. 2023a).
+Existing multimedia recommendation methods typically
+involves two main steps (Yuan et al. 2023; Zhou et al.
+2023a). First, a pre-trained feature encoder is employed
+to capture content features from diverse modalities. Sub-
+sequently, these content features are fused with behavioral
+features to obtain user preference representations. Recently,
+researchers have focused on enhancing the quality of these
+*These authors contributed equally.
+†Corresponding author.
+Copyright © 2025, Association for the Advancement of Artificial
+Intelligence (www.aaai.org). All rights reserved.
+Encoder
+Park：
+Brown:
+Women：
+Crimson:
+Boot:
+Cheongsam:
+0.94
+0.87
+0.63
+0.57
+0.13
+0.11
+I like this Cheongsam.
+ Its design attracts me!
+The user prefers the 
+product images that 
+were shot in the park.
+Figure 1: Illustration of content features that do not accu-
+rately reflect the users’ preferences. Excessive irrelevant in-
+formation hinders the recommender system’s ability to ef-
+fectively model the users’ true preferences.
+representations through self-supervised learning. For in-
+stance, SLMRec (Tao et al. 2023) investigates potential rela-
+tionships between modalities through the use of contrastive
+learning, thereby obtaining a powerful representation. BM3
+(Zhou et al. 2023c) utilizes a dropout strategy to construct
+multiple views and reconstructs the interaction graph, incor-
+porating intra- and inter-modality contrastive loss to facili-
+tate effective representation learning. MICRO (Zhang et al.
+2022) and MGCN (Yu et al. 2023) maximize the mutual in-
+formation between content features and behavioral features
+with a self-supervised auxiliary task, and have achieved ex-
+cellent performance. Despite the good progress made in uti-
+lizing content and behavioral information more effectively,
+a crucial yet easily overlooked problem arises: Are content
+features obtained from pre-trained encoders containing
+sufficient features to reflect user preferences? Intuitively,
+multimedia content inherently exhibits the characteristic of
+low informational value density, where a significant portion
+of the presented information may be irrelevant to the users’
+focus (Zhou et al. 2023a). Pre-trained feature encoders ex-
+tract information from the entire content simultaneously,
+which can result in content features that do not truly reflect
+the users’ preferences (as shown in Figure 1). Fusing these
+irrelevant content features with behavioral features may mis-
+lead user preference modeling, resulting in suboptimal rec-
+arXiv:2406.00323v2  [cs.IR]  13 Jan 2025
+
+PAGE 2
+Figure 2: Results of visualisation attribution analysis on the TMALL dataset. The first row contains the original item images
+while the second row displays the corresponding heatmaps. The four samples on the left reflect information drift and the four
+samples on the right reflect information omission.
+ommendation performance.
+To answer this question, we introduce a similarity-based
+attribution analysis method for visualizing and intuitively
+analyzing the content features. This method evaluates the
+extent to which content features can reflect user preferences,
+enabling researchers to visually assess the quality of content
+features for the first time. The results indicate that not all
+items’ content features accurately reflect user preferences.
+Due to the presence of irrelevant information, certain items’
+content features exhibit the issues of information drift and
+information omission. As shown in Figure 2, some items’
+content features do not include information about the items
+that users are interested in, but instead erroneously include
+information about unrelated items, a phenomenon we term
+information drift. There are also some items’ content fea-
+tures that omit certain key details of the items, which we re-
+fer to as information omission. These issues ultimately pre-
+vent recommender systems from accurately modeling user
+preferences. Furthermore, we propose a plug-and-play gen-
+eral Behavior-driven Feature Adapter (BeFA) to address the
+discovered issues. This adapter effectively decouples, filters
+and reconstructs content features, leveraging behavioral in-
+formation as a guide to obtain more precise representations
+of content information. Extensive experiments demonstrate
+the adapter’s effectiveness across various recommendation
+methods and feature encoders.
+Our main contributions can be summarized as follows:
+• We introduce a similarity-based visual attribution
+method, which enables researchers to visually analyze
+the quality of content features for the first time.
+• We experimentally revealed the issues of information
+drift and information omission in content features.
+• We propose a general behavior-driven feature adapter,
+which obtain more precise content representation
+through decoupling and reconstructing content features.
+Related Work
+Multimedia Recommendation
+Collaborative filtering (CF) based methods leverage behav-
+ioral similarities for top-k recommendations (Zhang et al.
+2014). To improve the performance of CF-based methods,
+researchers integrate item multimodal content. Typically,
+they employ pre-trained neural networks to extract con-
+tent features, and then fuse content features with behavioral
+features to more effectively model user preference. (Yuan
+et al. 2023). For instance, MMGCN (Wei et al. 2019) cre-
+ates modality-specific interaction graphs. LATTICE (Zhang
+et al. 2021) adds links between similar items. FREEDOM
+(Zhou and Shen 2023) constructs graphs using sensitivity
+edge pruning. Recently, self-supervised learning methods
+like BM3 (Zhou et al. 2023c) and MGCN (Yu et al. 2023)
+further enhance representation quality by reconstructing in-
+teraction graphs and adaptively learning content feature im-
+portance. However, item content information often contains
+much irrelevant information and exhibiting low value den-
+sity. We argue pre-extracted item content features insuf-
+ficiently reflect users’ preferences. Directly incorporating
+these features may mislead user preference modeling, result-
+ing in suboptimal recommendation performance.
+Attribution Analysis
+Modality feature attribution analysis methods such as Class
+Activation Mapping (CAM) (Zhou et al. 2016), Grad-CAM
+(Selvaraju et al. 2017), and Score-CAM (Wang et al. 2020)
+generate heatmaps to visualize the decision-making process
+of convolutional neural networks. Grad-CAM uses gradients
+for better applicability across network architectures. Score-
+CAM weight activation maps with output scores, which
+eliminates the dependence on gradients. However, current
+attribution analysis methods primarily focus on analyzing
+the encoder itself and fail to visually analyze items’ con-
+tent features in recommender systems. Most of these meth-
+ods use gradient information to obtain weights, which re-
+flect more of the encoder focus. As a result, they fail to cap-
+ture the similarity between content features and behavioral
+features, which directly reflect the user’s preferences. Con-
+sequently, these methods are unsuitable for use in recom-
+mender systems. Thus, to better analyze the quality of item
+content features, we need to design a novel similarity-based
+attribution analysis method.
+
+PAGE 3
+Encoder Upsampling Stage 1
+Decoupling
+Masking
+…
+Scoring
+Visualization
+… …
+Stage 2
+Attributing
+Encoder
+Figure 3: Pipeline of the proposed attribution analysis method.
+Parameter-Efficient Adaptation
+In multimodal domains, semantic differences limit fea-
+ture expressiveness, impacting model performance (Khu-
+rana et al. 2023; Rinaldi, Russo, and Tommasino 2023).
+Using pre-trained encoders to extract features in real-world
+scenarios can result in not accurately reflecting user prefer-
+ences. To address this challenge, researchers have explored
+techniques such as fine-tuning and adapters to reduce the
+impact of semantic differences. In the context of recom-
+mendation scenarios where data is continuously changing
+and expanding, performing full fine-tuning of the encoder
+faces huge challenges. Due to the above limitations, we con-
+sider low-parameter fine-tuning methods to efficiently adapt
+content features in real time. Low-Rank Adaptation (LoRA)
+(Hu et al. 2021) integrate low-rank decomposition matrices,
+while Prompt Tuning (Lester, Al-Rfou, and Constant 2021)
+uses learnable embedding vectors as hints. However, adding
+adapters to the middle layer of the pre-trained model may
+lead to information loss. Existing methods are not general-
+ized for recommendation tasks. They fail to adequately in-
+corporate behavioral information, which is crucial for intu-
+itively reflecting users’ preferences.
+Preliminaries
+Attribution Analysis
+Existing attribution methods are mainly focused on pre-
+trained encoders, which can only analyze the quality of the
+content features themselves, fail to reflect their contributions
+to recommendations. Considering that behavioral features
+directly reflect user preferences in recommendation, we pro-
+pose a similarity-based attribution analysis. This method ex-
+plores the quality of content features extracted by a pre-
+trained encoder in recommendations. By calculating the co-
+sine similarity of each pixel to the behavioral features, we
+generate a heatmap that visually identifies the content fea-
+tures relevant to users’ behaviors.
+We follow the core principle of Class Activation Mapping
+(CAM) to linearly weight feature maps. The main difference
+compared to the previous series of CAM methods is the way
+in which the linear weights are obtained. Our approach con-
+sists of two primary stages. In the first stage, we take the item
+image I as input to the corresponding encoder, obtaining N
+images on the corresponding channels at the target layer de-
+noted as al. Then we upsample it, denoted as aup
+l . This is
+done to generate masked images corresponding to different
+parts. Considering in all types of encoders, layers closer to
+the prediction layer contain the highest level and most ab-
+stract information (Vaswani et al. 2017). Consequently, for
+the ResNet family visual encoder, we select the last ReLU
+layer of the final Bottleneck as the target layer, while for
+the ViT family visual encoder, we choose the penultimate
+ResidualAttentionBlock. The corresponding content feature
+xl is extracted from each mask aup
+l . Behavioural features
+hi are obtained from existing multimedia recommendation
+models. The weights of the corresponding content features
+are obtained by calculating the similarity between them.
+similarity(xl, hi) = xl · hi
+∥xl∥ · ∥hi∥ (1)
+Ultimately, the final visualization result is achieved by lin-
+early weighting and summing the feature maps with the sim-
+ilarity. The heatmap M is represented as:
+M =
+NX
+l
+al × similarity(fpre(Ic ⊙ aup
+l ), hi) (2)
+where ⊙ is the Hadamard product. Ic are the all color chan-
+nels of the image. fpre denotes the process of extracting fea-
+tures using the corresponding encoder.
+Deficiency Analysis
+From Figure 2 we observed that the pre-trained feature en-
+coder suffers from the issues of wrong region of interest (in-
+
+PAGE 4
+Encoder
+Decomposition
+Encoder
+Reconstruction
+Decomposition
+Reconstruction
+Recommender System
+Visual Prompt
+Textual Prompt
+Decoupler
+Reconstruction
+Decoupler
+Reconstruction
+(a) Low-Rank Adaptation (b) Soft Prompt Turning (c) Behavior-driven Adaptation
+FilterFilter
+Encoder
+Recommender System
+Encoder
+Recommender System
+Encoder
+Encoder
+This red and b-
+lack plaid dress 
+features a fitted 
+silhouette and a 
+knee-length …
+This red and b-
+lack plaid dress 
+features a fitted 
+silhouette and a 
+knee-length …
+This red and b-
+lack plaid dress 
+features a fitted 
+silhouette and a 
+knee-length …
+Figure 4: Comparison of parameter tuning methods. (a) Low-Rank Adaptation (b) Soft Prompt Turning (c) BeFA.
+formation drift) and insufficient region of interest (informa-
+tion omission). Specifically, although the user wants to buy
+clothes, the feature encoder incorrectly focuses on the face
+of the person who wears the cloth, a phenomenon we call
+information drift. Meanwhile, we also found that some of
+the features did not fully reflect all the characteristics of the
+item. Such as only focusing on certain details of the clothes
+and failing to focus on its whole, a phenomenon we call
+information omission. Information drift can cause the rec-
+ommender system to ignore useful and critical information.
+This leads to a loss of important guidance for the recommen-
+dation task. Which lead a mismatch between recommenda-
+tions and users’ preferences. Information omission can re-
+sult in important visual or textual cues being ignored or in-
+complete. This causes a loss of critical information needed
+for the recommendation task. These issues compromise the
+overall performance of the recommender system. As a re-
+sult, directly applying the pre-extracted content features will
+inevitably impair the performance of the recommender sys-
+tem. In the Appendix, we perform a theoretical analysis to
+further illustrate the point.
+Feature Adapter
+To address the discovered issues, we propose Behavior-
+driven Feature Adapter (BeFA). The purpose of this adapter
+is to efficiently adapt content features to improve their qual-
+ity in recommendations, thus improving the performance
+of recommendations. Specifically, the content features are
+first extracted by a pre-trained encoder and then adapted by
+BeFA. Then it is fed into the multimodal recommender sys-
+tem for item and user modeling. BeFA and the downstream
+recommender system share the optimization objective and
+adopt End-to-End training strategy.
+Problem Formulation
+Let u ∈ Uand i ∈ Idenote the user and item, respectively.
+The input behavioral features for user u and item i are rep-
+resented as Eb ∈ Rd×(|U |+|I|), where d is the embedding
+dimension. Each row represents the user embedding hu and
+item embedding hi. They are initialised with ID informa-
+tion (He and McAuley 2016). Each item content feature is
+denoted as ei,m ∈ Rdm, where dm is the dimension of the
+features. m ∈ Mrepresents the modality andM is the set of
+modalities. Multimedia recommendation aims to rank items
+for each user by predicting preference scores ˆyu,i, which in-
+dicates the possibility of interaction between the user u and
+the item i. The recommended process can be viewed as a
+function f (·). This process can be viewed simply as:
+ˆyu,i = f (hu, hi, ei,m) (3)
+Existing multimodal recommendation methods typically use
+pre-trained encoders to extract content featuresei,m. Due to
+the deficiencies of the pre-trained encoder, a large deviation
+in the content features ei,m leads to a bias in the predic-
+tion score ˆyu,i, which affects the recommendation results.
+Therefore, we designed BeFA to adapt the content features
+to make them more suitable for recommendation. BeFA im-
+proves the recommendation results by adjustingei,m, which
+can be viewed as a function g(·). The adjusted predicted
+preference scores is donated:
+ˆyu,i = f [hu, hi, g(hi, ei,m)] (4)
+Behavior-driven Feature Adapter
+Due to the shortcomings of pre-trained feature encoders,
+their extracted content features contain amount of ir-
+relevant and erroneous information. To better utilize
+modality information,we propose Behaviour-driven Feature
+Adapter(BeFA) for adapting content features. Firstly, we de-
+couple the original itemi content features ei,m in the decou-
+pled feature space:
+˙ei,m = W1ei,m + b1, (5)
+where W1 ∈ Rdm×da and b1 ∈ Rda represent train-
+able transformation matrix and bias vector. da is a hyper-
+parameter represents the dimension of the decoupled space.
+Considering that the behavioral information reflects the
+users’ preference (Yuan et al. 2023), we filter the preference-
+related content features with the guidance of behavioral in-
+formation. The filter function f m
+gate(·) is represented as:
+¨ei,m = f m
+gate(bi, ˙ei,m) = bi ⊙ tanh(W2 ˙ei,m + b2), (6)
+
+PAGE 5
+TMALL Microlens H&MEncoder Datasets R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20
+BM3 0.0189 0.0298 0.0102 0.0132 0.0510 0.0851 0.0278 0.0375 0.0204 0.0320 0.0114 0.0144
+BM3+BeFA 0.0212 0.0319 0.0115 0.0144 0.0566 0.0911 0.0314 0.0412 0.0266 0.0391 0.0157 0.0190
+Improve 12.17% 7.05% 12.75% 9.09% 10.98% 7.05% 12.95% 9.87% 30.39% 22.19% 37.72% 31.94%
+LATTICE 0.0238 0.0356 0.0134 0.0167 0.0553 0.0886 0.0308 0.0402 0.0289 0.0427 0.0161 0.0197
+LATTICE+BeFA 0.0260 0.0403 0.0183 0.0183 0.0593 0.0943 0.0328 0.0427 0.0317 0.0498 0.0171 0.0217
+Improve 9.24% 13.20% 36.57% 9.58% 7.23% 6.43% 6.49% 6.22% 9.69% 16.63% 6.21% 10.15%
+FREEDOM 0.0212 0.0340 0.0113 0.0148 0.0474 0.0774 0.0262 0.0348 0.0348 0.0526 0.0188 0.0234
+FREEDOM+BeFA 0.0253 0.0375 0.0136 0.0170 0.0503 0.0814 0.0279 0.0368 0.0409 0.0583 0.0226 0.0271
+Improve 19.34% 10.29% 20.35% 14.86% 6.12% 5.17% 6.49% 5.75% 17.53% 10.84% 20.21% 15.81%
+MGCN 0.0249 0.0380 0.0135 0.0171 0.0618 0.0972 0.0342 0.0442 0.0367 0.0549 0.0204 0.0251
+MGCN+BeFA 0.0261 0.0395 0.0142 0.0179 0.0630 0.1000 0.0351 0.0456 0.0405 0.0594 0.0225 0.0274
+Improve 4.82% 3.95% 5.19% 4.68% 1.94% 2.88% 2.63% 3.17% 10.35% 8.20% 10.29% 9.16%
+CLIP
+Avg Improve 11.39% 8.62% 18.71% 9.55% 6.57% 5.38% 7.14% 6.25% 16.99% 14.46% 18.61% 16.77%
+BM3 0.0184 0.0299 0.0097 0.0129 0.0508 0.0842 0.0279 0.0373 0.0195 0.0304 0.0107 0.0135
+BM3+BeFA 0.0224 0.0322 0.0125 0.0152 0.0537 0.0877 0.0299 0.0395 0.0248 0.0378 0.0149 0.0183
+Improve 21.74% 7.69% 28.87% 17.83% 5.71% 4.16% 7.17% 5.90% 27.18% 24.34% 39.25% 35.56%
+LATTICE 0.0252 0.0374 0.0139 0.0173 0.0580 0.0953 0.0320 0.0426 0.0293 0.0439 0.0164 0.0202
+LATTICE+BeFA 0.0266 0.0403 0.0147 0.0184 0.0633 0.1021 0.0340 0.0451 0.0316 0.0498 0.0171 0.0218
+Improve 5.56% 7.75% 5.76% 6.36% 9.14% 7.14% 6.25% 5.87% 7.85% 13.44% 4.27% 7.92%
+FREEDOM 0.0197 0.0319 0.0107 0.0140 0.0613 0.0976 0.0337 0.0440 0.0364 0.0553 0.0192 0.0241
+FREEDOM+BeFA 0.0259 0.0377 0.0141 0.0174 0.0641 0.1004 0.0356 0.0459 0.0417 0.0613 0.0234 0.0285
+Improve 31.47% 18.18% 31.78% 24.29% 4.57% 2.87% 5.64% 4.32% 14.56% 10.85% 21.88% 18.26%
+MGCN 0.0266 0.0403 0.0144 0.0182 0.0693 0.1075 0.0388 0.0496 0.0405 0.0613 0.0218 0.0272
+MGCN+BeFA 0.0275 0.0414 0.0152 0.0185 0.0702 0.1085 0.0389 0.0498 0.0451 0.0655 0.0246 0.0299
+Improve 3.38% 2.73% 5.56% 1.65% 1.30% 0.93% 0.26% 0.40% 11.36% 6.85% 12.84% 9.93%
+ImageBind
+Avg Improve 15.54% 9.09% 17.99% 12.53% 5.18% 3.77% 4.83% 4.12% 15.24% 13.87% 19.56% 17.92%
+Table 1: Performance Comparison on Different Recommender Models. The t-tests validate the significance of performance
+improvements with p-value ≤ 0.05.
+where W2 ∈ Rda×da and b2 ∈ Rda are trainable param-
+eters, bi denotes the behavioral information of item i. Here
+tanh(·) is the Tanh non-linear transformation.
+Finally, the decoupled content features are selectively re-
+combined. By combining different decoupled features with
+behavioral guidance, we aim to enhance the system’s ability
+to capture nuanced and contextually relevant aspects of the
+content. The combination function f m
+merge is represented as:
+ei,m = f m
+merge(bi, ¨ei,m) = bi ⊙ σ(W3¨ei,m + b3), (7)
+where W3 ∈ Rda×dm and b3 ∈ Rdm are trainable parame-
+ters. σ(·) is the sigmoid non-linear transformation. It is im-
+portant to note that although Equations 6 and 7 are formally
+similar, they achieve different effects.
+Moreover, we introduce ReLU activation functions and
+Dropout between each transformation layer. This enables the
+model to learn non-linear relationships, thereby improving
+its fitting ability and expressive power. Additionally, it en-
+hances the model’s generalization, making it more suitable
+for practical application scenarios.
+Experiments
+Experimental Settings
+Datasets We conducted experiments on three publicly
+available datasets: (a) TMALL 1; (b) Microlens 2; and (c)
+1https://tianchi.aliyun.com/dataset/140281
+2https://recsys.westlake.edu.cn/MicroLens-50k-Dataset/
+H&M3. The detailed information is presented in the Ap-
+pendix. For multimodal information, we utilized pre-trained
+CLIP (Radford et al. 2021) and ImageBind (Girdhar et al.
+2023) to extract aligned multimodal features.
+Comparative Model Evaluation To verify the preva-
+lence of feature encoder defects, we used ViT-B/32-based
+CLIP and ImageBind for our experiments. CLIP and Image-
+Bind are advanced cross-modality feature encoders. CLIP
+known for its broad applicability and efficiency, and Image-
+Bind achieving SOTA performance in zero-shot recognition
+across various modalities. To evaluate the effectiveness of
+BeFA, we applied it to several representative multimodal
+recommendation models, including LATTICE (Zhang et al.
+2021), BM3 (Zhou et al. 2023c), FREEDOM (Zhou and
+Shen 2023), and MGCN (Yu et al. 2023). Additionally,
+we compared BeFA with existing efficient parameter tuning
+methods, including LoRA (Hu et al. 2021) and Soft-Prompt
+Tuning (Lester, Al-Rfou, and Constant 2021).
+Evaluation Protocols & Implementation Due to the
+length of the article, the details are shown in the Appendix.
+Overall performance
+The effectiveness of BeFA. Table 1 demonstrates that our
+adapter enhances recommendation performance across all
+3https://www.kaggle.com/datasets/odins0n/handm-dataset-
+128x128
+
+PAGE 6
+TMALL Microlens H&MDadasets R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20
+BM3 0.0189 0.0298 0.0102 0.0132 0.0510 0.0851 0.0278 0.0375 0.0204 0.0320 0.0114 0.0144
+BM3+LoRA 0.0215 0.0333 0.0117 0.0150 0.0510 0.0850 0.0280 0.0376 0.0191 0.0290 0.0110 0.0135
+BM3+SoftPrompt 0.0193 0.0298 0.0102 0.0131 0.0517 0.0861 0.0285 0.0382 0.0202 0.0311 0.0114 0.0142
+BM3+BeFA 0.0212 0.0319 0.0115 0.0144 0.0566 0.0911 0.0314 0.0412 0.0266 0.0391 0.0157 0.0190
+LATTICE 0.0238 0.0356 0.0134 0.0167 0.0553 0.0886 0.0308 0.0402 0.0289 0.0427 0.0161 0.0197
+LATTICE+LoRA 0.0254 0.0384 0.0147 0.0183 0.0550 0.0884 0.0304 0.0399 0.0289 0.0434 0.0163 0.0201
+LATTICE+SoftPrompt 0.0266 0.0389 0.0148 0.0182 0.0539 0.0889 0.0294 0.0393 0.0301 0.0459 0.0166 0.0207
+LATTICE+BeFA 0.0260 0.0403 0.0183 0.0183 0.0593 0.0943 0.0328 0.0427 0.0317 0.0498 0.0171 0.0217
+FREEDOM 0.0212 0.0340 0.0113 0.0148 0.0474 0.0774 0.0262 0.0348 0.0348 0.0526 0.0188 0.0234
+FREEDOM+LoRA 0.0197 0.0323 0.0106 0.0141 0.0476 0.0774 0.0264 0.0349 0.0352 0.0533 0.0190 0.0237
+FREEDOM+SoftPrompt 0.0215 0.0342 0.0118 0.0154 0.0465 0.0769 0.0258 0.0345 0.0406 0.0577 0.0224 0.0268
+FREEDOM+BeFA 0.0243 0.0364 0.0131 0.0164 0.0503 0.0814 0.0279 0.0368 0.0409 0.0583 0.0226 0.0271
+MGCN 0.0249 0.0380 0.0135 0.0171 0.0618 0.0972 0.0342 0.0442 0.0367 0.0549 0.0204 0.0251
+MGCN+LoRA 0.0260 0.0391 0.0141 0.0179 0.0598 0.0963 0.0335 0.0438 0.0367 0.0554 0.0203 0.0252
+MGCN+SoftPrompt 0.0260 0.0391 0.0144 0.0180 0.0597 0.0955 0.0334 0.0435 0.0375 0.0557 0.0207 0.0254
+MGCN+BeFA 0.0261 0.0395 0.0142 0.0179 0.0630 0.1000 0.0351 0.0456 0.0405 0.0594 0.0225 0.0274
+Avg Improve 2.44% 1.71% 7.89% 0.48% 6.08% 4.98% 6.25% 5.67% 11.11% 9.59% 12.58% 11.44%
+Table 2: Performance Comparison with other Efficient Parameter Adaptation methods. The best result is in boldface and the
+second best is underlined. The t-tests validate the significance of performance improvements with p-value ≤ 0.05.
+Figure 5: Visualization analysis of the effect of adapter on
+feature purification. The shade of the colour represents the
+amount of attention weight.
+three datasets. Specifically, our adapter has achieved aver-
+age improvements of 9.07% and 11.02% over the baseline in
+terms of Recall@20 and NDCG@20. This suggests that the
+pre-extracted content features do have deficiencies that neg-
+atively impact recommendation performance. Our process-
+ing of content features effectively reduces modality noise.
+This helps the multimodal recommendation models to better
+utilize the modality information and thus improve the rec-
+ommendation performance. Furthermore, Table 2 shows the
+performance of our adapter is better than existing efficient
+parameter tuning methods, highlighting its superior suitabil-
+ity for recommendation tasks. This suggests that our adapter
+uses behavioral information to better capture user-preferred
+content features, thus improving the performance.
+The generalization of BeFA. From Table 1, we observe
+that BeFA improves performance across various multimodal
+recommendation models, highlighting its effectiveness as a
+Dataset Method #Param. Time/E
+TMALL
+BM3 9.45M 0.38s
+BM3+LoRA +4.10K +0.04s
+BM3+SoftPrompt +0.13K +0.02s
+BM3+BeFA +0.20M +0.08s
+Microlens
+BM3 18.36M 0.98s
+BM3+LoRA +4.10K +0.07s
+BM3+SoftPrompt +0.13K +0.04s
+BM3+BeFA +0.20M +0.15s
+H&M
+BM3 21.26M 1.20s
+BM3+LoRA +4.10K +0.04s
+BM3+SoftPrompt +0.13K +0.01s
+BM3+BeFA +0.20M +0.12s
+Table 3: The training cost. #Param: number of tunable pa-
+rameters, Time/E: averaged training time for one epoch.
+generic plugin for all multimodal recommendations. Exist-
+ing multimedia recommendation methods ignore this prob-
+lem, thus leading to suboptimal results. Enhancing content
+features by BeFA, can make the content features better re-
+flect the users’ preference information. Thus make the ex-
+isting methods more accurately model the users’ preference.
+Meanwhile, BeFA enhances performance for all types of en-
+coders, indicating thar pre-trained encoders are generally de-
+fective. It can also be found that although more advanced
+feature encoder (ImageBind) can be used to extract infor-
+mation more comprehensively. The extracted features still
+contain a large amount of irrelevant information, resulting
+in generally do not accurately reflect the user’s preference.
+The efficiency of BeFA. From Table 3, we observe that
+our adapter is more complex compared to LoRA and Soft-
+Prompt Tuning. However, the increase in the number of pa-
+rameters after using our adapter remains small, ranging from
+0.93% to 2.09% of the overall recommender system’s pa-
+rameters. The increase in overall training time is only about
+
+PAGE 7
+Figure 6: Comparison between different parameter-efficient
+adaptation methods.
+15%, which is comparable with other existing methods. This
+suggests that although our adapter is more complex and in-
+troduces additional parameters, it does not impose a burden
+on the training process.The substantial improvement in per-
+formance of our adapter highlights its efficiency. It trades
+a small increase in parameters and training time for a im-
+provement in recommendation performance.
+Visualization Analysis
+BeFA guides content features to more accurately reflect
+user preferences. To visually demonstrate the effect of our
+adapter on content features, we applied the purified features
+to the proposed visualization attribution analysis. As shown
+in Figure 5, our adapter addresses issues of information drift
+and information omission. The adapted features focus more
+on the recommended items, with a marked decrease in at-
+tention to background elements unrelated to the recommen-
+dation. Additionally, the adapted features more comprehen-
+sively capture item details. This comprehensive extraction of
+item details improves feature recognition, which enhances
+the recommender system’s ability to model item features.
+Thus provides more relevant and accurate results when mak-
+ing recommendations. We also visualized the effect of BeFA
+on the distribution of visual representations. We find that the
+adapted features more accurately reflect the detailed infor-
+mation of the items, and the discriminability of the features
+is clearly improved. This is reflected in the distribution as a
+noticeable improvement in homogeneity (Wang et al. 2022).
+BeFA is generalized with different encoders. We utilize
+the content features extracted by two representative multi-
+modal feature encoders, the ViT-32/B version of CLIP and
+ImageBind, and analyze the heatmaps of the content features
+within different downstream recommendation models after
+applying BeFA. Our analysis reveals that the content fea-
+tures extracted by both encoders exhibit issues of informa-
+tion drift and information omission. After applying BeFA,
+these content features are better reflect the recommended
+items themselves. This demonstrates that the deficiencies of
+pre-trained feature encoders are common in multimodal rec-
+ommendation tasks, while our adapter effectively adapts to
+the content features extracted by different feature encoders,
+highlighting its general applicability.
+Figure 7: The effectiveness of BeFA on different scenarios.
+The top image is the heatmap and the bottom one is the
+heatmap after applying BeFA.
+BeFA outperformance than other parameter tuning
+methods. We visualize and analyze the content features
+adapted by LoRA and Soft-Prompt Tuning, as shown in Fig-
+ure 6. The results indicate that although LoRA and Soft-
+Prompt Tuning offer some optimization, the degree of adap-
+tation is limited. These methods do not sufficiently address
+issues of information drift and omission, failing to focus ac-
+curately on the content of the item itself. This explains why
+existing adaptation methods perform poorly in recommen-
+dation tasks. In contrast, BeFA has a greater impact on con-
+tent characterisation than existing methods. The quality of
+its adjusted content features is obviously higher. It can bet-
+ter model the items and thus improve the performance.
+BeFA performs well across various scenarios. We em-
+ployed three datasets ranging from simple to complex sce-
+narios. The H&M dataset comprises only item images with
+minimal interference, making it relatively clean. In contrast,
+the Microlens dataset comprises more complex images with
+more background interference. Our adapter demonstrated
+improvements across both datasets. Specifically, on the
+H&M dataset, it increases Recall@20 and NDCG@20 by
+14.17% and 17.34%. Meanwhile, on the Microlens dataset,
+our adapter increases Recall@20 and NDCG@20 by 4.58%
+and 5.19%. BeFA reduces the interference between content
+features and filters and retains the most relevant features for
+the recommendation task, as illustrated in Figure 7. As a re-
+sult, it achieves better recommendation results even in vari-
+ous complex situations.
+Hyperparameter Analysis
+Due to the length of the article, specific analyses are pro-
+vided in the Appendix.
+Conclusion
+In this paper, we introduce an attribution analysis for visu-
+alization analyzing deficiencies of the content features. We
+found that the content features suffer from information drift
+and information omission, which lead to a decrease in the
+performance of the recommender systems. To address these
+issues, we propose Behavior-driven Feature Adapter (BeFA)
+which refine content features through the guidance of be-
+havioral information. In our future work, we consider fur-
+ther designing more effective parameter-efficient adaptation
+methods.
+
+PAGE 8
+Appendix
+Theoretical Analysis
+In this section, we reveal the deficiencies of content fea-
+tures extracted by pre-trained feature encoders within the
+embedding space. Furthermore, we demonstrate that opti-
+mizing the consistency between the extracted features and
+the ideal features necessary for accurate recommendation
+predictions can significantly enhance recommendation per-
+formance. This analysis provides theoretical support for the
+effectiveness of our proposed adapter.
+Analyzing features in the embedding space enables a bet-
+ter understanding and interpretation of their relationships.
+Formally, considering an item i and its representation ei,m
+in the embedding space, which represents the ideal content
+feature required by the recommendation model. On the ba-
+sis of the item feature representation ei,m in the embed-
+ding space, the recommender system calculates the proba-
+bility distribution of the rating or clicking behavior of the
+user u on the item i, which can be viewed as the predic-
+tion P (rui|ei,m, hi, hu). Where rui stands for the rating or
+click behavior of the useru on item i. Our objective is to find
+the optimal content feature ei,m to maximize the posterior
+distribution. This can be formally described by the following
+objective function:
+L(ei,m) = arg max
+ei,m
+P (rui|ei,m, hi, hu) (8)
+The representation e′
+i,m extracted by the feature encoder
+can be seen as the prior distribution. However, there are de-
+viations between the pre-extracted features and the ideal fea-
+tures. Let us denote this deviation as θ.
+θ = arccos
+ 
+ei,m · e′
+i,m
+∥ei,m∥∥e′
+i,m∥
+!
+(9)
+A smaller θ indicates that the two representations are very
+close in the embedding space. This implies a high consis-
+tency between the pre-extracted features and the ideal fea-
+tures, which benefits the recommendation system in accu-
+rately capturing user interests and item similarities. By re-
+ducing θ, the features become closer to the ideal features,
+thereby enhancing the performance of the recommendation
+system.
+The part p of the representation e′
+i,m extracted by the en-
+coder that is truly effective for the recommendation task can
+be represented as follows:
+p = e′
+i,m ·
+ 
+ei,m · e′
+i,m
+|ei,m||e′
+i,m|
+!
+= e′
+i,m · cos(θ) (10)
+When the deviation θ is large, as e′
+i,m in Figure A1, content
+features exhibit the issues of information omission, causing
+the effective length of p deviates significantly from ei,m.
+This results in a lack of crucial information in the extracted
+features, reflected as insufficient region of interest in the
+heatmap. Conversely, when θ is too large,as ej,m in Fig-
+ure A1, content features exhibit the issues of information
+drift, with p being located in the wrong quadrant and its
+effective direction opposing ei,m. This introduces a large
+θ 
+Embedding Space
+ei,m
+ei,m’
+p
+ej,m
+Figure A1: An illustration of a theoretical analysis of defi-
+ciency analysis
+amount of incorrect information, reflected as incorrect re-
+gion of interest in the heatmap. In such circumstances, the
+recommendation system is easily to make incorrect rec-
+ommendations, because the feature representation contra-
+dicts the users’ preferences, failing to appropriately reflect
+the characteristics of items or users. In the recommenda-
+tion task, we aim for a smaller deviation between e′
+i,m and
+ei,m. To formalize this objective, we define an error func-
+tion D(e′
+i,m, ei,m) to measure the deviation between the
+representations:
+D(e′
+i,m, ei,m) =
+ 
+1 −
+e′
+i,m · ei,m
+∥e′
+i,m∥∥ei,m∥
+!
+(11)
+We seek to minimize the expected deviation measure∆. We
+can define ∆ as:
+∆ = EP (e′
+i,m)[D(e′
+i,m, ei,m)] (12)
+A decline in the quality of e′
+i,m, indicated by an increase
+in the value of the error function D(e′
+i,m, ei,m), donates
+an augmented diversity between the representation extracted
+by the pre-trained encoder e′
+i,m and the ideal representation
+ei,m. Consequently, this leads to an increase in the expected
+deviation ∆, subsequently influencing the posterior distribu-
+tion P (rui|ei,m, hi, hu). Such circumstances may impair
+the recommendation system’s ability to accurately captur-
+ing the users’ preferences, thereby reducing the accuracy
+of recommendations. By minimizing ∆, we can ensure that
+the representation e′
+i,m are closer to the ideal representation
+ei,m in expectation. This adaptation of content features en-
+hances the consistency with the ideal representation and thus
+improves the performance of the recommender system.
+Experiments
+Datasets We conducted experiments on three publicly
+available datasets: (a) TMALL 4; (b) Microlens 5; and (c)
+4https://tianchi.aliyun.com/dataset/140281
+5https://recsys.westlake.edu.cn/MicroLens-50k-Dataset/
+
+PAGE 9
+Dataset #User #Item #Behavior Density
+TMALL 13,104 7,848 151,928 0.148%
+Microlens 46,420 14,079 332,730 0.051%
+H&M 43,543 16,915 369,945 0.050%
+Table A1: Statistics of the experimental datasets
+H&M6. All these three datasets are real-world datasets. We
+performed 10-core filtering on the raw data. The detailed in-
+formation of the filtered data is presented in Table A1.
+Evaluation Protocols For a fair comparison, we follow
+the evaluation settings in (Zhang et al. 2021; Zhou et al.
+2023c) with the same 8:1:1 data splitting strategy for train-
+ing, validation and testing. Besides, we follow the all-
+ranking protocol to evaluate the top-K recommendation
+performance and report the average metrics for all users
+in the test set: R@K and N@K, which are abbreviations
+for Recall@K (Powers 2020) and NDCG@k (J¨arvelin and
+Kek¨al¨ainen 2002), respectively.
+Implementation We implement MMRec 7 (Zhou 2023)
+based on PyTorch, which is a unified public repository de-
+signed for multimodal recommendation methods. To ensure
+fair comparison, we employed the Adam optimizer to op-
+timize all methods and referred to the best hyperparameter
+settings reported in the original baseline paper. For general
+settings, we initialized embeddings with Xavier initializa-
+tion of dimension 64, set the regularization coefficient to
+λE = 10 −4, and batch size to B = 2048 . Early stopping
+and total epochs are fixed at 10 and 1000, respectively. We
+selecte the best model with the highestRecall@20 metric on
+the validation set and reported metrics on the test set accord-
+ingly. Our experiments are done using RTX 4090 on win-
+dows system.
+Hyperparameter Analysis We investigate the size of the
+decoupling space relative to the original embedding space,
+as shown in Fig.A2. The results show that the optimal
+size of the decoupling space is about four times the size
+of the original embedding space on some datasets. When
+the decoupling space dimension is small (e.g., 0.125x and
+0.25x), it may create an information bottleneck, leading to
+poor performance across all datasets in both Recall@20 and
+NCGD@20. A smaller decoupling space cannot hold suffi-
+cient information, making it difficult for the model to accu-
+rately capture and differentiate features, thereby negatively
+impacting recommendation performance. Conversely, an ex-
+cessively large decoupling space dimension may lead to di-
+mensionality catastrophe, introducing noise and redundant
+features which complicates the model’s ability to effectively
+distinguish and learn features in a high-dimensional space.
+Additionally, its number of parameters and the computa-
+tional cost will increase dramatically, bringing additional
+6https://www.kaggle.com/datasets/odins0n/handm-dataset-
+128x128
+7https://github.com/enoche/MMRec
+0.125 0.25 0.5 1 2 4 8
+0.0780
+0.0785
+0.0790
+0.0795
+0.0800
+0.0805
+0.0810
+0.0815
+0.0820
+/uni00000035/uni00000048/uni00000046/uni00000044/uni0000004f/uni0000004f/uni00000023/uni00000015/uni00000013
+Microlens
+Recall@20
+NDCG@20
+0.125 0.25 0.5 1 2 4 8
+0.0220
+0.0225
+0.0230
+0.0235
+0.0240
+0.0245
+0.0250
+0.0255
+0.0260
+/uni00000035/uni00000048/uni00000046/uni00000044/uni0000004f/uni0000004f/uni00000023/uni00000015/uni00000013
+TMALL
+Recall@20
+NDCG@20
+0.0360
+0.0362
+0.0364
+0.0366
+0.0368
+0.0370
+/uni00000031/uni00000027/uni00000026/uni0000002a/uni00000023/uni00000015/uni00000013
+0.0164
+0.0166
+0.0168
+0.0170
+0.0172
+0.0174
+0.0176
+0.0178
+0.0180
+/uni00000031/uni00000027/uni00000026/uni0000002a/uni00000023/uni00000015/uni00000013
+Figure A2: Performance comparison w.r.t. different size of
+the decoupling space relative to the original embedding
+space λ.
+burden to the training process, which is impractical for prac-
+tical application scenarios.
+Furthermore, we find that there is a significant differ-
+ence in the performance of Microlens, TMALL and H&M
+datasets under varying decoupling space sizes. For the Mi-
+crolens dataset,the optimal performance is achieved when
+the decoupling space size is four times of the original em-
+bedding space. In contrast, in the TMALL dataset, although
+the overall trend is similar, the optimal point fluctuates
+slightly, suggesting that the size of the decoupling space may
+need to be adjusted on different datasets to obtain optimal
+results. The overall adapter performance fluctuates greatly
+with the change in the decoupling space size, highlighting
+the challenge of finding the optimal size. This is one of the
+limitations of our work, which could be addressed by con-
+sidering the decoupling space size as a learnable parameter
+in future research. This approach could adaptively adjust the
+decoupling space size for different application scenarios to
+achieve the best performance.
+Acknowledgment
+This work was supported the National Nature Science Foun-
+dation of China under Grants (No.62325206, 72074038),
+the Key Research and Development Program of Jiangsu
+Province under Grant BE2023016-4, the Natural Science
+Foundation of Jiangsu Province (BK.20210595) and the
+Postgraduate Research & Practice Innovation Program of
+Jiangsu Province under Grant (KYCX23 1026).
+References
+Chen, L.; Wu, L.; Hong, R.; Zhang, K.; and Wang, M. 2020.
+Revisiting graph based collaborative filtering: A linear resid-
+ual graph convolutional network approach. In Proceedings
+of the AAAI conference on artificial intelligence, volume 34,
+27–34.
+Chen, P.; Li, Q.; Biaz, S.; Bui, T.; and Nguyen, A. 2022.
+gScoreCAM: What objects is CLIP looking at? In Proceed-
+ings of the Asian Conference on Computer Vision , 1959–
+1975.
+Dosovitskiy, A.; Beyer, L.; Kolesnikov, A.; Weissenborn,
+D.; Zhai, X.; Unterthiner, T.; Dehghani, M.; Minderer, M.;
+Heigold, G.; Gelly, S.; et al. 2020. An image is worth 16x16
+words: Transformers for image recognition at scale. arXiv
+preprint arXiv:2010.11929.
+
+PAGE 10
+Girdhar, R.; El-Nouby, A.; Liu, Z.; Singh, M.; Alwala, K. V .;
+Joulin, A.; and Misra, I. 2023. Imagebind: One embedding
+space to bind them all. In Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition ,
+15180–15190.
+He, K.; Zhang, X.; Ren, S.; and Sun, J. 2016. Deep resid-
+ual learning for image recognition. In Proceedings of the
+IEEE conference on computer vision and pattern recogni-
+tion, 770–778.
+He, R.; and McAuley, J. 2016. VBPR: visual bayesian per-
+sonalized ranking from implicit feedback. In Proceedings of
+the AAAI conference on artificial intelligence, volume 30.
+Howard, J.; and Ruder, S. 2018. Universal language
+model fine-tuning for text classification. arXiv preprint
+arXiv:1801.06146.
+Hu, E. J.; Shen, Y .; Wallis, P.; Allen-Zhu, Z.; Li, Y .; Wang,
+S.; Wang, L.; and Chen, W. 2021. Lora: Low-rank adaptation
+of large language models. arXiv preprint arXiv:2106.09685.
+J¨arvelin, K.; and Kek¨al¨ainen, J. 2002. Cumulated gain-based
+evaluation of IR techniques. ACM Transactions on Informa-
+tion Systems (TOIS), 20(4): 422–446.
+Jin, Y .; Li, Y .; Yuan, Z.; and Mu, Y . 2023. Learning Instance-
+Level Representation for Large-Scale Multi-Modal Pretrain-
+ing in E-commerce. In Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition ,
+11060–11069.
+Ju, H.; Kang, S.; Lee, D.; Hwang, J.; Jang, S.; and Yu, H.
+2024. Multi-Domain Recommendation to Attract Users via
+Domain Preference Modeling. In Proceedings of the AAAI
+Conference on Artificial Intelligence , volume 38, 8582–
+8590.
+Khurana, D.; Koli, A.; Khatter, K.; and Singh, S. 2023. Nat-
+ural language processing: State of the art, current trends and
+challenges. Multimedia tools and applications, 82(3): 3713–
+3744.
+Lester, B.; Al-Rfou, R.; and Constant, N. 2021. The
+power of scale for parameter-efficient prompt tuning. arXiv
+preprint arXiv:2104.08691.
+Li, B.; Li, F.; Gao, S.; Fan, Q.; Lu, Y .; Hu, R.; and Zhao,
+Z. 2023. Efficient Prompt Tuning for Vision and Language
+Models. In International Conference on Neural Information
+Processing, 77–89. Springer.
+Li, H.; Sun, J.; Xu, Z.; and Chen, L. 2017. Multimodal 2D+
+3D facial expression recognition with deep fusion convolu-
+tional neural network. IEEE Transactions on Multimedia ,
+19(12): 2816–2831.
+Liu, J.; Sun, L.; Nie, W.; Jing, P.; and Su, Y . 2024. Graph
+Disentangled Contrastive Learning with Personalized Trans-
+fer for Cross-Domain Recommendation. In Proceedings of
+the AAAI Conference on Artificial Intelligence , volume 38,
+8769–8777.
+Liu, Y .; Pham, T.-A. N.; Cong, G.; and Yuan, Q. 2017. An
+Experimental Evaluation of Point-of-interest Recommenda-
+tion in Location-based Social Networks. Proc. VLDB En-
+dow., 10: 1010–1021.
+Ni, Y .; Cheng, Y .; Liu, X.; Fu, J.; Li, Y .; He, X.;
+Zhang, Y .; and Yuan, F. 2023. A Content-Driven Micro-
+Video Recommendation Dataset at Scale. arXiv preprint
+arXiv:2309.15379.
+Papadakis, H.; Papagrigoriou, A.; Panagiotakis, C.; Kosmas,
+E.; and Fragopoulou, P. 2022. Collaborative filtering rec-
+ommender systems taxonomy. Knowledge and Information
+Systems, 64(1): 35–74.
+Parchas, P.; Naamad, Y .; Van Bouwel, P.; Faloutsos, C.; and
+Petropoulos, M. 2020. Fast and effective distribution-key
+recommendation for amazon redshift. Proceedings of the
+VLDB Endowment, 13(12): 2411–2423.
+Powers, D. M. 2020. Evaluation: from precision, recall and
+F-measure to ROC, informedness, markedness and correla-
+tion. arXiv preprint arXiv:2010.16061.
+Radford, A.; Kim, J. W.; Hallacy, C.; Ramesh, A.; Goh, G.;
+Agarwal, S.; Sastry, G.; Askell, A.; Mishkin, P.; Clark, J.;
+et al. 2021. Learning transferable visual models from nat-
+ural language supervision. In International conference on
+machine learning, 8748–8763. PMLR.
+Ranzato, M.; Susskind, J.; Mnih, V .; and Hinton, G. 2011.
+On deep generative models with applications to recognition.
+In CVPR 2011, 2857–2864. IEEE.
+Rinaldi, A. M.; Russo, C.; and Tommasino, C. 2023. Au-
+tomatic image captioning combining natural language pro-
+cessing and deep neural networks. Results in Engineering,
+18: 101107.
+Selvaraju, R. R.; Cogswell, M.; Das, A.; Vedantam, R.;
+Parikh, D.; and Batra, D. 2017. Grad-cam: Visual explana-
+tions from deep networks via gradient-based localization. In
+Proceedings of the IEEE international conference on com-
+puter vision, 618–626.
+Sun, X.; Hu, P.; and Saenko, K. 2022. Dualcoop: Fast adap-
+tation to multi-label recognition with limited annotations.
+Advances in Neural Information Processing Systems , 35:
+30569–30582.
+Tao, Z.; Liu, X.; Xia, Y .; Wang, X.; Yang, L.; Huang, X.; and
+Chua, T.-S. 2023. Self-Supervised Learning for Multimedia
+Recommendation. IEEE Transactions on Multimedia , 25:
+5107–5116.
+Terrell, G. R.; and Scott, D. W. 1992. Variable kernel density
+estimation. The Annals of Statistics, 1236–1265.
+Van der Maaten, L.; and Hinton, G. 2008. Visualizing data
+using t-SNE. Journal of machine learning research, 9(11).
+Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones,
+L.; Gomez, A. N.; Kaiser, Ł.; and Polosukhin, I. 2017. At-
+tention is all you need. Advances in neural information pro-
+cessing systems, 30.
+Wang, C.; Yu, Y .; Ma, W.; Zhang, M.; Chen, C.; Liu, Y .; and
+Ma, S. 2022. Towards representation alignment and uni-
+formity in collaborative filtering. In Proceedings of the 28th
+ACM SIGKDD conference on knowledge discovery and data
+mining, 1816–1825.
+Wang, H.; Wang, Z.; Du, M.; Yang, F.; Zhang, Z.; Ding, S.;
+Mardziel, P.; and Hu, X. 2020. Score-CAM: Score-weighted
+visual explanations for convolutional neural networks. In
+
+PAGE 11
+Proceedings of the IEEE/CVF conference on computer vi-
+sion and pattern recognition workshops, 24–25.
+Wang, Q.; Wei, Y .; Yin, J.; Wu, J.; Song, X.; and Nie, L.
+2021. Dualgnn: Dual graph neural network for multime-
+dia recommendation. IEEE Transactions on Multimedia, 25:
+1074–1084.
+Wei, W.; Tang, J.; Jiang, Y .; Xia, L.; and Huang, C.
+2024. PromptMM: Multi-Modal Knowledge Distillation
+for Recommendation with Prompt-Tuning. arXiv preprint
+arXiv:2402.17188.
+Wei, Y .; Wang, X.; Nie, L.; He, X.; and Chua, T.-S. 2020.
+Graph-refined convolutional network for multimedia recom-
+mendation with implicit feedback. In Proceedings of the
+28th ACM international conference on multimedia , 3541–
+3549.
+Wei, Y .; Wang, X.; Nie, L.; He, X.; Hong, R.; and Chua,
+T.-S. 2019. MMGCN: Multi-modal graph convolution net-
+work for personalized recommendation of micro-video. In
+Proceedings of the 27th ACM international conference on
+multimedia, 1437–1445.
+Wu, S.; Sun, F.; Zhang, W.; Xie, X.; and Cui, B. 2022. Graph
+neural networks in recommender systems: a survey. ACM
+Computing Surveys, 55(5): 1–37.
+Yu, J.; Yin, H.; Xia, X.; Chen, T.; Cui, L.; and Nguyen,
+Q. V . H. 2022. Are graph augmentations necessary? sim-
+ple graph contrastive learning for recommendation. In Pro-
+ceedings of the 45th international ACM SIGIR conference
+on research and development in information retrieval, 1294–
+1303.
+Yu, P.; Tan, Z.; Lu, G.; and Bao, B.-K. 2023. Multi-view
+graph convolutional network for multimedia recommenda-
+tion. In Proceedings of the 31st ACM International Confer-
+ence on Multimedia, 6576–6585.
+Yuan, Z.; Yuan, F.; Song, Y .; Li, Y .; Fu, J.; Yang, F.; Pan,
+Y .; and Ni, Y . 2023. Where to go next for recommender
+systems? id-vs. modality-based recommender models revis-
+ited. In Proceedings of the 46th International ACM SIGIR
+Conference on Research and Development in Information
+Retrieval, 2639–2649.
+Zeiler, M. D.; and Fergus, R. 2014. Visualizing and un-
+derstanding convolutional networks. In Computer Vision–
+ECCV 2014: 13th European Conference, Zurich, Switzer-
+land, September 6-12, 2014, Proceedings, Part I 13 , 818–
+833. Springer.
+Zhang, J.; Zhu, Y .; Liu, Q.; Wu, S.; Wang, S.; and Wang,
+L. 2021. Mining latent structures for multimedia recom-
+mendation. In Proceedings of the 29th ACM international
+conference on multimedia, 3872–3880.
+Zhang, J.; Zhu, Y .; Liu, Q.; Zhang, M.; Wu, S.; and Wang,
+L. 2022. Latent structure mining with contrastive modality
+fusion for multimedia recommendation. IEEE Transactions
+on Knowledge and Data Engineering.
+Zhang, R.; Liu, Q.-d.; Wei, J.-X.; et al. 2014. Collaborative
+filtering for recommender systems. In 2014 second interna-
+tional conference on advanced cloud and big data, 301–308.
+IEEE.
+Zhang, W.; Zhang, Y .; Ma, L.; Guan, J.; and Gong, S. 2015.
+Multimodal learning for facial expression recognition. Pat-
+tern Recognition, 48(10): 3191–3202.
+Zhou, B.; Khosla, A.; Lapedriza, A.; Oliva, A.; and Torralba,
+A. 2016. Learning deep features for discriminative localiza-
+tion. In Proceedings of the IEEE conference on computer
+vision and pattern recognition, 2921–2929.
+Zhou, H.; Zhou, X.; Zeng, Z.; Zhang, L.; and Shen, Z.
+2023a. A comprehensive survey on multimodal recom-
+mender systems: Taxonomy, evaluation, and future direc-
+tions. arXiv preprint arXiv:2302.04473.
+Zhou, H.; Zhou, X.; Zhang, L.; and Shen, Z. 2023b. Enhanc-
+ing Dyadic Relations with Homogeneous Graphs for Multi-
+modal Recommendation. In ECAI 2023, 3123–3130. IOS
+Press.
+Zhou, K.; Yang, J.; Loy, C. C.; and Liu, Z. 2022. Conditional
+prompt learning for vision-language models. InProceedings
+of the IEEE/CVF conference on computer vision and pattern
+recognition, 16816–16825.
+Zhou, X. 2023. Mmrec: Simplifying multimodal recommen-
+dation. In Proceedings of the 5th ACM International Con-
+ference on Multimedia in Asia Workshops, 1–2.
+Zhou, X.; and Shen, Z. 2023. A tale of two graphs: Freez-
+ing and denoising graph structures for multimodal recom-
+mendation. In Proceedings of the 31st ACM International
+Conference on Multimedia, 935–943.
+Zhou, X.; Zhou, H.; Liu, Y .; Zeng, Z.; Miao, C.; Wang, P.;
+You, Y .; and Jiang, F. 2023c. Bootstrap latent representa-
+tions for multi-modal recommendation. In Proceedings of
+the ACM Web Conference 2023, 845–854.
+Zhu, B.; Niu, Y .; Han, Y .; Wu, Y .; and Zhang, H. 2023.
+Prompt-aligned gradient for prompt tuning. In Proceedings
+of the IEEE/CVF International Conference on Computer Vi-
+sion, 15659–15669.

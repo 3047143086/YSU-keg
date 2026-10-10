@@ -1,0 +1,42 @@
+{
+  "checked_unix": 1791456310.9028769,
+  "pipeline_status": "technical_failure",
+  "stage": "baby_edge_s2026",
+  "decisions": {
+    "baby": {
+      "status": "pending",
+      "missing": [
+        "edge",
+        "history"
+      ]
+    },
+    "sports": {
+      "status": "pending",
+      "missing": [
+        "baseline",
+        "edge",
+        "history"
+      ]
+    }
+  },
+  "metrics": {
+    "baby": {
+      "baseline": {
+        "recall@5": 0.04798075157036329,
+        "ndcg@5": 0.032837760528477825,
+        "recall@10": 0.07111762112919222,
+        "ndcg@10": 0.040386094675721566,
+        "recall@20": 0.10546504793740588,
+        "ndcg@20": 0.04910749907453286,
+        "recall@50": 0.17414190206810415,
+        "ndcg@50": 0.06281293587582008
+      }
+    },
+    "sports": {}
+  },
+  "pilot_success": false,
+  "test_evaluated": false,
+  "resource_memory_is_sampled_not_exact_peak": true,
+  "source_revision": "6b2a9276879e236667325ffbeb8b24ecd1958454",
+  "new_completed_formal_arms": 0
+}

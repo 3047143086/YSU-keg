@@ -1,0 +1,15 @@
+{
+  "sha256": {
+    "eval_cache.py": "c9617ab7bd45a9d97af91a2bfae58118b98e29d3ab2778bfecf980c3f91c0c3c",
+    "test_eval_cache.py": "08747972d01c03dbd17c8a14f6805e6ce371f2aad2dafa3616f06bae86480eb6",
+    "test_cache_lifecycle.py": "a6fe062e718aa021080b69922b363880f9357536f7927ace730786fc82abb80c",
+    "actual_baby_cpu.py": "a8662d36f36b25addb84a4d5c4afb234192bdca68625d81e8d64d2978376596d",
+    "PROTOCOL.md": "4ac179c71ae9af0140000339f3a4f3435467f41ea24e13bbb20276ebd51b50f7",
+    "CPU_TEST_PLAN.md": "64e8d789433ad824ea0fef85874b4e68b785e63f7ae1c6512edc326c525d7c8d",
+    "program.md": "aa426aa0aa2a08d8c3c931d1c4867d81f110ce2f6bfa0976b1204b35f2fa980e",
+    "manage.py": "dcdd0f4f62f1bef06ae87204bf280cb82ed727fe960a3d3f0763e689a4825bd8",
+    "input_audit.json": "09d5634dbd4f98a0494e89c3ec34a75f5edb644518d98855e3bdb6cc58898227",
+    "source_revision.json": "f6024d9635e1e8b9ee424ecfef2bb38367ae376767426ccb5bf64be5eb0ad774"
+  },
+  "unix": 1791598719.4632866
+}

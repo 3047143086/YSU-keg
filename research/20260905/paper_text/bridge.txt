@@ -1,0 +1,1400 @@
+PAGE 1
+BRIDGE: Behavior-Guided Residual Integration with
+Dual-Frequency Graph Evidence
+Zesheng Li
+University of the Chinese Academy
+of Sciences
+Beijing, China
+2022111515@stu.sufe.edu.cn
+Chengchang Pan∗
+University of the Chinese Academy
+of Sciences
+Beijing, China
+166353314@qq.com
+Honggang Qi∗
+University of the Chinese Academy
+of Sciences
+Beijing, China
+hgqi@ucas.ac.cn
+Abstract
+Multimodalrecommendationimprovesitemrepresentationsbycom-
+bining visual, textual, and collaborative signals, but stronger cross-
+view alignment does not always improve ranking. Our diagnos-
+tics on Amazon Baby show that direct consistency has an effec-
+tive range: moderate alignment helps, while stronger alignment
+suppresses recommendation-specific variation. We also observe a
+clearspectralsplit:low-frequencycomponentscapturesharedstruc-
+ture, whereas higher-frequency components retain more private
+ranking signal. Based on these findings, we propose BRIDGE, a
+behavior-guidedresidualintegrationframeworkbuiltondual-frequency
+graphevidence.BRIDGEseparatesthemodelintothreeparts:DFGE
+decomposes graph-smoothed ID, visual, and textual channels into
+spectral bands; BEN converts training-only co-user overlap into
+signed candidate evidence; and CRI applies that evidence only in-
+side the base top-𝐾 candidate set during training and inference.
+This design keeps the multimodal backbone and localizes behavior
+evidence to candidate calibration. Experiments on Amazon Baby,
+Sports,andElectronicsshowthatBRIDGEreaches0.1128/0.1262/0.0778
+Recall@20and0.0525/0.0594/0.0385NDCG@20,outperformingbase-
+lines by up to 7.3% in Recall@20 and 14.9% in NDCG@20. Project
+materials are available athttps://lizesheng13.github.io/bridge/.
+CCS Concepts
+• Information systems → Recommender systems; Multimedia
+and multimodal retrieval.
+Keywords
+MultimodalRecommendation,Dual-FrequencyGraphEvidence,Be-
+havior Graph, Candidate Calibration
+ACM Reference Format:
+Zesheng Li, Chengchang Pan, and Honggang Qi. 2026. BRIDGE: Behavior-
+Guided Residual Integration with Dual-Frequency Graph Evidence. InPro-
+ceedings of the 35th ACM International Conference on Information and Knowl-
+edge Management (CIKM ’26). ACM, New York, NY, USA,12 pages. https:
+//doi.org/10.1145/3799682.3840961
+∗Corresponding authors.
+ThisworkislicensedunderaCreativeCommonsAttribution4.0InternationalLicense.
+CIKM ’26, November 7–11, 2026, Rome, Italy
+© 2026 Copyright held by the owner/author(s).
+ACM ISBN 979-8-4007-2539-5/2026/11
+https://doi.org/10.1145/3799682.3840961
+1 Introduction
+Images, titles, descriptions, and brands provide useful side infor-
+mation for recommendation, especially when interaction data are
+sparse. This has motivated a broad family of multimodal recom-
+menders that combine user-item interactions with visual and tex-
+tual item features [3, 26–28]. Recent surveys synthesize this litera-
+turefromrepresentation,modeling,andoptimizationperspectives
+[17]. Recent work has improved the representation layer by build-
+ingitem-itemgraphsfromcontent,denoisingmultimodalfeatures,
+or enforcing stronger consistency across views [5, 10, 25, 33, 40].
+Thecommonpremiseissimple:abettermultimodalrepresentation
+should yield a better ranker.
+Our diagnostics point to a narrower role for content evidence.
+Moderatecross-viewconsistencyimprovesranking,whereasstronger
+consistencysuppressesrecommendation-specificvariation.Frequency
+analysisshowsashared-vs-privatesplit:low-frequencybandsagree
+across views, while higher-frequency bands retain more ranking
+signal. This distinction is most important inside the small candi-
+date set where ranking is decided. Over-aligning the views blurs
+the differences between plausible items and near neighbors.
+BRIDGEturnstheseobservationsintoabehavior-guideddesign.
+The multimodal encoder defines the base candidate geometry, and
+co-user behavior authorizes only local residual corrections inside
+that candidate set. DFGE preserves frequency-aware multimodal
+evidence, BEN converts training-only co-user overlap into signed
+behaviorsupport,andCRIappliesthatsupportonlywithinthecan-
+didate scope. On Amazon Baby, Sports, and Electronics, BRIDGE
+reaches 0.1128, 0.1262, and 0.0778 Recall@20, respectively, with
+corresponding NDCG@20 values of 0.0525, 0.0594, and 0.0385.
+The deployment setting adds a second constraint. In a retrieval-
+and-rank pipeline, the shortlist is the decision bottleneck. A con-
+tentsignalthathelpsrepresentationlearningcanhurtrankingwhen
+it moves every catalog score. BRIDGE keeps the multimodal back-
+boneresponsiblefortheshortlistandletsbehaviorevidencerevise
+only candidates that the backbone has already made plausible.
+The contributions of this work are:
+• Weidentifytwodiagnosticsinmultimodalrecommendation:
+directcross-viewconsistencyhasaneffectiverange,andthe
+representationspectrumseparatessharedlow-frequencyev-
+idence from more private higher-frequency variation.
+• WeproposeDFGE,adual-frequencygraphevidenceencoder
+that preserves that spectrum with band routing and struc-
+tural regularization.
+• We propose BEN and CRI, which turn training-only co-user
+overlap into signed behavior evidence and use it only to cal-
+ibrate the candidate scope used at training and inference.
+
+PAGE 2
+CIKM ’26, November 7–11, 2026, Rome, Italy Li et al.
+2 Related Work
+2.1 Multimodal Recommendation and
+Cross-View Alignment
+Multimodal recommendation extends collaborative filtering with
+visual and textual signals. VBPR [3] shows that content can alle-
+viate sparsity, while graph-based methods such as MMGCN [28],
+GRCN [27], DualGNN [26], and LATTICE [36] organize these sig-
+nals with user-item and item-item structure. Recent variants add
+denoising, diffusion, robustness, dual-path routing, retrieval com-
+pletion, or stronger cross-view consistency [1, 2, 5, 7–12, 19, 20,
+25,30,37,39,40]. Related alignment and fusion work also explores
+dual-graphattention,hierarchicalmulti-stepfusion,andmultimodal
+large language model coupling [22, 32, 35, 41, 42]. The common
+themeistoimproverepresentationqualitybeforeranking.BRIDGE
+differs by asking when content evidence should be trusted by the
+ranker rather than how aggressively it should be fused.
+Most alignment methods use cross-view agreement as a proxy
+forbetterranking.Whencontentmatchingdominates,itcanerase
+the differences between a plausible item and a near duplicate or
+popular lookalike. BRIDGE uses the same multimodal evidence
+to define candidate geometry, then decides whether behavior evi-
+dence should change the rank of each candidate. This decision is
+part of the model rather than a post-hoc reranking rule.
+2.2 Frequency-Aware and Behavior-Guided
+Recommendation
+Frequency-awarerecommendersseparatestablestructurefromfine-
+grained variation. SMORE [16], FITMM [33], SSR [34], MSCF-Net
+[6],DuGRec[ 13],D-DPDG[ 29],andSequences-as-Nodes[ 22]show
+that spectral views can organize multimodal or collaborative evi-
+dence. These works differ in whether the spectrum is used for de-
+noising,co-frequencyenhancement,orexplicitbandrouting.BRIDGE
+uses the same general intuition but keeps the band decomposition
+as a representation core rather than a standalone predictor.
+That makes BRIDGE different from frequency-aware denoising
+pipelines.Thosemodelsusuallyusethespectrumtosuppressnoise
+or separate stable from unstable components, while BRIDGE uses
+the decomposition to decide which bands remain shared evidence
+andwhichbandsareleftasresidualvariationforcandidatecalibra-
+tion. The band split is therefore an authorization step, not only a
+regularizer.
+Thesamepointappliestobandrouting.Adecompositioncande-
+noise a representation, but denoising alone does not explain how
+the output should affect ranking. BRIDGE keeps the spectrum in-
+side the backbone and lets candidate calibration consume only the
+bands that remain useful after decomposition. This keeps the rep-
+resentation and the calibration rule aligned with one another.
+2.3 Behavior-Guided and Candidate-Side
+Control
+Item-neighborhood methods rank with interaction-derived item
+scores, while linear item–item models learn a global coefficient
+matrix from the interaction data [23, 24]. These approaches are
+close to the behavior branch in BRIDGE, but they are normally
+used as standalone catalog-wide rankers. BRIDGE instead treats
+raw co-occurrence and EASE as candidate-side residual controls
+and applies signed behavior evidence only after the multimodal
+backbone has selected a top-𝐾 candidate set.
+In parallel, behavior-guided methods such as BPR [21], Light-
+GCN [4], DRAGON [38], FGCM [15], JBM-Diff [18], and causal-
+inspired multimodal recommendation [31] use interaction struc-
+turetovalidateorfiltercontent-derivedrelations.Morerecentwork
+extends this idea to dual-graph diffusion, modality coherence, and
+multi-intention or sequential settings [2, 12, 32, 35, 42]. BRIDGE
+combines these lines, but uses behavior only as a local authoriza-
+tion signal for candidate-level residual calibration rather than as a
+global fusion or denoising target.
+Unlike a post-hoc re-ranker or a catalog-wide item–item score,
+BRIDGE trains and evaluates its residual under the same detached
+top-𝐾 scope. The base scorer remains responsible for retrieving
+new positives, while behavior evidence changes only the local or-
+dering of plausible candidates.
+Together, these strands motivate BRIDGE’s dual-frequency and
+candidate-calibrated design.
+3 Problem Formulation
+Let 𝒰 and ℐ denote the user and item sets. We observe implicit
+feedback ℛ = {(𝑢, 𝑖) ∣ 𝑢 ∈ 𝒰, 𝑖 ∈ ℐ}, where an edge indicates
+that user 𝑢 interacted with item𝑖. Each item also has multimodal
+content features, including visual featuresx𝑣
+𝑖 and textual features
+x𝑡
+𝑖. For a user𝑢, letℋ𝑢 be the interacted item set; for an item𝑖, let
+𝒰𝑖 be the set of users who interacted with it. The recommendation
+task is to learn a score𝑠(𝑢, 𝑖) and rank unobserved items for each
+user under full-sort evaluation.
+The standard training objective is pairwise Bayesian Personal-
+ized Ranking (BPR) [21]:
+ℒBPR(𝑠) = − ∑
+(𝑢,𝑖,𝑗)
+log 𝜎 (𝑠(𝑢, 𝑖) − 𝑠(𝑢, 𝑗)), (1)
+where 𝑖 is an observed positive item and𝑗 is a sampled negative
+item. Existing multimodal recommenders usually define𝑠(𝑢, 𝑖) by
+making collaborative, visual, and textual embeddings consistent
+or fusing them. In this work, we make the scoring problem more
+explicit: content-derived signals are allowed to affect ranking only
+when supported by behavior evidence.
+BRIDGE learns a final score of the form
+𝑠(𝑢, 𝑖) = 𝑠 base(𝑢, 𝑖) + Δbridge(𝑢, 𝑖), (2)
+where the residual correction is behavior-guided and applied only
+in a controlled candidate scope. The concrete definitions of behav-
+iorevidenceandthefrequency-awareencoderaregiveninMethod.
+4 Motivating Observations
+BRIDGE is motivated by three empirical observations. Together
+they suggest a simple design principle: multimodal information
+should be preserved, but content should be treated as conditional
+evidence, not as a command.
+
+PAGE 3
+BRIDGE: Behavior-Guided Residual Integration with Dual-Frequency Graph Evidence CIKM ’26, November 7–11, 2026, Rome, Italy
+(a) Multimodal Graph Encoding
+��
+��
+��
+��
+��
+��
+User-Item 
+Interaction Graph R
+Item Image Features ��
+�
+Item Text Features ��
+�
+Image 
+Projection
+Text 
+Projection
+ID 
+Projection
+KNN
+A��
+��
+�
+��
+�
+��
+��
+(1) �
+(2) �, ���, ��
+�
+(3) �, ���, ��
+�
+Graph 
+Encoder 
+�� = [����; ���; ��� ]
+�� = [��
+��; ��
+�; ��
+�]
+(b) Dual-Frequency Base Ranking
+Dual-Frequency Decomposition
+ID 
+channel 
+(c=id)
+Image 
+channel 
+(c=v)
+Image 
+channel 
+(c=t)
+Low Mid High
+�� = ���T
+��,� = ������
+ℎ�
+�,� = ��,:
+�,�
+ℎ�
+� = [ℎ�
+��,�; ℎ�
+�,�; ℎ�
+�,�]
+Task-Aware 
+Band Gate
+��
+� = 1 + ���(��)
+Band Weight
+�� = �(��)
+Weighted Band Fusion
+�� =  
+�∈{퐿� ,푀� ,�� ℎ}
+����
+�ℎ�
+�
+User embedding 
+�u
+Item embedding 
+��
+Base Scoring
+�풃풂��(�, �) =< ��, �� >
+Full item list ranked by �풃풂��
+�1 �2 �3 �4 �N
+(c) Behavior-Guided Candidate Calibration
+�풃풂��
+�1
+�2
+�3
+�K
+��+1
+��+2
+�N
+Base 
+Candidate 
+Set ��
+Behavior Evidence
+�1 �2 �3 ��...
+�1
+�2...
+�M
+...
+...
+...
+...
+...
+...
+...
+Behavior-Evidence 
+Computation
+1) Co-user Behavior Graph
+�ij =
+|��
+��⋂��
+��|
+|��
+��||��
+��|
+2) History Aggregation
+��� = 1
+|��
+��|
+ 
+�∈����
+���
+3) User-wise Normalization
+��� = ��� − ��
+�� + �
+Behavior-aware 
+Coefficient
+�ui
+Hyper-parameter
+��
+×
+Behavior Correction
+∆�
++�풃풂��
+Re-ranked Top-K Results �풃퐫퐢�  
+�1 �2 �3 �4 ��
+Training 
+Objectives 
+(Losses)
+Calibrated Ranking Loss
+�풓풂   =− 풍� �(��,� − ��,�)
+Base Ranking Loss
+�풃풂�� =− 풍� �(��,�
+풃풂�� − ��,�
+풃풂��)
+Information Bottleneck Loss
+�푰  =  
+ ,�
+푲�(� �||�)
+Frequency 
+Regularization
+�풇풓�  = �풄� � + ��풉� 풉
+Coefficient Regularization
+�n =− �
+|�|  
+(�,�)∈�
+풍� (���(� − ���))
+Figure 1: Overview of BRIDGE. DFGE constructs dual-frequency graph evidence; BEN computes normalized behavior support;
+CRI integrates the residual only inside the selected candidate set.
+Table 1: Overall recommendation performance on Amazon Baby, Sports, and Electronics. All methods use the same processed
+splits, BEIT3 features, and full-sort evaluator. Entries report mean ± standard deviation over five seeds. ∗∗ indicates 𝑝 < 0.01
+against the strongest baseline under an independent two-sample 𝑡-test.
+Dataset Metric BPR LightGCN VBPR MMGCN GRCN DualGNN SLMRec LATTICE BM3 FREEDOM DiffMM MMIL AlignRec SMORE FITMM BRIDGE
+Baby R@10 0.0357 0.0479 0.0418 0.0413 0.0538 0.0507 0.0533 0.0561 0.0573 0.0624 0.0617 0.0670 0.0674 ±0.0007 0.0680 ±0.0008 0.0716 ±0.0006 0.0752 ∗∗
+±0.0004
+R@20 0.0575 0.0754 0.0667 0.0649 0.0832 0.0782 0.0788 0.0867 0.0904 0.0985 0.0978 0.1035 0.1046 ±0.0010 0.1035 ±0.0011 0.1089 ±0.0009 0.1128 ∗∗
+±0.0006
+N@10 0.0192 0.0257 0.0223 0.0211 0.0285 0.0264 0.0291 0.0305 0.0311 0.0324 0.0321 0.0361 0.0363 ±0.0004 0.0365 ±0.0005 0.0387 ±0.0005 0.0428 ∗∗
+±0.0003
+N@20 0.0249 0.0328 0.0287 0.0275 0.0364 0.0335 0.0365 0.0383 0.0395 0.0416 0.0408 0.0455 0.0458 ±0.0005 0.0457 ±0.0006 0.0484 ±0.0005 0.0525 ∗∗
+±0.0003
+Sports R@10 0.0432 0.0569 0.0561 0.0394 0.0607 0.0574 0.0667 0.0628 0.0659 0.0705 0.0687 0.0747 0.0758 ±0.0008 0.0762 ±0.0009 0.0809 ±0.0007 0.0860 ∗∗
+±0.0004
+R@20 0.0653 0.0864 0.0857 0.0625 0.0928 0.0881 0.0998 0.0961 0.0987 0.1077 0.1035 0.1133 0.1160 ±0.0012 0.1142 ±0.0013 0.1187 ±0.0010 0.1262 ∗∗
+±0.0007
+N@10 0.0241 0.0311 0.0305 0.0203 0.0335 0.0316 0.0366 0.0339 0.0357 0.0382 0.0357 0.0405 0.0414 ±0.0005 0.0408 ±0.0005 0.0441 ±0.0004 0.0490 ∗∗
+±0.0002
+N@20 0.0298 0.0387 0.0386 0.0266 0.0421 0.0393 0.0454 0.0431 0.0443 0.0478 0.0458 0.0505 0.0517 ±0.0006 0.0506 ±0.0006 0.0538 ±0.0005 0.0594 ∗∗
+±0.0004
+Electronics R@10 0.0235 0.0363 0.0293 0.0207 0.0349 0.0363 0.0392 0.0397 0.0437 0.0382 0.0418 0.0456 0.0472 ±0.0008 0.0474 ±0.0009 0.0503 ±0.0006 0.0549 ∗∗
+±0.0002
+R@20 0.0367 0.0540 0.0458 0.0331 0.0529 0.0541 0.0581 0.0573 0.0648 0.0588 0.0617 0.0673 0.0700 ±0.0010 0.0691 ±0.0012 0.0725 ±0.0009 0.0778 ∗∗
+±0.0004
+N@10 0.0127 0.0204 0.0159 0.0109 0.0195 0.0202 0.0223 0.0224 0.0247 0.0209 0.0224 0.0253 0.0262 ±0.0004 0.0261 ±0.0004 0.0278 ±0.0003 0.0326 ∗∗
+±0.0002
+N@20 0.0161 0.0250 0.0202 0.0141 0.0241 0.0248 0.0273 0.0271 0.0302 0.0262 0.0278 0.0309 0.0321 ±0.0005 0.0318 ±0.0005 0.0335 ±0.0004 0.0385 ∗∗
+±0.0003
+4.1 Direct Consistency Has an Effective Range
+We run a compact direct-consistency diagnostic on Amazon Baby
+using the same backbone and split, while varying only the consis-
+tency strength. Without direct consistency, Recall@20 is 0.0922. A
+moderate setting with a contrastive loss weight of 0.01, a similar-
+ity weight of 0.3, and UI cosine improves it to 0.1024, showing that
+cross-view consistency can be useful. However, a stronger setting
+with a contrastive loss weight of 0.1 and a similarity weight of 1.0
+drops Recall@20 to 0.0836, showing that direct consistency has an
+
+PAGE 4
+CIKM ’26, November 7–11, 2026, Rome, Italy Li et al.
+effective range. Once this objective dominates, it can suppress pri-
+vate recommendation factors that are not shared by all modalities.
+We also checked a lighter setting with a contrastive loss weight
+of 0.001 and a similarity weight of 0.1 under another seed, which
+reached Recall@20 of 0.0982 and still stayed below the moderate
+setting.
+4.2 Low Frequency Agrees; High Frequency
+Ranks
+Frequencydiagnosticsshowwheretheusefulinformationsits.Low-
+frequencycomponentshavestrongercross-viewagreement,while
+high-frequency components retain more ranking signal. Both are
+weakerthanthecompleterepresentation.Figure 2showsthiscom-
+parison. We define these bands by ordering the singular compo-
+nents of graph-smoothed channel matrices; Section5.1 gives the
+formalconstruction.Lowfrequencycapturessharedstructure,whereas
+higher-frequency variation carries more local ranking evidence.
+4.3 Behavior Evidence Decides When
+Calibration Helps
+Content-derived corrections are not uniformly beneficial. In our
+diagnostics, global score correction often hurts, while top-𝐾 can-
+didate correction can improve ranking. Co-user behavior is most
+usefulonthesparserAmazondomains,soweuseitasalocalsignal
+for candidate calibration. A candidate supported by co-occurrence
+can receive a small correction; otherwise, the same content rela-
+tion may identify a substitute or visual lookalike.
+This yields three design requirements for BRIDGE:
+(1) Preserve frequency-aware multimodal structure instead of
+collapsing all signals into an undifferentiated representa-
+tion.
+(2) Use behavior evidence inside the model so that user histo-
+ries can authorize or reject candidate corrections.
+(3) Restrict score calibration to the candidate set, so uncertain
+evidence cannot perturb the whole item space.
+5 Method
+Figure 1 summarizes BRIDGE. The method preserves frequency-
+specificmultimodalevidencebeforeusingbehaviortocalibratethe
+final ranking. DFGE learns the frequency-aware graph representa-
+tion and base score𝑠base(𝑢, 𝑖). BEN estimates normalized behavior
+evidence 𝑏𝑢𝑖 from the training interaction graph. CRI injects that
+evidenceasasignedresidualinsidethecandidatescope,sothebase
+encoder defines the ranking geometry and the behavior branch ad-
+justs local decisions.
+5.1 Dual-Frequency Graph Evidence Encoder
+Each item has an ID embedding, a visual feature, and a textual
+feature. The visual and textual features are projected to the same
+latent dimension as the ID channel. DFGE first applies channel-
+specificprojection,thentworoundsofsymmetricnormalizedmes-
+sage passing on the user-item graph, and finally sums the layer
+states to form each channel embedding. LetA𝑢𝑖 denote the user-
+item adjacency and ̂A𝑢𝑖 = D− 1
+2 A𝑢𝑖D− 1
+2 its symmetric normaliza-
+tion. For channel𝑐, the input state isH𝑐,(0) = [ P𝑐𝑢; W𝑐 x𝑐
+𝑖 ], where
+P𝑐𝑢 is a learned user preference table andW𝑐 is a linear projec-
+tion for that channel; for the ID channel, the second term is the
+learned item ID embedding. We then apply𝐿 = 2 rounds of nor-
+malized message passing, H𝑐,(ℓ+1) = ̂A𝑢𝑖H𝑐,(ℓ), and read out the
+channel embedding by summing all layers,Z𝑐 = ∑𝐿
+ℓ=0 H𝑐,(ℓ), for
+𝑐 ∈ { id, 𝑣 , 𝑡}. The item-side representation is refined with a cached
+multimodal item graph built from top-𝐾 cosine neighbors over
+the content features. When both image and text are available, the
+cacheditemgraphistheweightedsum 0.1 A𝑣 +0.9 A𝑡 with 𝐾 = 10 .
+The item graph acts as a second smoothing stage before frequency
+decomposition, using one propagation layer and keeping the final
+smoothed item states rather than another layer-sum readout. This
+produces user and item representations for the ID, visual, and tex-
+tual channels:
+z𝑐𝑢, z𝑐
+𝑖 = GraphEnc𝑐(ℛ, Amm, x𝑐), 𝑐 ∈ { id, 𝑣 , 𝑡}. (3)
+The three channels are then concatenated:
+z𝑢 = [zid
+𝑢 ; z𝑣𝑢; z𝑡𝑢], z𝑖 = [zid
+𝑖 ; z𝑣
+𝑖 ; z𝑡
+𝑖 ]. (4)
+Eachchannelhasdimension64,sothefusedrepresentationdimen-
+sion is 192.
+5.2 Spectral Band Routing
+DFGE decomposes each modality channel into𝑀 frequency bands
+before producing the base ranking embedding. For a representa-
+tionmatrix Z𝑐 ofmodality 𝑐,wecomputeasingulardecomposition
+Z𝑐 = UΣV⊤ and split the singular components into𝑀 contiguous
+bands. The𝑚-th band is:
+H𝑐,𝑚 = U𝑚Σ𝑚V⊤𝑚. (5)
+For each node 𝑛 and channel 𝑐, let h𝑐,𝑚
+𝑛 = ( H𝑐,𝑚 )𝑛,∶ denote the
+𝑚-th band slice. The band-specific multimodal state is then
+h𝑚𝑛 = [hid,𝑚
+𝑛 ; h𝑣 ,𝑚
+𝑛 ; h𝑡,𝑚
+𝑛 ], 𝑛 ∈ 𝒰 ∪ ℐ. (6)
+A task-aware band gate then fuses the bands:
+𝛼 𝑚𝑛 = 1 + 𝜌 ⋅ 𝜙 𝑚(z𝑛), 𝜔 𝑚 = 𝜎 (𝑎𝑚), (7)
+e𝑛 =
+𝑀
+∑
+𝑚=1
+𝜔𝑚𝛼 𝑚𝑛 h𝑚𝑛 . (8)
+Here 𝜙(z𝑛) = 𝜎 ( W𝑔 z𝑛 + b𝑔 ) is a one-layer gate network with
+outputdimension 𝑀;inthemainsetting, 𝜙𝑚(⋅)isthe 𝑚-thsigmoid
+output of this linear gate, and𝜌 is a learned scalar initialized to0.5.
+The base score is computed by inner product:
+𝑠base(𝑢, 𝑖) = ⟨ e𝑢, e𝑖⟩. (9)
+The frequency decomposition is part of the base ranking represen-
+tation.Low-frequencybands,inthesenseofleadingsingulardirec-
+tions of the propagated representation spectrum, provide shared
+graph evidence, whereas higher-frequency bands preserve private
+rankingvariation.CRIlaterdecideswhetheracandidatescoreshould
+receive a behavior-authorized residual. The high-frequency bands
+remain part of the base representation rather than a separate score
+for every item.
+
+PAGE 5
+BRIDGE: Behavior-Guided Residual Integration with Dual-Frequency Graph Evidence CIKM ’26, November 7–11, 2026, Rome, Italy
+Low band Complete High band
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0Cross-view cosine
+(a) Cross-view agreement
+Low band Complete High band
+0.00
+0.02
+0.04
+0.06
+0.08
+0.10
+0.12Recall@20
+(b) Ranking signal
+Figure 2: Representation-spectral frequency diagnostic on Amazon Baby. Low-frequency bands have stronger cross-view agree-
+ment, whereas high-frequency bands retain more ranking signal; the complete representation performs best. Error bars show
+the observed ranges.
+Interpretation of frequency. Here, frequency means the order-
+ing of representation components after graph smoothing. LetZ ∈
+ℝ𝑁 ×𝑑 be a graph-smoothed channel matrix after message passing.
+BRIDGE computes Z = UΣV⊤, partitions the right singular direc-
+tions asV = [V1, … , V𝑀 ] in descending singular-value order, and
+reconstructs band evidence byH𝑚 = ZV𝑚V⊤𝑚. The leading bands
+capture dominant post-smoothing variation, while later bands col-
+lect residual directions with less shared energy. Because normal-
+ized graph propagation is already low-pass, the leading singular
+bands act as stable shared evidence and the trailing bands retain
+more local variation. A graph Laplacian basis would order com-
+ponents by graph oscillation, whereas this decomposition orders
+latent energy.
+Channel-wise decomposition. Thedecompositionisappliedtoeach
+modality channel before fusion. Each user/item representation is
+split into 64-dimensional ID, image, and text blocks; each block is
+decomposedseparatelyandthenreassembledinto192-dimensional
+band representations. With𝑀 = 3 , the 64 singular directions are
+partitioned into bands of size 22/21/21 in descending singular-
+value order. For controlled analysis, we also evaluate non-SVD
+decomposition operators under the same encoder and fusion ca-
+pacity. In the equal-capacity no-decomposition control, the band
+inputs are
+H𝑐,𝑚 = 1
+𝑀 Z𝑐, 𝑚 = 1, … , 𝑀. (10)
+This keeps the same number of band gates, band weights, graph
+encoders, and fusion parameters while removing spectral separa-
+tion itself. We also evaluate fixed-basis variants in whichH𝑐,𝑚 =
+Z𝑐 Q𝑚Q⊤𝑚: Gram uses eigenvectors ofZ⊤Z, DCT uses a determinis-
+tic cosine basis, and Random uses a fixed orthogonal basis.
+5.3 Behavior Evidence Normalizer
+The Behavior Evidence Normalizer (BEN) builds an item-item be-
+havior graph from co-user similarity after the interaction split is
+fixed. Let𝒟tr denote the training interactions only, and let𝒰tr
+𝑖 de-
+note the users who interacted with item𝑖in 𝒟tr. The raw behavior
+edge between two items is:
+𝐵𝑖𝑗 =
+|𝒰tr
+𝑖 ∩ 𝒰tr
+𝑗 |
+√|𝒰tr
+𝑖 |√|𝒰tr
+𝑗 |
+. (11)
+Only the top𝐾𝑏 neighbors of each item are kept. For a user-item
+pair (𝑢, 𝑖), the raw candidate behavior evidence is aggregated from
+the user’s training historyℋtr𝑢 :
+̃𝑏𝑢𝑖 = 1
+√|ℋtr𝑢 |
+∑
+𝑗∈ℋtr𝑢
+𝐵𝑖𝑗 . (12)
+Validation and test interactions are never used to construct𝐵𝑖𝑗,
+ℋtr𝑢 , item popularity, or user degree features; they are used only
+for model selection and final evaluation. The reported setting uses
+cosine co-user similarity,𝐾𝑏 = 1000, square-root history normal-
+ization, and centered behavior scores:
+𝑏𝑢𝑖 =
+̃𝑏𝑢𝑖 − 𝜇𝑢
+𝜎𝑢 + 𝜖 . (13)
+Although 𝐵𝑖𝑗 and ̃𝑏𝑢𝑖 are non-negative, the normalized residual𝑏𝑢𝑖
+can be positive or negative. Positive values indicate stronger-than-
+usual behavior support under the user’s history, while negative
+valuesindicateweaker-than-usualsupportandcandemoteacandi-
+date when used in Eq.20. When the full user-item behavior matrix
+fits in memory, BRIDGE normalizes each user’s complete behavior
+row once and reuses the same𝑏𝑢𝑖 values in sampled training pairs
+andcandidateinference.Forlargersparsedatasets, 𝑏𝑢𝑖 iscomputed
+on demand; both paths yield the same normalized score and avoid
+hidden train–test mismatch.
+5.4 Candidate Residual Integrator
+The Candidate Residual Integrator (CRI) uses BEN evidence as a
+signed score residual after DFGE has selected a candidate set. The
+central design choice is the candidate-level scope rather than an
+unconstrained learned coefficient. The main BRIDGE setting uses
+a validation-selected residual strength:
+Δbridge(𝑢, 𝑖) = 𝕀[𝑖 ∈ 𝒞tr𝑢 ]𝜆𝑏𝑏𝑢𝑖. (14)
+This is the formulation used in the main experiments. We also in-
+clude a conservative control with lightweight user and item biases
+𝛽𝑢, 𝛽𝑖 and scalar coefficients𝑎𝑠, 𝑎𝑏:
+𝜂𝑢𝑖 = 𝜎 (𝛽𝑢 + 𝛽𝑖 + 𝑎𝑠 tanh(𝑠base(𝑢, 𝑖)) + 𝑎𝑏 tanh(𝑏𝑢𝑖)). (15)
+The corresponding candidate score is
+𝑠train(𝑢, 𝑖) = 𝑠base(𝑢, 𝑖) + 𝕀[𝑖 ∈ 𝒞tr𝑢 ]𝜆𝑏𝜂𝑢𝑖𝑏𝑢𝑖. (16)
+
+PAGE 6
+CIKM ’26, November 7–11, 2026, Rome, Italy Li et al.
+In both cases, the sign of the correction comes from𝑏𝑢𝑖; the coeffi-
+cient only scales the residual. This distinction matters empirically:
+the fixed-𝜆𝑏 calibrator is the primary CRI instantiation, while the
+conservative coefficient remains a useful control. During training,
+BRIDGEusesthesamecandidatescopeasinference.Foreachtrain-
+ing user, we first form a detached base-score candidate set:
+𝒞tr𝑢 = TopK(sg(𝑠base(𝑢, ⋅)), 𝐾𝑐), (17)
+where sg(⋅) denotes stop-gradient. This set is computed with the
+same candidate size𝐾𝑐 used at inference. It is used only as a scope
+mask, not as an additional supervision target. In the reported set-
+ting,thesetisrecomputedforeachmini-batchfromdetachedbase
+embeddings rather than cached across epochs, so the candidate
+scope tracks the evolving base scorer. Sampled positive and neg-
+ative items are then scored as:
+𝑠train(𝑢, 𝑖) = 𝑠base(𝑢, 𝑖) + 𝕀[𝑖 ∈ 𝒞tr𝑢 ]𝜆𝑏𝑏𝑢𝑖. (18)
+Theindicatorensuresthattheresidualbranchisactiveonlyoncan-
+didateitems.Itemsoutside 𝒞tr𝑢 stillcontributethrough 𝑠base(𝑢, 𝑖),so
+the base scorer can learn to move future positives into the candi-
+dateset.Gradientsaretakenthroughthebasescoreforallsampled
+pairs and through the calibration coefficient only when the con-
+servative control is used; the top-𝐾 membership itself is detached.
+This candidate-aware objective reduces the train–test scope mis-
+match of training a residual on globally sampled pairs while apply-
+ing it only to a top-𝐾 candidate set at inference. During inference,
+BRIDGE first obtains a candidate set from the base multimodal
+score:
+𝒞𝑢 = TopK(𝑠base(𝑢, ⋅), 𝐾𝑐). (19)
+At inference, the final score is:
+𝑠(𝑢, 𝑖) = 𝑠 base(𝑢, 𝑖) + 𝕀[𝑖 ∈ 𝒞𝑢]𝜆𝑏𝑏𝑢𝑖. (20)
+This top-𝐾 restriction is the main operational scope. It lets be-
+havior evidence reorder plausible candidates, but prevents it from
+rewritingthewholeitemspace.Thereportedsettinguses 𝐾𝑐 = 200,
+and 𝜆𝑏 isselected onvalidation Recall@20 froma small calibration
+grid. The conservative coefficient shares the same score form and
+candidate scope, but it is used only in the control variant. BRIDGE
+thereforealwaysperformsbehavior-residualcandidatecalibration,
+and the calibration strength is selected on validation rather than
+tuned on test.
+Candidate-aware training. Asimplerimplementationwouldtrain
+Eq.18withouttheindicatorandthenapplyEq. 20onlyinside 𝒞𝑢 at
+testtime.Wetreatthatvariantasarerankingbaselineandcompare
+against it in the control suite. BRIDGE instead trains the residual
+under the same scope used at inference, which keeps the residual
+branch focused on candidate items and leaves the base scorer re-
+sponsible for moving new positives into the candidate set.
+5.5 Training Objective
+BRIDGE optimizes the calibrated BPR loss:
+ℒrank = − ∑
+(𝑢,𝑖,𝑗)
+log 𝜎 (𝑠train(𝑢, 𝑖) − 𝑠train(𝑢, 𝑗)). (21)
+An auxiliary BPR loss on the base score keeps the backbone pre-
+dictive:
+ℒbase = − ∑
+(𝑢,𝑖,𝑗)
+log 𝜎 (𝑠base(𝑢, 𝑖) − 𝑠base(𝑢, 𝑗)). (22)
+This auxiliary loss matters under candidate-aware training: when
+a positive item is not yet in𝒞tr𝑢 , the residual branch is inactive, and
+the base loss supplies the learning signal that can move the item
+into later candidate sets. The frequency gates are regularized by
+two objectives: an information-bottleneck surrogate that controls
+gate expansion, and a frequency structural regularizer that con-
+strains the decomposed bands. Let𝛾𝑛,𝑚 denote the frequency gate
+value for node𝑛 and band 𝑚, and define𝛿𝑛,𝑚 = max(𝛾𝑛,𝑚 − 1, 0)
+under the positive-gate setting. The information-bottleneck surro-
+gate is:
+ℒIB = 1
+|𝒩| ∑
+𝑛∈𝒩
+[𝛼IB‖𝛿 𝑛‖22 + 𝜇IB‖𝛿 𝑛‖2
+𝑀
+∑
+𝑚=1
+max(𝛿𝑛,𝑚 − 𝜙+, 0)] ,
+(23)
+where 𝒩 includes the user and item nodes used by the encoder.
+This term penalizes unnecessary expansion of the frequency gates:
+if a node can be represented without strongly amplifying a partic-
+ular frequency band, the gate is encouraged to stay close to one.
+For a training mini-batch ℬ = {(𝑢 𝑏, 𝑖𝑏, 𝑗𝑏)}𝐵
+𝑏=1, BRIDGE com-
+putes the frequency structural regularizer from the user bandsh𝑚𝑢𝑏
+and the positive-item bandsh𝑚
+𝑖𝑏
+. Let ̃h = h/(‖h‖2 + 𝜖) denote the
+normalized band vector. The regularizer has two parts:
+ℒfreq = ℒdec + ℒdisc, (24)
+where
+ℒdec = 1
+𝐵𝑀(𝑀 − 1)
+𝐵
+∑
+𝑏=1
+∑
+𝑚≠ℓ
+[cos2( ̃h𝑚𝑢𝑏 , ̃hℓ𝑢𝑏 )
++cos2( ̃h𝑚
+𝑖𝑏
+, ̃hℓ
+𝑖𝑏
+)] ,
+(25)
+and
+ℒdisc = − 1
+𝐵|ℳℎ| ∑
+𝑚∈ℳℎ
+𝐵
+∑
+𝑏=1
+log
+exp(⟨ ̃h𝑚𝑢𝑏 , ̃h𝑚
+𝑖𝑏
+⟩/𝜏 )
+∑𝐵
+𝑟=1 exp(⟨ ̃h𝑚𝑢𝑏 , ̃h𝑚
+𝑖𝑟
+⟩/𝜏 )
+. (26)
+Here ℳℎ denotes the higher-frequency bands. The decorrelation
+termsuppressesredundantoverlapbetweendifferentbands,while
+thehigh-frequencydiscriminationtermkeepsthehigher-frequency
+bandsranking-awarebycontrastingeachpositivepairagainstother
+positiveitemsinthesamebatch.Thisregularizerisstructuralrather
+than a strict orthogonality penalty: it preserves a stable band ge-
+ometrywhilekeepingtheinformativebandsdiscriminative.TheIB
+surrogate controls how much each node may amplify frequency
+bands, whereas the frequency structural regularizer controls the
+geometry of the resulting band embeddings. When the conserva-
+tive coefficient control is enabled, we add a soft constraint on the
+average gate value:
+ℒ𝜂 = (𝔼(𝑢,𝑖)[𝜂𝑢𝑖] − 𝜏𝜂)
+2
+. (27)
+
+PAGE 7
+BRIDGE: Behavior-Guided Residual Integration with Dual-Frequency Graph Evidence CIKM ’26, November 7–11, 2026, Rome, Italy
+For the main fixed-𝜆𝑏 BRIDGE setting,ℒ𝜂 = 0. The final objective
+is:
+ℒ =ℒrank + 𝜆baseℒbase + 𝜆IBℒIB + 𝜆freqℒfreq
++ 𝜆𝜂ℒ𝜂. (28)
+In the reported fixed-𝜆𝑏 setting, the active coefficients are𝜆base =
+0.2, 𝜆IB = 1.0 , 𝜆freq = 0.001 , and 𝜆𝜂 = 0 . The conservative co-
+efficient control uses 𝜆𝜂 = 0.001 and gate target 𝜏𝜂 = 0.5 . The
+candidate-calibration strength follows the same five-point valida-
+tion grid. This objective makes the method explicit: DFGE learns
+the frequency-organized multimodal representation, and CRI in-
+tegrates BEN evidence under the same candidate scope used by
+inference.
+6 Experiments
+6.1 Experimental Setup
+We evaluate BRIDGE on Amazon Baby, Sports, and Electronics
+fromtheAmazonreviewbenchmark[ 14]underthecommonMMRec-
+style implicit-feedback split. Baby has 19,445 users, 7,050 items,
+and160,792interactions.Sportshas35,598users,18,357items,and
+296,337 interactions. Electronics has 192,403 users, 63,001 items,
+and 1,689,188 interactions. We use BEIT3-derived multimodal fea-
+turesandreportRecall@10,Recall@20,NDCG@10,andNDCG@20.
+All baselines in Table1 use the same processed interaction splits,
+BEIT3 feature files, and full-sort evaluation protocol. Unless other-
+wise stated, reported numbers use seed 2020.
+For all three datasets, the behavior graph is constructed strictly
+from the training split. Each interaction file carries a training, val-
+idation, or test partition marker. We first build𝒟tr from the train-
+ing partition and compute co-user edges, user histories, item pop-
+ularity, and user degree from this training matrix only. Validation
+and test interactions are not used in the behavior graph. Baby con-
+tains 118,551 training interactions, 20,559 validation interactions,
+and 21,682 test interactions. Sports contains 218,409 training inter-
+actions, 37,899 validation interactions, and 40,029 test interactions.
+Electronics contains 1,254,441 training interactions, 211,296 vali-
+dation interactions, and 223,451 test interactions. After filtering,
+validation and test contain no cold-start users.
+AllBRIDGEmainresultsusecandidate-awaretraining.Foreach
+training mini-batch, the model computes the detached base top-𝐾𝑐
+candidate set of each involved user and masks the behavior resid-
+ual outside this set, as defined in Eq.18. At test time, the same
+𝐾𝑐-restricted residual is applied to the base top-𝐾𝑐 list in Eq.20.
+Training uses pairwise BPR with this same candidate mask, so the
+residual is learned in the scope where it is used.
+Thereportedhyperparametersfollowthedatasetandmodelcon-
+figurationfiles.Weusea64-dimensionalembeddingsize,twograph
+layers, and three frequency bands. The item graph uses 10 neigh-
+bors. The learning rate is10−4, the regularization weight is10−3,
+theIBweightis1.0,thebehaviortop- 𝐾 is1000,thebehaviorweight
+is0.4,thebehaviorevaluationtop- 𝐾 is200,andthetraincandidate
+top-𝐾 is 200. The behavior graph uses cosine similarity, sum-sqrt
+aggregation, and z-score normalization. Training uses Adam for
+300 epochs with batch sizes 2048 and 4096, zero weight decay, and
+seed 2020. These settings are shared by the main tables, the ab-
+lation suite, and the calibration sweeps. The experiment suite is
+organized to match the method: Table 1 compares overall ranking
+quality, Tables 2 and 3 isolate the residual and spectral controls,
+andTable4checkswhetherthegainscomefromahead-itemboost
+or from a broader redistribution of ranking mass.
+6.2 Main Results
+Table1 follows the common overall comparison format and places
+BRIDGE in the rightmost column. The baseline set spans pairwise
+ranking (BPR [21]) and graph collaborative models (LightGCN [4],
+MMGCN [28], GRCN [27], DualGNN [26], and LATTICE [36]). It
+also includes multimodal variants (VBPR [3], SLMRec [25], BM3
+[40],FREEDOM[ 39],DiffMM[ 5],MMIL[ 32],AlignRec[ 10],SMORE
+[16], and FITMM [33]). The comparison therefore covers classi-
+cal collaborative ranking and recent multimodal systems under
+the same data pipeline. We select the checkpoint and candidate-
+calibration setting by validation Recall@20. The validation grid
+sets 𝜆𝑏 to 0.1, 0.2, 0.4, 0.6, or 0.8, and also evaluates a coefficient-
+controlled variant. The test set is evaluated only after this selec-
+tion. On the three reported datasets, the selected BRIDGE setting
+is the fixed-𝜆𝑏 candidate calibration rather than the conservative
+coefficient control. For the recent strong baselines and BRIDGE,
+we report mean and standard deviation across five seeds because
+these methods define the competitive margin. The remaining base-
+lines are included as single-run protocol controls under the same
+processed data and feature setting. Hyperparameters are chosen
+on validation Recall@20 using the ranges provided by the corre-
+sponding implementations or MMRec-style configuration files. Ta-
+ble 1 shows that BRIDGE improves every metric on every dataset.
+The Recall gains are consistent, but the NDCG gains are larger,
+which means the method mainly sharpens the order near the top
+of the list rather than only recovering more positives at larger cut-
+offs. The margin is most pronounced on Electronics, where spar-
+sity and popularity skew make a global residual less reliable. This
+matches the design of BRIDGE: DFGE sets the candidate geome-
+try, and BEN/CRI refines only the items that already look plausi-
+bleunderthemultimodalbackbone.Brokendownbydataset,Baby
+shows the smallest but still stable gain, Sports shows the largest
+balanced improvement across Recall and NDCG, and Electronics
+shows the clearest benefit from candidate-level calibration. This
+pattern is consistent with the data regime:as the interaction graph
+becomes sparser, the model benefits more from a restricted resid-
+ual than from a global score adjustment.
+6.3 Diagnostics
+Atthevalidation-selectedBabycheckpoint,thepaircoefficientmean
+is 0.7365, the behavior correction absolute mean is 0.6886, the low-
+item norm mean is 6.3819, the high-item norm mean is 2.7333, and
+the low-high item cosine is 0.0560. These values show that the two
+frequency components capture different signals and that the resid-
+ual branch acts locally. The low-frequency band carries stronger
+cross-viewagreementandlargerenergy,whilethehigh-frequency
+band is less aligned but remains informative. Their near-zero co-
+sine indicates that BRIDGE can use the low bands as shared struc-
+ture and the high bands as local variation.
+
+PAGE 8
+CIKM ’26, November 7–11, 2026, Rome, Italy Li et al.
+6.4 Additional Controls and Sensitivity
+Tables2–4reportthecontrolsthatseparatetherolesofDFGE,BEN,
+and CRI. All controls use the same splits, features, and full-sort
+protocol. The control suite answers three questions. First, do BEN
+and CRI need behavior evidence and candidate restriction, or can
+a generic residual work? Second, does DFGE need a spectral de-
+composition, or is equal-capacity routing enough? Third, does the
+residualmainlymovescoremassawayfrompopularitems,ordoes
+it improve ranking across strata? Tables2–4 provide the quantita-
+tive controls.
+Table 2 isolates the behavior branch, multimodal encoder, and
+spectral objectives on Baby. Panel (b) compares BRIDGE with al-
+ternative residual rules on all three datasets, separating the score
+itself from the way it is applied.
+The first row block in Table2(a) shows that BEN and CRI are
+tied together. Removing behavior evidence hurts, but keeping the
+same evidence and relaxing the scope is still worse than the full
+candidate-awaremodel.Globalcorrectionrecoverspartofthedrop
+butremainsbelowBRIDGEbecausetheresidualthenreachesitems
+outside the base candidate set. The residual helps when it stays lo-
+cal.
+ThecontentblockinTable 2(a)showsthattheitemgraphcarries
+the largest share of the multimodal gain. Removing the item graph
+causes a sharp drop, while removing image or text alone produces
+smaller losses, which means the two modalities are complemen-
+taryratherthaninterchangeable.Thespectralblockthenseparates
+architecture from regularization. Disabling the IB surrogate or the
+frequency regularizer hurts performance, but Gram, DCT, and ran-
+dom bases stay close to one another. The result points to a stable
+band split as the important factor, rather than a particular basis.
+Table2(b) compares the residual against simpler baselines. Raw
+co-occurrence is the weakest control, EASE improves it, and the
+conservative coefficient closes part of the gap. BRIDGE still wins
+on all three datasets, with the largest margin on Electronics. The
+comparison shows that BEN is more than an item-item prior. Its
+normalization and candidate scope matter when the interaction
+matrix is sparse and the residual must discriminate among near
+ties.
+Table3 extends the same check across datasets and fusion rules.
+The cross-dataset block repeats the Baby ordering on Sports and
+Electronics, so the mechanism is not tied to one domain density.
+Thelearned-fusionblockthencomparesafixedresidualwithlearned
+scalarmixing,anMLPgate,andanEASE-styleresidual.Thelearned
+variants remain close, but none surpass the fixed BRIDGE setting.
+A larger fusion head adds little beyond the candidate-restricted
+residual.
+Table4 tests whether the gain comes from favoring head items.
+BRIDGE raises Recall@20 in every popularity stratum while re-
+ducing head exposure, and the effect is strongest on Sports and
+Electronics, where the base model is more skewed toward popular
+items. The conservative coefficient variant keeps more of the orig-
+inal exposure pattern and usually trails the fixed residual, making
+the fixed calibration rule the stronger operating point.
+Across these controls, the same pattern appears. Removing be-
+havior evidence or candidate restriction hurts, and global correc-
+tionisweakerthancandidate-levelcalibration.Rawco-occurrence
+0 5 10
+behavior evidence bui
+0.4
+0.5
+0.6
+0.7
+0.8
+candidate coefficient gui
+(a) BEN evidence opens CRI
+Q1 Q2 Q3 Q4 Q5
+bui quantile
+0.0
+0.5
+1.0
+1.5
+mean Δs
+(b) score correction by evidence
+total
+BEN
+DFGE residual
+Q1 Q2 Q3 Q4 Q5
+bui quantile
+−20
+0
+20
+40
+mean promotion in top-200
+(c) local rank movement
+1000
+2000
+3000
+count
+Candidate-Level Interpretability of BRIDGE on Amazon Baby
+Baby SportsElectronics
+0.80
+0.85
+0.90
+0.95
+1.00
+head exposure@20
+(a) exposure concentration
+base
+BRIDGE
+Head Mid T ail Cold
+Baby
+Sports
+Electronics
++0.009+0.017+0.013+0.008
++0.010+0.016+0.022+0.016
++0.018+0.007+0.003+0.002
+(b) recall gain by stratum
+Baby Sports Electronics
+0.08
+0.10
+0.12
+R@20
+(c) residual alternatives
+Raw cooc.
+EASE
+Conserv.
+BRIDGE
+0.01
+0.02
+R@20 gain
+Behavior-Guided Output Interpretation
+Figure 3: Candidate-level interpretability controls for
+BRIDGE. The upper row shows BEN evidence, score cor-
+rections, and rank changes; the lower row shows exposure
+shifts, stratum-level recall, and residual alternatives.
+and EASE do not match BRIDGE’s normalized residual, so BEN is
+more than an ItemKNN-style lookup. The item graph and multi-
+modal content shape candidate geometry, while the spectral ob-
+jectives stabilize the calibrated score. Table4 shows the output ef-
+fect: BRIDGE raises mid, tail, and cold recall while lowering head
+exposure.
+7 Discussion and Limitations
+The controls separate the two roles in BRIDGE. Candidate restric-
+tionkeepstheresidualfromdistortingthebasescore:removingthe
+top-𝐾 scope or applying the correction globally weakens ranking.
+Rawco-occurrence,EASE,andlearnedfusioncontrolsalsoremain
+below the full model. The popularity results add an output-level
+view: the residual improves all item strata while reducing head ex-
+posure, without an explicit anti-popularity objective.
+7.1 Practical Implications
+DFGEbuildsthecandidatemanifold,BENconvertsco-useroverlap
+into signed evidence, and CRI decides where that evidence may al-
+ter the score. Keeping these roles separate is what makes the resid-
+ual useful. When the same evidence acts globally, it competes with
+themultimodalbackboneandtheimprovementshrinks.Candidate
+restriction keeps the residual tied to the ranking decision.
+The popularity diagnostics follow the same division of labor.
+Head items are easier to reconstruct from sparse co-occurrence,
+while mid, tail, and cold items depend more on cross-modal struc-
+ture. BRIDGE uses no explicit anti-popularity penalty. It preserves
+head accuracy and sends more ranking mass to less exposed items
+that pass the candidate gate. The exposure shift in Table4 follows
+from this localization.
+At inference, BRIDGE applies a residual pass to a cached candi-
+date list. The item graph is precomputed, the behavior graph uses
+training interactions only, and the residual changes scores inside
+
+PAGE 9
+BRIDGE: Behavior-Guided Residual Integration with Dual-Frequency Graph Evidence CIKM ’26, November 7–11, 2026, Rome, Italy
+Table 2: Core Baby ablations and cross-dataset residual alternatives. All rows use the same splits, BEIT3 features, candidate
+restriction, and full-sort evaluation protocol.
+(a) DFGE, BEN/CRI, and frequency ablations on Amazon Baby
+Module Variant R@10 R@20 N@10 N@20
+Full BRIDGE 0.0752 0.1128 0.0428 0.0525
+BEN/CRI w/o behavior evidence 0.0682 0.1016 0.0368 0.0453
+BEN/CRI w/o top-𝐾 calibration 0.0651 0.1025 0.0354 0.0450
+BEN/CRI global correction 0.0745 0.1092 0.0419 0.0507
+DFGE-Content w/o item graph 0.0535 0.0824 0.0282 0.0356
+DFGE-Content w/o image feature 0.0735 0.1089 0.0415 0.0506
+DFGE-Content w/o text feature 0.0750 0.1089 0.0422 0.0509
+DFGE-Content w/o content features 0.0608 0.0894 0.0340 0.0414
+DFGE-Spectral w/o IB surrogate 0.0709 0.1031 0.0404 0.0487
+DFGE-Spectral w/o freq. structural reg. 0.0747 0.1107 0.0424 0.0517
+DFGE-Spectral w/o both freq. objectives 0.0712 0.1023 0.0407 0.0487
+DFGE-Spectral w/o freq. decomp. (equal cap.) 0.0746 0.1110 0.0425 0.0519
+DFGE-Spectral Gram decomposition 0.0752 0.1117 0.0425 0.0519
+DFGE-Spectral DCT decomposition 0.0751 0.1089 0.0427 0.0514
+DFGE-Spectral Random orthogonal decomp. 0.0750 0.1113 0.0427 0.0519
+(b) Candidate-level alternative residual controls
+Dataset Metric Raw cooc. EASE Conserv. coeff. BRIDGE
+Baby R@20 0.1067 0.1087 0.1126 0.1128
+N@20 0.0478 0.0494 0.0519 0.0525
+Sports R@20 0.1218 0.1229 0.1240 0.1262
+N@20 0.0553 0.0571 0.0589 0.0594
+Electronics R@20 0.0713 0.0724 0.0738 0.0778
+N@20 0.0338 0.0344 0.0351 0.0385
+Table 3: Candidate-side controls on Amazon Baby, Sports, and Electronics. To keep the control study in the main text, we
+report the primary Recall@20 and NDCG@20 metrics.
+(a) Cross-dataset ablations
+Dataset Variant R@20 N@20
+Sports BRIDGE 0.1262 0.0594
+conserv. coeff. 0.1217 0.0572
+w/o behavior evidence 0.1162 0.0515
+w/o top-𝐾 calibration 0.1127 0.0493
+global correction 0.1137 0.0542
+w/o calib. coeff. 0.1194 0.0567
+w/o behavior coeff. 0.1236 0.0581
+w/o image feature 0.1208 0.0567
+w/o text feature 0.1213 0.0572
+w/o content features 0.1048 0.0505
+w/o item graph 0.1010 0.0471
+Electronics BRIDGE 0.0778 0.0385
+conserv. coeff. 0.0747 0.0354
+w/o calib. coeff. 0.0755 0.0359
+w/o behavior evidence 0.0656 0.0298
+w/o top-𝐾 calibration 0.0647 0.0292
+global correction 0.0642 0.0303
+w/o image feature 0.0648 0.0293
+(b) Learned fusion controls
+Dataset Variant R@20 N@20
+Baby base encoder 0.1017 0.0455
+fixed 𝜆 mix 0.1128 0.0520
+learned 𝜆𝑢 0.1126 0.0519
+MLP gate 0.1115 0.0512
+EASE residual 0.1087 0.0494
+BRIDGE 0.1128 0.0525
+Sports base encoder 0.1141 0.0502
+BRIDGE 0.1262 0.0594
+learned 𝜆𝑢 0.1260 0.0595
+MLP gate 0.1257 0.0581
+conserv. coeff. 0.1240 0.0589
+Table 4: Popularity-stratified diagnostic and exposure track. Head, Mid, Tail, and Cold report Recall@20 within each item-
+popularity stratum; Head Exp. is the top-20 exposure share assigned to head items.
+Dataset Variant R@20 Head Mid Tail Cold Head Exp.
+Baby base 0.1017 0.1649 0.0094 0.0059 0.0031 0.9842
+mix 0.1110 0.1705 0.0270 0.0183 0.0109 0.9356
+logic 0.1113 0.1710 0.0270 0.0189 0.0109 0.9358
+BRIDGE (fixed 𝜆) 0.1128 0.1739 0.0261 0.0189 0.0109 0.9426
+Sports base 0.1141 0.1888 0.0338 0.0217 0.0119 0.9073
+BRIDGE (fixed 𝜆) 0.1262 0.1986 0.0497 0.0438 0.0283 0.8429
+conservative coeff. variant 0.1240 0.1926 0.0452 0.0381 0.0231 0.8658
+Electronics base 0.0637 0.0933 0.0027 0.0012 0.0006 0.9939
+BRIDGE (fixed 𝜆) 0.0778 0.1115 0.0099 0.0045 0.0024 0.9726
+conservative coeff. variant 0.0738 0.1067 0.0067 0.0029 0.0016 0.9858
+theshortlist.Thisfitsastandardretrieval-and-rankpipeline.Candi-
+datequalitysetstheupperbound:arelevantitemthatneverenters
+the shortlist cannot be recovered by calibration.
+Noiseinco-userneighborhoodsblursBENwhenoverlapissparse
+or interaction bursts are highly local. The conservative coefficient
+limits the correction in these cases. The fixed candidate-weighted
+
+PAGE 10
+CIKM ’26, November 7–11, 2026, Rome, Italy Li et al.
+residualisstrongeroncethebackboneproducesareasonableshort-
+list, which is the setting evaluated in the benchmark.
+7.2 Calibration Behavior
+The validation sweep gives the same qualitative behavior across
+thecoefficientsettings.Thefixed- 𝜆𝑏 settingwinsonallthreedatasets,
+while the conservative control stays close. The residual is a local
+correction, so a small coefficient has little effect and a large one
+competes with the backbone. The five-point grid selects the mid-
+dle range without a large search.
+The same pattern appears across the frequency design. The low-
+frequencycomponentcarriesthestablecross-viewstructure,while
+thehigher-frequencybandscapturesparseanditem-specificvaria-
+tion.TheIBsurrogateandthefrequencyregularizerarebothneeded
+because they serve different roles: one controls how much each
+node can route into the bands, the other preserves a useful band
+geometry once the routing has happened. The ablations show that
+dropping either term weakens the ranking signal, while changing
+the basis has only a small effect. The decomposition is structural
+and largely independent of the basis.
+Removing frequency decomposition gives 0.1110 Recall@20 on
+Baby versus 0.1128 for BRIDGE, while Gram, DCT, and random
+orthogonal bases remain close. The gain therefore comes from sep-
+arating shared low-frequency evidence from more private higher-
+frequency variation; band routing and its regularizers provide a
+smaller complementary gain by shaping the candidate geometry
+used by BEN/CRI.
+7.3 Scope and Reproducibility
+BRIDGEoperatesattherankingstageofatwo-stagerecommender.
+Themultimodalbackbonebuildsthebasetop- 𝐾 list,whichdefines
+thecandidateuniverse,andBEN/CRIchangesonlytheorderinside
+that list. Recall captures candidate coverage, whereas NDCG also
+reflects the position of a relevant item in the local ranking. The
+largerNDCGgainsinTable 1arisefromadvancingplausibleitems
+within the list, especially on the sparser Electronics graph.
+Figure 3 makes the mechanism visible at the candidate level.
+Positive BEN values produce larger score adjustments and gener-
+ally move the associated items upward in the top-200 order. The
+dataset-level diagnostics follow the same pattern: Table4 reports
+higher Recall@20 in the mid, tail, and cold strata alongside lower
+head-item exposure on Sports and Electronics. The residual real-
+locates positions among candidates that have already passed the
+multimodal gate.
+The fixed residual keeps this calibration step transparent. The
+base representation supplies the retrieval signal, while normalized
+co-user evidence resolves close scores. Learned scalar mixing and
+theMLPgateremaincompetitiveinTable 3,yetthefixedrulegives
+the strongest overall balance across the reported datasets. A five-
+point validation grid sets its strength, keeping the final ranking
+step easy to inspect and reproduce.
+The ablations also map the design to deployment choices: candi-
+date size sets recall headroom, band count controls spectral resolu-
+tion, and residual strength controls how far behavior evidence can
+moveacandidate.Babyshowsamodestcalibrationlift,Sportsben-
+efits from denser co-user overlap, and Electronics gains the most
+NDCGfromresolvingsparselocalties.Theresidualthereforecom-
+plements the backbone rather than replacing retrieval.
+BRIDGE is most useful when the backbone supplies a seman-
+tically plausible shortlist and local ordering is uncertain. Sparse
+overlap and highly local interaction bursts make BEN less precise,
+and the residual affects only items retained by the base candidate
+list. The study covers three Amazon domains with one BEIT3 fea-
+ture type. The item and behavior graphs are cached and CRI evalu-
+ates only the shortlist; end-to-end latency and throughput are not
+evaluated.
+The public repository includes the model and evaluation code,
+dataset format documentation, configurations, and run scripts for
+allthreebenchmarks.Everyexperimentusesthesamefeaturecache,
+split manifest, and full-sort evaluator. Behavior evidence is con-
+structed from the training split, and the residual strength is se-
+lected on validation data. These settings keep the ranking protocol
+aligned across all compared methods.
+The release also records candidate size, behavior top-𝐾, band
+count, random seed, feature paths, preprocessing scripts, and eval-
+uation commands. Keeping these choices in the configuration files
+makes it possible to regenerate the tables with the same cached
+graphs and feature files, while varying one component at a time.
+8 Conclusion
+BRIDGE separates candidate retrieval from local ranking. DFGE
+buildsthemultimodalcandidategeometry,BENturnsco-userover-
+lap into signed evidence, and CRI uses that evidence only to re-
+order candidates already admitted by the backbone. Across Baby,
+Sports,andElectronics,thisdivisionimprovesbothRecallandNDCG,
+with the largest gains in NDCG. Multimodal evidence finds plausi-
+ble items; behavior evidence resolves their close ordering.
+The ablations support this division. BRIDGE changes local or-
+derwithoutchangingthecandidatepool,whichexplainsthelarger
+NDCGgainsandlowerhead-itemexposureonSportsandElectron-
+ics.
+The fixed residual works because broad preference matching
+stays with the base score, while signed behavior evidence is re-
+served for close alternatives. Its influence is concentrated near the
+top of the ranked list, where small ordering changes matter most.
+The tuning rule follows directly: use the backbone for candidate
+coverage and apply the residual only after the shortlist is reliable.
+This separation makes changes easier to diagnose: recall changes
+point to candidate formation, whereas ranking changes point to
+local calibration.
+This separation also explains the metric pattern: Recall changes
+only when candidate coverage changes, whereas NDCG can im-
+prove when a relevant item is moved upward within the same
+shortlist. The reported gains therefore measure local ranking qual-
+ity in addition to retrieval quality.
+Acknowledgments
+This work was supported by the National Natural Science Founda-
+tion of China under Grant No. 62271466.
+
+PAGE 11
+BRIDGE: Behavior-Guided Residual Integration with Dual-Frequency Graph Evidence CIKM ’26, November 7–11, 2026, Rome, Italy
+GenAI Usage Disclosure
+The authors used generative AI tools for language editing, LATEX
+formatting,draftingassistance,andfigurepreparation.Theauthors
+developedandverifiedalltechnicalcontent,experiments,analyses,
+and conclusions and take responsibility for the final manuscript.
+References
+[1] Ji Dai, Quan Fang, Jun Hu, Desheng Cai, Yang Yang, and Can Zhao. 2026. Cross-
+ModalAttentionNetworkwithDualGraphLearninginMultimodalRecommen-
+dation. arXiv preprint arXiv:2601.11151 (2026).
+[2] ZiyuanGuo,JieGuo,ZhenghaoChen,BinSong,andFeiRichardYu.2025. IGDM-
+Rec: Behavior Conditioned Item Graph Diffusion for Multimodal Recommenda-
+tion. arXiv preprint arXiv:2512.19983 (2025).
+[3] Ruining He and Julian McAuley. 2016. VBPR: Visual Bayesian Personalized
+Ranking from Implicit Feedback. InProceedings of the Thirtieth AAAI Conference
+on Artificial Intelligence (AAAI ’16). 144–150.doi:10.1609/aaai.v30i1.9973
+[4] Xiangnan He, Kuan Deng, Xiang Wang, Yan Li, Yongdong Zhang, and Meng
+Wang. 2020. LightGCN: Simplifying and Powering Graph Convolution Network
+for Recommendation. InProceedings of the 43rd International ACM SIGIR Confer-
+ence on Research and Development in Information Retrieval (SIGIR ’20) . 639–648.
+doi:10.1145/3397271.3401063
+[5] Yangqin Jiang, Lianghao Xia, Wei Wei, Da Luo, Kangyi Lin, and Chao Huang.
+2024. DiffMM: Multi-Modal Diffusion Model for Recommendation. InProceed-
+ings of the 32nd ACM International Conference on Multimedia (MM ’24) . 7591–
+7599. doi:10.1145/3664647.3681498
+[6] Chenghao Li, Wei Zhou, Yihao Zhang, Jiahao Hu, Huayi Shen, and Junhao Wen.
+2026. MSCF-Net: Multi-scale Frequency Denoising and Co-frequency Enhance-
+ment Network for Multimodal Recommendation.Expert Systems with Applica-
+tions 309 (2026), 131159.doi:10.1016/j.eswa.2026.131159
+[7] Yuan Li, Jun Hu, Jiaxin Jiang, Bryan Hooi, and Bingsheng He. 2026. Robust Mul-
+timodal Recommendation via Graph Retrieval-Enhanced Modality Completion.
+arXiv preprint arXiv:2605.00670 (2026).
+[8] Yuecheng Li, Hengwei Ju, Zeyu Song, Wei Yang, Chi Lu, Peng Jiang, and Kun
+Gai. 2026. RecGOAT: Graph Optimal Adaptive Transport for LLM-Enhanced
+Multimodal Recommendation with Dual Semantic Alignment. arXiv preprint
+arXiv:2602.00682 (2026).
+[9] Yang Li, Qi’Ao Zhao, Chen Lin, Jinsong Su, and Zhilin Zhang. 2024. Who To
+Align With: Feedback-Oriented Multi-Modal Alignment in Recommendation
+Systems. In Proceedings of the 47th International ACM SIGIR Conference on Re-
+search and Development in Information Retrieval (SIGIR ’24) . 667–676. doi:10.
+1145/3626772.3657701
+[10] Yifan Liu, Kangning Zhang, Xiangyuan Ren, Yanhua Huang, Jiarui Jin, Yingjie
+Qin, Ruilong Su, Ruiwen Xu, Yong Yu, and Weinan Zhang. 2024. AlignRec:
+Aligning and Training in Multimodal Recommendations. InProceedings of the
+33rd ACM International Conference on Information and Knowledge Management
+(CIKM ’24). 1503–1512.doi:10.1145/3627673.3679626
+[11] Zihao Liu and Wen Qu. 2025. DSGRec: Dual-path Selection Graph for Multi-
+modal Recommendation. PeerJ Computer Science 11 (2025), e2779.doi:10.7717/
+peerj-cs.2779
+[12] Haokai Ma, Yimeng Yang, Lei Meng, Ruobing Xie, and Xiangxu Meng. 2024.
+Multimodal Conditioned Diffusion Model for Recommendation. InCompanion
+Proceedings of the ACM Web Conference 2024 . 1733–1740. doi:10.1145/3589335.
+3651956
+[13] Hongjian Ma, Yan Zhang, Yahui Zhou, Bing Yang, Dunhui Yu, and Zhifei Li.
+2026. LetTwoGraphsTalk:Self-SupervisedDual-GraphReconstructionforMul-
+timodal Recommendation. Information Fusion 133 (2026), 104299.doi:10.1016/j.
+inffus.2026.104299
+[14] Julian McAuley, Christopher Targett, Qinfeng Shi, and Anton van den Hengel.
+2015. Image-Based Recommendations on Styles and Substitutes. InProceedings
+of the 38th International ACM SIGIR Conference on Research and Development in
+Information Retrieval (SIGIR ’15). 43–52.doi:10.1145/2766462.2767755
+[15] Feng Mo, Lin Xiao, Qiya Song, Xieping Gao, Wenzhuo Song, and Shoujin Wang.
+2025. FGCM: Modality-Behavior Fusion Model Integrated with Graph Con-
+trastive Learning for Multimodal Recommendation. IEEE Multimedia (2025).
+doi:10.1109/MMUL.2025.3542757
+[16] Rongqing Kenneth Ong and Andy W. H. Khong. 2025. Spectrum-based Modal-
+ity Representation Fusion Graph Convolutional Network for Multimodal Rec-
+ommendation. InProceedings of the Eighteenth ACM International Conference on
+Web Search and Data Mining (WSDM ’25).773–781. doi:10.1145/3701551.3703561
+[17] Lin Pan, Zhiqiang Pan, Fei Cai, and Honghui Chen. 2026. Multimodal Recom-
+mender Systems: A Survey of Representation, Modeling, and Optimization.In-
+formation Fusion 128 (2026), 103991.doi:10.1016/j.inffus.2025.103991
+[18] Xiangchen Pan and Wei Wei. 2026. Joint Behavior-Guided and Modality-
+Coherence Conditional Graph Diffusion Denoising for Multi-Modal Recommen-
+dation. arXiv preprint arXiv:2604.03654 (2026).
+[19] Yuchao Ping, Shuqin Wang, Ziyi Yang, Bugui He, Nan Zhou, and Yongquan
+Dong. 2025. DDRec: Dual Denoising Multimodal Graph Recommendation.IEEE
+Transactions on Computational Social Systems 12, 3 (2025), 1100–1114. doi:10.
+1109/TCSS.2024.3490801
+[20] Yuxin Qi, Quan Zhang, Xi Lin, Xiu Su, Jiani Zhu, Jingyu Wang, and Jianhua Li.
+2025. Seeing Beyond Noise: Joint Graph Structure Evaluation and Denoising for
+MultimodalRecommendation.In Proceedings of the AAAI Conference on Artificial
+Intelligence, Vol. 39. 12461–12469.doi:10.1609/aaai.v39i12.33358
+[21] Steffen Rendle, Christoph Freudenthaler, Zeno Gantner, and Lars Schmidt-
+Thieme. 2009. BPR: Bayesian Personalized Ranking from Implicit Feedback. In
+Proceedings of the Twenty-Fifth Conference on Uncertainty in Artificial Intelligence
+(UAI ’09). 452–461.
+[22] Bucher Sahyouni, Matthew Vowels, Liqun Chen, and Simon Hadfield. 2026. Se-
+quences as Nodes for Contrastive Multimodal Graph Recommendation.arXiv
+preprint arXiv:2602.07208 (2026).
+[23] Badrul Sarwar, George Karypis, Joseph Konstan, and John Riedl. 2001. Item-
+BasedCollaborativeFilteringRecommendationAlgorithms.In Proceedings of the
+10th International Conference on World Wide Web (WWW ’01) . 285–295. doi:10.
+1145/371920.372071
+[24] Harald Steck. 2019. Embarrassingly Shallow Autoencoders for Sparse Data.
+In Proceedings of the 2019 World Wide Web Conference (WWW ’19) . 3251–3257.
+doi:10.1145/3308558.3313710
+[25] Zhulin Tao, Xiaohao Liu, Yewei Xia, Xiang Wang, Lifang Yang, Xianglin Huang,
+and Tat-Seng Chua. 2023. Self-Supervised Learning for Multimedia Recommen-
+dation. IEEE Transactions on Multimedia25(2023),5107–5116. doi:10.1109/TMM.
+2022.3187556
+[26] QifanWang,YinweiWei,JianhuaYin,JianlongWu,XuemengSong,andLiqiang
+Nie. 2021. DualGNN: Dual Graph Neural Network for Multimedia Recommen-
+dation. IEEE Transactions on Multimedia25(2021),1074–1084. doi:10.1109/TMM.
+2021.3138298
+[27] Yinwei Wei, Xiang Wang, Liqiang Nie, Xiangnan He, and Tat-Seng Chua. 2020.
+Graph-Refined Convolutional Network for Multimedia Recommendation with
+Implicit Feedback. In Proceedings of the 28th ACM International Conference on
+Multimedia (MM ’20). 3541–3549.doi:10.1145/3394171.3413556
+[28] Yinwei Wei, Xiang Wang, Liqiang Nie, Xiangnan He, Richang Hong, and Tat-
+Seng Chua. 2019. MMGCN: Multi-modal Graph Convolution Network for Per-
+sonalized Recommendation of Micro-video. InProceedings of the 27th ACM In-
+ternational Conference on Multimedia (MM ’19). 1437–1445.doi:10.1145/3343031.
+3351034
+[29] Jun Wu, Yu Zheng, Tianfeng Zhang, Shilong Jing, Jinyu Liu, Shuai Guo, and
+Fang Deng. 2026. D-DPDG: Diffusion-based Dual-Graph Attention with Dual-
+Path Feature Extraction for Multimodal Recommendation.Journal of Intelligent
+Information Systems 64, 2 (2026).doi:10.1007/s10844-025-01014-7
+[30] Yuhan Xiu and Xiangrong Tong. 2026. Dual-layer Cross-modal Alignment Rec-
+ommendation Based on the Diffusion Model. Information Fusion 125 (2026),
+103472. doi:10.1016/j.inffus.2025.103472
+[31] Jie Yang, Chenyang Gu, and Zixuan Liu. 2025. Causal Inspired Multi Modal
+Recommendation. arXiv preprint arXiv:2510.12325 (2025).
+[32] Wei Yang and Qingchen Yang. 2024. Multimodal-aware Multi-intention Learn-
+ing for Recommendation. InProceedings of the 32nd ACM International Confer-
+ence on Multimedia (MM ’24). 5663–5672.doi:10.1145/3664647.3681412
+[33] Wei Yang, Rui Zhong, Yiqun Chen, Shixuan Li, Heng Ping, Chi Lu, and Peng
+Jiang. 2025. FITMM: Adaptive Frequency-Aware Multimodal Recommendation
+via Information-Theoretic Representation Learning. InProceedings of the 33rd
+ACM International Conference on Multimedia (MM ’25) . 6193–6202. doi:10.1145/
+3746027.3755540
+[34] Wei Yang, Rui Zhong, Yiqun Chen, Chi Lu, and Peng Jiang. 2025. Structured
+Spectral Reasoning for Frequency-Adaptive Multimodal Recommendation. In
+Advances in Neural Information Processing Systems (NeurIPS ’25) .
+[35] YuyangYe,ZhiZheng,YishanShen,TianshuWang,HengruoZhang,PeijunZhu,
+Runlong Yu, Kai Zhang, and Hui Xiong. 2025. Harnessing Multimodal Large
+Language Models for Multimodal Sequential Recommendation.Proceedings of
+the AAAI Conference on Artificial Intelligence 39, 12 (2025), 13069–13077.doi:10.
+1609/aaai.v39i12.33426
+[36] JinghaoZhang,YanqiaoZhu,QiangLiu,ShuWu,ShuhuiWang,andLiangWang.
+2021. MiningLatentStructuresforMultimediaRecommendation.In Proceedings
+of the 29th ACM International Conference on Multimedia (MM ’21) . 3872–3880.
+doi:10.1145/3474085.3475259
+[37] ShanshanZhong,ZhongzhanHuang,DaifengLi,WushaoWen,JinghuiQin,and
+Liang Lin. 2024. Mirror Gradient: Towards Robust Multimodal Recommender
+SystemsviaExploringFlatLocalMinima. arXiv preprint arXiv:2402.11262(2024).
+[38] HongyuZhou,XinZhou,LingziZhang,andZhiqiShen.2023. EnhancingDyadic
+Relations with Homogeneous Graphs for Multimodal Recommendation. InPro-
+ceedings of the European Conference on Artificial Intelligence (Frontiers in Artificial
+Intelligence and Applications). 3123–3130.doi:10.3233/FAIA230631
+[39] Xin Zhou and Zhiqi Shen. 2023. A Tale of Two Graphs: Freezing and Denoising
+Graph Structures for Multimodal Recommendation. InProceedings of the 31st
+ACM International Conference on Multimedia (MM ’23) . 935–943. doi:10.1145/
+
+PAGE 12
+CIKM ’26, November 7–11, 2026, Rome, Italy Li et al.
+3581783.3611943
+[40] Xin Zhou, Hongyu Zhou, Yong Liu, Zhiwei Zeng, Chunyan Miao, Pengwei
+Wang, Yuan You, and Feijun Jiang. 2023. Bootstrap Latent Representations for
+Multi-Modal Recommendation. InProceedings of the ACM Web Conference 2023
+(WWW ’23). 845–854.doi:10.1145/3543507.3583251
+[41] Yan Zhou, Jie Guo, Hao Sun, Bin Song, and Fei Richard Yu. 2023. Attention-
+Guided Multi-Step Fusion: A Hierarchical Fusion Network for Multimodal Rec-
+ommendation. In Proceedings of the 46th International ACM SIGIR Conference
+on Research and Development in Information Retrieval (SIGIR ’23) . 1816–1820.
+doi:10.1145/3539618.3591950
+[42] Haodong Zhu, Chenhao Yang, Hongchan Li, Zhongchuan Sun, Yajuan Cui,
+Yanpei Liu, and Liang Zhu. 2026. Beyond Feature Concatenation: Mu-
+tual Information-Driven Fusion for Multimodal Sequential Recommendation.
+Knowledge-Based Systems 341 (2026), 115778.doi:10.1016/j.knosys.2026.115778

@@ -1,0 +1,32 @@
+{
+  "deployed": "/data/sunzixuan/dual_witness_20261009_v1",
+  "files": 10
+}
+DUAL_WITNESS_TEST_SUMMARY={"tests": 19, "evidence_tests": 15, "successful": true, "failures": 0, "errors": 0}
+
+test_auc_ties_are_half_wins_and_nonfinite_scores_rejected (test_diagnose.DiagnosticTests) ... ok
+test_decision_gate_rejects_low_coverage_without_adjusting_thresholds (test_diagnose.DiagnosticTests) ... ok
+test_item_scores_use_original_orientation_and_row_pairs (test_diagnose.DiagnosticTests) ... ok
+test_targets_removed_globally_and_all_train_positives_excluded (test_diagnose.DiagnosticTests) ... ok
+test_construction_does_not_change_support_or_add_targets (test_evidence.DualWitnessTests) ... ok
+test_dual_matches_literal_formula_and_block_size (test_evidence.DualWitnessTests) ... ok
+test_empty_and_cold_users_keep_square_zero_weights (test_evidence.DualWitnessTests) ... ok
+test_empty_view_has_zero_witness_without_fallback (test_evidence.DualWitnessTests) ... ok
+test_invalid_mode_and_block_are_rejected (test_evidence.DualWitnessTests) ... ok
+test_overlap_control_removes_single_overlap (test_evidence.DualWitnessTests) ... ok
+test_partition_is_stable_and_boolean (test_evidence.DualWitnessTests) ... ok
+test_public_modes_and_gather_scores (test_evidence.DualWitnessTests) ... ok
+test_row_gather_matches_dense_for_different_items_and_repeated_users (test_evidence.DualWitnessTests) ... ok
+test_row_gather_rejects_cartesian_misuse_and_handles_empty (test_evidence.DualWitnessTests) ... ok
+test_shuffled_dual_matches_dense_and_excludes_self (test_evidence.DualWitnessTests) ... ok
+test_shuffling_preserves_degree_and_is_seeded (test_evidence.DualWitnessTests) ... ok
+test_topk_tie_is_id_deterministic (test_evidence.DualWitnessTests) ... ok
+test_user_knn_matches_dense_formula_and_block_size (test_evidence.DualWitnessTests) ... ok
+test_views_are_disjoint_and_reconstruct_input (test_evidence.DualWitnessTests) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.173s
+
+OK
+
+(base) sunzixuan@213keg:~$

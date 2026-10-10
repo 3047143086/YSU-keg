@@ -1,0 +1,18 @@
+{
+  "bundle_sha256": {
+    "PROTOCOL.md": "6eca2bf2c3d4b8396688606db1ee157da23c607c86a0bc0e59feb582a5361662",
+    "core.py": "01fd9e81ab7bb90c94a3c053e7dd1359b8004335aa98c99e0bd1db496fd3444d",
+    "experiment.py": "38ef7026e096c8a4b61f238093d01d83e8b7ec152d97adba2748e22e3386e88c",
+    "input_audit.json": "7e4a693420156182209f44814ef0e314dc746617c6718c0e9c1d1d0675166346",
+    "manage.py": "b2e48961847820a1fe8c15ec89fe4cf44c3f2806c4f4acf652ccfc0be85e14d9",
+    "program.md": "57462475b85783254bd7d3584ea1c60cb2b915e7515d434ed9e0a8ab36fe92f4",
+    "source_revision.json": "71193d86b4996b8aed79cb9359d6b85ff238565de5fdf09e6b2d34c2b9fa5cf5",
+    "test_core.py": "aeb64f2d9c697a5b1e9ee929a09915c7b07bcf6b84a72ed98d4bfc136088813c",
+    "test_manage.py": "a362dca3661c441fe9dcaf991376070b8091fd3aab125f822146906600a49e8e"
+  },
+  "cpu_threads": 4,
+  "created_unix": 1791599186.4755874,
+  "experiment_budget_seconds": 3600,
+  "gpu_disabled": true,
+  "root": "/data/sunzixuan/review_bank_alignment_20261010_v1"
+}

@@ -1,0 +1,1081 @@
+PAGE 1
+Subspace-Aware Graph Construction and Contrastive Alignment for
+Multimodal Recommendation with Large Language Models
+Haodong Li1,2, Lianyong Qi1,2*, Weiming Liu3, Fan Wang4, Chong Li1,2, Shengye Pang5,
+Wenwen Gong6*, Yanwei Xu7, Xiaoxiao Chi8, Yang Zhang9, Xiaokang Zhou10,11
+1College of Computer Science and Technology, China University of Petroleum (East China), China
+2Shandong Key Laboratory of Intelligent Oil and Gas Industrial Software, China
+3ByteDance Inc., Singapore
+4College of Computer Science and Technology, Zhejiang University, China
+5School of Computer Engineering and Science, Shanghai University, China
+6College of Information and Electrical Engineering, China Agricultural University, China
+7School of Computer Science, Peking University, China
+8School of Computing, Macquarie University, Australia
+9Anuradha and Vikas Sinha Department of Data Science, University of North Texas, USA
+10Faculty of Business and Data Science, Kansai University, Japan
+11RIKEN Center for Advanced Intelligence Project, Japan
+lhd hfut@163.com, lianyongqi@upc.edu.cn, lwming95@gmail.com, fanwang97@zju.edu.cn, z23070165@s.upc.edu.cn,
+pangsy@shu.edu.cn, wenweng@cau.edu.cn, yanwei.xu@pku.edu.cn, xiaoxiao.chi@students.mq.edu.au,
+yang.zhang@unt.edu, zhou@kansai-u.ac.jp
+Abstract
+Multimedia content offers additional context for recom-
+mender systems to better understand user interests. Existing
+studies on multimodal recommendation primarily focus on
+constructing item-item semantic graphs. However, most
+of these methods capture only shallow semantic structures
+based on feature similarity and struggle to model more
+complex or cross-entity semantic relationships (e.g., user-
+item). Moreover, in these methods, collaborative signals
+often dominate and suppress semantic knowledge, which
+limits its role in representation learning. To address these
+issues, we propose SCALE, a novel framework that com-
+bines S
+ubspace-aware graph C onstruction and contrastive
+Alignment for multimodaL recommendation with large
+languagE models. Specifically, we first use large language
+models and encoders to extract user and item features.
+Following the subspace clustering assumption, we apply the
+Orthogonal Matching Pursuit algorithm to mine complex
+semantic structures within the item-item, user-user, and
+user-item spaces, and integrate them into a unified semantic
+graph. We then perform graph convolution on both the
+semantic and interaction graphs, and aggregate the results
+for recommendation. Furthermore, contrastive losses are em-
+ployed to enhance semantic fusion and alignment. Extensive
+experiments on five real-world datasets demonstrate that
+SCALE significantly outperforms state-of-the-art multimodal
+recommendation models, highlighting its effectiveness in
+modeling complex relationships and integrating semantic
+knowledge with collaborative signals.
+*Corresponding authors
+Copyright © 2026, Association for the Advancement of Artificial
+Intelligence (www.aaai.org). All rights reserved.
+Introduction
+The explosive growth of data in the Internet era has resulted
+in severe information overload, thereby prompting the devel-
+opment of personalized recommendation systems. With the
+increasing prevalence of multimedia content, multimodal
+recommendation systems (MRS) have attracted growing at-
+tention in recent years. By integrating heterogeneous infor-
+mation sources (e.g., text, images, audio), MRS can better
+capture user preferences and item characteristics, thus en-
+abling more accurate and diverse recommendations.
+Semantic knowledge from multimodal sources can effec-
+tively complement collaborative signals in user–item inter-
+actions, producing more expressive user and item represen-
+tations (Zhou et al. 2023a; Bai et al. 2024; Liu et al. 2025).
+However, a significant semantic gap remains, as multimodal
+content is often diverse, high-dimensional, and noisy, which
+sharply contrasts with the structured, sparse, and high-
+quality nature of interaction records. Consequently, MRS
+face two key challenges: (1) Challenge 1: How to effec-
+tively extract comprehensive semantic knowledge from mul-
+timodal content? (2) Challenge 2: How to appropriately in-
+tegrate this semantic knowledge with collaborative signals?
+Inspired by graph neural networks (Kipf and Welling
+2017; Hu et al. 2019), early collaborative filtering (CF)
+models represent user–item interactions as a bipartite
+graph (Wang et al. 2019; He et al. 2020), while some stud-
+ies further construct item–item semantic graphs based on
+multimodal features (Zhang et al. 2021; Zhou and Shen
+2023). Recently, approaches leverage large language mod-
+els (LLMs) (Ren et al. 2024), social graphs (Wei et al. 2024),
+and user co-occurrence matrices (Wang et al. 2023) to model
+user–user relationships. However, most of these methods
+The Fortieth AAAI Conference on Artificial Intelligence (AAAI-26)
+15099
+
+PAGE 2
+Business
+Streetwear Blue
+Sport Gray
+Black
+ Sport Streetwear
+Gray
+(a) Complex multi-entity structures
+(b) t-SNE of FREEDOM (c) t-SNE of SCALE
+LLMs generate user interestsSimilarity relationship 
+Combinatorial relationship
+Business
+Black Blue
+t-SNE1
+t-SNE2
+t-SNE1
+t-SNE2
+Figure 1: (a) Semantic relationships on user interests. (b)-(c)
+The t-SNE visualization of item representations from FREE-
+DOM and SCALE, where each color denotes a distinct item
+category. For instance, green points correspond to baby toys.
+build semantic graphs from multimodal features by select-
+ing a fixed number of neighbors based on feature similar-
+ity, which primarily captures shallow, pairwise similarities
+within entities (i.e., user–user and item–item). This strategy
+may fails to capture complex multi-entity structures, such
+as the combinatorial user-interest patterns illustrated in Fig-
+ure 1(a). Furthermore, cross-entity semantic relations (i.e.,
+user–item) are often overlooked. Therefore, traditional MRS
+cannot effectively address Challenge 1.
+In CF, items that are closer to a user in the represen-
+tation space are more likely to be recommended (Rendle
+et al. 2009; Liu et al. 2021, 2022a). To achieve this, graph-
+based recommenders improve the proximity of potential in-
+teracting entities via neighborhood aggregation (Mao et al.
+2021; Liu et al. 2022b). Beyond modeling interactions, MRS
+need to incorporate semantic knowledge into representation
+learning. Therefore, FREEDOM (Zhou and Shen 2023) per-
+forms graph convolution on item–item semantic graphs to
+bring semantically related entities closer, as shown in Fig-
+ure 1(b). However, this implicit aggregation struggles to ef-
+fectively integrate collaborative signals with semantic infor-
+mation, leading to overlaps among semantically unrelated
+nodes (e.g., green, pink, and red nodes in Figure 1(b)). As
+a result, existing methods are still insufficient for fully ad-
+dressing Challenge 2.
+To address the above challenges, we propose SCALE, a
+novel framework that combines subspace-aware graph con-
+struction and contrastive alignment for multimodal recom-
+mendation with large language models. For Challenge 1,
+we construct a semantic graph that captures comprehensive
+semantic relationships between users and items. First, we
+extract features from textual metadata using LLMs. Follow-
+ing the subspace clustering assumption (Elhamifar and Vidal
+2013), we adopt the Orthogonal Matching Pursuit (OMP)
+algorithm (Mallat and Zhang 1993) to mine complex se-
+mantic structures within item-item, user-user, and user-item
+spaces. Moreover, we build feature similarity graphs and
+combine them with subspace-aware graphs to better capture
+comprehensive relationships. For Challenge 2, we indepen-
+dently model semantic knowledge and collaborative signals
+through graph convolution, then align and integrate their em-
+beddings to obtain unified representations. Furthermore, we
+propose a relation alignment loss that pulls related entities
+closer and pushes unrelated ones apart in the representation
+space, thereby enhancing the influence of semantic informa-
+tion on the final representations, as illustrated in Figure 1(c).
+Our contributions are summarized as follows:
+• We propose a semantic graph construction method that
+captures comprehensive semantic relationships, includ-
+ing combinatorial structures among multiple entities.
+• We propose SCALE, a novel multimodal recommenda-
+tion framework that effectively extracts and aligns se-
+mantic and collaborative signals.
+• Extensive experiments on multiple real-world datasets
+demonstrate the effectiveness and superiority of SCALE
+in multimodal recommendation.
+Related Work
+Multimodal Recommendation. The expansion of multi-
+media content facilitates refined user interest modeling in
+MRS (Zhou et al. 2023a). Early work typically incorporates
+multimodal content as side information in CF models (He
+and McAuley 2016b). Later studies apply graph convolu-
+tions and capture item-item relationships (Kim et al. 2022;
+Liu et al. 2022c; Zhou and Shen 2023). In parallel, other
+approaches explore user–user interest relationships by co-
+occurrence matrices (Wang et al. 2023) or social graphs (Wei
+et al. 2024). However, inconsistencies between social re-
+lationships and user interests limit the effectiveness of so-
+cial graphs in recommendation tasks (Xiao et al. 2023).
+More importantly, these methods primarily capture intra-
+entity relationships (e.g., user–user, item–item), while ne-
+glecting cross-entity semantic relations (user–item).
+Large Language Models for Recommendation. The suc-
+cess of LLMs across diverse domains has accelerated their
+adoption in recommendation research (Wu et al. 2024).
+Some approaches employ LLMs as recommenders to di-
+rectly generate items of interest (Bao et al. 2023; Xu et al.
+2024; Tennenholtz et al. 2024). However, the high compu-
+tational cost of these methods poses a significant barrier to
+their widespread application in MRS (Zhou et al. 2025; Li
+et al. 2025). To address this, recent methods leverage LLMs
+to enhance user and item semantic representations in recom-
+mendation models (Liu et al. 2024; Xi et al. 2024; Zhang
+et al. 2024; Ren et al. 2024). However, while LLMs enable
+these methods to effectively extract multimodal information
+from raw data, they still face challenges in balancing and dis-
+entangling collaborative signals and semantic knowledge.
+15100
+
+PAGE 3
+𝑙 = 3
+𝑙 = 2
+Interaction 
+histories:…
+Interaction 
+histories:…
+Title:… 
+Description:.
+Title:… 
+Description:.
+Visual 
+Encoder
+Textual 
+Encoder
+Textual 
+Encoder
+The item would 
+be preferred by 
+users who…
+SAG
+FSG
+SAG
+FSG
+FSG
+ SAG
+FSG
+The user may like … 
+Business, Black…
+Streetwear, Sport…
+Residual 𝑟
+𝑐11 𝑐13 𝑐15
+𝑠(𝑥𝑎𝑚,∗)
+0.9
+ 0.8
+0.30.2
+ 0.1
+𝑠( , )
+Subspace-Aware Graph (SAG)
+Feature Similarity Graph (FSG)
+Title:… 
+Description:..
+Interaction 
+histories:…
+𝑙 = 1
+𝑙 = 3
+𝑙 = 2
+𝑙 = 1
+Interaction Graph ConvolutionProfile Generator and Multimodal Encoder Interaction and Semantic Alignment
+Target
+𝓛𝑎𝑙𝑖𝑔𝑛
+𝑈 𝓛𝑎𝑙𝑖𝑔𝑛
+𝐼
+𝓛𝑎𝑙𝑖𝑔𝑛
+𝑢𝑢
+𝓛𝑎𝑙𝑖𝑔𝑛
+𝑢𝑖
+Semantic Graph Convolution
+𝓛𝑎𝑙𝑖𝑔𝑛
+𝑖𝑖
+Figure 2: The overall framework of SCALE. LLMs and encoders extract features to build a semantic graph. Convolutions on
+semantic and interaction graphs are combined for recommendation, guided by contrastive losses.
+Methodology
+In this section, we elaborate on each component of SCALE.
+The overall framework is illustrated in Figure 2.
+Preliminaries
+Let U and I denote the user and item sets, with |U |= M
+and |I| = N, respectively. The user-item interaction ma-
+trix is denoted as R ∈ RM ×N , where Ru,i = 1 if user
+u ∈ Uhas interacted with item i ∈ I, and Ru,i = 0other-
+wise. Let M denote the set of modalities. For each modality
+m ∈ M, we represent the feature vector of user u or item
+i as xm
+u , xm
+i ∈ Rdm, where dm denotes the dimensionality
+for modality m. In this work, we consider two settings: one
+where M includes both visual (v) and textual (t) modalities,
+and another where only the textual modality is available.
+Profile Generator and Multimodal Encoder
+Leveraging the strong ability of LLMs to comprehend and
+summarize textual content (Ren et al. 2024; Ma, Ren, and
+Huang 2024), we construct informative item profiles:
+Fi = LLM s(PI , Ti), (1)
+where PI is the predefined prompt andTi denotes the textual
+metadata of item i (e.g., title and description). The prompt
+defines both format and instruction, enabling LLMs to gen-
+erate profiles that highlight the item’s most appealing char-
+acteristics. Beyond item profiles, we employ LLMs to con-
+struct user profiles based on interaction histories:
+Fu = LLM s(PU , {Ii : i ∈ Nu}), (2)
+where PU is the predefined user prompt, Nu denotes the set
+of items that useru has interacted with, andIi comprises the
+Algorithm 1: Orthogonal Matching Pursuit algorithm
+Require: Target signal x ∈ Rd, dictionary D ∈ Rd×ks,
+sparsity level ko
+Ensure: Sparse coefficient vector c ∈ Rks
+1: Initialize residual r ← x, support set S ← ∅,x ← 0
+2: for t = 1to ko do
+3: Select index j∗ = arg maxj |⟨Dj, r⟩|
+4: Update support set: S ← S ∪ {j∗}
+5: Solve least squares: cS = arg minz ∥x − DSz∥2
+6: Update residual: r ← x − DScS
+7: end for
+8: Set cj ← 1 for j ∈ S, others remain 0
+9: return c
+user reviews and metadata of itemi. Like PI, PU is designed
+to guide LLMs in inferring user interests.
+Moreover, we employ a text encoder (Izacard et al. 2022)
+to transform the user profile Fu and item profile Fi into rep-
+resentations xt
+u, xt
+i ∈ Rdt, and a visual encoder (He and
+McAuley 2016a) to convert the item image into xv
+i ∈ Rdv.
+Semantic Graph Construction
+Subspace-Aware Graph Construction. Subspace cluster-
+ing assumes that data from multiple classes lie in a union of
+low-dimensional subspaces (Elhamifar and Vidal 2013). For
+example, facial images of the same person under different
+lighting conditions often reside in the same subspace. Each
+data point can thus be represented as a linear or affine com-
+bination of other points within that subspace. In MRS, we
+exploit this self-expressiveness property to construct a user-
+15101
+
+PAGE 4
+user semantic graph. Specifically, we assume that users with
+similar interests lie in a local low-dimensional subspace.
+Consequently, each user’s representation can be sparsely re-
+constructed from those of its neighbors:
+min ∥cu∥1 s.t. xt
+u = Ducu, (3)
+where xt
+u denotes the textual feature of user u. To re-
+duce computational cost, we construct the dictionary Du ∈
+Rdt×ks using the representations of the top-k s users most
+similar to user u. The OMP algorithm is then employed to
+compute the sparse coefficient vector cu ∈ Rks. OMP aims
+to approximate a target vector as a sparse combination of
+dictionary atoms (Mallat and Zhang 1993). At each itera-
+tion, the algorithm selects the atom most correlated with the
+current residual and updates the residual accordingly to pro-
+gressively minimize the approximation error, as shown in
+Algorithm 1. In SCALE, we leverage this property to iter-
+atively identify the user interest most aligned with the cur-
+rent residual, thereby uncovering representations that exhibit
+combinatorial relationships with the target, as shown in the
+subspace-aware graph (SAG) in Figure 2. Subsequently, we
+construct the user-user graph CU ∈ RM ×M by concatenat-
+ing the sparse coefficient vectors of all users. Specifically,
+CU
+u,v = 1if the coefficient corresponding to user v in cu is
+non-zero; otherwise, C U
+u,v = 0.
+Furthermore, items with similar attributes tend to reside
+in the same underlying subspace and can be linearly rep-
+resented by one another. Therefore, we treat item features
+as both dictionary atoms and reconstruction targets, and ap-
+ply the OMP algorithm to reconstruct each item, resulting
+in the item-item graph CI ∈ RN ×N . Similarly, we recon-
+struct user features from item features to build the user-item
+graph CU I∈ RM ×N , offering complementary inter-entity
+semantics in addition to the user-item interactions.
+Feature Similarity Graph Construction. Beyond the
+aforementioned subspace-aware graphs, which models com-
+plex multi-entity semantics, we introduce feature similarity
+graphs (FSG) to capture shallow pairwise relations using
+kNN sparsification (Chen, Fang, and Saad 2009). Specifi-
+cally, the similarity score between entity a ∈ A and en-
+tity b ∈ B is computed via the cosine similarity of their
+modality-specific features xm
+a and xm
+b :
+s(xm
+a , xm
+b ) = (xm
+a )Txm
+b
+∥xma ∥ · ∥xm
+b ∥ , (4)
+For each entity a ∈ A, we retain the top-k f similar neigh-
+bors, resulting in a sparse adjacency matrix Gm defined as:
+Gm
+a,b =
+1, if xm
+b ∈ top-kf (s(xm
+a , ∗))
+0, otherwise , a∈ A, b∈ B,
+(5)
+where s(xm
+a , ∗) denotes a vector of similarity scores be-
+tween entity a and all entities in B, as illustrated in the FSG
+in Figure 2. By varying A, B, and the modality m, we con-
+struct the following graphs: (1) GU , the user-user similarity
+graph (A = B = U, m = t); (2) Gv
+I, the item-item visual
+graph (A = B = I, m = v); (3) Gt
+I, the item-item textual
+graph (A = B = I, m = t); and (4) GU I, the user-item
+similarity graph (A = U, B = I, m = t). We then integrate
+these with the subspace-aware graphs to form a semantic
+graph that captures comprehensive semantic relations:
+ˆG =
+ CU CU I
+(CU I)
+T
+CI
+
+⊕
+ GU GU I
+GT
+U I Gv
+I ⊕ Gt
+I
+
+, (6)
+where ⊕ denotes an element-wise logical intersection: (C ⊕
+G)i,j = 1if both Ci,j ̸= 0and Gi,j ̸= 0, and 0 otherwise.
+Interaction and Semantic Graph Convolution
+To capture high-order interactions and semantics, we sepa-
+rately perform graph convolutions (He et al. 2020) on the
+interaction and semantic graphs. Specifically, after applying
+edge pruning (Zhou and Shen 2023) on the interaction graph
+˜G =
+ 0 R
+RT 0
+
+, we conduct graph convolution as follows:
+˜H(l+1) = ˜D−1/2 ˜G ˜D−1/2 ˜H(l), l ∈ [0, LI ), (7)
+where ˜D ∈ R(M +N )×(M +N ) is the degree matrix of ˜G, and
+˜Di,i indicates the number of nonzero elements in the i-th
+row. ˜H(0) = Z ∈ R(M +N )×d denotes a randomly initial-
+ized ID embedding matrix, with the first M rows for users
+and the remaining N for items. We average the outputs of all
+LI graph convolution layers to obtain the interaction-based
+representation: ˜H = 1
+LI +1
+PLI
+l=0 ˜H(l). Similarly, we per-
+form LS layers of graph convolutions on the semantic graph
+ˆG, and define the semantic-based representation as the out-
+put of the final layer: ˆH = ˆH(LS ) ∈ R(M +N )×d.
+Interaction and Semantic Alignment Module
+Semantic Alignment. To bridge the semantic gap between
+interaction and multimodal data, we preserve ID embed-
+dings and independently perform graph convolutions on in-
+teraction and semantic graphs, thereby mitigating the noise
+and representational entanglement that may result from di-
+rectly replacing ID embeddings with multimodal features.
+Moreover, we introduce a semantic alignment loss to facil-
+itate the integration of collaborative and multimodal infor-
+mation. The user-side semantic alignment loss is defined as:
+LU
+align = −
+MX
+u=1
+log exp(s(˜hu, ˆhu)/τs)
+PM
+u′=1 exp(s(˜hu, ˆhu′ )/τs)
+, (8)
+where τs is a temperature parameter, and ˜hu, ˆhu ∈ Rd de-
+note the u-th row of the interaction- and semantic-based rep-
+resentations ˜H and ˆH, respectively. The item-side semantic
+alignment loss LI
+align is defined similarly. To alleviate overfit-
+ting and reduce computational cost, we apply the contrastive
+loss only to a sampled subset of users and items during train-
+ing. The overall semantic alignment loss is defined as:
+Laligns = LU
+align + LI
+align. (9)
+The final representation is defined as H = ˜H + ˆH, where
+HU ∈ RM ×d and HI ∈ RN ×d denote the first M and the
+last N rows of H, respectively. Let hu and hi represent the
+u-th row of HU and the i-th row of HI.
+15102
+
+PAGE 5
+(a) t-SNE of LightGCN (b) Aligned Item Representations
+t-SNE1 
+t-SNE2 
+i 
+j 
+i 
+j 
+Figure 3: (a) The t-SNE visualization of different item cat-
+egory representations from LightGCN. (b) Comparison of
+item representations before and after relation alignment.
+Relation Alignment. As shown in Figure 3(a), collaborative
+filtering models (e.g., LightGCN (He et al. 2020)) capture
+user–item interactions but struggle to incorporate semantic
+understanding. Although FREEDOM (Zhou and Shen 2023)
+leverages item-item semantic graphs to enhance semantic
+discrimination, its effect may be disturbed by dominant col-
+laborative signals (see Figure 1(b)). To better integrate se-
+mantic knowledge into representation learning, we introduce
+a relation alignment loss, defined for item-item relations as:
+Lii
+align = −
+X
+(i,j)∈P
+log exp(si,j/τr)
+exp(si,j/τr) +P
+v∈Vi
+exp(si,v/τr) ,
+(10)
+where si,j ≜ s(hi, hj), τr is a temperature parameter, and
+P = {(i, j) | CI
+i,j = 1} denotes the set of positive item
+pairs in CI. Vi represents a randomly sampled set of neg-
+ative items that satisfy CI
+i,v = 0. Figure 3 (b) illustrates
+how Lii
+align influences item representation learning, explic-
+itly pulling semantically related entities closer in the rep-
+resentation space. The relation alignment losses Luu
+align and
+Lui
+align are defined in a similar manner to Lii
+align, with samples
+drawn from CU and CU I, respectively. The overall relation
+alignment loss is formulated as:
+Lalignr = Luu
+align + Lii
+align + Lui
+align. (11)
+Optimization
+We optimize the model with the Bayesian Personalized
+Ranking (BPR) loss (Rendle et al. 2009), defined as:
+Lbpr = −
+X
+(u,i,j)∈D
+log (σ(yu,i − yu,j)) , (12)
+where σ(·) is the Sigmoid function, and yu,i = hT
+u hi repre-
+sents the predicted preference score of user u for item i. D
+denotes the training set, which consists of triplets (u, i, j).
+(u, i)is a positive pair satisfying Ru,i = 1, and (u, j) is
+a negative pair with Ru,j = 0, where item j is randomly
+sampled from the non-interacted items of user u. The BPR
+loss promotes higher predicted scores for positive user–item
+pairs compared to negative ones. The total loss is defined as:
+L = Lbpr + λsLaligns + λrLalignr , (13)
+where λs and λr denote the weights of the semantic align-
+ment loss and relation alignment loss.
+Experiment
+In this section, we conduct comprehensive experiments on
+several real-world datasets to answer the following ques-
+tions: (1) RQ1: How does SCALE perform in comparison
+with state-of-the-art multimodal recommendation models?
+(2) RQ2: How does SCALE perform compared to other
+LLM-enhanced recommendation models? (3)RQ3: How do
+different components of SCALE contribute to the overall
+performance? (4) RQ4: How does SCALE perform under
+different hyperparameter settings?
+Experimental Settings
+Datasets. We conduct experiments on five widely used real-
+world datasets, including four Amazon (McAuley et al.
+2015) subsets (Baby, Sports, Clothing, and Book) and Yelp.
+On Baby, Sports, and Clothing, we compare the performance
+of SCALE with other multimodal recommendation mod-
+els. These datasets provide both textual descriptions and im-
+ages for each item. We employ a pre-trained encoder (Izac-
+ard et al. 2022) to extract textual representations and adopt
+4096-dimensional image features (He and McAuley 2016a)
+as visual inputs. Moreover, we evaluate SCALE against
+LLM-enhanced recommendation models on Book and Yelp.
+Baselines. We compare our proposed SCALE with repre-
+sentative SOTA models, including traditional recommen-
+dation models (BPR (Rendle et al. 2009), LightGCN (He
+et al. 2020), and LayerGCN (Zhou et al. 2023b)), multi-
+modal recommendation models (VBPR (He and McAuley
+2016b), LATTICE (Zhang et al. 2021), SLMRec (Tao et al.
+2023), BM3 (Zhou et al. 2023c), FREEDOM (Zhou and
+Shen 2023), MGCN (Yu et al. 2023), LGMRec (Guo et al.
+2024), DiffMM (Jiang et al. 2024), and MENTOR (Xu
+et al. 2025)), and LLM-enhanced recommendation models
+(KAR (Xi et al. 2024) and RLMRec (Ren et al. 2024)).
+Evaluation Protocols. Following (Zhang et al. 2021; Zhou
+and Shen 2023), we randomly split the interaction data into
+training, validation, and testing sets with a ratio of 8:1:1. We
+adopt two widely used ranking metrics, Recall@H (R@H)
+and NDCG@H (N@H), and evaluate model performance
+on the testing set with H = 10and 20.
+Implementation Details. We employ Llama-3.2-3B to gen-
+erate user and item profiles. The dimensions of the textual
+and visual features, dt and dv, are 768 and 4096, respec-
+tively. We set the batch size to 2048 and the learning rate
+to 1e−3, using the Adam optimizer (Kingma and Ba 2015).
+User and item ID embeddings are initialized with the Xavier
+method (Glorot and Bengio 2010), with the embedding di-
+mension d set to 64. The loss weights λs and λr are set to
+1e−2 and 5e−2, respectively. The negative sample size |V|
+in the relation alignment loss is set to 1. The temperature pa-
+rameters τs and τr are set to 0.6 and 0.2, respectively. The
+sparsity level ko is selected from {2, 5, 10, 12, 15}. ks and
+kf are set to 800 and 5, respectively. The edge pruning ra-
+tio ρ is set to 0.6. The number of graph convolution layers
+for the interaction graph (LI) and the semantic graph (LS) is
+selected from 1 to 5. The optimal hyperparameters are deter-
+mined via grid search. SCALE is implemented based on the
+MMRec framework (Zhou et al. 2023a) and adopts an early
+stopping strategy based on Recall@20 on the validation set.
+15103
+
+PAGE 6
+Model Baby Sport Clothing
+R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20
+BPR 0.0379 0.0607 0.0202 0.0261 0.0452 0.0690 0.0252 0.0314 0.0211 0.0315 0.0118 0.0144
+LightGCN 0.0479 0.0754 0.0257 0.0328 0.0569 0.0864 0.0311 0.0387 0.0361 0.0544 0.0197 0.0243
+LayerGCN 0.0529 0.0820 0.0281 0.0355 0.0594 0.0916 0.0323 0.0406 0.0371 0.0566 0.0200 0.0247
+VBPR 0.0423 0.0663 0.0223 0.0284 0.0558 0.0856 0.0307 0.0384 0.0281 0.0415 0.0158 0.0192
+LATTICE 0.0547 0.0850 0.0292 0.0370 0.0620 0.0953 0.0335 0.0421 0.0492 0.0733 0.0268 0.0330
+SLMRec 0.0529 0.0775 0.0290 0.0353 0.0663 0.0990 0.0365 0.0450 0.0452 0.0675 0.0247 0.0303
+BM3 0.0564 0.0883 0.0301 0.0383 0.0656 0.0980 0.0355 0.0438 0.0422 0.0621 0.0231 0.0281
+FREEDOM 0.0627 0.0992 0.0330 0.0424 0.0717 0.1089 0.0385 0.0481 0.0629 0.0941 0.0341 0.0420
+MGCN 0.0620 0.0964 0.0339 0.0427 0.0729 0.1106 0.0397 0.0496 0.0641 0.0945 0.0347 0.0428
+LGMRec 0.0644 0.1002 0.0349 0.0440 0.0720 0.1068 0.0390 0.0480 0.0555 0.0828 0.0302 0.0371
+DiffMM 0.0623 0.0975 0.0328 0.0411 0.0671 0.1017 0.0377 0.0458 0.0522 0.0791 0.0288 0.0354
+MENTOR 0.0678 0.1048 0.0362 0.0450 0.0763 0.1139 0.0409 0.0511 0.0668 0.0989 0.0360 0.0441
+SCALE 0.0965 0.1341 0.0550 0.0646 0.0874 0.1257 0.0494 0.0593 0.0713 0.1065 0.0393 0.0482
+Table 1: Performance comparison with baselines on three datasets. The best results are bolded and the second best results are
+underlined. Improv. indicates the improvement of SCALE on second best results.
+Backbone Model Book Yelp
+R@20 N@20 R@20 N@20
+LightGCN KAR 0.1416 0.0863 0.1194 0.0756
+RLMRec 0.1483 0.0903 0.1230 0.0776
+SGL KAR 0.1372 0.0875 0.1208 0.0761
+RLMRec 0.1537 0.0947 0.1263 0.0798
+LightGCN SCALE 0.1624 0.1004 0.1280 0.0801
+Table 2: Performance comparison with LLM-enhanced CF
+models on the Book and Yelp datasets.
+Performance Comparison
+Multimodal Recommendation Models (RQ1). Table 1 re-
+ports a comparison between SCALE and other recommen-
+dation models on multiple datasets. We observe that:
+(1) SCALE consistently outperforms all baselines by a
+large margin across all metrics on the Baby, Sports, and
+Clothing datasets. Specifically, it achieves improvements
+ranging from 7.68% to 27.96% on Recall@20 compared
+to the strongest baselines, demonstrating the effectiveness
+of our proposed method. We attribute this superior perfor-
+mance to three key factors: accurate LLM-generated pro-
+files, comprehensive subspace-aware graph construction,
+and effective contrastive alignment.
+(2) SCALE achieves greater performance improvement
+on the Baby dataset compared to the other datasets. This
+may be attributed to the higher semantic density of the Baby
+dataset. In contrast, datasets such as Clothing suffer from a
+high rate of missing descriptions (93.83%) and severe tex-
+tual redundancy (94.10%). SCALE relies heavily on multi-
+modal features, especially textual ones, for both graph con-
+struction and relation alignment. Thus, richer textual input
+contributes to more informative LLM-generated profiles and
+better model performance.
+LLM-enhanced CF Models (RQ2). To further evaluate the
+effectiveness of SCALE, we compare it with several LLM-
+enhanced CF models, with results presented in Table 2. For a
+fair comparison, all models utilize the same LLM-generated
+content and textual representations. The results show that
+SCALE consistently outperforms the other methods across
+all evaluation metrics. We attribute this superiority to the
+following reasons. KAR (Xi et al. 2024) directly incorpo-
+rates textual features into user interest learning, while RLM-
+Rec (Ren et al. 2024) encodes user and item profiles derived
+from LLMs and aligns them with ID-based representations.
+However, due to the semantic gap between textual and ID-
+based representations, such fusion may introduce irrelevant
+semantic information into the final representations, thereby
+reducing their clarity and weakening the collaborative sig-
+nals. In contrast, SCALE aligns ID-based representations
+through contrastive views or graph structures, without di-
+rectly incorporating textual features at any stage. This design
+ensures that semantic knowledge and collaborative signals
+remain distinct in representations, thereby preserving their
+respective contributions.
+Ablation Study (RQ3)
+In this section, we evaluate the contribution of each com-
+ponent of SCALE to the overall performance. Figure 4(a)
+presents the results on the Baby dataset when each com-
+ponent is ablated individually. We observe that all compo-
+nents contribute positively to the model’s effectiveness, es-
+pecially the LLMs module. Specifically, removing the se-
+mantic or relation alignment losses leads to performance
+drops, underscoring the importance of aligning semantic
+knowledge with collaborative signals. Similarly, removing
+the subspace-aware graph or feature similarity graph de-
+grades performance, confirming their complementary roles
+in capturing Comprehensive semantic relations. Moreover,
+excluding inter-entity (e.g., user-item) or intra-entity (e.g.,
+user-user, item-item) relations from the semantic graph also
+results in performance degradation, highlighting the neces-
+sity of multi-type relation modeling in SCALE.
+15104
+
+PAGE 7
+(b) t-SNE of EASC w/o 𝐿𝑎𝑙𝑖𝑔𝑛𝑟 (c) t-SNE of EASC w/ 𝐿𝑎𝑙𝑖𝑔𝑛𝑟
+w/o
+𝐶𝑈&𝐺𝑈
+w/o
+𝐶𝑈𝐼&𝐺𝑈𝐼
+w/o
+ 𝐶𝐼&𝐺𝐼
+w/o
+SAG 
+w/o
+FSG 
+w/o
+ℒaligns
+w/o
+ℒalignr
+SCALE
+t-SNE2
+t-SNE1
+t-SNE2
+t-SNE1
+w/o 
+LLMs 
+    
+    
+    
+    
+    
+    
+    
+         
+                  
+(a) Ablation study on three datasets 
+Figure 4: (a) The effect of each component. (b)-(c) The t-
+SNE visualization of SCALE without/with Lalignr.
+To validate the effectiveness of the relation alignment loss
+Lalignr, we visualize the distribution of different item cat-
+egory representations learned by SCALE. Figures 4(b) and
+4(c) present the t-SNE visualization without and withLalignr,
+respectively. As shown in Figure 4(b), items within the same
+category remain relatively cohesive even without relation
+alignment, which can be attributed to semantic graph con-
+volution, as it aggregates representations of semantically
+related items. Figure 4(c) shows that applying the relation
+alignment loss leads to clearer inter-group separation. This
+suggests that the mechanism not only brings semantically re-
+lated items closer but also enhances the distinction between
+unrelated ones, thereby effectively incorporating semantic
+information into the final representations.
+Sensitivity Analysis (RQ4)
+Alignment Loss Weight. We vary λs and λr from 1e−5 to
+0.1 and report the Recall@20 results on the Baby dataset in
+Figure 5(a). We observe that SCALE benefits from appropri-
+ate loss weights, while performance degrades when eitherλs
+or λr is too small or too large. These findings highlight the
+importance of balancing semantic knowledge and collabora-
+tive signals, as overemphasizing either can degrade recom-
+mendation performance.
+Negative Sample Size. Figure 5(b) illustrates the perfor-
+mance of SCALE on three datasets with varying negative
+sample sizes |V| in the relation alignment loss. We observe
+that the performance of SCALE is insensitive to |V|, while
+more negative samples greatly increase memory cost and
+training difficulty. This is likely because randomly sampled
+negatives are not guaranteed to be semantically or interac-
+tively unrelated to the target, thereby diminishing the effec-
+tiveness of negative sampling in optimization.
+Sparsity Level. Figure 5(c) shows the results on the Baby
+dataset when varying the sparsity level ko across differ-
+(c) Sparsity level (d) GCN layer
+(a) Alignment loss weight (b) Negative sample size
+0.11
+0.12
+0.13
+0.14
+0.15
+0.16
+0.17
+1 2 4 8 16 32 64
+Recall@20
+Baby
+Book
+Yelp
+Recall@20
+Recall@20
+0.134
+0.132
+0.130
+0.128
+0.126
+0.13
+0.12
+0.11
+0.10
+2 5 10 12 15 2
+5
+12
+10
+15
+1 2 3 4 5 4
+2
+3
+1
+0.08
+0.09
+0.1
+0.11
+0.12
+0.13
+0.14
+1e-1
+5e-2
+1e-2
+5e-3
+1e-3
+5e-4
+1e-4
+5e-5
+1e-5
+Recall@20
+λr
+λs
+Figure 5: SCALE performance across hyperparameters.
+ent semantic graphs (C U , CI, and CU I). We observe that
+SCALE achieves its best performance when the sparsity
+level of each graph is set to 10. We hypothesize that a small
+ko may fail to capture certain meaningful combinatorial rela-
+tionships, thereby hindering the model from learning com-
+prehensive representations. In contrast, an overly large ko
+may bring in irrelevant entities into the OMP-based graph,
+resulting in increased noise and decreased performance.
+Number of Graph Convolutional Layer. As illustrated in
+Figure 5(d), we evaluate the performance of SCALE with
+different combinations of LI and LS on the Baby dataset.
+We observe a decline in performance as LS increases, indi-
+cating that modeling higher-order relations on the semantic
+graph is ineffective. This may be because even a few irrel-
+evant entities are gradually propagated through successive
+layers of graph convolution, leading to an amplified impact
+of noise. Moreover, SCALE performs best whenLI is set to
+2 or 5, indicating that multi-hop message passing effectively
+enhances recommendation diversity and personalization.
+Conclusion
+In this paper, we propose a novel multimodal recommenda-
+tion model SCALE, which can capture comprehensive se-
+mantic relationships and effectively integrate semantic and
+collaborative information. Specifically, we apply the OMP
+algorithm to mine complex semantic structures within user-
+user, item-item, and user-item spaces, and integrate them
+into a unified semantic graph. We then perform graph con-
+volution on both interaction and semantic graphs, and in-
+troduce a semantic alignment loss to encourage consistency
+between their outputs. Furthermore, we propose a relation
+alignment loss that explicitly pulls semantically related en-
+tities closer in the representation space, thereby reinforcing
+the role of semantic knowledge in representation learning.
+Extensive experiments on five real-world datasets validate
+the effectiveness of our proposed method.
+15105
+
+PAGE 8
+Acknowledgments
+This work is supported by the National Natural Sci-
+ence Foundation of China (No. 62572486, No. 62506364),
+Natural Science Foundation of Shandong Province (No.
+ZR2023MF007).
+References
+Bai, H.; Wu, L.; Hou, M.; Cai, M.; He, Z.; Zhou, Y .; Hong,
+R.; and Wang, M. 2024. Multimodality Invariant Learning
+for Multimedia-Based New Item Recommendation. In Pro-
+ceedings of the 47th International ACM SIGIR Conference
+on Research and Development in Information Retrieval, SI-
+GIR 2024, Washington DC, USA, July 14-18, 2024, 677–
+686. ACM.
+Bao, K.; Zhang, J.; Zhang, Y .; Wang, W.; Feng, F.; and
+He, X. 2023. TALLRec: An Effective and Efficient Tuning
+Framework to Align Large Language Model with Recom-
+mendation. In Proceedings of the 17th ACM Conference on
+Recommender Systems, RecSys 2023, Singapore, Singapore,
+September 18-22, 2023, 1007–1014.
+Chen, J.; Fang, H.; and Saad, Y . 2009. Fast Approximate
+kNN Graph Construction for High Dimensional Data via Re-
+cursive Lanczos Bisection. Journal of Machine Learning
+Research, 10: 1989–2012.
+Elhamifar, E.; and Vidal, R. 2013. Sparse Subspace Clus-
+tering: Algorithm, Theory, and Applications. IEEE Trans.
+Pattern Anal. Mach. Intell., 35(11): 2765–2781.
+Glorot, X.; and Bengio, Y . 2010. Understanding the dif-
+ficulty of training deep feedforward neural networks. In
+Proceedings of the Thirteenth International Conference on
+Artificial Intelligence and Statistics, volume 9 ofJMLR Pro-
+ceedings, 249–256. JMLR.org.
+Guo, Z.; Li, J.; Li, G.; Wang, C.; Shi, S.; and Ruan, B. 2024.
+LGMRec: Local and Global Graph Learning for Multimodal
+Recommendation. In AAAI, 8454–8462. AAAI Press.
+He, R.; and McAuley, J. J. 2016a. Ups and Downs: Model-
+ing the Visual Evolution of Fashion Trends with One-Class
+Collaborative Filtering. In Proceedings of the 25th Interna-
+tional Conference on World Wide Web, WWW 2016, Mon-
+treal, Canada, April 11 - 15, 2016, 507–517. ACM.
+He, R.; and McAuley, J. J. 2016b. VBPR: Visual Bayesian
+Personalized Ranking from Implicit Feedback. In Proceed-
+ings of the Thirtieth AAAI Conference on Artificial Intelli-
+gence, February 12-17, 2016, Phoenix, Arizona, USA, 144–
+150.
+He, X.; Deng, K.; Wang, X.; Li, Y .; Zhang, Y .; and Wang, M.
+2020. LightGCN: Simplifying and Powering Graph Convo-
+lution Network for Recommendation. In Proceedings of the
+43rd International ACM SIGIR conference on research and
+development in Information Retrieval, SIGIR 2020, Virtual
+Event, China, July 25-30, 2020, 639–648.
+Hu, F.; Zhu, Y .; Wu, S.; Wang, L.; and Tan, T. 2019. Hierar-
+chical Graph Convolutional Networks for Semi-supervised
+Node Classification. In Proceedings of the Twenty-Eighth
+International Joint Conference on Artificial Intelligence, IJ-
+CAI 2019, Macao, China, August 10-16, 2019, 4532–4539.
+ijcai.org.
+Izacard, G.; Caron, M.; Hosseini, L.; Riedel, S.; Bojanowski,
+P.; Joulin, A.; and Grave, E. 2022. Unsupervised Dense
+Information Retrieval with Contrastive Learning. Trans.
+Mach. Learn. Res., 2022.
+Jiang, Y .; Xia, L.; Wei, W.; Luo, D.; Lin, K.; and Huang,
+C. 2024. DiffMM: Multi-Modal Diffusion Model for Rec-
+ommendation. In Proceedings of the 32nd ACM Interna-
+tional Conference on Multimedia, MM 2024, Melbourne,
+VIC, Australia, 28 October 2024 - 1 November 2024, 7591–
+7599. ACM.
+Kim, T.; Lee, Y .; Shin, K.; and Kim, S. 2022. MARIO:
+Modality-Aware Attention and Modality-Preserving De-
+coders for Multimedia Recommendation. In Proceedings
+of the 31st ACM International Conference on Information &
+Knowledge Management, Atlanta, GA, USA, October 17-21,
+2022, 993–1002. ACM.
+Kingma, D. P.; and Ba, J. 2015. Adam: A Method for
+Stochastic Optimization. In 3rd International Conference
+on Learning Representations, ICLR 2015, San Diego, CA,
+USA, May 7-9, 2015, Conference Track Proceedings.
+Kipf, T. N.; and Welling, M. 2017. Semi-Supervised Clas-
+sification with Graph Convolutional Networks. In 5th In-
+ternational Conference on Learning Representations, ICLR
+2017, oulon, France, April 24-26, 2017, Conference Track
+Proceedings. OpenReview.net.
+Li, H.; Qi, L.; Liu, W.; Xu, X.; Dou, W.; Cao, Y .; Zhang,
+X.; Beheshti, A.; and Zhou, X. 2025. Balancing User-
+Item Structure and Interaction with Large Language Mod-
+els and Optimal Transport for Multimedia Recommenda-
+tion. In Proceedings of the Thirty-Fourth International Joint
+Conference on Artificial Intelligence, IJCAI 2025, Montreal,
+Canada, August 16-22, 2025, 3027–3035. ijcai.org.
+Liu, Q.; Wu, X.; Zhao, X.; Wang, Y .; Zhang, Z.; Tian, F.; and
+Zheng, Y . 2024. Large Language Models Enhanced Sequen-
+tial Recommendation for Long-tail User and Item. CoRR,
+abs/2405.20646.
+Liu, W.; Chen, C.; Xu, J.; Liao, X.; Wang, F.; Zheng, X.; Fu,
+Z.; Pei, R.; and Wang, J. 2025. Joint Similarity Item Ex-
+ploration and Overlapped User Guidance for Multi-Modal
+Cross-Domain Recommendation. In WWW, 2882–2893.
+ACM.
+Liu, W.; Su, J.; Chen, C.; and Zheng, X. 2021. Leveraging
+distribution alignment via stein path for cross-domain cold-
+start recommendation. Advances in Neural Information Pro-
+cessing Systems, 34: 19223–19234.
+Liu, W.; Zheng, X.; Hu, M.; and Chen, C. 2022a. Collabora-
+tive Filtering with Attribution Alignment for Review-based
+Non-overlapped Cross Domain Recommendation. In WWW
+’22: The ACM Web Conference 2022, Virtual Event, Lyon,
+France, April 25 - 29, 2022, 1181–1190. ACM.
+Liu, W.; Zheng, X.; Hu, M.; and Chen, C. 2022b. Collab-
+orative filtering with attribution alignment for review-based
+non-overlapped cross domain recommendation. In Proceed-
+ings of the ACM web conference 2022, 1181–1190.
+Liu, W.; Zheng, X.; Su, J.; Hu, M.; Tan, Y .; and Chen, C.
+2022c. Exploiting Variational Domain-Invariant User Em-
+15106
+
+PAGE 9
+bedding for Partially Overlapped Cross Domain Recom-
+mendation. In SIGIR, 312–321. ACM.
+Ma, Q.; Ren, X.; and Huang, C. 2024. XRec: Large
+Language Models for Explainable Recommendation. In
+Findings of the Association for Computational Linguis-
+tics: EMNLP 2024, Miami, Florida, USA, November 12-16,
+2024, 391–402.
+Mallat, S.; and Zhang, Z. 1993. Matching pursuits with
+time-frequency dictionaries. IEEE Trans. Signal Process.,
+41(12): 3397–3415.
+Mao, K.; Zhu, J.; Xiao, X.; Lu, B.; Wang, Z.; and He,
+X. 2021. UltraGCN: Ultra Simplification of Graph Con-
+volutional Networks for Recommendation. In CIKM ’21:
+The 30th ACM International Conference on Information and
+Knowledge Management, Virtual Event, Queensland, Aus-
+tralia, November 1 - 5, 2021, 1253–1262. ACM.
+McAuley, J. J.; Targett, C.; Shi, Q.; and van den Hengel, A.
+2015. Image-Based Recommendations on Styles and Substi-
+tutes. In Proceedings of the 38th International ACM SIGIR
+Conference on Research and Development in Information
+Retrieval, Santiago, Chile, August 9-13, 2015, 43–52. ACM.
+Ren, X.; Wei, W.; Xia, L.; Su, L.; Cheng, S.; Wang, J.;
+Yin, D.; and Huang, C. 2024. Representation Learning with
+Large Language Models for Recommendation. In Proceed-
+ings of the ACM on Web Conference 2024, WWW 2024, Sin-
+gapore, May 13-17, 2024, 3464–3475. ACM.
+Rendle, S.; Freudenthaler, C.; Gantner, Z.; and Schmidt-
+Thieme, L. 2009. BPR: Bayesian Personalized Ranking
+from Implicit Feedback. In UAI 2009, Proceedings of the
+Twenty-Fifth Conference on Uncertainty in Artificial Intelli-
+gence, Montreal, QC, Canada, June 18-21, 2009, 452–461.
+Tao, Z.; Liu, X.; Xia, Y .; Wang, X.; Yang, L.; Huang, X.; and
+Chua, T. 2023. Self-Supervised Learning for Multimedia
+Recommendation. IEEE Trans. Multim., 25: 5107–5116.
+Tennenholtz, G.; Chow, Y .; Hsu, C.; Jeong, J.; Shani, L.;
+Tulepbergenov, A.; Ramachandran, D.; Mladenov, M.; and
+Boutilier, C. 2024. Demystifying Embedding Spaces using
+Large Language Models. In The Twelfth International Con-
+ference on Learning Representations, ICLR 2024, Vienna,
+Austria, May 7-11, 2024. OpenReview.net.
+Wang, Q.; Wei, Y .; Yin, J.; Wu, J.; Song, X.; and Nie, L.
+2023. DualGNN: Dual Graph Neural Network for Multime-
+dia Recommendation. IEEE Trans. Multim., 25: 1074–1084.
+Wang, X.; He, X.; Wang, M.; Feng, F.; and Chua, T. 2019.
+Neural Graph Collaborative Filtering. In Proceedings of the
+42nd International ACM SIGIR Conference on Research and
+Development in Information Retrieval, SIGIR 2019, Paris,
+rance, July 21-25, 2019, 165–174. ACM.
+Wei, C.; Hu, C.; Wang, C.; and Huang, S. 2024. Time-Aware
+Multibehavior Contrastive Learning for Social Recommen-
+dation. IEEE Trans. Ind. Informatics, 20(4): 6424–6435.
+Wu, L.; Zheng, Z.; Qiu, Z.; Wang, H.; Gu, H.; Shen, T.;
+Qin, C.; Zhu, C.; Zhu, H.; Liu, Q.; Xiong, H.; and Chen,
+E. 2024. A survey on large language models for recommen-
+dation. World Wide Web (WWW), 27(5): 60.
+Xi, Y .; Liu, W.; Lin, J.; Cai, X.; Zhu, H.; Zhu, J.; Chen,
+B.; Tang, R.; Zhang, W.; and Yu, Y . 2024. Towards
+Open-World Recommendation with Knowledge Augmenta-
+tion from Large Language Models. In Proceedings of the
+18th ACM Conference on Recommender Systems, RecSys
+2024, Bari, Italy, October 14-18, 2024, 12–22. ACM.
+Xiao, X.; Dai, H.; Dong, Q.; Niu, S.; Liu, Y .; and Liu,
+P. 2023. Incorporating Social-Aware User Preference for
+Video Recommendation. In WISE, volume 14306 of Lec-
+ture Notes in Computer Science, 544–558. Springer.
+Xu, J.; Chen, Z.; Yang, S.; Li, J.; Wang, H.; and Ngai, E.
+C. H. 2025. MENTOR: Multi-level Self-supervised Learn-
+ing for Multimodal Recommendation. In AAAI-25, Spon-
+sored by the Association for the Advancement of Artificial
+Intelligence, February 25 - March 4, 2025, Philadelphia, PA,
+USA, 12908–12917. AAAI Press.
+Xu, L.; Zhang, J.; Li, B.; Wang, J.; Cai, M.; Zhao, W. X.;
+and Wen, J. 2024. Prompting Large Language Models for
+Recommender Systems: A Comprehensive Framework and
+Empirical Analysis. CoRR, abs/2401.04997.
+Yu, P.; Tan, Z.; Lu, G.; and Bao, B. 2023. Multi-View Graph
+Convolutional Network for Multimedia Recommendation.
+In Proceedings of the 31st ACM International Conference
+on Multimedia, MM 2023, Ottawa, ON, Canada, 29 Octo-
+ber 2023- 3 November 2023, 6576–6585.
+Zhang, A.; Chen, Y .; Sheng, L.; Wang, X.; and Chua, T.
+2024. On Generative Agents in Recommendation. In SI-
+GIR, 1807–1817. ACM.
+Zhang, J.; Zhu, Y .; Liu, Q.; Wu, S.; Wang, S.; and Wang, L.
+2021. Mining Latent Structures for Multimedia Recommen-
+dation. In MM ’21: ACM Multimedia Conference, Virtual
+Event, China, October 20 - 24, 2021, 3872–3880. ACM.
+Zhou, H.; Zhou, X.; Zeng, Z.; Zhang, L.; and Shen, Z.
+2023a. A Comprehensive Survey on Multimodal Recom-
+mender Systems: Taxonomy, Evaluation, and Future Direc-
+tions. CoRR, abs/2302.04473.
+Zhou, P.; Liu, C.; Ren, J.; Zhou, X.; Xie, Y .; Cao, M.; Rao,
+Z.; Huang, Y .; Chong, D.; Liu, J.; Kim, J. B.; Wang, S.;
+Wong, R. C.; and Kim, S. 2025. When Large Vision Lan-
+guage Models Meet Multimodal Sequential Recommenda-
+tion: An Empirical Study. In Proceedings of the ACM on
+Web Conference 2025, WWW 2025, Sydney, NSW, Australia,
+28 April 2025- 2 May 2025, 275–292. ACM.
+Zhou, X.; Lin, D.; Liu, Y .; and Miao, C. 2023b. Layer-
+refined Graph Convolutional Networks for Recommenda-
+tion. In 39th IEEE International Conference on Data En-
+gineering, ICDE 2023, 1247–1259.
+Zhou, X.; and Shen, Z. 2023. A Tale of Two Graphs: Freez-
+ing and Denoising Graph Structures for Multimodal Recom-
+mendation. In Proceedings of the 31st ACM International
+Conference on Multimedia, MM 2023, Ottawa, ON, Canada,
+29 October 2023- 3 November 2023, 935–943.
+Zhou, X.; Zhou, H.; Liu, Y .; Zeng, Z.; Miao, C.; Wang, P.;
+You, Y .; and Jiang, F. 2023c. Bootstrap Latent Represen-
+tations for Multi-modal Recommendation. In Proceedings
+of the ACM Web Conference 2023, WWW 2023, Austin, TX,
+USA, 30 April 2023 - 4 May 2023, 845–854.
+15107

@@ -1,0 +1,27 @@
+{
+  "model": "COHESION",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "reg_weight": 0.001,
+    "learning_rate": 0.0001,
+    "dropout": 0,
+    "num_layer": 1,
+    "knn_k": 10
+  },
+  "best_epoch": 86,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.1021,
+  "best_valid_result": {
+    "recall@10": 0.0633,
+    "recall@20": 0.1021,
+    "ndcg@10": 0.0342,
+    "ndcg@20": 0.0441
+  },
+  "best_test_result": {
+    "recall@10": 0.067,
+    "recall@20": 0.105,
+    "ndcg@10": 0.035,
+    "ndcg@20": 0.0447
+  }
+}

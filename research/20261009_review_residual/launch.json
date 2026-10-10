@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/review_residual_20261009_v1/experiment.py"
+  ],
+  "deployment_sha256": "1abf0db74b575d8bc101d53a949b1a993ebeddc21c2f2786dcab2d045d081a5d",
+  "launched_unix": 1791549386.7860165,
+  "pid": 2935432,
+  "resources": {
+    "available_cpu_count": 20,
+    "available_ram_bytes": 130311618560,
+    "cpu_threads": 4,
+    "gpu_selection_owner": "experiment.py",
+    "required_ram_bytes": 12884901888,
+    "tests_cuda_visible_devices": ""
+  },
+  "root": "/data/sunzixuan/review_residual_20261009_v1"
+}

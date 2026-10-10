@@ -1,0 +1,13 @@
+test_duplicate_targets_fail_instead_of_leaking (test_temporal.TemporalProtocolTests) ... ok
+test_formal_cpu_run_writes_metrics (test_temporal.TemporalProtocolTests) ... ok
+test_item_ties_use_item_id_order (test_temporal.TemporalProtocolTests) ... ok
+test_strict_split_and_no_future_target_in_context (test_temporal.TemporalProtocolTests) ... ok
+test_training_contexts_are_prefixes_only (test_temporal.TemporalProtocolTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.490s
+
+OK
+
+REMOTE_TESTS_PASSED
+(base) sunzixuan@213keg:~$

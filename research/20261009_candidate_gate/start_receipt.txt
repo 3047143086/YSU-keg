@@ -1,0 +1,11 @@
+{
+  "pid": 2772330,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/candidate_gate_20261009_v1/run_pipeline.py"
+  ],
+  "root": "/data/sunzixuan/candidate_gate_20261009_v1",
+  "launched_unix": 1791521006.188386
+}
+(base) sunzixuan@213keg:~$

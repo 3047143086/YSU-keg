@@ -1,0 +1,23 @@
+{
+  "bundle_sha256": {
+    "PROTOCOL.md": "3ac07a8227325d4439b02f3fd5ef7f0f06db894afe4e6dbab9e347acd50c4e2f",
+    "audit_inputs.py": "195845ab8512ed289d6207bf29b2a0b018beb6ec9f02646e5094ea72e2167de6",
+    "experiment.py": "589c313e1b2c25f0ff6aa5ee63126186890f4bc2e788af0a74b1ed8a04251574",
+    "input_audit.json": "4c21586fc09dab42f7314df13e096b9a8d1476a867d469fe15d9485ea3686ac2",
+    "manage.py": "c2dcf322066bf6905ad2f28d625a4d39baf313c62fb6957de7d6ee904a599414",
+    "mapping.py": "3e2f20498cf92bdc2b2197ba951be538cb7947580958b860f02519ff16e6eb60",
+    "program.md": "9621e188235e137df2fad08b23d534ae44a0011aab6184a163df99f06f999f18",
+    "screen_core.py": "155cbc7b1b7b5766655e61944669edf4b67e59ce7048f062f83479f10aa8baf7",
+    "test_experiment.py": "b425a506ddb4721a1957e15a39662a436746bec0c9e7f7959227968055c5bf7c",
+    "test_mapping.py": "5e07a3b6bd0fc3b9f5e753290beda2479f16794a47bd6afed702019656412a87",
+    "test_screen_core.py": "5330e38828ac21248060e00c5089afa57b3bcebde3754bfc4df83b637535e11a",
+    "source_revision.json": "581dc6df4ee89c1cd06df41bfb0fefb2cd2f03b82755e83e524ae4f316ba800a",
+    "baseline_audit.json": "d0166c844cf735c54a4643e559dbf13b082eaa7f9134f6601f52c318e2d2481d"
+  },
+  "created_unix": 1791545098.456373,
+  "root": "/data/sunzixuan/review_signal_20261009_v1",
+  "cpu_threads": 4,
+  "gpu_selection_owner": "experiment.py",
+  "experiment_budget_seconds": 21600,
+  "baseline_carrier_files_checked": 35
+}

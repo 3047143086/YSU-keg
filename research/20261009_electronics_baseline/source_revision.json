@@ -1,0 +1,18 @@
+{
+  "commit": "06bcd212af31cd7c7ccd6ccc63de9778130b9f6b",
+  "source_directory": "C:\\Users\\zixua\\Desktop\\exp\\exp\\exp\\research\\20261009_electronics_baseline",
+  "source_files_sha256": {
+    "PROTOCOL.md": "3b158fcf704a3b6fed5300fcd13c2b9ded0d50a8be2261933c54c9d43fbf44c2",
+    "graph_prepare.py": "02ad6ed88dd2e53459a31f86c9b537af82db1ebac256254fd517c6e31413fb39",
+    "guarded_train.py": "c58d7308046fc7ba7b21faecd99e8f48894361fbf942814f7b4a99a4a4a4c949",
+    "input_audit.json": "109caa06a4eb24526438bda5d71ffc51e1d9d7d4c40d75525daa5ea32000c5d2",
+    "manage.py": "9a94e7d38336d4dde5b1a86a152b8189bfef0c63c27b13875daabe16bf329f40",
+    "numerics.py": "54a073c5a9adf0676e8369b33d9eb2fa01e487cf76e2ecc60343af77183dec19",
+    "run_queue.py": "c1efbabf9aa3f9960b6f27d5ef026371ab0322d97442e4399b4af2bb145220af",
+    "test_graph_prepare.py": "17ff007507a682a5bcbc8a042dd9e3ad136d45beb5c2667151e69ca735ff1af9",
+    "test_source_lineage.py": "bbf93fe6d744f6c6082e9d391bd63dde53c6655d3d7b106c7156f15831429511",
+    "test_train_protocol.py": "e38c91bfc119354d03c8f45369ab953f891e452e653b291ec7cc52571a4092ef",
+    "train.py": "769f11a19de1be8036a9c8e48bd03ab0dc29aee4f6f64e924fcb1011470649be"
+  },
+  "working_tree_clean": true
+}

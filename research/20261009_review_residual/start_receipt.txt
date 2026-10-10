@@ -1,0 +1,9 @@
+{
+  "pid": 2935432,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/review_residual_20261009_v1/experiment.py"
+  ]
+}
+(base) sunzixuan@213keg:~$

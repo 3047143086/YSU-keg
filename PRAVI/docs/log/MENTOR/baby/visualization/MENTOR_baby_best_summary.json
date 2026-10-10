@@ -1,0 +1,29 @@
+{
+  "model": "MENTOR",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "reg_weight": 0.001,
+    "learning_rate": 0.0001,
+    "dropout": 0.5,
+    "mask_weight_f": 2,
+    "mask_weight_g": 0,
+    "align_weight": 0.1,
+    "temp": 0.2
+  },
+  "best_epoch": 70,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.1011,
+  "best_valid_result": {
+    "recall@10": 0.0656,
+    "recall@20": 0.1011,
+    "ndcg@10": 0.0349,
+    "ndcg@20": 0.044
+  },
+  "best_test_result": {
+    "recall@10": 0.067,
+    "recall@20": 0.1048,
+    "ndcg@10": 0.0364,
+    "ndcg@20": 0.0461
+  }
+}

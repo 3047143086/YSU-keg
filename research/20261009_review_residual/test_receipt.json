@@ -1,0 +1,23 @@
+{
+  "checked_unix": 1791549329.7355971,
+  "cuda_visible_devices": "",
+  "deployment_sha256": "1abf0db74b575d8bc101d53a949b1a993ebeddc21c2f2786dcab2d045d081a5d",
+  "exit_code": 0,
+  "resources": {
+    "available_cpu_count": 20,
+    "available_ram_bytes": 130321874944,
+    "cpu_threads": 4,
+    "gpu_selection_owner": "experiment.py",
+    "required_ram_bytes": 12884901888,
+    "tests_cuda_visible_devices": ""
+  },
+  "stderr": "test_bundle_guard_rejects_core_mutation (test_experiment.DecisionTests) ... ok\ntest_bundle_guard_rejects_missing_input_audit_hash (test_experiment.DecisionTests) ... ok\ntest_coverage_below_boundary_discards (test_experiment.DecisionTests) ... ok\ntest_every_control_and_hash_half_must_be_positive (test_experiment.DecisionTests) ... ok\ntest_every_control_must_pass_delta (test_experiment.DecisionTests) ... ok\ntest_every_lower_bound_must_be_strictly_positive (test_experiment.DecisionTests) ... ok\ntest_import_and_decision_leave_encoder_unloaded (test_experiment.DecisionTests) ... ok\ntest_missing_half_is_an_error (test_experiment.DecisionTests) ... ok\ntest_missing_or_extra_control_is_an_error (test_experiment.DecisionTests) ... ok\ntest_nonfinite_or_out_of_domain_is_an_error (test_experiment.DecisionTests) ... ok\ntest_passes_at_coverage_and_delta_boundary (test_experiment.DecisionTests) ... ok\ntest_predecessor_hash_is_checked_before_import (test_experiment.DecisionTests) ... ok\ntest_reversed_interval_is_an_error (test_experiment.DecisionTests) ... ok\ntest_orthogonal_and_antiparallel (test_residual_core.ResidualCoreTests) ... ok\ntest_parallel_rows_are_zero_after_roundoff_guard (test_residual_core.ResidualCoreTests) ... ok\ntest_profile_and_scores (test_residual_core.ResidualCoreTests) ... ok\ntest_scale_of_item_direction_does_not_change_result (test_residual_core.ResidualCoreTests) ... ok\ntest_shape_and_nonfinite_rejected (test_residual_core.ResidualCoreTests) ... ok\ntest_zero_item_keeps_normalized_review (test_residual_core.ResidualCoreTests) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.006s\n\nOK\n",
+  "stdout": "REVIEW_RESIDUAL_TEST_SUMMARY={\"tests\": 19, \"successful\": true, \"failures\": 0, \"errors\": 0, \"skipped\": 0}\n",
+  "test_summary": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "successful": true,
+    "tests": 19
+  }
+}

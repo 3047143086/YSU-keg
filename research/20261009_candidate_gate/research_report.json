@@ -1,0 +1,116 @@
+{
+  "checked_unix": 1791535267.1743455,
+  "pipeline_status": "closed_validation_gate",
+  "stage": "sports",
+  "decisions": {
+    "baby": {
+      "status": "keep",
+      "relative_vs_baseline": {
+        "recall@20": 0.00872031091722314,
+        "ndcg@20": 0.0059453157759770114
+      },
+      "shortlist_absolute_delta": {
+        "recall@10": -0.0001573424432771281,
+        "ndcg@10": 3.422577947896632e-05
+      },
+      "absolute_vs_joint": {
+        "recall@20": 0.011745092997342943,
+        "ndcg@20": 0.00463116462975198
+      },
+      "evidence_level": "single-seed exploratory validation",
+      "tested_mechanism": "candidate-negative supervision assigned to the gate only"
+    },
+    "sports": {
+      "status": "discard",
+      "relative_vs_baseline": {
+        "recall@20": -0.003129817298474391,
+        "ndcg@20": -0.004361860488513392
+      },
+      "shortlist_absolute_delta": {
+        "recall@10": -0.0005534353187311297,
+        "ndcg@10": -0.0002771326487447656
+      },
+      "absolute_vs_joint": {
+        "recall@20": 0.010481693350815224,
+        "ndcg@20": 0.004782772382235574
+      },
+      "evidence_level": "single-seed exploratory validation",
+      "tested_mechanism": "candidate-negative supervision assigned to the gate only"
+    }
+  },
+  "metrics": {
+    "baby": {
+      "baseline": {
+        "recall@5": 0.04798075157036329,
+        "ndcg@5": 0.032837760528477825,
+        "recall@10": 0.07111762112919222,
+        "ndcg@10": 0.040386094675721566,
+        "recall@20": 0.10546504793740588,
+        "ndcg@20": 0.04910749907453286,
+        "recall@50": 0.17414190206810415,
+        "ndcg@50": 0.06281293587582008
+      },
+      "candidate": {
+        "recall@5": 0.04869264959776659,
+        "ndcg@5": 0.033165547444791305,
+        "recall@10": 0.07096027868591509,
+        "ndcg@10": 0.04042032045520053,
+        "recall@20": 0.1063847359463199,
+        "ndcg@20": 0.04939945866349945,
+        "recall@50": 0.17271602444011805,
+        "ndcg@50": 0.06261375028049575
+      },
+      "joint": {
+        "recall@5": 0.0445357479582216,
+        "ndcg@5": 0.0305496897453707,
+        "recall@10": 0.06530593003465207,
+        "ndcg@10": 0.03730304696738786,
+        "recall@20": 0.09463964294897696,
+        "ndcg@20": 0.04476829403374747,
+        "recall@50": 0.1548867379299367,
+        "ndcg@50": 0.05677269616464842
+      }
+    },
+    "sports": {
+      "baseline": {
+        "recall@5": 0.05551538959312255,
+        "ndcg@5": 0.038232859523293736,
+        "recall@10": 0.08301179566908366,
+        "ndcg@10": 0.047186443228226675,
+        "recall@20": 0.1195296505011454,
+        "ndcg@20": 0.05647686319160367,
+        "recall@50": 0.18395571151547369,
+        "ndcg@50": 0.0693519084692436
+      },
+      "candidate": {
+        "recall@5": 0.05585170686437999,
+        "ndcg@5": 0.038265187161332044,
+        "recall@10": 0.08245836035035253,
+        "ndcg@10": 0.04690931057948191,
+        "recall@20": 0.11915554453332632,
+        "ndcg@20": 0.05623051899353304,
+        "recall@50": 0.18334734177470888,
+        "ndcg@50": 0.06904618446611488
+      },
+      "joint": {
+        "recall@5": 0.0508296996533453,
+        "ndcg@5": 0.034992234537419335,
+        "recall@10": 0.07531870251332405,
+        "ndcg@10": 0.04298270604665451,
+        "recall@20": 0.10867385118251109,
+        "ndcg@20": 0.05144774661129747,
+        "recall@50": 0.16558222076291668,
+        "ndcg@50": 0.06283560522059968
+      }
+    }
+  },
+  "pilot_success": false,
+  "test_evaluated": false,
+  "resource_memory_is_sampled_not_exact_peak": true,
+  "source_revision": "f46078aea1c32e61901ad94be86ab534be57f633",
+  "new_completed_formal_arms": 4,
+  "evidence_level": "single-seed exploratory validation",
+  "tested_mechanism": "candidate-negative supervision assigned to the gate only",
+  "novelty_established": false,
+  "generalizable_performance_claim": false
+}

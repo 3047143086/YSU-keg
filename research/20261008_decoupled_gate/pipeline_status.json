@@ -1,0 +1,62 @@
+{
+  "started_unix": 1791453364.6999774,
+  "status": "technical_failure",
+  "jobs": [
+    {
+      "name": "baby_edge_smoke",
+      "exit_code": 0,
+      "seconds": 46.41169023094699,
+      "log": "/data/sunzixuan/decoupled_gate_20261008_v1/logs/baby_edge_smoke.log",
+      "peak_sampled_gpu_memory_mib": 3228
+    },
+    {
+      "name": "baby_history_smoke",
+      "exit_code": 0,
+      "seconds": 46.560963881900534,
+      "log": "/data/sunzixuan/decoupled_gate_20261008_v1/logs/baby_history_smoke.log",
+      "peak_sampled_gpu_memory_mib": 3230
+    },
+    {
+      "name": "baby_edge_s2026",
+      "exit_code": 1,
+      "seconds": 748.0919344108552,
+      "log": "/data/sunzixuan/decoupled_gate_20261008_v1/logs/baby_edge_s2026.log",
+      "peak_sampled_gpu_memory_mib": 3230
+    }
+  ],
+  "screens": {},
+  "stage": "baby_edge_s2026",
+  "predecessor": {
+    "root": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1",
+    "status": "closed_validation_gate",
+    "process_alive": false
+  },
+  "updated_unix": 1791456310.901812,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/decoupled_gate_20261008_v1/train.py",
+    "--bridge-root",
+    "/data/sunzixuan/decoupled_gate_20261008_v1/carrier",
+    "--dataset",
+    "baby",
+    "--seed",
+    "2026",
+    "--output",
+    "/data/sunzixuan/decoupled_gate_20261008_v1/runs/baby_edge_s2026",
+    "--device",
+    "cuda",
+    "--gpu-id",
+    "1",
+    "--plugin-module",
+    "proposal",
+    "--plugin-class",
+    "DecoupledGateBRIDGE",
+    "--plugin-config",
+    "/data/sunzixuan/decoupled_gate_20261008_v1/configs/baby_edge.json"
+  ],
+  "active_job": null,
+  "error": "baby_edge_s2026 failed; see /data/sunzixuan/decoupled_gate_20261008_v1/logs/baby_edge_s2026.log",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/sunzixuan/decoupled_gate_20261008_v1/run_pipeline.py\", line 209, in <module>\n    main()\n  File \"/data/sunzixuan/decoupled_gate_20261008_v1/run_pipeline.py\", line 194, in main\n    OUTPUTS[dataset][arm] = train(dataset, arm)\n  File \"/data/sunzixuan/decoupled_gate_20261008_v1/run_pipeline.py\", line 140, in train\n    execute(name, command, 1800 if smoke else 8 * 3600)\n  File \"/data/sunzixuan/decoupled_gate_20261008_v1/run_pipeline.py\", line 94, in execute\n    raise RuntimeError(name + ' failed; see ' + str(log_path))\nRuntimeError: baby_edge_s2026 failed; see /data/sunzixuan/decoupled_gate_20261008_v1/logs/baby_edge_s2026.log\n",
+  "finished_unix": 1791456310.901809
+}

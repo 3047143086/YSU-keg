@@ -1,0 +1,5 @@
+audit_version	device	lifecycle_tests	validation_users	max_abs_score_error	masked_top50_exact	status	baseline_integration_allowed
+v1	cpu	17/17	0	n/a	n/a	technical_failure_carrier_path	false
+v2	cpu	18/18	0	n/a	n/a	technical_failure_strict_checkpoint_registration	false
+v3	cpu	22/22	256	0.0	true	cpu_equivalent_for_tested_checkpoint_and_batches	false
+gpu_v1	cuda_gpu1	23/23	339	0.00026226043701171875	false	non_equivalent	false

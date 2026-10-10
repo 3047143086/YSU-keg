@@ -1,0 +1,4 @@
+commit	validation_recall20	sampled_peak_gpu_gib	status	description
+478a541f83abde45bcc3375e0b9f5a824a4cc122	0.10546504793740588	NA	keep	baby baseline seed 2026
+478a541f83abde45bcc3375e0b9f5a824a4cc122	0.10631188088503593	3.222656	discard	baby edge seed 2026
+478a541f83abde45bcc3375e0b9f5a824a4cc122	0.10661481100539985	3.222656	control	baby history seed 2026

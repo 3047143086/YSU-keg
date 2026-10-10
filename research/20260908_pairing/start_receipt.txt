@@ -1,0 +1,11 @@
+{
+  "pid": 3580393,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/hpair_20260908_screen_v1/run_pipeline.py"
+  ],
+  "root": "/data/sunzixuan/hpair_20260908_screen_v1",
+  "launched_unix": 1788919868.5035105
+}
+(base) sunzixuan@213keg:~$

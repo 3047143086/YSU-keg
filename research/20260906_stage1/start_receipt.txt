@@ -1,0 +1,2 @@
+LAUNCHED {"pid": 2645820, "command": ["/data/sunzixuan/miniconda3/envs/MMRec/bin/python", "-u", "/data/sunzixuan/rave_20260906_stage1/run_pipeline.py"], "root": "/data/sunzixuan/rave_20260906_stage1"}
+(base) sunzixuan@213keg:~$

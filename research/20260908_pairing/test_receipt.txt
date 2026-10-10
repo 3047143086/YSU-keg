@@ -1,0 +1,21 @@
+test_covariance_identity (test_pairing.PairingProtocolTests) ... ok
+test_heldout_exclusion_and_role_boundaries (test_pairing.PairingProtocolTests) ... ok
+test_invalid_permutation_and_zero_rms_are_safe (test_pairing.PairingProtocolTests) ... ok
+test_metrics_match_stable_sort_and_support_mask (test_pairing.PairingProtocolTests) ... ok
+test_permutation_preserves_marginals_not_pairing (test_pairing.PairingProtocolTests) ... ok
+test_score_residual_genuinely_changes_top20 (test_pairing.PairingProtocolTests) ... ok
+test_seeded_projection_and_statistics_are_deterministic (test_pairing.PairingProtocolTests) ... ok
+test_single_history_is_exact_zero (test_pairing.PairingProtocolTests) ... ok
+test_uniform_permutation_expectation_is_zero (test_pairing.PairingProtocolTests) ... ok
+test_all_arms_synthetic_smoke (test_pairing.PairingTorchTests) ... ok
+test_finite_gradients_and_tensor_parameter_matching (test_pairing.PairingTorchTests) ... ok
+test_aggregate_shared_users_and_zero_gain_rejection (test_pipeline.PipelineTests) ... ok
+test_real_data_smoke_command_cannot_evaluate_development (test_pipeline.PipelineTests) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.319s
+
+OK
+
+REMOTE_TESTS_PASSED
+(base) sunzixuan@213keg:~$

@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "test_count": 13,
+  "torch_version": "1.12.1+cu113",
+  "cuda_visible_devices": "",
+  "cuda_initialized": false,
+  "threads": 4,
+  "elapsed_seconds": 0.4258263111114502,
+  "output": "test_boundary_degeneracy_is_rejected (test_projector.ProjectorTests) ... ok\ntest_double_gradcheck_distinct_singular_values (test_projector.ProjectorTests) ... ok\ntest_double_gradcheck_rank_deficiency_inside_last_band (test_projector.ProjectorTests) ... ok\ntest_double_gradcheck_repeated_within_each_band (test_projector.ProjectorTests) ... ok\ntest_double_gradcheck_rotated_internal_degeneracy (test_projector.ProjectorTests) ... ok\ntest_float32_forward_gradient_and_dtype (test_projector.ProjectorTests) ... ok\ntest_nondegenerate_forward_and_gradient_match_original (test_projector.ProjectorTests) ... ok\ntest_nonfinite_upstream_gradients_are_rejected (test_projector.ProjectorTests) ... ok\ntest_original_band_split_is_preserved (test_projector.ProjectorTests) ... ok\ntest_repeated_within_band_gradient_is_finite_for_arbitrary_loss (test_projector.ProjectorTests) ... ok\ntest_single_band_identity_gradient (test_projector.ProjectorTests) ... ok\ntest_unresolved_near_boundary_is_rejected_without_jitter (test_projector.ProjectorTests) ... ok\ntest_zero_unused_band_gradients_are_supported (test_projector.ProjectorTests) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 0.424s\n\nOK\n",
+  "source_files_sha256": {
+    "projector.py": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+    "test_projector.py": "ffb1de4e9e90e356557f99e95dfec23c5ca582b27ef560d94b58f8e087098ea4"
+  },
+  "replay_loaded": false,
+  "training_executed": false,
+  "source_modified": false,
+  "registered_local_files_sha256": {
+    "projector.py": "e44eb739482f3fe0448e1c9fdb066e36c4d6ea22d05a0c25a32734f29a856ab6",
+    "test_projector.py": "ffb1de4e9e90e356557f99e95dfec23c5ca582b27ef560d94b58f8e087098ea4",
+    "PROTOCOL.md": "ab1743e3310877ead9a34cd858793cad88d6a6046da0ad0141a26c4819016956",
+    "program.md": "c33af824e037d660add2b269f6e650bd232f10bd0f49fcfd1dee3ea67240e0bc"
+  }
+}

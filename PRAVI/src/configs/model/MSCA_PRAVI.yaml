@@ -1,0 +1,34 @@
+embedding_size: 64
+n_layers: [2]
+knn_k: 10
+is_sparse: True
+fusion_coeff: [0.4]
+tau: 0.2
+cl_weight: [0.005]
+reg_weight: [3e-7]
+
+# CF-LCB-PRAVI graph construction.
+pravi_topk: 5
+pravi_shrinkage: 10.0
+pravi_reliability_mode: personalized
+pravi_probe_topl: 10
+pravi_uncertainty_kappa: 1.0
+pravi_reliability_conditioning: none
+pravi_reliability_strength: 0.5
+# Shared/private consensus alignment (disabled unless selected at runtime).
+pravi_consensus_private_strength: 0.25
+pravi_mass_budget_ratio: 0.1
+pravi_min_confidence: 0.0
+pravi_min_modal_support: 1
+pravi_binary_weights: False
+pravi_propagation_scope: first_order
+pravi_response_scale: 1.0
+pravi_filter_virtual_negatives: True
+pravi_dvt_max_swaps_per_user: 1
+pravi_dvt_transport: two_switch
+pravi_dvt_weight_mode: unit
+pravi_dvt_min_arc_confidence: 0.0
+pravi_dvt_min_net_margin: 0.0
+pravi_dvt_min_donor_history: 2
+
+hyper_parameters: ["n_layers", "fusion_coeff", "cl_weight", "reg_weight"]

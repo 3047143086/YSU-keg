@@ -1,0 +1,6 @@
+commit	validation_recall20	memory_gb	status	description
+-	NA	NA	crash	Historical soft_v1 baseline: non-finite loss at epoch 39; not a scientific result
+0babcdb	0.10546504793740588	NA	keep	baby seed2026 freshly trained baseline
+0babcdb	0.1062309444219961	NA	keep	baby seed2026 alpha0.5; all guards checked
+0babcdb	0.1195296505011454	NA	keep	sports seed2026 freshly trained baseline
+0babcdb	0.11877571907205982	NA	discard	sports seed2026 alpha0.5; all guards checked

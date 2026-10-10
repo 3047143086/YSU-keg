@@ -1,0 +1,163 @@
+{
+  "coverage": 1.0,
+  "deadline_exceeded": false,
+  "decision": {
+    "coverage": 1.0,
+    "formal_training_authorized_by_this_screen": false,
+    "novelty_established": false,
+    "paired_vs_controls": {
+      "item_content": {
+        "mean_delta": -0.021882204209117274,
+        "user_bootstrap_95ci": [
+          -0.024661750762251803,
+          -0.019070122518033764
+        ]
+      },
+      "same_item_donor": {
+        "mean_delta": 0.004564215066557596,
+        "user_bootstrap_95ci": [
+          0.0026769446716739796,
+          0.006446721387670111
+        ]
+      }
+    },
+    "passed": false,
+    "publication_evidence": false,
+    "status": "discard",
+    "user_hash_half_deltas": {
+      "item_content": [
+        -0.022177722623345365,
+        -0.021593249007206942
+      ],
+      "same_item_donor": [
+        0.0047852737665463295,
+        0.004348065892042947
+      ]
+    }
+  },
+  "diagnostic_users": 13447,
+  "elapsed_seconds": 126.97315859794617,
+  "encoding_settings": {
+    "batch_size": 128,
+    "content_bpe_tokens": 75,
+    "context_tokens": 77,
+    "encoder": "CLIP ViT-B/16",
+    "frozen": true,
+    "html_cleaned": true,
+    "item_bank_max_chunks": 8,
+    "no_grad": true,
+    "text_fields": [
+      "summary",
+      "reviewText"
+    ],
+    "unit_normalized": true,
+    "whitespace_cleaned": true
+  },
+  "heldout_target_hash": "1d019d38c5274cb02b5dfbd434f6e6d2ce5e904fca379cc009ba857e35bdfb1a",
+  "input_audit_sha256": "4c21586fc09dab42f7314df13e096b9a8d1476a867d469fe15d9485ea3686ac2",
+  "kept_records": 105032,
+  "masking_settings": {
+    "all_diagnostic_users_retained": true,
+    "all_internal_targets_absent_from_support_and_records": true,
+    "degree_preserving_permutation": false,
+    "donor_matching": "different TRAIN user, same item, closest cleaned wordcount",
+    "donor_reuse_allowed": true,
+    "keep_rule": "donors >= 0",
+    "negative_comparisons": 16,
+    "same_mask_all_three_arms": true,
+    "ties_credit": 0.5,
+    "zero_profiles_retained": true
+  },
+  "matching_audit": {
+    "all_targets_absent_from_export": true,
+    "ambiguous_support_fingerprints": 3008,
+    "ambiguous_support_users": 0,
+    "duplicate_raw_event_users": 0,
+    "expected_support_edges": 105104,
+    "globally_removed_target_edges": 13447,
+    "heldout_reviews_used": false,
+    "identity_uses_support_only": true,
+    "matched_support_edges": 105104,
+    "matched_support_users": 19445,
+    "missing_support_fingerprints": 0,
+    "official_test_reviews_used": false,
+    "official_validation_reviews_used": false,
+    "original_train_edges": 118551,
+    "owner_collision_support_users": 0,
+    "ratings_used_only_for_identity": true,
+    "raw_duplicate_owner_fingerprint_records": 0,
+    "raw_duplicate_owner_item_records": 0,
+    "raw_review_records": 160792,
+    "raw_unique_owner_fingerprints": 160792,
+    "reviewer_identity_exported": false,
+    "support_edges": 105104,
+    "support_nonempty_review_text": 105065,
+    "support_nonempty_summary": 105104,
+    "support_review_text_word_count": 10535902,
+    "support_users": 19445,
+    "unresolved_support_users": 0
+  },
+  "metrics": {
+    "item_content": {
+      "mean_auc": 0.5884816315906893,
+      "nonzero_profile_coverage": 1.0
+    },
+    "own": {
+      "mean_auc": 0.5665994273815721,
+      "nonzero_profile_coverage": 1.0
+    },
+    "same_item_donor": {
+      "mean_auc": 0.5620352123150145,
+      "nonzero_profile_coverage": 1.0
+    }
+  },
+  "peak_gpu_allocated_bytes": 521625088,
+  "peak_gpu_reserved_bytes": 606076928,
+  "raw_review_text_exported": false,
+  "resources": {
+    "cpu_threads": 4,
+    "cuda_visible_devices": "1",
+    "gpu_free_bytes": 25409093632,
+    "gpu_physical_index": 1,
+    "memory_fraction": 0.55,
+    "ram_available_bytes": 130039070720,
+    "required_gpu_free_bytes": 15032385536,
+    "required_ram_bytes": 12884901888,
+    "wait_seconds": 0.03374195098876953
+  },
+  "source_hashes_after": {
+    "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+    "/data/sunzixuan/dual_witness_20261009_v1/diagnose.py": "22c9e308a9d05b4d92c43e68765f8a57eb13b28254f74dc5d12ec8f4b64bf673",
+    "/data/sunzixuan/dual_witness_20261009_v1/evidence.py": "26c773bdcf1ff90bf0f9e9298d0a0711227561e63c9d2b04225b29936326d9aa",
+    "/data/sunzixuan/rave_20260905_inputs/baby/item_id_to_asin.json": "451c8cfa29ad517a427f5f7f6278fe0761959f94508562a173f8306c9c02ed2c",
+    "/data/sunzixuan/rave_20260905_inputs/baby/reviews_Baby_5.json.gz": "e54968e4102a3f03f4bb6be581dc09188fe2a31e4a664803ff21a3ad2ac578c3",
+    "/data/sunzixuan/rave_20260906_stage1/features/global_bank.npy": "681ba06261c6fbf3b594aa9e14958a07c42a5e991dd465b9d5e9b22986e24600",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/__init__.py": "d7930eb290ebed432116795c91473200d098451a94c0aedd4ae0f934f97955e8",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/bpe_simple_vocab_16e6.txt.gz": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/clip.py": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/model.py": "9902cbe5ee90a1da2aa3e6f043e8a23dc1f8831193b963785c9af03d5c7bef2c",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/simple_tokenizer.py": "d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad",
+    "/data/sunzixuan/rave_20260906_stage1/weights/ViT-B-16.pt": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f"
+  },
+  "source_hashes_before": {
+    "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+    "/data/sunzixuan/dual_witness_20261009_v1/diagnose.py": "22c9e308a9d05b4d92c43e68765f8a57eb13b28254f74dc5d12ec8f4b64bf673",
+    "/data/sunzixuan/dual_witness_20261009_v1/evidence.py": "26c773bdcf1ff90bf0f9e9298d0a0711227561e63c9d2b04225b29936326d9aa",
+    "/data/sunzixuan/rave_20260905_inputs/baby/item_id_to_asin.json": "451c8cfa29ad517a427f5f7f6278fe0761959f94508562a173f8306c9c02ed2c",
+    "/data/sunzixuan/rave_20260905_inputs/baby/reviews_Baby_5.json.gz": "e54968e4102a3f03f4bb6be581dc09188fe2a31e4a664803ff21a3ad2ac578c3",
+    "/data/sunzixuan/rave_20260906_stage1/features/global_bank.npy": "681ba06261c6fbf3b594aa9e14958a07c42a5e991dd465b9d5e9b22986e24600",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/__init__.py": "d7930eb290ebed432116795c91473200d098451a94c0aedd4ae0f934f97955e8",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/bpe_simple_vocab_16e6.txt.gz": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/clip.py": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/model.py": "9902cbe5ee90a1da2aa3e6f043e8a23dc1f8831193b963785c9af03d5c7bef2c",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/simple_tokenizer.py": "d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad",
+    "/data/sunzixuan/rave_20260906_stage1/weights/ViT-B-16.pt": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f"
+  },
+  "source_revision": "9c35573aa6e132940439d8853e440083daf23c73",
+  "status": "completed",
+  "support_records": 105104,
+  "test_evaluated": false,
+  "time_budget_seconds": 21600,
+  "training_started": false,
+  "validation_evaluated": false
+}

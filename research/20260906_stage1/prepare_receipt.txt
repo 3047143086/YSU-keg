@@ -1,0 +1,3 @@
+DEPLOYED ['prepare_assets.py']
+LAUNCHED {"pid": 2190244, "command": ["/data/sunzixuan/miniconda3/envs/MMRec/bin/python", "-u", "/data/sunzixuan/rave_20260906_stage1/prepare_assets.py"], "root": "/data/sunzixuan/rave_20260906_stage1"}
+(base) sunzixuan@213keg:~$

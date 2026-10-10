@@ -1,0 +1,20 @@
+{
+  "bundle_sha256": {
+    "PROTOCOL.md": "1c8a12d4663a94a106d33838b78b3080ef28ebb15268c715fcb2bd40f4ac9e3c",
+    "diagnose.py": "22c9e308a9d05b4d92c43e68765f8a57eb13b28254f74dc5d12ec8f4b64bf673",
+    "evidence.py": "26c773bdcf1ff90bf0f9e9298d0a0711227561e63c9d2b04225b29936326d9aa",
+    "manage.py": "b8a2d4cb7025ba09d03e7b6804cea6452d835af6e4eb056ed74c2275c3cc59d2",
+    "program.md": "335546c5905f8a79669c0afb6e349f2f112226f7535af25e7aeb78226952ae22",
+    "run_pipeline.py": "0950558f54945c1046e18b97ff6be670f52cf69feac34f7a4a6e8f0b6693329f",
+    "test_diagnose.py": "9b5b303f5d2f8235ff018b8dd5244a720a66f01edb2f8e4ef1a6567d39a176fd",
+    "test_evidence.py": "acfdbc352b7fcbef56ea40dab1556aec18a7914bebdee9f7776658d4deaeb778",
+    "source_revision.json": "78239db1e080ebc59a132df0027990fdae60ee289a3e848a5aa122ef30a380f8",
+    "baseline_audit.json": "d0166c844cf735c54a4643e559dbf13b082eaa7f9134f6601f52c318e2d2481d"
+  },
+  "created_unix": 1791540121.813736,
+  "root": "/data/sunzixuan/dual_witness_20261009_v1",
+  "cpu_threads": 4,
+  "gpu_used": false,
+  "per_dataset_timeout_seconds": 7200,
+  "queue_timeout_seconds": 28800
+}

@@ -1,0 +1,25 @@
+{
+  "model": "GRCN",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "n_layers": 1,
+    "reg_weight": 0.0001,
+    "learning_rate": 0.0001
+  },
+  "best_epoch": 385,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0753,
+  "best_valid_result": {
+    "recall@10": 0.0467,
+    "recall@20": 0.0753,
+    "ndcg@10": 0.0247,
+    "ndcg@20": 0.0319
+  },
+  "best_test_result": {
+    "recall@10": 0.0493,
+    "recall@20": 0.079,
+    "ndcg@10": 0.0258,
+    "ndcg@20": 0.0334
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model": "VBPR",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "reg_weight": 1.0
+  },
+  "best_epoch": 15,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0605,
+  "best_valid_result": {
+    "recall@10": 0.0368,
+    "recall@20": 0.0605,
+    "ndcg@10": 0.0195,
+    "ndcg@20": 0.0255
+  },
+  "best_test_result": {
+    "recall@10": 0.0372,
+    "recall@20": 0.0592,
+    "ndcg@10": 0.0199,
+    "ndcg@20": 0.0256
+  }
+}

@@ -1,0 +1,12 @@
+# coding: utf-8
+# @email: jinfeng.xu0605@gmail.com / jinfeng@connect.hku.hk
+
+embedding_size: 64
+n_layers: [1, 2]
+dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
+reg_weight: [0.001, 0.01, 0.1]
+cl_weight: 2.0
+
+use_neg_sampling: False
+
+hyper_parameters: ["n_layers", "reg_weight", "dropout"]

@@ -1,0 +1,72 @@
+{
+  "features/global_bank.npy": {
+    "exists": true,
+    "bytes": 57753728
+  },
+  "features/image_feat.npy": {
+    "exists": true,
+    "bytes": 28876928
+  },
+  "features/text_feat.npy": {
+    "exists": true,
+    "bytes": 28876928
+  },
+  "split/baby.inter": {
+    "exists": true,
+    "bytes": 1436138
+  },
+  "split_manifest.json": {
+    "exists": true,
+    "bytes": 587
+  },
+  "bridge_src/models/bridge.py": {
+    "exists": true,
+    "bytes": 40372
+  },
+  "bridge_src/diagnose_ecli.py": {
+    "exists": true,
+    "bytes": 10759
+  },
+  "global_bank": {
+    "shape": [
+      7050,
+      2,
+      512
+    ]
+  },
+  "image_feat": {
+    "shape": [
+      7050,
+      512
+    ]
+  },
+  "text_feat": {
+    "shape": [
+      7050,
+      512
+    ]
+  },
+  "gpu": "0, NVIDIA GeForce RTX 3090, 11346, 24576, 94\n1, NVIDIA GeForce RTX 3090, 1667, 24576, 16\n",
+  "processes": "3071491, python, 1636\n3227525, python, 3228\n3228110, python, 3228\n3228598, python, 3228\n3071110, python, 1636\n",
+  "disk": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/sdb4       1.6T  1.3T  226G  85% /data\n",
+  "torch": "1.12.1+cu113",
+  "cuda_available": true,
+  "new_root_exists": false,
+  "split_manifest": {
+    "source_inter_sha256": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+    "split_sha256": "1bb12f1fb90132e8ecc32650fae8f57fd886914200711cf8da4f1a562740e073",
+    "split_seed": 20260906,
+    "source_training_interactions": 118551,
+    "support_interactions": 99106,
+    "development_interactions": 19445,
+    "development_users": 19445,
+    "items": 7050,
+    "users": 19445,
+    "development_items_absent_in_support": 22,
+    "official_validation_included": false,
+    "official_test_included": false,
+    "policy_training": false,
+    "selection_metric": "internal development NDCG@20"
+  }
+}
+(base) sunzixuan@213keg:~$

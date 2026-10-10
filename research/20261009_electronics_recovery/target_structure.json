@@ -1,0 +1,40 @@
+{
+  "audit_read_only": true,
+  "features": {
+    "image_feat.npy": {
+      "all_finite": true,
+      "dtype": "float64",
+      "shape": [
+        63001,
+        4096
+      ]
+    },
+    "text_feat.npy": {
+      "all_finite": true,
+      "dtype": "float32",
+      "shape": [
+        63001,
+        384
+      ]
+    }
+  },
+  "graph_cache_exists": false,
+  "id_ranges_contiguous_zero_based": true,
+  "interaction_rows": 1689188,
+  "item_count": 63001,
+  "root": "/data/sunzixuan/bridge_extra_assets_20261009/elec",
+  "schema": [
+    "userID",
+    "itemID",
+    "rating",
+    "timestamp",
+    "x_label"
+  ],
+  "split_counts": {
+    "0": 1254441,
+    "1": 211296,
+    "2": 223451
+  },
+  "training_started": false,
+  "user_count": 192403
+}

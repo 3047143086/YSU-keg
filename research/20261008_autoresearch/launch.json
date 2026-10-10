@@ -1,0 +1,10 @@
+{
+  "pid": 2471228,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/run_pipeline.py"
+  ],
+  "root": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1",
+  "launched_unix": 1791433448.8900115
+}

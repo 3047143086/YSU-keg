@@ -1,0 +1,122 @@
+{
+  "full_support_reference.npz": {
+    "bytes": 618396,
+    "sha256": "c98db3fd5126de9ee15553ce48a0361aff4ab86820dbe8c25056a971d2d50963",
+    "shapes": {
+      "comparisons": [
+        13447,
+        17
+      ],
+      "itemknn": [
+        13447
+      ],
+      "targets": [
+        13447
+      ],
+      "user_ids": [
+        13447
+      ],
+      "userknn": [
+        13447
+      ]
+    }
+  },
+  "per_user.npz": {
+    "bytes": 708875,
+    "sha256": "d56e694a3b3f931fc597e3307ae4c9fd3786fc0bdf382c9a78aebfddb9f9ecc4",
+    "shapes": {
+      "candidate": [
+        13447
+      ],
+      "candidate_covered": [
+        13447
+      ],
+      "comparisons": [
+        13447,
+        17
+      ],
+      "item_content": [
+        13447
+      ],
+      "itemknn": [
+        13447
+      ],
+      "old_target_geometry": [
+        13447
+      ],
+      "popularity": [
+        13447
+      ],
+      "raw_donor_bank": [
+        13447
+      ],
+      "raw_review_bank": [
+        13447
+      ],
+      "residual_donor_bank": [
+        13447
+      ],
+      "targets": [
+        13447
+      ],
+      "user_hash_half": [
+        13447
+      ],
+      "user_ids": [
+        13447
+      ],
+      "userknn": [
+        13447
+      ]
+    }
+  },
+  "scores.npz": {
+    "bytes": 11314890,
+    "sha256": "e40f96df2332d3c4d161c6b6113e0487190786f3fb19cd746951dab44803c036",
+    "shapes": {
+      "candidate": [
+        13447,
+        17
+      ],
+      "comparisons": [
+        13447,
+        17
+      ],
+      "item_content": [
+        13447,
+        17
+      ],
+      "itemknn": [
+        13447,
+        17
+      ],
+      "old_target_geometry": [
+        13447,
+        17
+      ],
+      "popularity": [
+        13447,
+        17
+      ],
+      "raw_donor_bank": [
+        13447,
+        17
+      ],
+      "raw_review_bank": [
+        13447,
+        17
+      ],
+      "residual_donor_bank": [
+        13447,
+        17
+      ],
+      "user_ids": [
+        13447
+      ],
+      "userknn": [
+        13447,
+        17
+      ]
+    }
+  }
+}

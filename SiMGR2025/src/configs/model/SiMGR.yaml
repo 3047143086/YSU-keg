@@ -1,0 +1,26 @@
+embedding_size: 64
+feat_embed_dim: 64
+isSigned: True
+n_mm_layer: 2
+learning_rate_scheduler: [0.96, 50]
+knn_k: 10
+knn_i: 10
+info_pos: 0.5
+info_neg: 0.5
+
+######sports dataset
+cos_margin: 0.9
+positive_threshold: 0.4
+negative_threshold: 0.2
+knn_a: 20
+tail_ratio: 0.1
+reg_weight: 1e-5
+n_ui_layers: 2
+cl_loss : 1.0
+cl_loss2 : 1.0
+neg_weight: 1000
+lambda2: 0.1
+std_alpha: 0.8
+
+
+

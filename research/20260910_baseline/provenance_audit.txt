@@ -1,0 +1,414 @@
+{
+  "purpose": "read_only_historical_baseline_training_provenance",
+  "root": "/data/sunzixuan/bridge_official",
+  "requested_runs": [
+    "bridge_baby_seed2026_screen",
+    "bridge_sports_s2026_confirm"
+  ],
+  "searched_directories": [
+    "/data/sunzixuan/bridge_official/experiments_cbcr",
+    "/data/sunzixuan/bridge_official/experiments_c2r",
+    "/data/sunzixuan/bridge_official/experiments_c2r_confirm",
+    "/data/sunzixuan/bridge_official/src/log"
+  ],
+  "missing_directories": [
+    "/data/sunzixuan/bridge_official/src/logs",
+    "/data/sunzixuan/bridge_official/log",
+    "/data/sunzixuan/bridge_official/logs"
+  ],
+  "skipped": [],
+  "errors": [],
+  "matches": [
+    {
+      "path": "/data/sunzixuan/bridge_official/src/log/bridge_baby_seed2026_screen.log",
+      "bytes": 127601,
+      "sha256": "844f891a2ab405ffafd9e7d935435a8b264a58a0c2cdcc935ab4187065689e4b",
+      "matched_runs": [
+        "bridge_baby_seed2026_screen"
+      ],
+      "line_count": 968,
+      "run_mentions": [
+        {
+          "line": 100,
+          "text": "log_file_name=bridge_baby_seed2026_screen"
+        },
+        {
+          "line": 206,
+          "text": "Sun 30 Aug 2026 17:41:11 INFO Saved best embeddings to saved_models/BRIDGE/baby/bridge_baby_seed2026_screen"
+        },
+        {
+          "line": 215,
+          "text": "Sun 30 Aug 2026 17:41:22 INFO Saved best embeddings to saved_models/BRIDGE/baby/bridge_baby_seed2026_screen"
+        },
+        {
+          "line": 842,
+          "text": "Sun 30 Aug 2026 17:55:14 INFO Saved best embeddings to saved_models/BRIDGE/baby/bridge_baby_seed2026_screen"
+        },
+        {
+          "line": 851,
+          "text": "Sun 30 Aug 2026 17:55:24 INFO Saved best embeddings to saved_models/BRIDGE/baby/bridge_baby_seed2026_screen"
+        },
+        {
+          "line": 866,
+          "text": "Sun 30 Aug 2026 17:55:44 INFO Saved best embeddings to saved_models/BRIDGE/baby/bridge_baby_seed2026_screen"
+        }
+      ],
+      "config_snippets": [
+        {
+          "line": 7,
+          "text": "seed=[2026]"
+        },
+        {
+          "line": 8,
+          "text": "data_path=../data/"
+        },
+        {
+          "line": 15,
+          "text": "embedding_size=[64]"
+        },
+        {
+          "line": 18,
+          "text": "epochs=120"
+        },
+        {
+          "line": 19,
+          "text": "stopping_step=12"
+        },
+        {
+          "line": 22,
+          "text": "learning_rate=[0.0001]"
+        },
+        {
+          "line": 35,
+          "text": "valid_metric=Recall@20"
+        },
+        {
+          "line": 48,
+          "text": "hyper_parameters=['seed', 'embedding_size', 'knn_k', 'aggr_mode', 'reg_weight', 'learning_rate', 'ib_weight', 'num_layers', 'num_freq_bands', 'freq_decomp_method', 'ib_direction', 'ib_alpha', 'ib_mu', 'ib_phi_plus', 'behavior_topk', 'behavior_weight', 'behavior_eval_topk', 'correction_scope', 'train_candidate_aware', 'train_candidate_topk', 'use_behavior_proto', 'use_behavior_correction', 'use_private_residual', 'use_topk_correction', 'use_behavior_gate', 'use_calibration_gate', 'use_residual_gate', 'use_item_graph', 'feature_ablation', 'private_residual_weight', 'low_band_count', 'aux_base_weight', 'aux_low_weight', 'aux_high_weight', 'gate_reg_weight', 'gate_target', 'gate_floor', 'gate_behavior_init', 'behavior_proto_weight', 'behavior_proto_loss_weight', 'behavior_proto_gate_reg_weight', 'behavior_proto_gate_target']"
+        },
+        {
+          "line": 50,
+          "text": "vision_feature_file=image_feat.npy"
+        },
+        {
+          "line": 51,
+          "text": "text_feature_file=text_feat.npy"
+        },
+        {
+          "line": 54,
+          "text": "feat_embed_dim=64"
+        },
+        {
+          "line": 56,
+          "text": "num_layers=[2]"
+        },
+        {
+          "line": 60,
+          "text": "freq_decomp_method=['svd']"
+        },
+        {
+          "line": 68,
+          "text": "behavior_topk=[1000]"
+        },
+        {
+          "line": 69,
+          "text": "behavior_weight=[0.4]"
+        },
+        {
+          "line": 70,
+          "text": "behavior_eval_topk=[200]"
+        },
+        {
+          "line": 73,
+          "text": "train_candidate_topk=[200]"
+        },
+        {
+          "line": 100,
+          "text": "log_file_name=bridge_baby_seed2026_screen"
+        },
+        {
+          "line": 101,
+          "text": "model=BRIDGE"
+        },
+        {
+          "line": 102,
+          "text": "dataset=baby"
+        },
+        {
+          "line": 113,
+          "text": "The sparsity of the dataset: 99.8827082752043%"
+        },
+        {
+          "line": 122,
+          "text": "The sparsity of the dataset: 99.9134846831415%"
+        },
+        {
+          "line": 131,
+          "text": "The sparsity of the dataset: 99.98071694707788%"
+        },
+        {
+          "line": 140,
+          "text": "The sparsity of the dataset: 99.97990552482683%"
+        }
+      ],
+      "parameter_run_header_count": 1,
+      "parameter_run_headers": [
+        {
+          "line": 146,
+          "run_index": 1,
+          "declared_total": 1,
+          "text": "Sun 30 Aug 2026 17:40:55 INFO =========1/1: Parameters:['seed', 'embedding_size', 'knn_k', 'aggr_mode', 'reg_weight', 'learning_rate', 'ib_weight', 'num_layers', 'num_freq_bands', 'freq_decomp_method', 'ib_direction', 'ib_alpha', 'ib_mu', 'ib_phi_plus', 'behavior_topk', 'behavior_weight', 'behavior_eval_topk', 'correction_scope', 'train_candidate_aware', 'train_candidate_topk', 'use_behavior_proto', 'use_behavior_correction', 'use_private_residual', 'use_topk_correction', 'use_behavior_gate', 'use_calibration_gate', 'use_residual_gate', 'use_item_graph', 'feature_ablation', 'private_residual_weight', 'low_band_count', 'aux_base_weight', 'aux_low_weight', 'aux_high_weight', 'gate_reg_weight', 'gate_target', 'gate_floor', 'gate_behavior_init', 'behavior_proto_weight', 'behavior_proto_loss_weight', 'behavior_proto_gate_reg_weight', 'behavior_proto_gate_target']=(2026, 64, 10, 'add', 0.001, 0.0001, 1.0, 2, 3, 'svd', 'Pos', 1.0, 1.0, 0.0, 1000, 0.4, 200, 'topk', True, 200, False, True, False, True, True, True, False, True, 'all', 0.0, 1, 0.2, 0.0, 0.0, 0.001, 0.5, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5)======="
+        }
+      ],
+      "best_validation_snippets": [
+        {
+          "line": 946,
+          "text": "Sun 30 Aug 2026 17:57:48 INFO +++++Finished training, best eval result in epoch 89"
+        },
+        {
+          "line": 947,
+          "text": "Sun 30 Aug 2026 17:57:48 INFO best valid result: recall@5: 0.0481    recall@10: 0.0709    recall@20: 0.1056    recall@50: 0.1739    ndcg@5: 0.0330    ndcg@10: 0.0404    ndcg@20: 0.0492    ndcg@50: 0.0629    precision@5: 0.0100    precision@10: 0.0074    precision@20: 0.0056    precision@50: 0.0037    map@5: 0.0277    map@10: 0.0307    map@20: 0.0331    map@50: 0.0352    "
+        }
+      ],
+      "last_validation_blocks": [
+        [
+          {
+            "line": 942,
+            "text": "Sun 30 Aug 2026 17:57:48 INFO valid result: "
+          },
+          {
+            "line": 943,
+            "text": "recall@5: 0.0482    recall@10: 0.0727    recall@20: 0.1049    recall@50: 0.1740    ndcg@5: 0.0329    ndcg@10: 0.0409    ndcg@20: 0.0491    ndcg@50: 0.0628    precision@5: 0.0100    precision@10: 0.0076    precision@20: 0.0055    precision@50: 0.0037    map@5: 0.0276    map@10: 0.0308    map@20: 0.0330    map@50: 0.0351    "
+          }
+        ],
+        [
+          {
+            "line": 947,
+            "text": "Sun 30 Aug 2026 17:57:48 INFO best valid result: recall@5: 0.0481    recall@10: 0.0709    recall@20: 0.1056    recall@50: 0.1739    ndcg@5: 0.0330    ndcg@10: 0.0404    ndcg@20: 0.0492    ndcg@50: 0.0629    precision@5: 0.0100    precision@10: 0.0074    precision@20: 0.0056    precision@50: 0.0037    map@5: 0.0277    map@10: 0.0307    map@20: 0.0331    map@50: 0.0352    "
+          }
+        ]
+      ],
+      "end_status_snippets": [
+        {
+          "line": 946,
+          "text": "Sun 30 Aug 2026 17:57:48 INFO +++++Finished training, best eval result in epoch 89"
+        },
+        {
+          "line": 957,
+          "text": "============All Over====================="
+        }
+      ],
+      "test_result_markers_present": true,
+      "test_result_marker_count": 105,
+      "test_metric_values_omitted": true,
+      "checkpoint_bytes_linkage_proven_by_log_match": false
+    },
+    {
+      "path": "/data/sunzixuan/bridge_official/src/log/bridge_sports_s2026_confirm.log",
+      "bytes": 162386,
+      "sha256": "8bbe9194aad8a5d88c12173a59af498fbd08a417c23f883f910a8829eb365d07",
+      "matched_runs": [
+        "bridge_sports_s2026_confirm"
+      ],
+      "line_count": 1180,
+      "run_mentions": [
+        {
+          "line": 108,
+          "text": "log_file_name=bridge_sports_s2026_confirm"
+        },
+        {
+          "line": 214,
+          "text": "Thu 03 Sep 2026 15:49:36 INFO Saved best embeddings to saved_models/BRIDGE/sports/bridge_sports_s2026_confirm"
+        },
+        {
+          "line": 223,
+          "text": "Thu 03 Sep 2026 15:50:17 INFO Saved best embeddings to saved_models/BRIDGE/sports/bridge_sports_s2026_confirm"
+        },
+        {
+          "line": 952,
+          "text": "Thu 03 Sep 2026 16:49:28 INFO Saved best embeddings to saved_models/BRIDGE/sports/bridge_sports_s2026_confirm"
+        },
+        {
+          "line": 1009,
+          "text": "Thu 03 Sep 2026 16:54:37 INFO Saved best embeddings to saved_models/BRIDGE/sports/bridge_sports_s2026_confirm"
+        },
+        {
+          "line": 1030,
+          "text": "Thu 03 Sep 2026 16:56:19 INFO Saved best embeddings to saved_models/BRIDGE/sports/bridge_sports_s2026_confirm"
+        }
+      ],
+      "config_snippets": [
+        {
+          "line": 7,
+          "text": "seed=[2026]"
+        },
+        {
+          "line": 8,
+          "text": "data_path=../data/"
+        },
+        {
+          "line": 15,
+          "text": "embedding_size=[64]"
+        },
+        {
+          "line": 18,
+          "text": "epochs=300"
+        },
+        {
+          "line": 19,
+          "text": "stopping_step=20"
+        },
+        {
+          "line": 22,
+          "text": "learning_rate=[0.0001]"
+        },
+        {
+          "line": 35,
+          "text": "valid_metric=Recall@20"
+        },
+        {
+          "line": 48,
+          "text": "hyper_parameters=['seed', 'embedding_size', 'knn_k', 'aggr_mode', 'reg_weight', 'learning_rate', 'ib_weight', 'num_layers', 'num_freq_bands', 'freq_decomp_method', 'ib_direction', 'ib_alpha', 'ib_mu', 'ib_phi_plus', 'behavior_topk', 'behavior_weight', 'behavior_eval_topk', 'correction_scope', 'train_candidate_aware', 'train_candidate_topk', 'use_behavior_proto', 'use_behavior_correction', 'use_private_residual', 'use_topk_correction', 'use_behavior_gate', 'use_calibration_gate', 'use_residual_gate', 'use_item_graph', 'feature_ablation', 'private_residual_weight', 'low_band_count', 'aux_base_weight', 'aux_low_weight', 'aux_high_weight', 'gate_reg_weight', 'gate_target', 'gate_floor', 'gate_behavior_init', 'behavior_proto_weight', 'behavior_proto_loss_weight', 'behavior_proto_gate_reg_weight', 'behavior_proto_gate_target']"
+        },
+        {
+          "line": 50,
+          "text": "vision_feature_file=image_feat.npy"
+        },
+        {
+          "line": 51,
+          "text": "text_feature_file=text_feat.npy"
+        },
+        {
+          "line": 54,
+          "text": "feat_embed_dim=64"
+        },
+        {
+          "line": 56,
+          "text": "num_layers=[2]"
+        },
+        {
+          "line": 60,
+          "text": "freq_decomp_method=['svd']"
+        },
+        {
+          "line": 68,
+          "text": "behavior_topk=[1000]"
+        },
+        {
+          "line": 69,
+          "text": "behavior_weight=[0.4]"
+        },
+        {
+          "line": 70,
+          "text": "behavior_eval_topk=[200]"
+        },
+        {
+          "line": 73,
+          "text": "train_candidate_topk=[200]"
+        },
+        {
+          "line": 100,
+          "text": "use_activity_simplex=[False]"
+        },
+        {
+          "line": 105,
+          "text": "msr_weight=[0.0]"
+        },
+        {
+          "line": 108,
+          "text": "log_file_name=bridge_sports_s2026_confirm"
+        },
+        {
+          "line": 109,
+          "text": "model=BRIDGE"
+        },
+        {
+          "line": 110,
+          "text": "dataset=sports"
+        },
+        {
+          "line": 121,
+          "text": "The sparsity of the dataset: 99.95465195454304%"
+        },
+        {
+          "line": 130,
+          "text": "The sparsity of the dataset: 99.96656806366236%"
+        },
+        {
+          "line": 139,
+          "text": "The sparsity of the dataset: 99.99202039826986%"
+        },
+        {
+          "line": 148,
+          "text": "The sparsity of the dataset: 99.99181486908563%"
+        }
+      ],
+      "parameter_run_header_count": 1,
+      "parameter_run_headers": [
+        {
+          "line": 154,
+          "run_index": 1,
+          "declared_total": 1,
+          "text": "Thu 03 Sep 2026 15:48:34 INFO =========1/1: Parameters:['seed', 'embedding_size', 'knn_k', 'aggr_mode', 'reg_weight', 'learning_rate', 'ib_weight', 'num_layers', 'num_freq_bands', 'freq_decomp_method', 'ib_direction', 'ib_alpha', 'ib_mu', 'ib_phi_plus', 'behavior_topk', 'behavior_weight', 'behavior_eval_topk', 'correction_scope', 'train_candidate_aware', 'train_candidate_topk', 'use_behavior_proto', 'use_behavior_correction', 'use_private_residual', 'use_topk_correction', 'use_behavior_gate', 'use_calibration_gate', 'use_residual_gate', 'use_item_graph', 'feature_ablation', 'private_residual_weight', 'low_band_count', 'aux_base_weight', 'aux_low_weight', 'aux_high_weight', 'gate_reg_weight', 'gate_target', 'gate_floor', 'gate_behavior_init', 'behavior_proto_weight', 'behavior_proto_loss_weight', 'behavior_proto_gate_reg_weight', 'behavior_proto_gate_target']=(2026, 64, 10, 'add', 0.001, 0.0001, 1.0, 2, 3, 'svd', 'Pos', 1.0, 1.0, 0.0, 1000, 0.4, 200, 'topk', True, 200, False, True, False, True, True, True, False, True, 'all', 0.0, 1, 0.2, 0.0, 0.0, 0.001, 0.5, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5)======="
+        }
+      ],
+      "best_validation_snippets": [
+        {
+          "line": 1158,
+          "text": "Thu 03 Sep 2026 17:08:16 INFO +++++Finished training, best eval result in epoch 108"
+        },
+        {
+          "line": 1159,
+          "text": "Thu 03 Sep 2026 17:08:16 INFO best valid result: recall@5: 0.0560    recall@10: 0.0834    recall@20: 0.1198    recall@50: 0.1841    ndcg@5: 0.0385    ndcg@10: 0.0474    ndcg@20: 0.0567    ndcg@50: 0.0695    precision@5: 0.0118    precision@10: 0.0088    precision@20: 0.0063    precision@50: 0.0039    map@5: 0.0322    map@10: 0.0358    map@20: 0.0383    map@50: 0.0404    "
+        }
+      ],
+      "last_validation_blocks": [
+        [
+          {
+            "line": 1154,
+            "text": "Thu 03 Sep 2026 17:08:16 INFO valid result: "
+          },
+          {
+            "line": 1155,
+            "text": "recall@5: 0.0551    recall@10: 0.0810    recall@20: 0.1170    recall@50: 0.1837    ndcg@5: 0.0380    ndcg@10: 0.0465    ndcg@20: 0.0557    ndcg@50: 0.0690    precision@5: 0.0117    precision@10: 0.0086    precision@20: 0.0062    precision@50: 0.0039    map@5: 0.0319    map@10: 0.0354    map@20: 0.0378    map@50: 0.0399    "
+          }
+        ],
+        [
+          {
+            "line": 1159,
+            "text": "Thu 03 Sep 2026 17:08:16 INFO best valid result: recall@5: 0.0560    recall@10: 0.0834    recall@20: 0.1198    recall@50: 0.1841    ndcg@5: 0.0385    ndcg@10: 0.0474    ndcg@20: 0.0567    ndcg@50: 0.0695    precision@5: 0.0118    precision@10: 0.0088    precision@20: 0.0063    precision@50: 0.0039    map@5: 0.0322    map@10: 0.0358    map@20: 0.0383    map@50: 0.0404    "
+          }
+        ]
+      ],
+      "end_status_snippets": [
+        {
+          "line": 1158,
+          "text": "Thu 03 Sep 2026 17:08:16 INFO +++++Finished training, best eval result in epoch 108"
+        },
+        {
+          "line": 1169,
+          "text": "============All Over====================="
+        }
+      ],
+      "test_result_markers_present": true,
+      "test_result_marker_count": 132,
+      "test_metric_values_omitted": true,
+      "checkpoint_bytes_linkage_proven_by_log_match": false
+    }
+  ],
+  "files_examined": 15,
+  "bytes_read": 2016875,
+  "entries_examined": 23,
+  "search_complete_within_declared_scope": true,
+  "bounds": {
+    "entries": 20000,
+    "file_bytes": 33554432,
+    "total_bytes": 536870912,
+    "matches": 40
+  },
+  "runs_found": [
+    "bridge_baby_seed2026_screen",
+    "bridge_sports_s2026_confirm"
+  ]
+}
+(base) sunzixuan@213keg:~$

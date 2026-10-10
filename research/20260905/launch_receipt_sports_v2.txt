@@ -1,0 +1,21 @@
+{
+  "pid": 2185422,
+  "root": "/data/sunzixuan/rave_20260905_sports_preflight_v2",
+  "gpu": 0,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/rave_20260905_sports_preflight_v2/preflight.py",
+    "--bridge-root",
+    "/data/sunzixuan/bridge_official",
+    "--checkpoint",
+    "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/sports/bridge_sports_s2026_confirm/model.pth",
+    "--dataset",
+    "sports",
+    "--gpu-id",
+    "0",
+    "--output",
+    "/data/sunzixuan/rave_20260905_sports_preflight_v2/sports.json"
+  ]
+}
+(base) sunzixuan@213keg:~$

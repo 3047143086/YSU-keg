@@ -1,0 +1,19 @@
+embedding_size: 64
+n_layers: [2]
+knn_k: 10
+is_sparse: True
+fusion_coeff: [0.4]
+tau: 0.2
+cl_weight: [0.005]
+reg_weight: [3e-7]
+
+# SG-URInit paper recommendation for Baby/item-graph models.
+sg_num_clusters: 4
+sg_cluster_weight: 0.1
+sg_random_state: 0
+
+# Fixed first screen, matching the 1e-3 auxiliary-loss scale used by the
+# official SG-URInit adapters for recent graph recommenders.
+sg_loss_weight: 0.001
+
+hyper_parameters: ["n_layers", "fusion_coeff", "cl_weight", "reg_weight"]

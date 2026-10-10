@@ -1,0 +1,354 @@
+{
+  "started_unix": 1791521006.2167797,
+  "status": "closed_validation_gate",
+  "jobs": [
+    {
+      "name": "baby_candidate_smoke",
+      "exit_code": 0,
+      "seconds": 44.201722773956135,
+      "log": "/data/sunzixuan/candidate_gate_20261009_v1/logs/baby_candidate_smoke.log",
+      "peak_sampled_gpu_memory_mib": 3360
+    },
+    {
+      "name": "baby_joint_smoke",
+      "exit_code": 0,
+      "seconds": 44.10745288594626,
+      "log": "/data/sunzixuan/candidate_gate_20261009_v1/logs/baby_joint_smoke.log",
+      "peak_sampled_gpu_memory_mib": 3364
+    },
+    {
+      "name": "baby_candidate_s2026",
+      "exit_code": 0,
+      "seconds": 3374.055907043861,
+      "log": "/data/sunzixuan/candidate_gate_20261009_v1/logs/baby_candidate_s2026.log",
+      "peak_sampled_gpu_memory_mib": 3360
+    },
+    {
+      "name": "baby_joint_s2026",
+      "exit_code": 0,
+      "seconds": 921.7401646270882,
+      "log": "/data/sunzixuan/candidate_gate_20261009_v1/logs/baby_joint_s2026.log",
+      "peak_sampled_gpu_memory_mib": 3362
+    },
+    {
+      "name": "sports_candidate_smoke",
+      "exit_code": 0,
+      "seconds": 108.46359637705609,
+      "log": "/data/sunzixuan/candidate_gate_20261009_v1/logs/sports_candidate_smoke.log",
+      "peak_sampled_gpu_memory_mib": 7290
+    },
+    {
+      "name": "sports_joint_smoke",
+      "exit_code": 0,
+      "seconds": 107.46805739402771,
+      "log": "/data/sunzixuan/candidate_gate_20261009_v1/logs/sports_joint_smoke.log",
+      "peak_sampled_gpu_memory_mib": 7246
+    },
+    {
+      "name": "sports_candidate_s2026",
+      "exit_code": 0,
+      "seconds": 7025.798063812079,
+      "log": "/data/sunzixuan/candidate_gate_20261009_v1/logs/sports_candidate_s2026.log",
+      "peak_sampled_gpu_memory_mib": 7290
+    },
+    {
+      "name": "sports_joint_s2026",
+      "exit_code": 0,
+      "seconds": 2625.940562549047,
+      "log": "/data/sunzixuan/candidate_gate_20261009_v1/logs/sports_joint_s2026.log",
+      "peak_sampled_gpu_memory_mib": 7246
+    }
+  ],
+  "screens": {
+    "baby": {
+      "status": "keep",
+      "relative_vs_baseline": {
+        "recall@20": 0.00872031091722314,
+        "ndcg@20": 0.0059453157759770114
+      },
+      "shortlist_absolute_delta": {
+        "recall@10": -0.0001573424432771281,
+        "ndcg@10": 3.422577947896632e-05
+      },
+      "absolute_vs_joint": {
+        "recall@20": 0.011745092997342943,
+        "ndcg@20": 0.00463116462975198
+      },
+      "evidence_level": "single-seed exploratory validation",
+      "tested_mechanism": "candidate-negative supervision assigned to the gate only",
+      "dataset": "baby",
+      "passed": true,
+      "seed": 2026,
+      "metrics": {
+        "baseline": {
+          "recall@5": 0.04798075157036329,
+          "ndcg@5": 0.032837760528477825,
+          "recall@10": 0.07111762112919222,
+          "ndcg@10": 0.040386094675721566,
+          "recall@20": 0.10546504793740588,
+          "ndcg@20": 0.04910749907453286,
+          "recall@50": 0.17414190206810415,
+          "ndcg@50": 0.06281293587582008
+        },
+        "candidate": {
+          "recall@5": 0.04869264959776659,
+          "ndcg@5": 0.033165547444791305,
+          "recall@10": 0.07096027868591509,
+          "ndcg@10": 0.04042032045520053,
+          "recall@20": 0.1063847359463199,
+          "ndcg@20": 0.04939945866349945,
+          "recall@50": 0.17271602444011805,
+          "ndcg@50": 0.06261375028049575
+        },
+        "joint": {
+          "recall@5": 0.0445357479582216,
+          "ndcg@5": 0.0305496897453707,
+          "recall@10": 0.06530593003465207,
+          "ndcg@10": 0.03730304696738786,
+          "recall@20": 0.09463964294897696,
+          "ndcg@20": 0.04476829403374747,
+          "recall@50": 0.1548867379299367,
+          "ndcg@50": 0.05677269616464842
+        }
+      },
+      "paired_exploratory_not_independent_confirmation": {
+        "baseline:recall_10": {
+          "mean_delta": -0.0001573424432771308,
+          "user_bootstrap_95ci": [
+            -0.001914465709143004,
+            0.0016714420404314975
+          ]
+        },
+        "baseline:ndcg_10": {
+          "mean_delta": 3.4225779478974766e-05,
+          "user_bootstrap_95ci": [
+            -0.0007519911976162162,
+            0.0008624172477220528
+          ]
+        },
+        "baseline:recall_20": {
+          "mean_delta": 0.0009196880089140312,
+          "user_bootstrap_95ci": [
+            -0.0011058326904945573,
+            0.002880817690923116
+          ]
+        },
+        "baseline:ndcg_20": {
+          "mean_delta": 0.0002919595889665952,
+          "user_bootstrap_95ci": [
+            -0.00043837124422648155,
+            0.0010716085458618073
+          ]
+        },
+        "joint:recall_10": {
+          "mean_delta": 0.005654348651263024,
+          "user_bootstrap_95ci": [
+            0.0032951196292350833,
+            0.00790061712522499
+          ]
+        },
+        "joint:ndcg_10": {
+          "mean_delta": 0.0031172734878126777,
+          "user_bootstrap_95ci": [
+            0.0019251924711154566,
+            0.0042711702556553315
+          ]
+        },
+        "joint:recall_20": {
+          "mean_delta": 0.011745092997342933,
+          "user_bootstrap_95ci": [
+            0.008970233503532554,
+            0.014289418261519058
+          ]
+        },
+        "joint:ndcg_20": {
+          "mean_delta": 0.004631164629751993,
+          "user_bootstrap_95ci": [
+            0.0034806227951078616,
+            0.005771915246467223
+          ]
+        }
+      },
+      "test_evaluated": false
+    },
+    "sports": {
+      "status": "discard",
+      "relative_vs_baseline": {
+        "recall@20": -0.003129817298474391,
+        "ndcg@20": -0.004361860488513392
+      },
+      "shortlist_absolute_delta": {
+        "recall@10": -0.0005534353187311297,
+        "ndcg@10": -0.0002771326487447656
+      },
+      "absolute_vs_joint": {
+        "recall@20": 0.010481693350815224,
+        "ndcg@20": 0.004782772382235574
+      },
+      "evidence_level": "single-seed exploratory validation",
+      "tested_mechanism": "candidate-negative supervision assigned to the gate only",
+      "dataset": "sports",
+      "passed": false,
+      "seed": 2026,
+      "metrics": {
+        "baseline": {
+          "recall@5": 0.05551538959312255,
+          "ndcg@5": 0.038232859523293736,
+          "recall@10": 0.08301179566908366,
+          "ndcg@10": 0.047186443228226675,
+          "recall@20": 0.1195296505011454,
+          "ndcg@20": 0.05647686319160367,
+          "recall@50": 0.18395571151547369,
+          "ndcg@50": 0.0693519084692436
+        },
+        "candidate": {
+          "recall@5": 0.05585170686437999,
+          "ndcg@5": 0.038265187161332044,
+          "recall@10": 0.08245836035035253,
+          "ndcg@10": 0.04690931057948191,
+          "recall@20": 0.11915554453332632,
+          "ndcg@20": 0.05623051899353304,
+          "recall@50": 0.18334734177470888,
+          "ndcg@50": 0.06904618446611488
+        },
+        "joint": {
+          "recall@5": 0.0508296996533453,
+          "ndcg@5": 0.034992234537419335,
+          "recall@10": 0.07531870251332405,
+          "ndcg@10": 0.04298270604665451,
+          "recall@20": 0.10867385118251109,
+          "ndcg@20": 0.05144774661129747,
+          "recall@50": 0.16558222076291668,
+          "ndcg@50": 0.06283560522059968
+        }
+      },
+      "paired_exploratory_not_independent_confirmation": {
+        "baseline:recall_10": {
+          "mean_delta": -0.0005534353187311218,
+          "user_bootstrap_95ci": [
+            -0.0011991084638248804,
+            0.00014974339783668876
+          ]
+        },
+        "baseline:ndcg_10": {
+          "mean_delta": -0.00027713264874474854,
+          "user_bootstrap_95ci": [
+            -0.0005723880187297739,
+            2.454877510144764e-05
+          ]
+        },
+        "baseline:recall_20": {
+          "mean_delta": -0.0003741059678190978,
+          "user_bootstrap_95ci": [
+            -0.0011351474035824279,
+            0.0003387825456656568
+          ]
+        },
+        "baseline:ndcg_20": {
+          "mean_delta": -0.0002463441980706203,
+          "user_bootstrap_95ci": [
+            -0.0005217231363824272,
+            3.9307830096435425e-05
+          ]
+        },
+        "joint:recall_10": {
+          "mean_delta": 0.007139657837028475,
+          "user_bootstrap_95ci": [
+            0.005487886893057127,
+            0.008959858855990661
+          ]
+        },
+        "joint:ndcg_10": {
+          "mean_delta": 0.0039266045328274195,
+          "user_bootstrap_95ci": [
+            0.002998847358991248,
+            0.0048858932591618045
+          ]
+        },
+        "joint:recall_20": {
+          "mean_delta": 0.01048169335081521,
+          "user_bootstrap_95ci": [
+            0.008455782819458448,
+            0.012348574930057737
+          ]
+        },
+        "joint:ndcg_20": {
+          "mean_delta": 0.004782772382235572,
+          "user_bootstrap_95ci": [
+            0.0038694934814339933,
+            0.005721200735273986
+          ]
+        }
+      },
+      "test_evaluated": false
+    }
+  },
+  "predecessor": {
+    "root": "/data/sunzixuan/decoupled_gate_20261008_recovery_v1",
+    "status": "closed_validation_gate",
+    "process_alive": false
+  },
+  "updated_unix": 1791535267.1735148,
+  "stage": "sports",
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/candidate_gate_20261009_v1/guarded_train.py",
+    "--bridge-root",
+    "/data/sunzixuan/candidate_gate_20261009_v1/carrier",
+    "--dataset",
+    "sports",
+    "--seed",
+    "2026",
+    "--output",
+    "/data/sunzixuan/candidate_gate_20261009_v1/runs/sports_joint_s2026",
+    "--device",
+    "cuda",
+    "--gpu-id",
+    "1",
+    "--plugin-module",
+    "proposal",
+    "--plugin-class",
+    "CandidateGateBRIDGE",
+    "--plugin-config",
+    "/data/sunzixuan/candidate_gate_20261009_v1/configs/sports_joint.json"
+  ],
+  "active_job": null,
+  "mechanism": {
+    "dataset": "sports",
+    "passed": true,
+    "train_diagnostics": {
+      "mode": "candidate",
+      "count": 218409,
+      "batches": 107,
+      "surrogate_forward_value_is_original_BPR": true,
+      "active_positive": 45851,
+      "active_negative": 2379,
+      "eligible": 45851,
+      "candidate_negative_pairs": 43259370,
+      "eligible_negative_pairs": 9038086,
+      "fallback": 172558,
+      "positive_scope_rate": 0.20993182515372535,
+      "random_negative_scope_rate": 0.010892408279878576,
+      "eligible_rate": 0.20993182515372535,
+      "mean_candidate_negative_count": 198.06587640619205,
+      "mean_eligible_candidate_negative_count": 197.1186233669931,
+      "mean_original_main": 0.41730507701642594,
+      "mean_selected_main": 0.4376691729734331,
+      "mean_fallback_main": 0.41730507645751896,
+      "mean_candidate_main": 0.13947593170102277,
+      "mean_gate_main": 0.4376691729734331,
+      "random_negative_in_scope_rate": 0.010892408279878576,
+      "eligible_pair_rate": 0.20993182515372535,
+      "mean_valid_candidate_negatives_eligible": 197.1186233669931
+    },
+    "validation_metrics_used_for_mechanism_gate": false,
+    "test_evaluated": false,
+    "criteria": {
+      "max_random_negative_in_scope_rate": 0.1,
+      "min_eligible_pair_rate": 0.02,
+      "min_mean_valid_negatives": 20
+    }
+  },
+  "finished_unix": 1791535267.173514
+}

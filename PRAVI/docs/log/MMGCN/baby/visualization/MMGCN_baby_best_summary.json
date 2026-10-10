@@ -1,0 +1,25 @@
+{
+  "model": "MMGCN",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "n_layers": 2,
+    "reg_weight": 0.001,
+    "learning_rate": 0.001
+  },
+  "best_epoch": 26,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0636,
+  "best_valid_result": {
+    "recall@10": 0.0404,
+    "recall@20": 0.0636,
+    "ndcg@10": 0.0213,
+    "ndcg@20": 0.0272
+  },
+  "best_test_result": {
+    "recall@10": 0.0414,
+    "recall@20": 0.0682,
+    "ndcg@10": 0.0215,
+    "ndcg@20": 0.0284
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "deployed": "/data/sunzixuan/hpair_20260908_screen_v1",
+  "hashes": {
+    "experiment.json": "a91c042987194ead5c0a24479d81d469e439355690ebc72471466f4815965e0d",
+    "PROTOCOL.md": "ef80cf63d446f4ec83b961d7e7c68db24f5a02825741af7f2ab54bec4c46850e",
+    "run_pipeline.py": "24d98489f0970d59a6334ac1919fa7c709ebc30ea0d078055632ca67a867e35a",
+    "test_pairing.py": "130d09288e25ba8c1bbb47ebcd2666f0e22f8e450a306f24b8d6dfb1db28e198",
+    "test_pipeline.py": "d682a56c5c8824602b41fbc92a5db8c1cc196d1af5f5214715ab2ae7a1a6681e",
+    "train_pairing.py": "8ab2ea7bb185ed61cb1b1f71f6a1ca1fc5f332c36c4a48731e4168c246babb40"
+  }
+}
+(base) sunzixuan@213keg:~$

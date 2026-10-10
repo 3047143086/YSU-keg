@@ -1,0 +1,174 @@
+{
+  "baby": {
+    "launch": {
+      "pid": 2183786,
+      "root": "/data/sunzixuan/rave_20260905_preflight_v2",
+      "gpu": 0,
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/rave_20260905_preflight_v2/preflight.py",
+        "--bridge-root",
+        "/data/sunzixuan/bridge_official",
+        "--checkpoint",
+        "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/baby/bridge_baby_seed2026_screen/model.pth",
+        "--dataset",
+        "baby",
+        "--gpu-id",
+        "0",
+        "--output",
+        "/data/sunzixuan/rave_20260905_preflight_v2/baby.json"
+      ]
+    },
+    "process_exists": false,
+    "stdout_tail": "self.dataset_path: /data/sunzixuan/bridge_official/data/baby, i: baby.inter\n>>>> user_emb_file not found, skip loading: /data/sunzixuan/bridge_official/data/baby/user_emb.npy\nDual-frequency feature controls: feature_ablation=all, use_image_feature=True, use_text_feature=True, use_item_graph=True\n>>>>>Loaded from:  /data/sunzixuan/bridge_official/data/baby/mm_adj_10.pt\n/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/scipy/sparse/_index.py:125: SparseEfficiencyWarning: Changing the sparsity structure of a csc_matrix is expensive. lil_matrix is more efficient.\n  self._set_arrayXarray(i, j, x)\nBRIDGE behavior branch: BPI=False, BC=True, FRC=False, TCR=True, Gate=True, BGate=True, RGate=False, topk=1000, weight=0.4, eval_topk=200, train_candidate_aware=True, train_topk=200, scope=topk, norm=z, proto_weight=0.0, msr_weight=0.0, msr_delta=0.0, backend=dense\ncached_score_audit_max_error=6.389617919921875e-05; evaluation_uses_original_interface\nvalidation_batch=0\nvalidation_batch=50\nvalidation_batch=100\nvalidation_batch=150\nvalidation_batch=200\nvalidation_batch=250\nvalidation_batch=300\n{\n  \"purpose\": \"baseline_reproduction_and_candidate_coverage_only\",\n  \"new_method_evaluated\": false,\n  \"test_evaluated\": false,\n  \"dataset\": \"baby\",\n  \"seed\": 2026,\n  \"users\": 19445,\n  \"items\": 7050,\n  \"checkpoint\": \"/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/baby/bridge_baby_seed2026_screen/model.pth\",\n  \"metrics\": {\n    \"recall@10\": 0.07086048561877824,\n    \"ndcg@10\": 0.04042493802419999,\n    \"recall@20\": 0.105559330957891,\n    \"ndcg@20\": 0.04923659660006874,\n    \"recall@50\": 0.17391048010873156,\n    \"ndcg@50\": 0.06289316400607539,\n    \"recall@100\": 0.25055586352449294,\n    \"ndcg@100\": 0.0754315685943745,\n    \"recall@200\": 0.3422912443688993,\n    \"ndcg@200\": 0.08840780997150892\n  },\n  \"historical_baseline_reproduced\": true,\n  \"cached_vs_direct_max_abs_error\": 6.389617919921875e-05,\n  \"scoring_interface\": \"BRIDGE.full_sort_predict; cached scores not used for evaluation\",\n  \"torch_version\": \"1.12.1+cu113\",\n  \"cuda_version\": \"11.3\",\n  \"oracle_diagnostic_not_model_performance\": {\n    \"recall@20\": 0.3422912443688993,\n    \"ndcg@20\": 0.34463917811647654,\n    \"fraction_users_with_any_positive_in_top200\": 0.352738493185909\n  },\n  \"activity_strata\": {\n    \"history_1_to_5\": {\n      \"users\": 12190,\n      \"recall@20\": 0.1051681706316653,\n      \"ndcg@20\": 0.04918901014192672,\n      \"candidate_recall@200\": 0.3380639868744873\n    },\n    \"history_6_to_15\": {\n      \"users\": 6418,\n      \"recall@20\": 0.10782175132440013,\n      \"ndcg@20\": 0.04933755805516434,\n      \"candidate_recall@200\": 0.3501090682455594\n    },\n    \"history_over_15\": {\n      \"users\": 837,\n      \"recall@20\": 0.09390823234909257,\n      \"ndcg@20\": 0.04915548346500012,\n      \"candidate_recall@200\": 0.3439106890719794\n    }\n  },\n  \"sha256\": {\n    \"/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/baby/bridge_baby_seed2026_screen/model.pth\": \"bc2b834a3a06cf9852f6d9d2c292b4400a1a5720c14b30bdc954ae095ad2bf7d\",\n    \"/data/sunzixuan/bridge_official/data/baby/baby.inter\": \"e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940\",\n    \"/data/sunzixuan/bridge_official/src/models/bridge.py\": \"8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056\",\n    \"/data/sunzixuan/bridge_official/src/models/dual_frequency_encoder.py\": \"287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c\",\n    \"/data/sunzixuan/bridge_official/src/configs/model/BRIDGE.yaml\": \"5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3\"\n  },\n  \"git_commit\": \"4ee976f5f1715ff9c186aac8a8ddd44a74a41ece\",\n  \"diagnostic_script_sha256\": \"39c61125cca2ad9b1a4c55a665a8d39a25ca173a5cd298f8d0f2b52d7a4a465a\",\n  \"elapsed_seconds\": 18.857856534421444\n}\n",
+    "result": {
+      "purpose": "baseline_reproduction_and_candidate_coverage_only",
+      "new_method_evaluated": false,
+      "test_evaluated": false,
+      "dataset": "baby",
+      "seed": 2026,
+      "users": 19445,
+      "items": 7050,
+      "checkpoint": "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/baby/bridge_baby_seed2026_screen/model.pth",
+      "metrics": {
+        "recall@10": 0.07086048561877824,
+        "ndcg@10": 0.04042493802419999,
+        "recall@20": 0.105559330957891,
+        "ndcg@20": 0.04923659660006874,
+        "recall@50": 0.17391048010873156,
+        "ndcg@50": 0.06289316400607539,
+        "recall@100": 0.25055586352449294,
+        "ndcg@100": 0.0754315685943745,
+        "recall@200": 0.3422912443688993,
+        "ndcg@200": 0.08840780997150892
+      },
+      "historical_baseline_reproduced": true,
+      "cached_vs_direct_max_abs_error": 6.389617919921875e-05,
+      "scoring_interface": "BRIDGE.full_sort_predict; cached scores not used for evaluation",
+      "torch_version": "1.12.1+cu113",
+      "cuda_version": "11.3",
+      "oracle_diagnostic_not_model_performance": {
+        "recall@20": 0.3422912443688993,
+        "ndcg@20": 0.34463917811647654,
+        "fraction_users_with_any_positive_in_top200": 0.352738493185909
+      },
+      "activity_strata": {
+        "history_1_to_5": {
+          "users": 12190,
+          "recall@20": 0.1051681706316653,
+          "ndcg@20": 0.04918901014192672,
+          "candidate_recall@200": 0.3380639868744873
+        },
+        "history_6_to_15": {
+          "users": 6418,
+          "recall@20": 0.10782175132440013,
+          "ndcg@20": 0.04933755805516434,
+          "candidate_recall@200": 0.3501090682455594
+        },
+        "history_over_15": {
+          "users": 837,
+          "recall@20": 0.09390823234909257,
+          "ndcg@20": 0.04915548346500012,
+          "candidate_recall@200": 0.3439106890719794
+        }
+      },
+      "sha256": {
+        "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/baby/bridge_baby_seed2026_screen/model.pth": "bc2b834a3a06cf9852f6d9d2c292b4400a1a5720c14b30bdc954ae095ad2bf7d",
+        "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+        "/data/sunzixuan/bridge_official/src/models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+        "/data/sunzixuan/bridge_official/src/models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+        "/data/sunzixuan/bridge_official/src/configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+      },
+      "git_commit": "4ee976f5f1715ff9c186aac8a8ddd44a74a41ece",
+      "diagnostic_script_sha256": "39c61125cca2ad9b1a4c55a665a8d39a25ca173a5cd298f8d0f2b52d7a4a465a",
+      "elapsed_seconds": 18.857856534421444
+    }
+  },
+  "sports": {
+    "launch": {
+      "pid": 2185422,
+      "root": "/data/sunzixuan/rave_20260905_sports_preflight_v2",
+      "gpu": 0,
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/rave_20260905_sports_preflight_v2/preflight.py",
+        "--bridge-root",
+        "/data/sunzixuan/bridge_official",
+        "--checkpoint",
+        "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/sports/bridge_sports_s2026_confirm/model.pth",
+        "--dataset",
+        "sports",
+        "--gpu-id",
+        "0",
+        "--output",
+        "/data/sunzixuan/rave_20260905_sports_preflight_v2/sports.json"
+      ]
+    },
+    "process_exists": false,
+    "stdout_tail": "self.dataset_path: /data/sunzixuan/bridge_official/data/sports, i: sports.inter\n>>>> user_emb_file not found, skip loading: /data/sunzixuan/bridge_official/data/sports/user_emb.npy\nDual-frequency feature controls: feature_ablation=all, use_image_feature=True, use_text_feature=True, use_item_graph=True\n>>>>>Loaded from:  /data/sunzixuan/bridge_official/data/sports/mm_adj_10.pt\n/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/scipy/sparse/_index.py:125: SparseEfficiencyWarning: Changing the sparsity structure of a csc_matrix is expensive. lil_matrix is more efficient.\n  self._set_arrayXarray(i, j, x)\nBRIDGE behavior branch: BPI=False, BC=True, FRC=False, TCR=True, Gate=True, BGate=True, RGate=False, topk=1000, weight=0.4, eval_topk=200, train_candidate_aware=True, train_topk=200, scope=topk, norm=z, proto_weight=0.0, msr_weight=0.0, msr_delta=0.0, backend=dense\ncached_score_audit_max_error=8.535385131835938e-05; evaluation_uses_original_interface\nvalidation_batch=0\nvalidation_batch=50\nvalidation_batch=100\nvalidation_batch=150\nvalidation_batch=200\nvalidation_batch=250\nvalidation_batch=300\nvalidation_batch=350\nvalidation_batch=400\nvalidation_batch=450\nvalidation_batch=500\nvalidation_batch=550\n{\n  \"purpose\": \"baseline_reproduction_and_candidate_coverage_only\",\n  \"new_method_evaluated\": false,\n  \"test_evaluated\": false,\n  \"dataset\": \"sports\",\n  \"seed\": 2026,\n  \"users\": 35598,\n  \"items\": 18357,\n  \"checkpoint\": \"/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/sports/bridge_sports_s2026_confirm/model.pth\",\n  \"metrics\": {\n    \"recall@10\": 0.08341019285030572,\n    \"ndcg@10\": 0.04740489017096658,\n    \"recall@20\": 0.11984492318284318,\n    \"ndcg@20\": 0.056665842675942255,\n    \"recall@50\": 0.184126411759914,\n    \"ndcg@50\": 0.06949908148340184,\n    \"recall@100\": 0.25165138418122895,\n    \"ndcg@100\": 0.08055663997069365,\n    \"recall@200\": 0.3291910504758573,\n    \"ndcg@200\": 0.09154867513263726\n  },\n  \"historical_baseline_reproduced\": true,\n  \"cached_vs_direct_max_abs_error\": 8.535385131835938e-05,\n  \"scoring_interface\": \"BRIDGE.full_sort_predict; cached scores not used for evaluation\",\n  \"torch_version\": \"1.12.1+cu113\",\n  \"cuda_version\": \"11.3\",\n  \"oracle_diagnostic_not_model_performance\": {\n    \"recall@20\": 0.3291910504758573,\n    \"ndcg@20\": 0.3316632038227708,\n    \"fraction_users_with_any_positive_in_top200\": 0.3403000168548795\n  },\n  \"activity_strata\": {\n    \"history_1_to_5\": {\n      \"users\": 22639,\n      \"recall@20\": 0.1178055567825434,\n      \"ndcg@20\": 0.0553487134491033,\n      \"candidate_recall@200\": 0.32382172357436284\n    },\n    \"history_6_to_15\": {\n      \"users\": 11317,\n      \"recall@20\": 0.1258283997525846,\n      \"ndcg@20\": 0.058632307437458106,\n      \"candidate_recall@200\": 0.34037289034196344\n    },\n    \"history_over_15\": {\n      \"users\": 1642,\n      \"recall@20\": 0.10672324936836254,\n      \"ndcg@20\": 0.06127242419867804,\n      \"candidate_recall@200\": 0.32615287140046684\n    }\n  },\n  \"sha256\": {\n    \"/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/sports/bridge_sports_s2026_confirm/model.pth\": \"801b69f240cf65a0decad5b823c8abe522d7b43e79e19d30dab97fcf6a89afcd\",\n    \"/data/sunzixuan/bridge_official/data/sports/sports.inter\": \"b8a43979c7984a01a8ab9713ea29a3cf13a65b1784dbadc2162fa932daf1c6a0\",\n    \"/data/sunzixuan/bridge_official/src/models/bridge.py\": \"8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056\",\n    \"/data/sunzixuan/bridge_official/src/models/dual_frequency_encoder.py\": \"287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c\",\n    \"/data/sunzixuan/bridge_official/src/configs/model/BRIDGE.yaml\": \"5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3\"\n  },\n  \"git_commit\": \"4ee976f5f1715ff9c186aac8a8ddd44a74a41ece\",\n  \"diagnostic_script_sha256\": \"39c61125cca2ad9b1a4c55a665a8d39a25ca173a5cd298f8d0f2b52d7a4a465a\",\n  \"elapsed_seconds\": 47.947151102125645\n}\n",
+    "result": {
+      "purpose": "baseline_reproduction_and_candidate_coverage_only",
+      "new_method_evaluated": false,
+      "test_evaluated": false,
+      "dataset": "sports",
+      "seed": 2026,
+      "users": 35598,
+      "items": 18357,
+      "checkpoint": "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/sports/bridge_sports_s2026_confirm/model.pth",
+      "metrics": {
+        "recall@10": 0.08341019285030572,
+        "ndcg@10": 0.04740489017096658,
+        "recall@20": 0.11984492318284318,
+        "ndcg@20": 0.056665842675942255,
+        "recall@50": 0.184126411759914,
+        "ndcg@50": 0.06949908148340184,
+        "recall@100": 0.25165138418122895,
+        "ndcg@100": 0.08055663997069365,
+        "recall@200": 0.3291910504758573,
+        "ndcg@200": 0.09154867513263726
+      },
+      "historical_baseline_reproduced": true,
+      "cached_vs_direct_max_abs_error": 8.535385131835938e-05,
+      "scoring_interface": "BRIDGE.full_sort_predict; cached scores not used for evaluation",
+      "torch_version": "1.12.1+cu113",
+      "cuda_version": "11.3",
+      "oracle_diagnostic_not_model_performance": {
+        "recall@20": 0.3291910504758573,
+        "ndcg@20": 0.3316632038227708,
+        "fraction_users_with_any_positive_in_top200": 0.3403000168548795
+      },
+      "activity_strata": {
+        "history_1_to_5": {
+          "users": 22639,
+          "recall@20": 0.1178055567825434,
+          "ndcg@20": 0.0553487134491033,
+          "candidate_recall@200": 0.32382172357436284
+        },
+        "history_6_to_15": {
+          "users": 11317,
+          "recall@20": 0.1258283997525846,
+          "ndcg@20": 0.058632307437458106,
+          "candidate_recall@200": 0.34037289034196344
+        },
+        "history_over_15": {
+          "users": 1642,
+          "recall@20": 0.10672324936836254,
+          "ndcg@20": 0.06127242419867804,
+          "candidate_recall@200": 0.32615287140046684
+        }
+      },
+      "sha256": {
+        "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/sports/bridge_sports_s2026_confirm/model.pth": "801b69f240cf65a0decad5b823c8abe522d7b43e79e19d30dab97fcf6a89afcd",
+        "/data/sunzixuan/bridge_official/data/sports/sports.inter": "b8a43979c7984a01a8ab9713ea29a3cf13a65b1784dbadc2162fa932daf1c6a0",
+        "/data/sunzixuan/bridge_official/src/models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+        "/data/sunzixuan/bridge_official/src/models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+        "/data/sunzixuan/bridge_official/src/configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+      },
+      "git_commit": "4ee976f5f1715ff9c186aac8a8ddd44a74a41ece",
+      "diagnostic_script_sha256": "39c61125cca2ad9b1a4c55a665a8d39a25ca173a5cd298f8d0f2b52d7a4a465a",
+      "elapsed_seconds": 47.947151102125645
+    }
+  }
+}

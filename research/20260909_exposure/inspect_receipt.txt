@@ -1,0 +1,11 @@
+{
+  "root": "/data/sunzixuan/temporal_20260909_screen",
+  "root_exists": true,
+  "python_exists": true,
+  "inputs": {
+    "interactions": true,
+    "feature_bank": true
+  },
+  "gpu": "0, NVIDIA GeForce RTX 3090, 9707, 85\n1, NVIDIA GeForce RTX 3090, 6584, 55\n"
+}
+(base) sunzixuan@213keg:~$

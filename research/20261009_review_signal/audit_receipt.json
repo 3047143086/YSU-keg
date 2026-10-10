@@ -1,0 +1,87 @@
+{
+  "status": "completed",
+  "elapsed_seconds": 7.449830000987276,
+  "inputs": {
+    "interactions": {
+      "path": "/data/sunzixuan/bridge_official/data/baby/baby.inter",
+      "bytes": 4362239,
+      "sha256": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940"
+    },
+    "item_mapping": {
+      "path": "/data/sunzixuan/rave_20260905_inputs/baby/item_id_to_asin.json",
+      "bytes": 168092,
+      "sha256": "451c8cfa29ad517a427f5f7f6278fe0761959f94508562a173f8306c9c02ed2c"
+    },
+    "reviews": {
+      "path": "/data/sunzixuan/rave_20260905_inputs/baby/reviews_Baby_5.json.gz",
+      "bytes": 38809329,
+      "sha256": "e54968e4102a3f03f4bb6be581dc09188fe2a31e4a664803ff21a3ad2ac578c3"
+    }
+  },
+  "inter_fields": [
+    "userID",
+    "itemID",
+    "rating",
+    "timestamp",
+    "x_label"
+  ],
+  "inter_rows": 160792,
+  "split_counts_for_inventory_only": {
+    "0": 118551,
+    "1": 20559,
+    "2": 21682
+  },
+  "raw_review_schema": {
+    "reviewerID": "str",
+    "asin": "str",
+    "reviewerName": "str",
+    "helpful": "list",
+    "reviewText": "str",
+    "overall": "float",
+    "summary": "str",
+    "unixReviewTime": "int",
+    "reviewTime": "str"
+  },
+  "item_mapping_items": 7050,
+  "item_mapping_unique_asins": 7050,
+  "heldout_target_hash": "1d019d38c5274cb02b5dfbd434f6e6d2ce5e904fca379cc009ba857e35bdfb1a",
+  "heldout_target_rule": "dual-witness-target:v1:",
+  "matching": {
+    "raw_review_records": 160792,
+    "raw_unique_owner_fingerprints": 160792,
+    "raw_duplicate_owner_fingerprint_records": 0,
+    "raw_duplicate_owner_item_records": 0,
+    "support_edges": 105104,
+    "support_users": 19445,
+    "matched_support_edges": 105104,
+    "matched_support_users": 19445,
+    "unresolved_support_users": 0,
+    "ambiguous_support_users": 0,
+    "duplicate_raw_event_users": 0,
+    "owner_collision_support_users": 0,
+    "ambiguous_support_fingerprints": 3008,
+    "missing_support_fingerprints": 0,
+    "identity_uses_support_only": true,
+    "ratings_used_only_for_identity": true,
+    "reviewer_identity_exported": false,
+    "original_train_edges": 118551,
+    "globally_removed_target_edges": 13447,
+    "expected_support_edges": 105104,
+    "heldout_reviews_used": false,
+    "official_validation_reviews_used": false,
+    "official_test_reviews_used": false,
+    "support_nonempty_review_text": 105065,
+    "support_nonempty_summary": 105104,
+    "support_review_text_word_count": 10535902,
+    "all_targets_absent_from_export": true,
+    "cross_user_same_item_donor_edges": 105035,
+    "support_text_coverage": 0.999628938955701,
+    "strict_identity_passed": true,
+    "same_item_donor_coverage": 0.9993435073831634
+  },
+  "review_text_exported": false,
+  "reviewer_identity_exported": false,
+  "validation_or_test_content_used": false,
+  "ratings_used_as_model_values": false,
+  "training_or_encoding_started": false
+}

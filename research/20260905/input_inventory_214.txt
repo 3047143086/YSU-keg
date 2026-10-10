@@ -1,0 +1,15 @@
+HOST 214keg
+index, name, memory.used [MiB], memory.total [MiB], utilization.gpu [%]
+0, NVIDIA GeForce RTX 3060, 4289 MiB, 12288 MiB, 100 %
+1, NVIDIA GeForce RTX 3060, 3960 MiB, 12288 MiB, 100 %
+2, NVIDIA GeForce RTX 3060, 3438 MiB, 12288 MiB, 41 %
+3, NVIDIA GeForce RTX 3060, 3472 MiB, 12288 MiB, 100 %
+
+ROOT_DIRECTORIES ['LOBSTER', 'MMRec', 'Miniconda3-latest-Linux-x86_64.sh', 'PRAVI_remote', 'SiMGR_RGCE_official_run_20260826_v1', 'SiMGR_official_run_20260826_v1', 'SonicRec_RGCE_run_20260825', 'SonicRec_RGCE_run_20260825_v2', 'minimind', 'mmrec', 'mrlib.zip']
+POTENTIAL_INPUT /data/[REDACTED]/sun_exp/LOBSTER/data/elec/elec.inter 49216870
+MATCH_COUNT 1
+DATA_ENTRY README.md 248
+DATA_ENTRY baby dir
+DATA_ENTRY elec dir
+DATA_ENTRY sports dir
+(base) [REDACTED]@214keg:~$

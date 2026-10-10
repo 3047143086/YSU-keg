@@ -1,0 +1,7 @@
+# coding: utf-8
+# @email: jinfeng.xu0605@gmail.com / jinfeng@connect.hku.hk
+
+embedding_size: 64
+reg_weight: [0.0001, 0.001, 0.01, 0.1, 1.0]
+
+hyper_parameters: ["reg_weight"]

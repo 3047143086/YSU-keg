@@ -1,0 +1,1237 @@
+PAGE 1
+Generating Negative Samples for Multi-Modal Recommendation
+Yanbiao Ji
+Shanghai Jiao Tong University
+Shanghai, China
+jiyanbiao@sjtu.edu.cn
+Dan Luo
+Lehigh University
+Bethlehem, PA, USA
+danluo.ir@gmail.com
+Chang Liu
+Shanghai Jiao Tong University
+Shanghai, China
+isonomialiu@sjtu.edu.cn
+Shaokai Wu
+Shanghai Jiao Tong University
+Shanghai, China
+shaokai.wu@sjtu.edu.cn
+Jing Tong
+Shanghai Jiao Tong University
+Shanghai, China
+tj_19_hf@sjtu.edu.cn
+Qicheng He
+Shanghai Jiao Tong University
+Shanghai, China
+ayombeach@sjtu.edu.cn
+Deyi Ji
+Tencent
+Beijing, China
+deyiji@tencent.com
+Hongtao Lu
+Shanghai Jiao Tong University
+Shanghai, China
+htlu@sjtu.edu.cn
+Yue Ding∗
+Shanghai Jiao Tong University
+Shanghai, China
+dingyue@sjtu.edu.cn
+Abstract
+Multi-modal recommender systems (MMRS) have gained signif-
+icant attention due to their ability to leverage information from
+various modalities to enhance recommendation quality. However,
+existing negative sampling techniques often struggle to effectively
+utilize the multi-modal data, leading to suboptimal performance.
+In this paper, we identify two key challenges in negative sampling
+for MMRS: (1) producing cohesive negative samples contrasting
+with positive samples and (2) maintaining a balanced influence
+across different modalities. To address these challenges, we pro-
+pose NegGen, a novel framework that utilizes multi-modal large
+language models (MLLMs) to generate balanced and contrastive
+negative samples. We design three different prompt templates to
+enable NegGen to analyze and manipulate item attributes across
+multiple modalities, and then generate negative samples that in-
+troduce better supervision signals and ensure modality balance.
+Furthermore, NegGen employs a causal learning module to dis-
+entangle the effect of intervened key features and irrelevant item
+attributes, enabling fine-grained learning of user preferences. Exten-
+sive experiments on real-world datasets demonstrate the superior
+performance of NegGen compared to state-of-the-art methods in
+both negative sampling and multi-modal recommendation.
+CCS Concepts
+• Information systems→ Recommender systems.
+∗Corresponding author.
+Permission to make digital or hard copies of all or part of this work for personal or
+classroom use is granted without fee provided that copies are not made or distributed
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than the
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+republish, to post on servers or to redistribute to lists, requires prior specific permission
+and/or a fee. Request permissions from permissions@acm.org.
+MM ’25, October 27–31, 2025, Dublin, Ireland
+© 2025 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+ACM ISBN 979-8-4007-2035-2/2025/10
+https://doi.org/10.1145/3746027.3754977
+Keywords
+Multi-Modal Recommendation, Negative Sampling, Large Language
+Models
+ACM Reference Format:
+Yanbiao Ji, Dan Luo, Chang Liu, Shaokai Wu, Jing Tong, Qicheng He, Deyi
+Ji, Hongtao Lu, and Yue Ding. 2025. Generating Negative Samples for Multi-
+Modal Recommendation. In Proceedings of the 33rd ACM International Con-
+ference on Multimedia (MM ’25), October 27–31, 2025, Dublin, Ireland. ACM,
+New York, NY, USA, 10 pages. https://doi.org/10.1145/3746027.3754977
+1 Introduction
+Recommendation systems (RS) are the core component in online
+platforms for providing users with personalized content [73]. Mean-
+while, the amount of multimedia content on online platforms, in-
+cluding text, images, and videos, has rapidly grown [1, 6, 22, 23, 41].
+In this context, multi-modal recommender systems (MMRS) have
+emerged with the aim of integrating multi-modal inputs with user
+historical behavior data to better understand user preferences and
+enhance recommendation quality.
+Bayesian Personalized Ranking (BPR) [52] is a widely adopted
+approach for training personalized recommender models. It learns
+informative user and item representations that rank positive items
+above negative ones. Therefore, effective negative sampling strate-
+gies play an important role in optimizing these RS, which should
+not only accelerate convergence, but also improve model perfor-
+mance [53]. Existing negative sampling techniques can be cate-
+gorized into two types [40]: negative item sampling and negative
+item generation. The former samples negatives from the item pool.
+For example, uniform sampling selects random uninteracted items
+for efficiency [52]. Hard negative sampling [11, 39] picks challeng-
+ing candidates with large gradients to provide richer feedback and
+faster convergence [3]. The latter generates semantically meaning-
+ful and challenging negatives. GAN-based [27, 58] and diffusion-
+based methods [45] produce hard-to-distinguish negatives, offering
+finer-grained supervision than item sampling.
+Despite the effectiveness of existing negative sampling tech-
+niques, they often fall short in the context of MMRS. ID-based
+negative sampling methods [20, 31] are limited to item-level sam-
+pling strategies, and generative negative sampling methods [ 57]
+arXiv:2501.15183v3  [cs.IR]  21 Aug 2025
+
+PAGE 2
+MM ’25, October 27–31, 2025, Dublin, Ireland Yanbiao Ji et al.
+×
+Hardness
+Cohesion
+Tailored suit;
+Business pant
+Visual Textual
+Biased Negative
+Easy Negative
+4K 144Hz; 32
+inch monitor 
+Ideal Negative
+Formal; Work;
+Event; Occasion
+Positive Item
+Formal; Business;
+Professional attire 
+×
+×√
+ Negative Sampling
+in MMRS
+√
+××
+Figure 1: Illustration of effective negative sampling in MMRS. “Co-
+hesion” measures the semantic contrasting to positive samples and
+“hardness” represents the extent of difficulty for the RS in distin-
+guishing between positive and negative samples. An ideal negative
+sample should be both highly cohesive and sufficiently hard.
+may encounter model collapse issues [15]. We conduct an in-depth
+analysis of the limitations of negative sampling in MMRS and high-
+light our key insights as follows: (1) Negative samples exhibit
+inadequate contrast across multiple modalities . We believe
+that the ideal negative samples in MMRS should be contrastive,
+i.e., exhibiting both cohesion and sufficient hardness for the RS, as
+illustrated in Figure 1. Cohesion refers to the ability of negative
+samples to provide informative supervision signals that improve
+the performance of the model. Negative samples with high cohesion
+can help the model learn better representations of items [45, 66].
+Hardness, on the other hand, is the similarity between negative and
+positive samples, i.e., the difficulty of distinguishing them. Harder
+samples generate larger gradients, thus making the model converge
+faster [51]. Through an empirical study in Section 2.1, we demon-
+strate that in MMRS, if low-quality negative samples are generated
+in a straightforward manner without considering their cohesion
+and hardness, the performance can be even worse than simply using
+random sampling. (2) Negative samples contribute unevenly
+to the model’s learning across different modalities. In Sec-
+tion 2.2, we investigate the learning process of a representative
+MMRS model FREEDOM [81] with negative sampling in different
+modalities. Our observation is that the textual modality tends to
+dominate the learning process over the visual modality. This imbal-
+ance occurs because existing negative sampling strategies tend to
+cause multi-modal recommendation models to overfit to the easier
+modality (i.e., text) while ignoring the more challenging ones [86].
+Consequently, the model fails to fully utilize the information avail-
+able across all modalities, leading to a decline in performance.
+Based on this, the core question to address the challenges of
+negative sampling for MMRS is: How can we generate sufficiently
+contrastive negative samples while maintaining modality balance?
+Achieving this requires a strategy capable of adapting to diverse
+user preferences and comprehending complex inter-modal relation-
+ships. This naturally aligns with recent advancements in multi-
+modal large language models (MLLMs), which have shown promis-
+ing capabilities in understanding multi-modal inputs and generating
+diverse and context-aware content [2, 24, 71, 84]. To this end, we
+propose NegGen, a novel framework that generates high-quality
+negative samples for MMRS. Unlike existing generative methods
+that rely on training GANs [14] or diffusion models [45], NegGen
+leverages pretrained MLLM to create informative contrastive ex-
+amples. These examples serve as challenging negative samples that
+enhance the learning process. However, pretrained MLLMs are
+trained on general datasets and designed for general tasks. They
+R@10 R@20 N@10 N@20
+Metrics
+0.04
+0.06
+0.08
+(a) Baby Dataset
+R@10 R@20 N@10 N@20
+Metrics
+0.025
+0.050
+0.075
+0.100
+(b) Beauty Dataset
+Uniform Direct Generation
+Figure 2: Recall (R) and NDCG (N) on Baby and Beauty datasets using
+uniform sampling and MLLM generated negative samples.
+struggle to generate contrastive enough negative samples for recom-
+mendation tasks (Section 2.1). To bridge this gap, NegGen employs
+a series of tasks to generate coherent and hard negative samples:
+(1) Description Generation, which aggregates item attributes across
+modalities; (2) Attribute Masking, which identifies and masks key
+features of items; and (3) Attribute Completion, which replaces the
+masked attributes with generated alternatives. In these tasks we
+condition the generation process with the attributes of positive
+items across all modalities, mitigating the dominance of certain
+easier modalities. Therefore NegGen ensures that the generated
+negative samples are modality-balanced and highly informative.
+Furthermore, NegGen incorporates a causal learning module to
+disentangle the effect of intervened key features and irrelevant item
+attributes, enabling a fine-grained learning of user preferences.
+The main contributions of this paper are summarized as follows:
+• We provide an analysis of the challenges associated with negative
+sampling in MMRS. To the best of our knowledge, this is the first
+work that analyzes the limitations of existing methods under the
+complexities of multi-modal data.
+• To address the unique challenges of negative sampling in MMRS,
+we propose NegGen, a novel framework that leverages the capa-
+bilities of multi-modal large language models to generate seman-
+tically rich and informative negative samples.
+• We validate the effectiveness of NegGen through extensive ex-
+periments on multiple real-world datasets, demonstrating its
+superior performance over state-of-the-art methods. Notably,
+NegGen outperforms both advanced negative sampling methods
+and multi-modal recommender systems.
+2 Preliminary
+2.1 Naive Negative Sampling for MMRS
+In this subsection we illustrate the performance of MMRS with a
+naive negative sampling strategy. We choose the advanced MMRS
+FREEDOM [81] as the base recommender, and test on Amazon
+Baby and Beauty datasets 1. We use default parameter settings
+of FREEDOM for training. In particular, we leverage state-of-the-
+art MLLM Llama 3.2-11B-Vision 2 to generate negative samples
+with a structured prompt template, as presented below. Then, we
+optimize FREEDOM model using positives and generated negatives,
+and adopt Recall and Normalized Discounted Cumulative Gain
+(NDCG) [21] as metrics to evaluate the performance of Top-𝐾 (𝐾 =
+10, 20) recommendations. The results are illustrated in Figure 2.
+1https://cseweb.ucsd.edu/~jmcauley/datasets.html#amazon_reviews
+2https://huggingface.co/meta-llama/Llama-3.2-11B-Vision
+
+PAGE 3
+Generating Negative Samples for Multi-Modal Recommendation MM ’25, October 27–31, 2025, Dublin, Ireland
+Table 1: Performance of FREEDOM with varying modalities. R and
+N indicate Recall and NDCG. Best results are bolded.
+Datasets Variants R@10 R@20 N@10 N@20
+Baby
+Visual&Textual 0.0614 0.0973 0.0306 0.0398
+Textual only 0.0643 0.0991 0.0323 0.0411
+Visual only 0.0574 0.0899 0.0314 0.0416
+Beauty
+Visual&Textual 0.0792 0.1256 0.0455 0.0584
+Textual only 0.0801 0.1254 0.0458 0.0597
+Visual only 0.0763 0.1239 0.0439 0.0576
+Prompt: Direct Generation
+Task Overview: Given the attributes of a positive item, generate contrast-
+ing negative attributes following the same structure as the positive item.
+The generated attributes should be semantically similar but different from
+the positive item.
+Input: {Positive Attributes}
+Output: {Negative Attributes}
+Our results reveal that training MMRS with negatives directly
+generated by MLLMs performs even worse than using a uniform
+sampling approach. A possible reason is that MLLMs are pre-trained
+on public data and general scenarios, and the negative samples
+generated in the specific context of recommendations lack sufficient
+contrast, which hinders model training.
+2.2 Imbalance of Different Modalities
+We examine the influence of different modalities on the performance
+of MMRS. We use the same model, datasets, and parameter settings
+as Section 2.1. Specifically, we compare the performance of using a
+single modality (visual or textual) with that of multiple modalities.
+Table 1 presents the results. An interesting finding is that using
+only the visual modality yields the worst performance, while using
+only the text modality achieves the best results, even outperforming
+the use of both modalities together. To further reveal the impact of
+data from different modalities on model performance, we analyze
+it from the perspective of gradients.
+The lower bound of NDCG is influenced by the embeddings of
+negative samples according to the precious study [32]:
+Lemma 1. Given a user 𝑢, the lower bound of NDCG(𝑢) can be
+expressed as:
+NDCG(𝑢)≥ 1
+|I𝑢|
+∑︁
+𝑖∈I𝑢
+1
+1+𝑒𝑥𝑝(e𝑇𝑢 e∗
+𝑖− e𝑇𝑢 e𝑖)
+, (1)
+whereI𝑢 represents the set of items interacted by user𝑢,𝑒𝑢 is the
+embedding of𝑢, and𝑒𝑖 and𝑒∗
+𝑖 are the positive and corresponding
+negative item embeddings of item 𝑖, respectively. We further in-
+vestigate this lower bound using the gradients of negative samples
+under the BPR training paradigm.
+Proposition 2. Negative samples with smaller gradient magni-
+tudes can achieve a higher lower bound on NDCG.
+Proof. Given a user𝑢 , letI𝑢 be the set of items that user𝑢 has
+interacted with, e𝑖 be the embedding of item𝑖, e∗
+𝑖 be the embedding
+of the negative sample, and e𝑢 be the embedding of user 𝑢. The
+BPR loss can be defined as:
+LBPR =−
+∑︁
+𝑖∈I𝑢
+log𝜎(e𝑇
+𝑢(e𝑖− e∗
+𝑖)), (2)
+0 200 400
+Epoch
+0.00
+0.25
+0.50
+0.75
+1.00Grad Norm
+1e 5
+ (a) T extual
+0 200 400
+Epoch
+0.0000
+0.0025
+0.0050
+0.0075
+0.0100
+(b) Visual
+Baby Beauty
+Figure 3: Gradient magnitudes of negative sample modalities over
+training epochs on Baby and Beauty. Textual gradients are consis-
+tently smaller than visual ones.
+where𝜎 is the sigmoid function. The magnitude of the gradient of
+LBPR with respect to e∗
+𝑖 is:
+∥∇∥ =
+
+𝜕LBPR
+𝜕e∗
+𝑖
+ =∥e𝑢∥( 1−𝜎(e𝑇
+𝑢(e𝑖− e∗
+𝑖))). (3)
+Therefore, we have:
+𝜎(e𝑇
+𝑢(e𝑖− e∗
+𝑖)) = 1− ∥∇∥
+∥e𝑢∥. (4)
+Combining Equation 1 and Equation 4, we obtain:
+NDCG(𝑢)≥ 1
+|I𝑢|
+∑︁
+𝑖∈I𝑢
+(1− ∥∇∥
+∥e𝑢∥). (5)
+With a smaller gradient, this lower bound becomes higher. □
+Based on Proposition 2, the superior performance of textual
+unimodal learning may stem from smaller gradient magnitudes of
+textual negatives. To verify this, we visualize average gradient mag-
+nitudes across modalities, as shown in Figure 3. We observe that
+the textual modality yields smaller gradients, indicating stronger
+discriminative signals. This could be attributed to the rich seman-
+tics in text, which makes negative samples easier to distinguish.
+However, such imbalance leads the model to overly rely on certain
+modalities while overlooking others.
+3 Proposed Method
+In this section, we present our framework NegGen. The overall
+architecture is shown in Figure 4.
+3.1 Base Recommender Training
+We first train a base recommender using user-item interactions.
+The base model learns a shared embedding space for users and
+items to support subsequent recommendations. Following previ-
+ous works [ 34, 55, 65], we employ LightGCN [ 18], a widely ap-
+plied graph-based collaborative filtering method as our base rec-
+ommender. LightGCN leverages a simplified graph convolutional
+network to propagate information between connected nodes, which
+can be formally defined as follows:
+e(𝑙+1)
+𝑗 =
+∑︁
+𝑘∈N 𝑗
+1√︁
+|N𝑗|·|N 𝑘|
+e(𝑙)
+𝑘 , (6)
+where e(𝑙+1)
+𝑗 and e(𝑙)
+𝑘 represent the embeddings of nodes 𝑗 at layer
+𝑙+ 1 and node𝑘 at layer𝑙, andN𝑗 andN𝑘 denote the neighbor sets
+of nodes 𝑗 and𝑘, respectively. The final embeddings for user𝑢 and
+
+PAGE 4
+MM ’25, October 27–31, 2025, Dublin, Ireland Yanbiao Ji et al.
+Multi-modal  LLM
+Base RS
+T-shirt of
+brand ...Text
+Image
+Multi-modal  LLM
+Multi-modal  LLM
+Text  Encoder
+Negative
+Positive
+Self-Attention 
+2.Negative Generation
+1.Base Recommender 3.Causal Learning
+Dot Product
+User-Item
+Interaction
+Minus
+Add
+Frozen Model
+Generated Attributes
+Masked Attributes
+Item Attributes
+Concatenation
+Projection
+Description
+Generation
+Attribute
+Masking
+Attribute
+Completion
+Attribute
+Encoding
+Figure 4: The overall architecture of NegGen comprises three main components: (1) Base Recommender Training, which captures collaborative
+filtering signals from user-item interactions, (2) Negative Sample Generation, which produces contrasting item attributes via MLLM, and (3)
+Causal Learning, which models causal relationships between multi-modal item characteristics and recommendation outcomes.
+item𝑖 are derived by averaging the embeddings across all layers:
+e𝑢 = 1
+𝐿+ 1
+𝐿∑︁
+𝑙=0
+e(𝑙)
+𝑢 , e𝑖 = 1
+𝐿+ 1
+𝐿∑︁
+𝑙=0
+e(𝑙)
+𝑖 , (7)
+where𝐿 denotes the total number of graph convolutional layers.
+These aggregated embeddings effectively encode multi-hop collab-
+orative signals for recommendation tasks.
+3.2 Negative Sample Generation
+Rather than directly using MLLMs for generation, our negative
+sample generation module guides the process through a series of
+tasks to ensure the informativeness of negatives, thereby avoid-
+ing low-contrast samples as discussed in Section 2. Specifically, it
+involves four sequential steps: Description Generation, Attribute
+Masking, Attribute Completion, and Attribute Encoding.
+3.2.1 Description Generation. We extract multi-modal attributes
+by generating a natural language description of each item using an
+MLLM, which analyzes visual content to produce detailed textual
+descriptions. This effectively integrates underrepresented visual
+information into user preference learning, addressing modality
+imbalance. The generated visual description is then combined with
+existing textual metadata (i.e., , brand name, product title) to form
+a comprehensive set of multi-modal attributes for each item.
+Prompt: Description Generation
+Task Overview: You are a descriptive writer who excels at capturing the
+essence and details of items in clear language. Generate natural, detailed
+description of the item shown in the given image.
+Input: {Item Image}
+Output: {Item Description}
+3.2.2 Attribute Masking. A critical step in our method is generat-
+ing templates for negative sampling. Given an item’s multi-modal
+description, we use an MLLM to identify and mask key descriptive
+elements, producing partially complete attributes with [MASK]
+tokens while preserving the original structure and context. These
+masked descriptions serve as templates to guide the generation of
+semantic yet distinct negative samples. This ensures that negatives
+remain contrastive—related to but meaningfully different from their
+positive counterparts through contrasting attributes.
+Prompt: Attribute Masking
+Task Overview: Transform the given item description by masking key
+feature words with [MASK].
+Instructions:
+• Analyze the given item description.
+• Identify most significant words that represent (1) Core features (2) Dis-
+tinctive characteristics (3) Key specifications
+• Replace these words with [MASK].
+• Only output the masked description.
+Input: {Item Description}
+Output: {Masked Description}
+3.2.3 Attribute Completion. Building upon the masked templates,
+we use MLLM to generate challenging negative samples by re-
+placing [MASK] with appropriate alternative words. The negative
+samples generated can provide better contrastive signals for the
+training of recommender, thus enhancing its ability to capture fine-
+grained preferences and make more accurate recommendations.
+Prompt: Attribute Completion
+Task Overview: Complete the masked product description by filling in
+the missing words marked with [MASK].
+Instructions:
+• Analyze the given masked product description.
+• Identify the possible words that can be used to complete the masked
+description.
+• Replace the [MASK] tokens with the appropriate words.
+• Ensure that the completed description is coherent and meaningful.
+• Only the completed description is output.
+Input: {Masked Description}
+Output: {Generated Description}
+3.2.4 Attribute Encoding. To capture the semantic representations
+of both original and generated attributes, we employ a pre-trained
+text encoder that maps the textual attributes into a shared vector
+space. The encoder, denoted as Encoder(·), takes the attributes of
+
+PAGE 5
+Generating Negative Samples for Multi-Modal Recommendation MM ’25, October 27–31, 2025, Dublin, Ireland
+Real World Counterfactual World
+Figure 5: Causal graph illustrating the relationships between multi-
+modal features and recommendation outcomes.
+both visual and textual modalities as input and outputs dense vector
+representations. This process can be formally expressed as:
+e𝑚 = Encoder({Original Attributes}), (8)
+e∗
+𝑚 = Encoder({Generated Attributes}). (9)
+Here, e𝑚 and e∗𝑚 represent the encoded vector for the original item
+description and the generated negative sample, respectively.
+3.3 Causal Learning
+Though the above steps enable the generation of contrastive nega-
+tive samples, the model inevitably suffers from spurious correlation,
+i.e., the false connection between recommendation results and irrel-
+evant attributes [19, 67]. To mitigate this spurious correlation, we
+propose a causal learning framework for NegGen. Specifically, the
+framework captures the causal effect of multi-modal attributes on
+the score prediction by estimating the total causal effect between
+positive and negative samples.
+3.3.1 Causal Graph Analysis. We present the structural causal
+model (SCM) for MMRS in Figure 5, which consists of five variables:
+visual attributes of items (𝑉 ), textual attributes of items (𝑇 ), com-
+bined multi-modal representations (𝑀), user representations (𝑈 ),
+and the final prediction score (𝑌 ). The structural equations can be
+defined as:
+𝑀𝑣,𝑡 =𝑚 = 𝑓𝑀(𝑉 =𝑣,𝑇 =𝑡), (10)
+𝑌𝑚,𝑢 =𝑌𝑢,𝑣,𝑡 = 𝑓𝑌(𝑀 =𝑚,𝑈 =𝑢) = 𝑓𝑌(𝑀 = 𝑓𝑀(𝑣,𝑡),𝑢), (11)
+where uppercase letters denote random variables (i.e.,𝑀) and low-
+ercase letters represent their specific values (i.e.,𝑚).
+Following the do-calculus framework [47], we examine the causal
+effect of multi-modal attributes on the score prediction by mea-
+suring changes in the outcome variable 𝑌 when intervening on
+the variables 𝑉 and𝑇 . When these variables change from (𝑣,𝑡)
+to(𝑣∗,𝑡∗), representing the transition from positive to generated
+negative items, the total causal effect (TE) is expressed as:
+TE = E[𝑌|𝑑𝑜(𝑉 =𝑣,𝑇 =𝑡)]− E[𝑌|𝑑𝑜(𝑉 =𝑣∗,𝑇 =𝑡∗)]
+= 𝑓𝑌(𝑓𝑀(𝑣,𝑡),𝑢)− 𝑓𝑌(𝑓𝑀(𝑣∗,𝑡∗),𝑢). (12)
+3.3.2 Causal Learning Module. To instantiate the total causal effect
+estimation, we introduce the causal learning module, which imple-
+ments the aforementioned causal framework through a structured
+comparison of positive and negative samples. To effectively capture
+the complex relationships between item attributes and user pref-
+erences, we introduce a self-attention mechanism that computes
+contextualized representations of the multi-modal embeddings:
+Q = W𝑞e𝑚, K = W𝑘 e𝑚, V = W𝑣e𝑚, (13)
+˜e𝑚 = Self-Attention(e𝑚) = softmax( QK⊤
+√
+𝑑
+)V, (14)
+where𝑑 represents the embedding dimension and W𝑞, W𝑘, W𝑣 are
+learnable parameters. The self-attention mechanism enables the
+model to attend to different aspects of the item’s features, captur-
+ing their relative importance and reduce the impact of irrelevant
+attributes [33]. For consistency, we apply identical transformations
+to the negative sample features:
+˜e∗
+𝑚 = Self-Attention(e∗
+𝑚). (15)
+Then we instantiate the total causal effect in Equation 12:
+e𝑡 = ˜e𝑚− ˜e∗
+𝑚. (16)
+This formulation serves two key purposes: (1) it captures fine-
+grained preference distinctions by explicitly modeling the contrast
+between positive and negative samples, and (2) it reduces the impact
+of spurious factors by focusing on causal relationships between
+important item attributes and user preferences [12].
+To align the causal effect embedding e𝑡 with the dimension of
+the base recommender embeddings, we project it into the same
+space using a projection network:
+e𝑐 =𝑅𝑒𝐿𝑈(e𝑡 W1+ b1)W2+ b2, (17)
+where W1 and W2 are learnable weight matrices, and b1 and b2 are
+learnable biases. Similarly, the negative embedding ˜e∗𝑚 is projected
+into the same space:
+e∗
+𝑐 =𝑅𝑒𝐿𝑈( ˜e∗
+𝑚W1+ b1)W2+ b2. (18)
+3.4 Training Objective
+To optimize NegGen, we define two complementary objectives: a
+recommendation lossL𝑟𝑒𝑐 to ensure the recommendation quality,
+and a multi-modal alignment lossL𝑎𝑙𝑖𝑔𝑛 to enhance the consistency
+between item features and their multi-modal causal representations.
+This subsection elaborates on the details of these objectives.
+First, NegGen combines item scores predicted from collaborative
+embeddings and multi-modal causal representation. The causal
+score is computed as the inner product of the user embedding𝑒𝑢
+and the causal effect embedding𝑒𝑐:𝑦𝑚 = e⊤𝑢 e𝑐. In parallel, the base
+recommendation score, which captures the collaborative filtering
+signal, is calculated as:𝑦𝑜𝑟𝑖 = e⊤𝑢 e𝑖, where e𝑖 is the item embedding
+learned by the pre-trained recommender. The final prediction score
+is obtained by linearly combining the causal effect score and the
+base recommendation score: 𝑦 = 𝑦𝑜𝑟𝑖+𝜆𝑦𝑚. Here,𝜆 is a hyper-
+parameter that controls the contribution of the causal effect score
+relative to the base score.
+Having obtained the score prediction, we can calculate the recom-
+mendation lossL𝑟𝑒𝑐 . We adopt the Bayesian Personalized Ranking
+(BPR) loss explicitly modeling a ranking objective:
+L𝑟𝑒𝑐 = E(𝑢,𝑖)∼D
+
+− log𝜎(𝜆e⊤
+𝑢 e𝑐+ e⊤
+𝑢 e𝑖− e⊤
+𝑢 e∗
+𝑐)
+
+, (19)
+whereD denotes the set of training samples(𝑢,𝑖), with𝑒𝑐 as the
+positive embedding of item𝑖 and𝑒∗𝑐 as the corresponding negative
+embedding. The term𝜎(·) represents the sigmoid function. This loss
+encourages the model to rank positive items higher than negative
+ones for each user𝑢.
+In addition to the ranking loss, we introduce a multi-modal align-
+ment loss to ensure that the causal embeddings derived from multi-
+modal features are well-aligned with the collaborative embeddings.
+
+PAGE 6
+MM ’25, October 27–31, 2025, Dublin, Ireland Yanbiao Ji et al.
+This is achieved using a contrastive learning objective:
+L𝑎𝑙𝑖𝑔𝑛 = E𝑖∈D
+
+− log exp(e⊤𝑐 e𝑖/𝜏)
+exp(( e∗𝑐)⊤e𝑖/𝜏)
+
+, (20)
+whereD represents the set of items, e𝑖 is the collaborative em-
+bedding of item 𝑖, e𝑐 and e∗𝑐 are the corresponding positive and
+negative multi-modal embedding, respectively, and𝜏 is a temper-
+ature hyper-parameter that controls the sharpness of the logits
+distribution [56]. This loss encourages closer alignment between
+multi-modal embeddings and their corresponding item embeddings
+while pushing apart negative samples.
+The overall objective function integrates both losses, allowing
+the model to balance collaborative filtering signals with multi-
+modal alignment effects:
+L =L𝑟𝑒𝑐+𝛼L𝑎𝑙𝑖𝑔𝑛. (21)
+Here,𝛼 is a hyper-parameter that adjusts the relative importance
+of the alignment objective. By optimizing this joint objective, the
+model effectively leverages both collaborative and multi-modal
+information to improve recommendation performance.
+4 Experiments
+In this section, we conduct extensive experiments to demonstrate
+the effectiveness ofNegGen. In general, we expect the experimental
+results to answer the following research questions:RQ1: How does
+NegGen perform compared with state-of-the-art MMRS methods
+and negative sampling methods? RQ2: Can NegGen effectively uti-
+lize item information from different modalities?RQ3: Can NegGen
+produce high-quality negative samples that accelerate convergence
+and improve the performance of the recommender? RQ4: How do
+the individual components of our model contribute to its perfor-
+mance across different datasets? RQ5: How does different choices
+of hyper-parameters affect the performance of our model?
+4.1 Experimental Settings
+4.1.1 Datasets. We evaluate our approach on four distinct cate-
+gories from the Amazon review dataset [43]: Baby, Beauty, Clothing,
+and Sports. Each dataset represents a different domain of consumer
+behavior and purchasing patterns. To ensure data quality and mean-
+ingful user-item interactions, we use the 5-core filtered datasets,
+retaining only users and items with at least 5 interactions, fol-
+lowing the practices in [ 17, 80, 81]. Each item in the datasets is
+associated with rich multi-modal information, including product
+images and metadata (i.e., title, category and brand). The statistics
+of the datasets are shown in Table 3.
+4.1.2 Evaluation Protocols. Following previous works [36, 82], we
+adopt the 80-10-10 split protocol for training, validation, and testing.
+Two widely used Top-𝐾 metrics, i.e., Recall (R@𝐾) and NDCG (N@𝐾),
+are used to evaluate the quality of recommendation. We report the
+average values of all users in the test set with𝐾 = 10, 20.
+4.1.3 Baseline Models. We compare our method with the following
+three groups of baseline methods. (1) Collaborative Filtering Base-
+lines. BPR [52] learns user preferences by ranking interacted items
+higher than uninteracted ones. LightGCN [18] simplifies graph
+convolution networks by removing non-linear activation and fea-
+ture transformation. (2) Negative Sampling Baselines . IRGAN [57]
+uses a minimax game to optimize generative and discriminative net-
+works. MixGCF [20] synthesizes hard negatives with neighborhood
+embeddings. DENS [31] uses factor-aware sampling to identify the
+best negatives. DNS(M,N) [53] controls negative sampling hardness
+with hyperparameters. AHNS [32] selects negatives with adaptive
+hardnesses during training. (3) Multi-Modal Recommender Sys-
+tems. VBPR [17] incorporates visual information into BPR embed-
+dings. MMGCN [65] performs message passing in each modality.
+BM3 [83] creates contrastive views via dropout. FREEDOM [81]
+denoises user-item graph during training. DRAGON [80] learns
+dual representations on heterogeneous and homogeneous graphs.
+DiffMM [26] integrates a modality-aware graph diffusion model.
+LGMRec [16] proposes hypergraph embedding module.
+4.1.4 Implementation Details. For all models, we set the embedding
+dimension to 64 for both users and items, following [ 16, 80]. We
+initialize the model parameters using the Xavier method [13] and
+optimize using Adam [29] with fixed batch size of 2048. The training
+process runs for a maximum of 1000 epochs, with early stopping
+applied after 20 epochs without improvement. We use Recall@20 on
+the validation set as our stopping criterion, consistent with [80, 81].
+In NegGen, we use Llama 3.2-11B-Vision model as the MLLM. For
+a fair comparison, we use the Sentence-Bert [50] model to encode
+textual attributes as used by Amazon datasets. LightGCN is used
+for NegGen as well as all baselines requiring a base recommender.
+We implement all models in PyTorch [46] and conduct experiments
+on one NVIDIA H100 GPU with 80GB memory.
+4.2 Overall Performance Comparison (RQ1)
+The experimental results are summarized in Table 2, and we have
+the following observations. (1) NegGen significantly outper-
+forms all MMRS and negative sampling methods across eval-
+uation metrics. The performance gains are particularly significant
+in the Baby dataset, where we observe a 9.02% improvement in
+Recall@10, and in the Clothing dataset, with an 8.70% enhance-
+ment in NDCG@10. Even in scenarios where baseline methods
+achieve strong performance, such as in the Beauty and Sports
+datasets, NegGen remains competitive with improvements ranging
+from 2.31% to 5.66% across various metrics. These comprehensive
+improvements show the effectiveness of NegGen in producing
+high quality negative samples for MMRS and learning multi-modal
+user preferences. (2) NegGen exhibits strong generalization
+across diverse domains. NegGen achieves consistent improve-
+ments across heterogeneous datasets, highlighting its adaptability
+and effectiveness. The method shows remarkable effectiveness in
+both the Sports product category, with relatively less modality
+dependence [36], and the Clothing category, which requires rich
+multimedia content such as images to describe complicated fash-
+ion designs. This dual success in handling both weak and strong
+modality dependency scenarios establishes NegGen as a versatile
+solution for diverse multi-modal recommendation applications. (3)
+Traditional collaborative filtering methods are insufficient to
+adapt to multi-modal scenarios . Experimental results show that
+specialized MMRS frameworks, such as DRAGON and LGMRec,
+significantly outperform traditional models like BPR and LightGCN,
+highlighting the importance of effective multi-modal integration. In
+contrast, simple extensions of conventional models (i.e., , VBPR and
+
+PAGE 7
+Generating Negative Samples for Multi-Modal Recommendation MM ’25, October 27–31, 2025, Dublin, Ireland
+Table 2: Overall performance achieved by different recommendation methods in terms of Recall and NDCG. The best performance is highlighted
+in bold and the second best is underlined. Δ𝐼𝑚𝑝𝑟𝑜𝑣. indicates relative improvements over the second best method. p-val denotes the p-value
+from paired t-tests comparing NegGen against the best baseline.
+Model Baby Beauty Clothing Sports
+R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20 R@10 R@20 N@10 N@20
+BPR 0.0359 0.0572 0.0193 0.0244 0.0568 0.0953 0.0274 0.0311 0.0207 0.0302 0.0114 0.0137 0.0431 0.0650 0.0238 0.0297
+LightGCN 0.0458 0.0698 0.0236 0.0309 0.0676 0.1041 0.0403 0.0519 0.0328 0.0504 0.0184 0.0226 0.0547 0.0819 0.0305 0.0381
+IRGAN 0.0441 0.0673 0.0268 0.0322 0.0569 0.0951 0.0379 0.0484 0.0312 0.0481 0.0186 0.0245 0.0477 0.0715 0.0322 0.0390
+MixGCF 0.0456 0.0691 0.0281 0.0341 0.0617 0.0978 0.0406 0.0557 0.0321 0.0492 0.0199 0.0277 0.0529 0.0773 0.0339 0.0435
+DENS 0.0451 0.0708 0.0287 0.0350 0.0629 0.0988 0.0415 0.0568 0.0326 0.0501 0.0204 0.0282 0.0537 0.0784 0.0343 0.0446
+DNS(M,N) 0.0457 0.0725 0.0290 0.0358 0.0628 0.0986 0.0417 0.0566 0.0328 0.0510 0.0211 0.0286 0.0540 0.0785 0.0337 0.0431
+AHNS 0.0465 0.0737 0.0292 0.0361 0.0635 0.0992 0.0426 0.0572 0.0335 0.0528 0.0237 0.0291 0.0554 0.0851 0.0352 0.0462
+VBPR 0.0412 0.0637 0.0203 0.0251 0.0637 0.1002 0.0371 0.0471 0.0283 0.0411 0.0156 0.0189 0.0558 0.0853 0.0298 0.0375
+MMGCN 0.0441 0.0685 0.0192 0.0264 0.0628 0.1005 0.0341 0.0459 0.0227 0.0360 0.0121 0.0154 0.0380 0.0631 0.0201 0.0272
+BM3 0.0542 0.0873 0.0296 0.0365 0.0728 0.1187 0.0425 0.0567 0.0451 0.0672 0.0242 0.0297 0.0663 0.0981 0.0354 0.0438
+FREEDOM 0.0614 0.0973 0.0306 0.0398 0.0771 0.1247 0.0441 0.0579 0.0617 0.0904 0.0317 0.0409 0.0714 0.1073 0.0368 0.0457
+DRAGON 0.0643 0.0996 0.0325 0.0412 0.0792 0.1256 0.0455 0.0584 0.0621 0.0915 0.0322 0.0418 0.0732 0.1085 0.0389 0.0482
+DiffMM 0.0625 0.0971 0.0306 0.0401 0.0783 0.1249 0.0447 0.0579 0.0622 0.0907 0.0313 0.0397 0.0715 0.1043 0.0350 0.0431
+LGMRec 0.0631 0.1002 0.0327 0.0422 0.0781 0.1243 0.0448 0.0578 0.0531 0.0817 0.0296 0.0364 0.0723 0.1066 0.0385 0.0477
+NegGen 0.0701 0.1065 0.0342 0.0438 0.0823 0.1285 0.0473 0.0604 0.0654 0.0961 0.0350 0.0441 0.0763 0.1114 0.0411 0.0506
+Δ𝐼𝑚𝑝𝑟𝑜𝑣. 9.02% 6.29% 7.95% 4.59% 3.91% 2.31% 3.96% 3.42% 5.14% 5.03% 8.70% 5.50% 4.23% 3.96% 5.66% 4.98%
+p-val 0.0093 0.0080 0.0028 0.0263 0.0221 0.0101 0.0017 0.0003 0.0098 0.0068 0.0423 0.0062 0.0044 0.0026 0.0079 0.0045
+Table 3: Statistics of the datasets.
+Dataset #Users #Items #Interactions Density
+Baby 19,445 7,050 139,110 0.00101
+Beauty 22,363 12,101 172,188 0.00064
+Clothing 39,387 23,033 278,677 0.00031
+Sports 33,598 18,357 296,337 0.00048
+Table 4: Effect of different modalities on NegGen’s leaning. R and N
+denote Recall and NDCG, respectively. The best performance is in
+bold. “V” and “T” represent visual and textual inputs, respectively.
+Datasets Variants R@10 R@20 N@10 N@20
+Baby
+V 0.0667 0.0934 0.0307 0.0401
+T 0.0678 0.0956 0.0327 0.0412
+V&T 0.0701 0.1065 0.0342 0.0438
+Beauty
+V 0.0794 0.1213 0.0426 0.0548
+T 0.0803 0.1231 0.0439 0.0586
+V&T 0.0832 0.1285 0.0473 0.0604
+Clothing
+V 0.0621 0.0910 0.0327 0.0412
+T 0.0632 0.0930 0.0338 0.0426
+V&T 0.0654 0.0961 0.0350 0.0441
+Sports
+V 0.0667 0.0940 0.0336 0.0415
+T 0.0687 0.1064 0.0357 0.0443
+V&T 0.0763 0.1114 0.0411 0.0506
+MMGCN) offer only marginal gains, underscoring the complexity
+of multi-modal data and the need for dedicated negative sampling
+strategies rather than direct adaptations of existing methods.
+4.3 Modality Ablation Study (RQ2)
+According to our preliminary experiments in Section 2, existing
+MMRS can easily suffer from imbalanced learning of different
+modalities. This observation aligns with the findings from Zong
+et al. [86] that the dominance of certain modalities can lead to
+underfitting of other modalities during training. To demonstrate
+that NegGen effectively mitigates this issue, we conduct a series of
+experiments, which compares the performance ofNegGen, denoted
+by V&T with its unimodal counterpart, denoted by V and T. The
+results are shown in Table 4. The V&T variant, which combines
+visual and textual information, achieves the best performance com-
+pared to the other two variants,i.e., V and T. This outcome suggests
+that NegGen can effectively leverage the complementary attributes
+Ours Ours
+Uniform 
+IRGAN
+DNS(M,N)
+DENS
+AHNS
+MixGCF Uniform
+MixGCF
+IRGAN
+DENSDNS(M,N)
+AHNS
+Figure 6: Visualization of the convergence epoch and NDCG@20
+for different negative sampling methods. Higher NDCG and lower
+convergence epochs indicate higher-quality negative samples.
+from both modalities to generate accurate recommendations that
+align with users’ multi-modal preferences. And by introducing fine-
+grained attribute-level negative samples, NegGen demonstrates its
+capability to address the modality imbalance.
+4.4 Negative Sample Quality (RQ3)
+To evaluate the quality of the negative samples generated byNegGen
+in terms of cohesion and hardness, we compare its performance
+(i.e., NDCG@20) against its convergence epoch number in Figure 6
+to different negative sampling methods. For all methods we use the
+LightGCN model as base recommender. In particular, we remove
+the the causal learning module in NegGen for a fair comparison.
+The results show that NegGen effectively balances cohesion and
+hardness in negative samples. Its high NDCG@20 indicates that
+the negatives are cohesive, providing meaningful contrast, while
+the faster convergence suggests that the negatives are sufficiently
+hard, allowing the model to learn discriminative features quickly.
+4.5 Module Ablation Study (RQ4)
+To evaluate the effectiveness of each component in NegGen, we
+conduct ablation studies by removing the negative sample genera-
+tion mechanism (w/o NEG), the causal learning framework (w/o CF),
+and both components simultaneously (w/o both). For the w/o NEG
+variant, we replace the negative sample generation with the uni-
+form negative sampling as used in [17, 81]. For the w/o CF variant,
+we remove the causal learning framework and directly project the
+obtained attribute embeddings. Table 5 summarizes the results, with
+
+PAGE 8
+MM ’25, October 27–31, 2025, Dublin, Ireland Yanbiao Ji et al.
+Table 5: Ablation study of different components in NegGen. R and
+N denote Recall and NDCG, respectively, with the best performance
+highlighted in bold.
+Datasets Variants R@10 R@20 N@10 N@20
+Baby
+w/o NEG 0.0571 0.0896 0.0307 0.0401
+w/o CF 0.0641 0.0992 0.0321 0.0414
+w/o both 0.0466 0.0684 0.0235 0.0317
+NegGen 0.0701 0.1065 0.0342 0.0438
+Beauty
+w/o NEG 0.0714 0.1165 0.0416 0.0538
+w/o CF 0.0805 0.1263 0.0457 0.0590
+w/o both 0.0682 0.1083 0.0402 0.0531
+NegGen 0.0832 0.1285 0.0473 0.0604
+Clothing
+w/o NEG 0.0626 0.0910 0.0327 0.0420
+w/o CF 0.0637 0.0922 0.0341 0.0432
+w/o both 0.0336 0.0531 0.0187 0.0232
+NegGen 0.0654 0.0961 0.0350 0.0441
+Sports
+w/o NEG 0.0627 0.0940 0.0336 0.0415
+w/o CF 0.0714 0.1055 0.0374 0.0471
+w/o both 0.0539 0.0813 0.0304 0.0375
+NegGen 0.0763 0.1114 0.0411 0.0506
+the following observations. (1) Both modules are effective in
+improving multi-modal recommendation. Removing either the
+negative sample generation module (w/o NEG) or the causal learn-
+ing framework (w/o CF ) causes a significant drop in performance
+across all metrics, demonstrating their effectiveness in capturing
+nuanced user preferences and learning robust representations. (2)
+The two components of NegGen are complementary. When
+both components are removed, the performance decline is even
+more pronounced, confirming that negative sample generation and
+causal learning work synergistically to enhance NegGen’s ability
+to model user preferences accurately.
+4.6 Hyper-parameter Analysis (RQ5)
+In this subsection, we conduct experiments to examine the impact
+of key hyper-parameters in NegGen. Specifically, we analyze the
+effect of (1) the weight of the multi-modal prediction score𝜆, (2) the
+weight of the multi-modal alignment loss𝛼, and (3) the temperature
+𝜏 in the alignment loss. The results are presented in Figure 7.
+Effect of 𝜆. The parameter 𝜆 controls the impact of the multi-
+modal prediction score. Across all datasets, performance improves
+as𝜆 increases from 0 to 0.4, but stabilizes or slightly declines when
+𝜆 > 0.6, indicating that the optimal range for𝜆 is between 0.4 and
+0.6. Notably, setting𝜆 to 0 causes a significant performance drop,
+highlighting the importance of incorporating multi-modal signals
+to enhance recommendation quality.
+Effect of 𝛼. The parameter𝛼 controls the weight of the multi-
+modal alignment loss. Our experiments show that NegGen per-
+forms stably and robustly across a wide range of 𝛼 values, from
+1e-4 to 1. However, performance slightly degrades when𝛼 becomes
+too large, indicating that overemphasizing the alignment loss may
+disrupt the balance among training objectives.
+Effect of𝜏. The temperature parameter𝜏 in the alignment loss
+modulates the sharpness of the logits distribution. Varying𝜏 across
+[0.07, 0.1, 0.2, 0.3, 1], we find that smaller values generally lead
+to better performance. Specifically, when 𝜏 is set to 1, the logits
+distribution becomes overly smooth, hindering the model’s ability
+to learn meaningful alignments.
+0.0 0.2 0.4 0.6 0.8 1.0
+0.04
+0.06NDCG@20
+1e-4 1e-3 1e-2 1e-1 1
+0.04
+0.05
+0.06
+0.07 0.1 0.2 0.3 1
+0.04
+0.05
+0.06
+0.0 0.2 0.4 0.6 0.8 1.0
+0.10
+0.12Recall@20
+1e-4 1e-3 1e-2 1e-1 1
+0.10
+0.11
+0.12
+0.13
+0.07 0.1 0.2 0.3 1
+0.10
+0.11
+0.12
+0.13
+Baby Beauty Clothing Sports
+Figure 7: Effect of different hyper-parameters on NegGen.
+5 Related Work
+Hard Negative Sampling in RS. Negative sampling is widely used
+across fields like computer vision [28, 74, 75], natural language pro-
+cessing [8, 59, 77], and information retrieval [44, 48, 49]. In RS, hard
+negative sampling (HNS) techniques are used to improve negative
+sample quality. Early HNS methods [51, 72, 76] focused on ranking
+uninteracted items to identify suitable negatives, such as the dy-
+namic selection mechanism in DNS [76]. HNS approaches are now
+divided into sampling-based and generation-based methods [70].
+Sampling-based approaches utilize advanced algorithms like rein-
+forcement learning [9, 61] and social network analysis [4, 78]. And
+generation-based methods, such as GANs [14, 27, 58], synthesize
+challenging negatives. Applying these methods to MMRS remains
+difficult due to the complexity of multi-modal tasks.
+MMRS. The growth of multimedia data has driven MMRS. Early
+research [5, 37, 69] extended collaborative filtering by incorporating
+multi-modal content as side information. For example, VBPR [17] in-
+tegrates visual features into the BPR [52] framework. More recently,
+Graph Neural Networks (GNNs) have become powerful tools for
+MMRS [35, 38, 64], enabling the modeling of complex relationships
+between users, items, and modalities. MMGCN [65], for instance,
+builds modality-specific user-item graphs and enriches node embed-
+dings via neighbor aggregation. While negative sampling remains
+common, the effectiveness of sampling strategies in multi-modal
+contexts remains underexplored.
+Causal Inference for RS. Recently, there has been growing interest
+in incorporating causal reasoning into RS [68]. Several works [7,
+60, 62] have used causal frameworks to address recommendation
+biases, such as popularity bias [25, 85] and exposure bias [30, 42].
+For instance, MACR [63] reduces popularity bias by modeling cause-
+effect relationships in recommendation using a causal graph. Causal
+inference also helps to model the underlying causality behind user
+preferences and behavior, mitigate spurious correlations [10, 34]
+and enable explainable recommendation [54, 79].
+6 Conclusion and Future Work
+In this paper, we first identify the challenge of producing both co-
+hesive and hard negative samples in multi-modal recommender
+systems. Then we address it by proposing NegGen, which uses the
+strong ability of MLLMs to generate balanced, contrastive nega-
+tive samples. Experiments show NegGen significantly improves
+recommendation performance across metrics and datasets.
+
+PAGE 9
+Generating Negative Samples for Multi-Modal Recommendation MM ’25, October 27–31, 2025, Dublin, Ireland
+Acknowledgments
+This paper is supported by NSFC (No. 62176155), Shanghai Munici-
+pal Science and Technology Major Project, China, under grant No.
+2021SHZDZX0102.
+References
+[1] Haoyue Bai, Le Wu, Min Hou, Miaomiao Cai, Zhuangzhuang He, Yuyang Zhou,
+Richang Hong, and Meng Wang. 2024. Multimodality Invariant Learning for
+Multimedia-Based New Item Recommendation (SIGIR ’24). 677–686.
+[2] Jinze Bai, Shuai Bai, Shusheng Yang, Shijie Wang, Sinan Tan, Peng Wang, Jun-
+yang Lin, Chang Zhou, and Jingren Zhou. 2023. Qwen-VL: A Versatile Vision-
+Language Model for Understanding, Localization, Text Reading, and Beyond.
+arXiv:2308.12966 [cs.CV]
+[3] Jiawei Chen, Chengquan Jiang, Can Wang, Sheng Zhou, Yan Feng, Chun Chen,
+Martin Ester, and Xiangnan He. 2021. CoSam: An Efficient Collaborative Adaptive
+Sampler for Recommendation. ACM Trans. Inf. Syst. 39, 3 (2021), 34:1–34:24.
+[4] Jiawei Chen, Can Wang, Sheng Zhou, Qihao Shi, Yan Feng, and Chun Chen. 2019.
+SamWalker: Social Recommendation with Informative Sampling Strategy(WWW
+’19). 228–239.
+[5] Jingyuan Chen, Hanwang Zhang, Xiangnan He, Liqiang Nie, Wei Liu, and Tat-
+Seng Chua. 2017. Attentive Collaborative Filtering: Multimedia Recommendation
+with Item- and Component-Level Attention (SIGIR ’17). 335–344.
+[6] Ádám Tibor Czapp, Mátyás Jani, Bálint Domián, and Balázs Hidasi. 2024. Dynamic
+Product Image Generation and Recommendation at Scale for Personalized E-
+commerce (RecSys ’24). 768–770.
+[7] Jianfeng Deng, Qingfeng Chen, Debo Cheng, Jiuyong Li, Lin Liu, and Xiaojing
+Du. 2024. Mitigating Dual Latent Confounding Biases in Recommender Systems.
+arXiv:2410.12451 [cs.IR]
+[8] Jacob Devasier, Yogesh Gurjar, and Chengkai Li. 2024. Robust Frame-Semantic
+Models with Lexical Unit Trees and Negative Samples (ACL ’24).
+[9] Jingtao Ding, Yuhan Quan, Xiangnan He, Yong Li, and Depeng Jin. 2019. Re-
+inforced negative sampling for recommendation with exposure data (IJCAI’19).
+99–109.
+[10] Xiaoyu Du, Zike Wu, Fuli Feng, Xiangnan He, and Jinhui Tang. 2022. Invariant
+Representation Learning for Multimedia Recommendation (MM ’22). 619–628.
+[11] Lu Fan, Jiashu Pu, Rongsheng Zhang, and Xiao-Ming Wu. 2023. Neighborhood-
+based Hard Negative Mining for Sequential Recommendation (SIGIR’23).
+2042–2046.
+[12] Chen Gao, Yu Zheng, Wenjie Wang, Fuli Feng, Xiangnan He, and Yong Li. 2024.
+Causal Inference in Recommender Systems: A Survey and Future Directions.
+ACM Trans. Inf. Syst. 42, 4, Article 88 (Feb. 2024), 32 pages.
+[13] Xavier Glorot and Yoshua Bengio. 2010. Understanding the difficulty of training
+deep feedforward neural networks. In Proceedings of the Thirteenth International
+Conference on Artificial Intelligence and Statistics (Proceedings of Machine Learning
+Research). PMLR.
+[14] Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-
+Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio. 2014. Generative
+Adversarial Networks. arXiv:1406.2661 [stat.ML]
+[15] Jie Gui, Zhenan Sun, Yonggang Wen, Dacheng Tao, and Jieping Ye. 2023. A Review
+on Generative Adversarial Networks: Algorithms, Theory, and Applications.IEEE
+Trans. on Knowl. and Data Eng. 35, 4 (April 2023), 3313–3332.
+[16] Zhiqiang Guo, Jianjun Li, Guohui Li, Chaoyang Wang, Si Shi, and Bin Ruan. 2024.
+LGMRec: Local and Global Graph Learning for Multimodal Recommendation
+(AAAI ’24). 8454–8462.
+[17] Ruining He and Julian McAuley. 2016. VBPR: visual Bayesian Personalized
+Ranking from implicit feedback (AAAI’16). 144–150.
+[18] Xiangnan He, Kuan Deng, Xiang Wang, Yan Li, YongDong Zhang, and Meng
+Wang. 2020. LightGCN: Simplifying and Powering Graph Convolution Network
+for Recommendation (SIGIR ’20). 639–648.
+[19] Xiangnan He, Yang Zhang, Fuli Feng, Chonggang Song, Lingling Yi, Guohui Ling,
+and Yongdong Zhang. 2022. Addressing Confounding Feature Issue for Causal
+Recommendation. ACM Trans. Inf. Syst. (2022).
+[20] Tinglin Huang, Yuxiao Dong, Ming Ding, Zhen Yang, Wenzheng Feng, Xinyu
+Wang, and Jie Tang. 2021. MixGCF: An Improved Training Method for Graph
+Neural Network-based Recommender Systems (KDD ’21).
+[21] Kalervo Järvelin and Jaana Kekäläinen. 2002. Cumulated gain-based evaluation
+of IR techniques. ACM Trans. Inf. Syst. 20, 4 (Oct. 2002), 422–446.
+[22] Deyi Ji, Feng Zhao, Hongtao Lu, Feng Wu, and Jieping Ye. 2025. Structural and
+Statistical Texture Knowledge Distillation and Learning for Segmentation. IEEE
+Trans. Pattern Anal. Mach. Intell. 47, 5 (Jan. 2025), 3639–3656. https://doi.org/10.
+1109/TPAMI.2025.3536481
+[23] Deyi Ji, Feng Zhao, Lanyun Zhu, Wenwei Jin, Hongtao Lu, and Jieping Ye.
+2024. Discrete Latent Perspective Learning for Segmentation and Detection.
+arXiv:2406.10475 [cs.CV] https://arxiv.org/abs/2406.10475
+[24] Deyi Ji, Lanyun Zhu, Siqi Gao, Peng Xu, Hongtao Lu, Jieping Ye, and Feng Zhao.
+2024. Tree-of-Table: Unleashing the Power of LLMs for Enhanced Large-Scale
+Table Understanding. arXiv:2411.08516 [cs.CL] https://arxiv.org/abs/2411.08516
+[25] Yanbiao Ji, Yue Ding, Chang Liu, Yuxiang Lu, Xin Xin, and Hongtao Lu.
+2024. Topology-Aware Popularity Debiasing via Simplicial Complexes.
+arXiv:2411.13892 [cs.IR]
+[26] Yangqin Jiang, Lianghao Xia, Wei Wei, Da Luo, Kangyi Lin, and Chao Huang.
+2024. DiffMM: Multi-Modal Diffusion Model for Recommendation (MM ’24).
+7591–7599.
+[27] Binbin Jin, Defu Lian, Zheng Liu, Qi Liu, Jianhui Ma, Xing Xie, and Enhong Chen.
+2020. Sampling-decomposable generative adversarial recommender (NIPS ’20).
+Article 1897, 11 pages.
+[28] Yannis Kalantidis, Mert Bulent Sariyildiz, Noe Pion, Philippe Weinzaepfel, and
+Diane Larlus. 2020. Hard Negative Mixing for Contrastive Learning (NeurIPS ’20).
+Article 1829, 12 pages.
+[29] Diederik P. Kingma and Jimmy Ba. 2015. Adam: A Method for Stochastic Opti-
+mization (ICLR ’15).
+[30] Thorsten Krause, Alina Deriyeva, Jan H. Beinke, Gerrit Y. Bartels, and Oliver
+Thomas. 2024. Mitigating Exposure Bias in Recommender Systems—A Compara-
+tive Analysis of Discrete Choice Models. ACM Trans. Recomm. Syst. 3, 2, Article
+19 (Nov. 2024), 37 pages.
+[31] Riwei Lai, Li Chen, Yuhan Zhao, Rui Chen, and Qilong Han. 2023. Disentangled
+Negative Sampling for Collaborative Filtering (WSDM ’23). 96–104.
+[32] Riwei Lai, Rui Chen, Qilong Han, Chi Zhang, and Li Chen. 2025. Adaptive
+hardness negative sampling for collaborative filtering (AAAI’24). Article 961,
+8 pages.
+[33] Hongkang Li, Meng Wang, Tengfei Ma, Sijia Liu, ZAIXI ZHANG, and Pin-Yu Chen.
+2024. What Improves the Generalization of Graph Transformers? A Theoretical
+Dive into the Self-attention and Positional Encoding (ICML’24).
+[34] Shuaiyang Li, Dan Guo, Kang Liu, Richang Hong, and Feng Xue. 2023. Multimodal
+Counterfactual Learning Network for Multimedia-based Recommendation(SIGIR
+’23). 1539–1548.
+[35] Xingchen Li, Xiang Wang, Xiangnan He, Long Chen, Jun Xiao, and Tat-Seng
+Chua. 2020. Hierarchical Fashion Graph Network for Personalized Outfit Recom-
+mendation. arXiv:2005.12566 [cs.IR]
+[36] Yang Li, Qi’Ao Zhao, Chen Lin, Jinsong Su, and Zhilin Zhang. 2024. Who To
+Align With: Feedback-Oriented Multi-Modal Alignment in Recommendation
+Systems (SIGIR ’24). 667–676.
+[37] Qiang Liu, Shu Wu, and Liang Wang. 2017. DeepStyle: Learning User Preferences
+for Visual Recommendation (SIGIR ’17). 841–844.
+[38] Yiyu Liu, Qian Liu, Yu Tian, Changping Wang, Yanan Niu, Yang Song, and
+Chenliang Li. 2021. Concept-Aware Denoising Graph Neural Network for Micro-
+Video Recommendation (CIKM ’21). 1099–1108.
+[39] Haokai Ma, Ruobing Xie, Lei Meng, Xin Chen, Xu Zhang, Leyu Lin, and Jie Zhou.
+2023. Exploring False Hard Negative Sample in Cross-Domain Recommendation
+(RecSys’23). 502–514.
+[40] Haokai Ma, Ruobing Xie, Lei Meng, Fuli Feng, Xiaoyu Du, Xingwu Sun, Zhanhui
+Kang, and Xiangxu Meng. 2024. Negative Sampling in Recommendation: A
+Survey and Future Directions. arXiv:2409.07237 [cs.IR]
+[41] Haokai Ma, Yimeng Yang, Lei Meng, Ruobing Xie, and Xiangxu Meng. 2024.
+Multimodal Conditioned Diffusion Model for Recommendation (WWW ’24) .
+1733–1740.
+[42] Masoud Mansoury, Bamshad Mobasher, and Herke van Hoof. 2024. Mitigating
+Exposure Bias in Online Learning to Rank Recommendation: A Novel Reward
+Model for Cascading Bandits (CIKM’24). 1638–1648.
+[43] Julian McAuley, Christopher Targett, Qinfeng Shi, and Anton van den Hengel.
+2015. Image-Based Recommendations on Styles and Substitutes (SIGIR ’15) .
+43–52.
+[44] Jack McKechnie, Graham McDonald, and Craig Macdonald. 2024. Bi-Objective
+Negative Sampling for Sensitivity-Aware Search (SIGIR ’24). 2296–2300.
+[45] Trung-Kien Nguyen and Yuan Fang. 2024. Diffusion-based Negative Sampling
+on Graphs for Link Prediction (WWW ’24). 948–958.
+[46] Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory
+Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, Alban
+Desmaison, Andreas Köpf, Edward Yang, Zach DeVito, Martin Raison, Alykhan
+Tejani, Sasank Chilamkurthy, Benoit Steiner, Lu Fang, Junjie Bai, and Soumith
+Chintala. 2019. PyTorch: an imperative style, high-performance deep learning
+library.
+[47] Judea Pearl. 2009. Causal inference in statistics: An overview. Statistics Surveys
+3, none (2009), 96 – 146.
+[48] Gustavo Penha and Claudia Hauff. 2023. Do the Findings of Document and
+Passage Retrieval Generalize to the Retrieval of Responses for Dialogues? (ECIR
+’23). 132–147.
+[49] Thilina Chaturanga Rajapakse, Andrew Yates, and Maarten de Rijke. 2024. Nega-
+tive Sampling Techniques for Dense Passage Retrieval in a Multilingual Setting
+(SIGIR ’24). 575–584.
+[50] Nils Reimers and Iryna Gurevych. 2019. Sentence-BERT: Sentence Embeddings
+using Siamese BERT-Networks (EMNLP ’19). 3982–3992.
+
+PAGE 10
+MM ’25, October 27–31, 2025, Dublin, Ireland Yanbiao Ji et al.
+[51] Steffen Rendle and Christoph Freudenthaler. 2014. Improving pairwise learning
+for item recommendation from implicit feedback (WSDM ’14). 273–282.
+[52] Steffen Rendle, Christoph Freudenthaler, Zeno Gantner, and Lars Schmidt-Thieme.
+2009. BPR: Bayesian personalized ranking from implicit feedback (UAI ’09).
+452–461.
+[53] Wentao Shi, Jiawei Chen, Fuli Feng, Jizhi Zhang, Junkang Wu, Chongming Gao,
+and Xiangnan He. 2023. On the Theories Behind Hard Negative Sampling for
+Recommendation (WWW ’23). 812–822.
+[54] Zihua Si, Xueran Han, Xiao Zhang, Jun Xu, Yue Yin, Yang Song, and Ji-Rong
+Wen. 2022. A Model-Agnostic Causal Learning Framework for Recommendation
+using Search Data (WWW ’22). 224–233.
+[55] Zhulin Tao, Xiaohao Liu, Yewei Xia, Xiang Wang, Lifang Yang, Xianglin Huang,
+and Tat-Seng Chua. 2023. Self-Supervised Learning for Multimedia Recommen-
+dation. IEEE Transactions on Multimedia 25 (2023), 5107–5116.
+[56] Feng Wang and Huaping Liu. 2021. Understanding the Behaviour of Contrastive
+Loss (CVPR ’21). 2495–2504.
+[57] Jun Wang, Lantao Yu, Weinan Zhang, Yu Gong, Yinghui Xu, Benyou Wang, Peng
+Zhang, and Dell Zhang. 2017. IRGAN: A Minimax Game for Unifying Generative
+and Discriminative Information Retrieval Models (SIGIR ’17). 515–524.
+[58] Qinyong Wang, Hongzhi Yin, Zhiting Hu, Defu Lian, Hao Wang, and Zi Huang.
+2018. Neural Memory Streaming Recommender Networks with Adversarial
+Training (KDD ’18). 2467–2475.
+[59] Tianqi Wang, Lei Chen, Xiaodan Zhu, Younghun Lee, and Jing Gao. 2023.
+Weighted Contrastive Learning With False Negative Control to Help Long-tailed
+Product Classification (ACL ’23). 6930–6941.
+[60] Wenjie Wang, Fuli Feng, Xiangnan He, Xiang Wang, and Tat-Seng Chua. 2021.
+Deconfounded Recommendation for Alleviating Bias Amplification (KDD ’21).
+1717–1725.
+[61] Xiang Wang, Yaokun Xu, Xiangnan He, Yixin Cao, Meng Wang, and Tat-Seng
+Chua. 2020. Reinforced Negative Sampling over Knowledge Graph for Recom-
+mendation (WWW ’20).
+[62] Tianxin Wei, Fuli Feng, Jiawei Chen, Ziwei Wu, Jinfeng Yi, and Xiangnan He.
+2021. Model-Agnostic Counterfactual Reasoning for Eliminating Popularity Bias
+in Recommender System (KDD ’21). 1791–1800.
+[63] Tianxin Wei, Fuli Feng, Jiawei Chen, Ziwei Wu, Jinfeng Yi, and Xiangnan He.
+2021. Model-Agnostic Counterfactual Reasoning for Eliminating Popularity Bias
+in Recommender System (KDD’21). 1791–1800.
+[64] Yinwei Wei, Xiang Wang, Liqiang Nie, Xiangnan He, and Tat-Seng Chua. 2020.
+Graph-Refined Convolutional Network for Multimedia Recommendation with
+Implicit Feedback (MM ’20). 3541–3549.
+[65] Yinwei Wei, Xiang Wang, Liqiang Nie, Xiangnan He, Richang Hong, and Tat-Seng
+Chua. 2019. MMGCN: Multi-modal Graph Convolution Network for Personalized
+Recommendation of Micro-video (MM ’19). 1437–1445.
+[66] Mike Wu, Milan Mosse, Chengxu Zhuang, Daniel Yamins, and Noah Goodman.
+2021. Conditional Negative Sampling for Contrastive Learning of Visual Repre-
+sentations (ICLR’21).
+[67] Songli Wu, Liang Du, Jia-Qi Yang, Yuai Wang, De-Chuan Zhan, SHUANG ZHAO,
+and Zixun Sun. 2024. RE-SORT: Removing Spurious Correlation in Multilevel
+Interaction for CTR Prediction. In The 40th Conference on Uncertainty in Artificial
+Intelligence (UAI’24). Article 178, 13 pages.
+[68] Shuyuan Xu, Da Xu, Evren Korpeoglu, Sushant Kumar, Stephen Guo, Kannan
+Achan, and Yongfeng Zhang. 2024. Causal Structure Learning for Recommender
+System. ACM Trans. Recomm. Syst. 3, 1, Article 8 (Oct. 2024), 23 pages.
+[69] Jiahao Xun, Shengyu Zhang, Zhou Zhao, Jieming Zhu, Qi Zhang, Jingjie Li,
+Xiuqiang He, Xiaofei He, Tat-Seng Chua, and Fei Wu. 2021. Why Do We Click:
+Visual Impression-aware News Recommendation (MM ’21). 3881–3890.
+[70] Zhen Yang, Ming Ding, Tinglin Huang, Yukuo Cen, Junshuai Song, Bin Xu,
+Yuxiao Dong, and Jie Tang. 2024. Does Negative Sampling Matter? a Review
+With Insights Into its Theory and Applications. IEEE Transactions on Pattern
+Analysis and Machine Intelligence 46, 8 (2024), 5692–5711.
+[71] Yuan Yao, Tianyu Yu, Ao Zhang, and et al. 2024. MiniCPM-V: A GPT-4V Level
+MLLM on Your Phone. arXiv:2408.01800 [cs.CV]
+[72] Rex Ying, Ruining He, Kaifeng Chen, Pong Eksombatchai, William L. Hamilton,
+and Jure Leskovec. 2018. Graph Convolutional Neural Networks for Web-Scale
+Recommender Systems (KDD ’18). 974–983.
+[73] Junliang Yu, Hongzhi Yin, Xin Xia, Tong Chen, Jundong Li, and Zi Huang. 2024.
+Self-Supervised Learning for Recommender Systems: A Survey.IEEE Transactions
+on Knowledge and Data Engineering 36, 1 (2024), 335–355.
+[74] Le Zhang, Rabiul Awal, and Aishwarya Agrawal. 2023. Contrasting Intra-Modal
+and Ranking Cross-Modal Hard Negatives to Enhance Visio-Linguistic Fine-
+grained Understanding. arXiv preprint arXiv:2306.08832 (2023).
+[75] Shifeng Zhang, Cheng Chi, Yongqiang Yao, Zhen Lei, and Stan Z. Li. 2020. Bridg-
+ing the Gap Between Anchor-Based and Anchor-Free Detection via Adaptive
+Training Sample Selection (CVPR ’20). 9756–9765.
+[76] Weinan Zhang, Tianqi Chen, Jun Wang, and Yong Yu. 2013. Optimizing top-n
+collaborative filtering via dynamic negative item sampling (SIGIR ’13). 785–788.
+[77] Yanzhao Zhang, Richong Zhang, Samuel Mensah, Xudong Liu, and Yongyi Mao.
+2022. Unsupervised Sentence Representation via Contrastive Learning with
+Mixing Negatives. Proceedings of the AAAI Conference on Artificial Intelligence
+36, 10 (Jun. 2022), 11730–11738.
+[78] Tong Zhao, Julian McAuley, and Irwin King. 2014. Leveraging Social Connections
+to Improve Personalized Ranking for Collaborative Filtering(CIKM ’14). 261–270.
+[79] Yu Zheng, Chen Gao, Jianxin Chang, Yanan Niu, Yang Song, Depeng Jin, and
+Yong Li. 2022. Disentangling Long and Short-Term Interests for Recommendation
+(WWW ’22). 2256–2267.
+[80] Hongyu Zhou, Xin Zhou, and Zhiqi Shen. 2023. Enhancing Dyadic Relations with
+Homogeneous Graphs for Multimodal Recommendation. ArXiv abs/2301.12097
+(2023).
+[81] Xin Zhou and Zhiqi Shen. 2023. A Tale of Two Graphs: Freezing and Denoising
+Graph Structures for Multimodal Recommendation (MM ’23). 935–943.
+[82] Xin Zhou, Hongyu Zhou, Yong Liu, Zhiwei Zeng, Chunyan Miao, Pengwei Wang,
+Yuan You, and Feijun Jiang. 2023. Bootstrap Latent Representations for Multi-
+modal Recommendation (WWW ’23). 845–854.
+[83] Xin Zhou, Hongyu Zhou, Yong Liu, Zhiwei Zeng, Chunyan Miao, Pengwei Wang,
+Yuan You, and Feijun Jiang. 2023. Bootstrap Latent Representations for Multi-
+Modal Recommendation (WWW ’23). 845–854.
+[84] Lanyun Zhu, Deyi Ji, Tianrun Chen, Haiyang Wu, De Wen Soh, and Jun Liu. 2025.
+CPCF: A Cross-Prompt Contrastive Framework for Referring Multimodal Large
+Language Models. In Forty-second International Conference on Machine Learning .
+https://openreview.net/forum?id=0MpGi6IwZr
+[85] Ziwei Zhu, Yun He, Xing Zhao, and James Caverlee. 2021. Popularity Bias in
+Dynamic Recommendation (KDD ’21). 2439–2449.
+[86] Daoming Zong, Chaoyue Ding, Baoxiang Li, Jiakui Li, and Ken Zheng. 2024.
+Balancing Multimodal Learning via Online Logit Modulation. 5753–5761.

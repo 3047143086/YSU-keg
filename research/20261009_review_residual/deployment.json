@@ -1,0 +1,20 @@
+{
+  "baseline_carrier_files_checked": 35,
+  "bundle_sha256": {
+    "PROTOCOL.md": "3e6daadb3a774ce522a8325c2d2a6302bf0cf3b4e4d2e8b62ba9fae2ae56b6c0",
+    "baseline_audit.json": "60335e0472681d203c3e65f5da61fc474f4793ca92c609597f44cbccf7457d6a",
+    "experiment.py": "b51affbeea2781496c47e04b35c27e8b77f55386d56099d6e5670cdfef150607",
+    "input_audit.json": "cf9fe6c594c726da679c55e50facc8f3f5fd2702d328138fcc7ab9fb80101226",
+    "manage.py": "5b906d81ad3aa804ffe2333e02a5a9bd967af89659b41d995ae135e98d32daea",
+    "program.md": "f3d88e01ee1f61f6ab27ff0223332af3f17c6fb7b4414d2d6f9184360bb99532",
+    "residual_core.py": "2bd2d5471623e5f5d4d510657ff31cc831d63ce22c6dd4c36e6c3e53e8e7a133",
+    "source_revision.json": "96b377ad8cffd70199e0759b451c7f7c94cf9dbebda13d1e1d72a192770824fb",
+    "test_experiment.py": "ffe147d889ebad70b2d6c975de408f1422d927b5a8fef231457f873d3a0c817f",
+    "test_residual_core.py": "0eda43fd19b987aff6b05338e873d45729713e87f94e88abcf707ef4b38a174a"
+  },
+  "cpu_threads": 4,
+  "created_unix": 1791549326.781341,
+  "experiment_budget_seconds": 21600,
+  "gpu_selection_owner": "experiment.py",
+  "root": "/data/sunzixuan/review_residual_20261009_v1"
+}

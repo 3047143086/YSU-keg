@@ -1,0 +1,25 @@
+{
+  "model": "PGL",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "dropout": 0.1,
+    "reg_weight": 0,
+    "mode": "local"
+  },
+  "best_epoch": 141,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0952,
+  "best_valid_result": {
+    "recall@10": 0.0589,
+    "recall@20": 0.0952,
+    "ndcg@10": 0.032,
+    "ndcg@20": 0.0413
+  },
+  "best_test_result": {
+    "recall@10": 0.061,
+    "recall@20": 0.096,
+    "ndcg@10": 0.0325,
+    "ndcg@20": 0.0415
+  }
+}

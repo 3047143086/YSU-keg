@@ -1,0 +1,27 @@
+{
+  "model": "LGMRec",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "reg_weight": 1e-06,
+    "hyper_num": 4,
+    "cl_weight": 0.1,
+    "keep_rate": 0.8,
+    "alpha": 0.4
+  },
+  "best_epoch": 41,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0943,
+  "best_valid_result": {
+    "recall@10": 0.0593,
+    "recall@20": 0.0943,
+    "ndcg@10": 0.0323,
+    "ndcg@20": 0.0412
+  },
+  "best_test_result": {
+    "recall@10": 0.0652,
+    "recall@20": 0.1031,
+    "ndcg@10": 0.0353,
+    "ndcg@20": 0.045
+  }
+}

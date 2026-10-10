@@ -1,0 +1,11 @@
+{
+  "pid": 3384760,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/rcmqr_20260908_screen_v2/run_pipeline.py"
+  ],
+  "root": "/data/sunzixuan/rcmqr_20260908_screen_v2",
+  "launched_unix": 1788872319.9626222
+}
+(base) sunzixuan@213keg:~$

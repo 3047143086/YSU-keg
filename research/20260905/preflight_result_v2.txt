@@ -1,0 +1,66 @@
+PROCESS_EXISTS False
+RESULT_JSON_START
+{
+  "purpose": "baseline_reproduction_and_candidate_coverage_only",
+  "new_method_evaluated": false,
+  "test_evaluated": false,
+  "dataset": "baby",
+  "seed": 2026,
+  "users": 19445,
+  "items": 7050,
+  "checkpoint": "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/baby/bridge_baby_seed2026_screen/model.pth",
+  "metrics": {
+    "recall@10": 0.07086048561877824,
+    "ndcg@10": 0.04042493802419999,
+    "recall@20": 0.105559330957891,
+    "ndcg@20": 0.04923659660006874,
+    "recall@50": 0.17391048010873156,
+    "ndcg@50": 0.06289316400607539,
+    "recall@100": 0.25055586352449294,
+    "ndcg@100": 0.0754315685943745,
+    "recall@200": 0.3422912443688993,
+    "ndcg@200": 0.08840780997150892
+  },
+  "historical_baseline_reproduced": true,
+  "cached_vs_direct_max_abs_error": 6.389617919921875e-05,
+  "scoring_interface": "BRIDGE.full_sort_predict; cached scores not used for evaluation",
+  "torch_version": "1.12.1+cu113",
+  "cuda_version": "11.3",
+  "oracle_diagnostic_not_model_performance": {
+    "recall@20": 0.3422912443688993,
+    "ndcg@20": 0.34463917811647654,
+    "fraction_users_with_any_positive_in_top200": 0.352738493185909
+  },
+  "activity_strata": {
+    "history_1_to_5": {
+      "users": 12190,
+      "recall@20": 0.1051681706316653,
+      "ndcg@20": 0.04918901014192672,
+      "candidate_recall@200": 0.3380639868744873
+    },
+    "history_6_to_15": {
+      "users": 6418,
+      "recall@20": 0.10782175132440013,
+      "ndcg@20": 0.04933755805516434,
+      "candidate_recall@200": 0.3501090682455594
+    },
+    "history_over_15": {
+      "users": 837,
+      "recall@20": 0.09390823234909257,
+      "ndcg@20": 0.04915548346500012,
+      "candidate_recall@200": 0.3439106890719794
+    }
+  },
+  "sha256": {
+    "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/baby/bridge_baby_seed2026_screen/model.pth": "bc2b834a3a06cf9852f6d9d2c292b4400a1a5720c14b30bdc954ae095ad2bf7d",
+    "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+    "/data/sunzixuan/bridge_official/src/models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+    "/data/sunzixuan/bridge_official/src/models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+    "/data/sunzixuan/bridge_official/src/configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+  },
+  "git_commit": "4ee976f5f1715ff9c186aac8a8ddd44a74a41ece",
+  "diagnostic_script_sha256": "39c61125cca2ad9b1a4c55a665a8d39a25ca173a5cd298f8d0f2b52d7a4a465a",
+  "elapsed_seconds": 18.857856534421444
+}
+RESULT_JSON_END
+(base) sunzixuan@213keg:~$

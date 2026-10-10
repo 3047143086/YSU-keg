@@ -1,0 +1,36 @@
+{
+  "dataset": "sports",
+  "passed": true,
+  "train_diagnostics": {
+    "mode": "candidate",
+    "count": 218409,
+    "batches": 107,
+    "surrogate_forward_value_is_original_BPR": true,
+    "active_positive": 45851,
+    "active_negative": 2379,
+    "eligible": 45851,
+    "candidate_negative_pairs": 43259370,
+    "eligible_negative_pairs": 9038086,
+    "fallback": 172558,
+    "positive_scope_rate": 0.20993182515372535,
+    "random_negative_scope_rate": 0.010892408279878576,
+    "eligible_rate": 0.20993182515372535,
+    "mean_candidate_negative_count": 198.06587640619205,
+    "mean_eligible_candidate_negative_count": 197.1186233669931,
+    "mean_original_main": 0.41730507701642594,
+    "mean_selected_main": 0.4376691729734331,
+    "mean_fallback_main": 0.41730507645751896,
+    "mean_candidate_main": 0.13947593170102277,
+    "mean_gate_main": 0.4376691729734331,
+    "random_negative_in_scope_rate": 0.010892408279878576,
+    "eligible_pair_rate": 0.20993182515372535,
+    "mean_valid_candidate_negatives_eligible": 197.1186233669931
+  },
+  "validation_metrics_used_for_mechanism_gate": false,
+  "test_evaluated": false,
+  "criteria": {
+    "max_random_negative_in_scope_rate": 0.1,
+    "min_eligible_pair_rate": 0.02,
+    "min_mean_valid_negatives": 20
+  }
+}

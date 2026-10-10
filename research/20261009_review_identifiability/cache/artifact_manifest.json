@@ -1,0 +1,71 @@
+{
+  "fixed_split.npz": {
+    "bytes": 344588,
+    "sha256": "3fb9022d068d9e373be27e611dce35286cf9467b6012dfa4d918e9d624486f66",
+    "shapes": {
+      "a_mask": [
+        105032
+      ],
+      "b_counts": [
+        19445
+      ],
+      "item_ids": [
+        105032
+      ],
+      "population": [
+        19445
+      ],
+      "scorable_queries": [
+        105032
+      ],
+      "scorable_users": [
+        19445
+      ],
+      "user_ids": [
+        105032
+      ]
+    }
+  },
+  "raw_per_user.npz": {
+    "bytes": 109524,
+    "sha256": "c2c5c6ab70766ea0bb9b1466c6322304041c0150ddd41bca2968620753ed2e58",
+    "shapes": {
+      "delta": [
+        19445
+      ],
+      "null": [
+        19445
+      ],
+      "real": [
+        19445
+      ],
+      "scorable_users": [
+        19445
+      ],
+      "user_ids": [
+        19445
+      ]
+    }
+  },
+  "residual_per_user.npz": {
+    "bytes": 110827,
+    "sha256": "5b665417ec7bb62c951d90817808452645c30bdbf85115d2ade19f807e2aeb52",
+    "shapes": {
+      "delta": [
+        19445
+      ],
+      "null": [
+        19445
+      ],
+      "real": [
+        19445
+      ],
+      "scorable_users": [
+        19445
+      ],
+      "user_ids": [
+        19445
+      ]
+    }
+  }
+}

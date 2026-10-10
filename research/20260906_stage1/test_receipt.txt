@@ -1,0 +1,12 @@
+test_internal_split_preserves_history_and_is_reproducible (test_stage1.StageOneTests) ... ok
+test_matching_shapes_gradients_and_equal_parameters (test_stage1.StageOneTests) ... ok
+test_metadata_cleaning (test_stage1.StageOneTests) ... ok
+test_profile_excludes_positive_for_both_alternatives (test_stage1.StageOneTests) ... ok
+test_shuffle_preserves_missingness (test_stage1.StageOneTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.358s
+
+OK
+
+(base) sunzixuan@213keg:~$

@@ -1,0 +1,36 @@
+{
+  "dataset": "baby",
+  "passed": true,
+  "train_diagnostics": {
+    "mode": "candidate",
+    "count": 118551,
+    "batches": 58,
+    "surrogate_forward_value_is_original_BPR": true,
+    "active_positive": 40672,
+    "active_negative": 3300,
+    "eligible": 40672,
+    "candidate_negative_pairs": 23371438,
+    "eligible_negative_pairs": 7994676,
+    "fallback": 77879,
+    "positive_scope_rate": 0.34307597574039866,
+    "random_negative_scope_rate": 0.027836121163043754,
+    "eligible_rate": 0.34307597574039866,
+    "mean_candidate_negative_count": 197.14247876441362,
+    "mean_eligible_candidate_negative_count": 196.56461447678993,
+    "mean_original_main": 0.4252539197321301,
+    "mean_selected_main": 0.4733302018497445,
+    "mean_fallback_main": 0.4252539197321301,
+    "mean_candidate_main": 0.2593266775292007,
+    "mean_gate_main": 0.4733302018497445,
+    "random_negative_in_scope_rate": 0.027836121163043754,
+    "eligible_pair_rate": 0.34307597574039866,
+    "mean_valid_candidate_negatives_eligible": 196.56461447678993
+  },
+  "validation_metrics_used_for_mechanism_gate": false,
+  "test_evaluated": false,
+  "criteria": {
+    "max_random_negative_in_scope_rate": 0.1,
+    "min_eligible_pair_rate": 0.02,
+    "min_mean_valid_negatives": 20
+  }
+}

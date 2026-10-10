@@ -1,0 +1,436 @@
+{
+  "started_unix": 1789119804.820922,
+  "status": "technical_failure",
+  "jobs": [
+    {
+      "name": "baby_prepare",
+      "exit_code": 0,
+      "seconds": 18.31121563911438,
+      "log": "/data/sunzixuan/target_isolated_20260911_soft_v1/logs/baby_prepare.log"
+    },
+    {
+      "name": "baby_baseline_smoke",
+      "exit_code": 0,
+      "seconds": 67.17580389976501,
+      "log": "/data/sunzixuan/target_isolated_20260911_soft_v1/logs/baby_baseline_smoke.log"
+    },
+    {
+      "name": "baby_history_smoke",
+      "exit_code": 0,
+      "seconds": 73.54400968551636,
+      "log": "/data/sunzixuan/target_isolated_20260911_soft_v1/logs/baby_history_smoke.log"
+    },
+    {
+      "name": "baby_edge_smoke",
+      "exit_code": 0,
+      "seconds": 73.68361282348633,
+      "log": "/data/sunzixuan/target_isolated_20260911_soft_v1/logs/baby_edge_smoke.log"
+    },
+    {
+      "name": "baby_edge_s2026",
+      "exit_code": 0,
+      "seconds": 3764.685549020767,
+      "log": "/data/sunzixuan/target_isolated_20260911_soft_v1/logs/baby_edge_s2026.log"
+    },
+    {
+      "name": "baby_baseline_s2026",
+      "exit_code": 1,
+      "seconds": 1313.0654866695404,
+      "log": "/data/sunzixuan/target_isolated_20260911_soft_v1/logs/baby_baseline_s2026.log"
+    }
+  ],
+  "screens": {},
+  "stage": "baby_baseline_s2026",
+  "updated_unix": 1789125115.5277498,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/target_isolated_20260911_soft_v1/train.py",
+    "--bridge-root",
+    "/data/sunzixuan/target_isolated_20260911_soft_v1/carrier",
+    "--dataset",
+    "baby",
+    "--seed",
+    "2026",
+    "--output",
+    "/data/sunzixuan/target_isolated_20260911_soft_v1/runs/baby_baseline_s2026",
+    "--device",
+    "cuda",
+    "--gpu-id",
+    "0"
+  ],
+  "diagnostic": {
+    "dataset": "baby",
+    "seed": 2026,
+    "shape": [
+      19445,
+      7050
+    ],
+    "training_edges": 118551,
+    "negative_sampling": "one uniform item outside the complete training history per training edge",
+    "official_validation_evaluated": false,
+    "official_test_evaluated": false,
+    "held_out_labels_used_for_diagnostic_or_negative_filtering": false,
+    "legacy_reader_loads_full_split_file_for_global_id_space": true,
+    "encoder_instantiated": false,
+    "encoder_graph_modified": false,
+    "fixed_knn_support": true,
+    "knn_support_reselected_after_edge_deletion": false,
+    "inference_modified": false,
+    "interpretation": "Training evidence mismatch diagnostic; not a performance or generalization result. Edge deletion is exact conditional on the original KNN support, with floating-point tolerance; encoder message passing is untouched.",
+    "baseline_parity": {
+      "method": "BRIDGE._build_behavior_score_matrix",
+      "sample": "all training positives and one fixed unobserved negative per edge",
+      "positive_max_abs_difference": 1.1444091796875e-05,
+      "negative_max_abs_difference": 2.86102294921875e-06,
+      "tolerance": 0.0002,
+      "passed": true
+    },
+    "mechanism_gate": {
+      "predeclared": true,
+      "raw_mean_relative_decrease_definition": "(mean(original positive raw) - mean(edge-deleted positive raw)) / mean(original positive raw)",
+      "raw_mean_relative_decrease_minimum": 0.1,
+      "raw_mean_relative_decrease": 0.8604168645845456,
+      "z_decrease_definition": "history-only positive z minus edge-deleted positive z",
+      "z_decrease_per_edge_minimum": 0.1,
+      "fraction_edges_with_z_decrease_minimum": 0.25,
+      "fraction_edges_with_z_decrease": 0.9993167497532708,
+      "mechanism_gate_passed": true
+    },
+    "formal_training_allowed": true,
+    "arms": {
+      "original": {
+        "positive_z": {
+          "count": 118551,
+          "mean": 10.182640815307582,
+          "std": 6.146283579730012,
+          "min": -0.6304600238800049,
+          "median": 8.660425186157227,
+          "max": 54.301639556884766,
+          "p10": 3.751446485519409,
+          "p90": 19.09483528137207
+        },
+        "negative_z": {
+          "count": 118551,
+          "mean": -0.01586998933019445,
+          "std": 0.8825946591632816,
+          "min": -0.9624669551849365,
+          "median": -0.3186699450016022,
+          "max": 16.0638484954834,
+          "p10": -0.5587967038154602,
+          "p90": 1.0005239248275757
+        },
+        "positive_minus_negative_z": {
+          "count": 118551,
+          "mean": 10.198510805641162,
+          "std": 6.21277905704153,
+          "min": -10.61154556274414,
+          "median": 8.741164207458496,
+          "max": 54.3434944152832,
+          "p10": 3.6980979442596436,
+          "p90": 19.127336502075195
+        }
+      },
+      "history": {
+        "positive_z": {
+          "count": 118551,
+          "mean": 11.42093322429022,
+          "std": 6.837609606483885,
+          "min": -0.44548049569129944,
+          "median": 9.641703605651855,
+          "max": 71.46488189697266,
+          "p10": 4.4981842041015625,
+          "p90": 21.21186065673828
+        },
+        "negative_z": {
+          "count": 118551,
+          "mean": -0.014763533000003177,
+          "std": 0.8897528952503845,
+          "min": -0.9562198519706726,
+          "median": -0.2969180941581726,
+          "max": 17.646360397338867,
+          "p10": -0.541257917881012,
+          "p90": 0.9503956437110901
+        },
+        "positive_minus_negative_z": {
+          "count": 118551,
+          "mean": 11.435696757346626,
+          "std": 6.897566068456932,
+          "min": -12.114283561706543,
+          "median": 9.716659545898438,
+          "max": 71.50981140136719,
+          "p10": 4.425013065338135,
+          "p90": 21.254356384277344
+        }
+      },
+      "edge": {
+        "positive_z": {
+          "count": 118551,
+          "mean": 1.078795789767738,
+          "std": 2.1847436044568926,
+          "min": -0.9178499579429626,
+          "median": 0.33449119329452515,
+          "max": 51.73908615112305,
+          "p10": -0.4323464334011078,
+          "p90": 3.4191482067108154
+        },
+        "negative_z": {
+          "count": 118551,
+          "mean": -0.013476861265747169,
+          "std": 0.9000787144512119,
+          "min": -0.9569925665855408,
+          "median": -0.29931774735450745,
+          "max": 18.007850646972656,
+          "p10": -0.5452473759651184,
+          "p90": 0.9649733304977417
+        },
+        "positive_minus_negative_z": {
+          "count": 118551,
+          "mean": 1.092272651419758,
+          "std": 2.36303860536343,
+          "min": -18.26994514465332,
+          "median": 0.3879454731941223,
+          "max": 51.78734588623047,
+          "p10": -0.5709744095802307,
+          "p90": 3.5940520763397217
+        }
+      }
+    },
+    "strata": [
+      {
+        "group": "degree_1_to_5",
+        "users": 12190,
+        "training_edges": 45169,
+        "edge_weighted_history_minus_edge_positive_z": {
+          "count": 45169,
+          "mean": 8.86841742163407,
+          "std": 6.773478410564629,
+          "min": 0.0,
+          "median": 6.9098358154296875,
+          "max": 71.53116607666016,
+          "p10": 2.3793873310089113,
+          "p90": 18.309428024292
+        },
+        "user_weighted_mean_history_minus_edge_positive_z": {
+          "count": 12190,
+          "mean": 8.710546705747298,
+          "std": 6.074576624298348,
+          "min": 0.2854730288187663,
+          "median": 7.175342778364817,
+          "max": 59.496055603027344,
+          "p10": 2.5555531561374663,
+          "p90": 16.895843839645387
+        },
+        "raw_positive_decrease": {
+          "count": 45169,
+          "mean": 0.13234489656257037,
+          "std": 0.10842604982396087,
+          "min": 0.0,
+          "median": 0.09971470378336353,
+          "max": 1.076351821422577,
+          "p10": 0.03370589870140034,
+          "p90": 0.27632642984390277
+        }
+      },
+      {
+        "group": "degree_6_to_10",
+        "users": 4996,
+        "training_edges": 37107,
+        "edge_weighted_history_minus_edge_positive_z": {
+          "count": 37107,
+          "mean": 11.165971034513378,
+          "std": 7.291799372514716,
+          "min": 0.10206437110900879,
+          "median": 9.239774703979492,
+          "max": 55.68515396118164,
+          "p10": 3.6924994468688968,
+          "p90": 21.786116409301762
+        },
+        "user_weighted_mean_history_minus_edge_positive_z": {
+          "count": 4996,
+          "mean": 11.103332239273023,
+          "std": 5.14173841118006,
+          "min": 1.1284141540527344,
+          "median": 10.403631736834843,
+          "max": 30.28829065958659,
+          "p10": 4.918536986623492,
+          "p90": 18.25191366672516
+        },
+        "raw_positive_decrease": {
+          "count": 37107,
+          "mean": 0.2948718525595399,
+          "std": 0.21232833043859242,
+          "min": 0.002236319212913042,
+          "median": 0.23580927401781082,
+          "max": 2.4342965334653854,
+          "p10": 0.08977800965506212,
+          "p90": 0.5868525911122561
+        }
+      },
+      {
+        "group": "degree_11_to_20",
+        "users": 1905,
+        "training_edges": 26039,
+        "edge_weighted_history_minus_edge_positive_z": {
+          "count": 26039,
+          "mean": 11.828665397963704,
+          "std": 7.274232344471555,
+          "min": 0.1348646879196167,
+          "median": 9.908065795898438,
+          "max": 54.458858489990234,
+          "p10": 4.23789415359497,
+          "p90": 22.720287322998047
+        },
+        "user_weighted_mean_history_minus_edge_positive_z": {
+          "count": 1905,
+          "mean": 11.870396000781952,
+          "std": 3.836170544066298,
+          "min": 2.208805279298262,
+          "median": 11.915187067455715,
+          "max": 22.703211957758125,
+          "p10": 6.791446334855599,
+          "p90": 16.887603354454043
+        },
+        "raw_positive_decrease": {
+          "count": 26039,
+          "mean": 0.5728807671117849,
+          "std": 0.39491291006455476,
+          "min": 0.004560673250942282,
+          "median": 0.46608842113415927,
+          "max": 4.404382321983576,
+          "p10": 0.18493456872682992,
+          "p90": 1.1127122189596872
+        }
+      },
+      {
+        "group": "degree_over_20",
+        "users": 354,
+        "training_edges": 10236,
+        "edge_weighted_history_minus_edge_positive_z": {
+          "count": 10236,
+          "mean": 10.077264844550198,
+          "std": 6.147222594129688,
+          "min": 0.4466380476951599,
+          "median": 8.382432460784912,
+          "max": 51.05023193359375,
+          "p10": 3.867669701576233,
+          "p90": 19.144856452941895
+        },
+        "user_weighted_mean_history_minus_edge_positive_z": {
+          "count": 354,
+          "mean": 10.350770578684696,
+          "std": 2.4818454500764013,
+          "min": 3.7084674887035205,
+          "median": 10.486910505949155,
+          "max": 15.844428346270607,
+          "p10": 6.949415084501166,
+          "p90": 13.50718331677573
+        },
+        "raw_positive_decrease": {
+          "count": 10236,
+          "mean": 1.3536205601785114,
+          "std": 1.1365662305147073,
+          "min": 0.05782830887376106,
+          "median": 1.0444065459024947,
+          "max": 15.385705184191465,
+          "p10": 0.4046185286156052,
+          "p90": 2.617147070524691
+        }
+      }
+    ],
+    "raw_positive_original": {
+      "count": 118551,
+      "mean": 0.4479522515645824,
+      "std": 0.5802183420187115,
+      "min": 0.0,
+      "median": 0.26818217895925045,
+      "max": 15.385705184191465,
+      "p10": 0.07624457217752934,
+      "p90": 0.9872454600408673
+    },
+    "raw_positive_edge_deleted": {
+      "count": 118551,
+      "mean": 0.06252657978979688,
+      "std": 0.1464630511669012,
+      "min": 0.0,
+      "median": 0.021049132540702932,
+      "max": 3.094142894206529,
+      "p10": 0.0,
+      "p90": 0.1472471230505865
+    },
+    "raw_positive_self_vote": {
+      "count": 118551,
+      "mean": 0.3866400067331084,
+      "std": 0.5307374032731088,
+      "min": 0.0,
+      "median": 0.22225797176361084,
+      "max": 15.385705184191465,
+      "p10": 0.054749321192502975,
+      "p90": 0.8730279486626387
+    },
+    "raw_positive_decrease": {
+      "count": 118551,
+      "mean": 0.3854256717747856,
+      "std": 0.5291570909185327,
+      "min": 0.0,
+      "median": 0.22161394357681274,
+      "max": 15.385705184191465,
+      "p10": 0.054556543938815594,
+      "p90": 0.8704165481030941
+    },
+    "original_minus_edge_positive_z": {
+      "count": 118551,
+      "mean": 9.103845025465302,
+      "std": 6.53163961811094,
+      "min": -9.620491027832031,
+      "median": 7.457692623138428,
+      "max": 54.367923736572266,
+      "p10": 2.315479278564453,
+      "p90": 18.648555755615234
+    },
+    "history_minus_edge_positive_z": {
+      "count": 118551,
+      "mean": 10.342137434031514,
+      "std": 7.109126794489043,
+      "min": 0.0,
+      "median": 8.415257453918457,
+      "max": 71.53116607666016,
+      "p10": 3.1365468502044678,
+      "p90": 20.70079803466797
+    },
+    "user_weighted_history_minus_edge_positive_z": {
+      "count": 19445,
+      "mean": 9.664751317912655,
+      "std": 5.750382652312275,
+      "min": 0.2854730288187663,
+      "median": 8.65889040629069,
+      "max": 59.496055603027344,
+      "p10": 3.1353814125061037,
+      "p90": 17.274605234931503
+    },
+    "cache": {
+      "path": "/data/sunzixuan/target_isolated_20260911_soft_v1/cache/baby/cache.npz",
+      "sha256": "ba1715d5124c7acf435f7dbe5443763a8b4d3e1b2d1ae3b2a40fea62db76bbd6",
+      "size_bytes": 1113936152
+    },
+    "input_sha256": {
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/prepare.py": "fe7832a05f664e01ffcbfc91e85788c1486c73476edf5735d32bf3664cc52c90",
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/evidence.py": "7997aab5fedb9fa47011c45091f26322e742020d4ba326b326b8474a3a94aaee",
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/carrier/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/carrier/src/models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/carrier/src/utils/dataset.py": "c5814605da7c6e9ec1f52fe11edbfeaf89dec87f3b6f629265b0547412d2d00c",
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/carrier/src/utils/configurator.py": "dde0ebdd2a45fae206da6ffe8728a2fd89b2064d8655e08e11b4869231ed41ac",
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/carrier/src/configs/overall.yaml": "e9ba9e64d2936caae9e6e429ede7f9c89a5dbb79df4bc623d97efbd985e2637f",
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/carrier/src/configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3",
+      "/data/sunzixuan/target_isolated_20260911_soft_v1/carrier/src/configs/dataset/baby.yaml": "8426650aed8a0eb60999b2534573d45e03f363b1c1a0f8b996b39dbc650c3caa"
+    },
+    "versions": {
+      "numpy": "1.22.4",
+      "torch": "1.12.1+cu113"
+    },
+    "elapsed_seconds": 17.900079157203436
+  },
+  "error": "baby_baseline_s2026 failed; see /data/sunzixuan/target_isolated_20260911_soft_v1/logs/baby_baseline_s2026.log",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/sunzixuan/target_isolated_20260911_soft_v1/run_pipeline.py\", line 148, in <module>\n    main()\n  File \"/data/sunzixuan/target_isolated_20260911_soft_v1/run_pipeline.py\", line 139, in main\n    outputs = {arm: train(dataset, arm, smoke=False) for arm in ('edge', 'baseline', 'history')}\n  File \"/data/sunzixuan/target_isolated_20260911_soft_v1/run_pipeline.py\", line 139, in <dictcomp>\n    outputs = {arm: train(dataset, arm, smoke=False) for arm in ('edge', 'baseline', 'history')}\n  File \"/data/sunzixuan/target_isolated_20260911_soft_v1/run_pipeline.py\", line 73, in train\n    execute(name, command, 1800 if smoke else 8 * 3600)\n  File \"/data/sunzixuan/target_isolated_20260911_soft_v1/run_pipeline.py\", line 40, in execute\n    raise RuntimeError(name + ' failed; see ' + str(log_path))\nRuntimeError: baby_baseline_s2026 failed; see /data/sunzixuan/target_isolated_20260911_soft_v1/logs/baby_baseline_s2026.log\n",
+  "finished_unix": 1789125115.5277483
+}

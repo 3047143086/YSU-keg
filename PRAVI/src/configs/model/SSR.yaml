@@ -1,0 +1,22 @@
+# coding: utf-8
+# @email: jinfeng.xu0605@gmail.com / jinfeng@connect.hku.hk
+
+embedding_size: [64]
+feat_embed_dim: 64
+
+n_mm_layers: [1]
+num_layers: [1, 2, 3]
+knn_k: [10]
+mm_image_weight: 0.1
+mix_alpha: [0.1]
+band_num: [3]
+k_poly: [5]
+tau: [0.2]
+ma_rate: [0.1, 0.2, 0.3, 0.4]
+aggr_mode: ['add']
+out_mode: ['aggr']
+learning_rate: [0.0001]
+cl_weight: [0.0001, 0.001, 0.01]
+ma_weight: [0.001, 0.01, 0.1]
+reg_weight: [0.1, 0.01, 0.001]
+hyper_parameters: ["embedding_size","knn_k", "n_mm_layers", "num_layers", "aggr_mode","out_mode", "reg_weight", "ma_rate", "band_num", "k_poly", "tau", "learning_rate","cl_weight","mix_alpha","ma_weight"]

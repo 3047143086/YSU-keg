@@ -1,0 +1,21 @@
+{
+  "purpose": "single-pass evaluation cache equivalence audit",
+  "frozen_source": {
+    "bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+    "dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c"
+  },
+  "remote_source_root": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1",
+  "remote_checkpoint": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/baby_baseline_s2026/best.pt",
+  "dataset": "baby",
+  "seed": 2026,
+  "test_loader_constructed": false,
+  "test_evaluated": false,
+  "gpu_requested": false
+  ,"baseline_anchors_sha256": {
+    "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/deployment.json": "07084ba0da9a6928bafe3ce5e073386a07412c2ee4eeff4ea865466d0c49d1d9",
+    "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/baby_baseline_s2026/inputs.json": "1d9bae61e0b3a0ddef2cdb05b22bc85e9ccba6a3b0a71c06acada2c90ef547c9",
+    "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/baby_baseline_s2026/result.json": "889f2619fef34bd16393e954b663f31b5d8331c23162643ac682d343e3f316f9",
+    "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/baby_baseline_s2026/config.json": "385775c8f17f4cde9f6445b545dd30280bd117b1a5fc1ccadf1613ec2fbc44f5",
+    "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/baby_baseline_s2026/best.pt": "6deb59326f61137d658565d4c19fc892d7a5cb50578a120abc12497bcbc469a9"
+  }
+}

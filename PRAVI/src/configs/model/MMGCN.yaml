@@ -1,0 +1,9 @@
+# coding: utf-8
+# @email: jinfeng.xu0605@gmail.com / jinfeng@connect.hku.hk
+
+embedding_size: 64
+n_layers: [2, 3]
+reg_weight: [0, 0.00001, 0.0001, 0.001, 0.01, 0.1]
+learning_rate: [0.0001, 0.001, 0.01]
+
+hyper_parameters: ["n_layers", "reg_weight", "learning_rate"]

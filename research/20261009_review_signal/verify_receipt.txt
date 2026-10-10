@@ -1,0 +1,33 @@
+{
+  "deployed": "/data/sunzixuan/review_signal_20261009_v1",
+  "files": 13,
+  "baseline_carrier_files_checked": 35
+}
+REVIEW_SIGNAL_TEST_SUMMARY={"tests": 19, "successful": true, "failures": 0, "errors": 0, "skipped": 0}
+
+test_coverage_below_boundary_discards (test_experiment.DecisionTests) ... ok
+test_each_confidence_lower_bound_must_be_strictly_positive (test_experiment.DecisionTests) ... ok
+test_each_control_and_half_must_have_positive_delta (test_experiment.DecisionTests) ... ok
+test_each_control_must_pass_delta (test_experiment.DecisionTests) ... ok
+test_fixed_gate_passes_at_coverage_and_delta_boundary (test_experiment.DecisionTests) ... ok
+test_import_and_decision_leave_encoder_unloaded (test_experiment.DecisionTests) ... ok
+test_missing_control_is_an_error (test_experiment.DecisionTests) ... ok
+test_missing_half_is_an_error (test_experiment.DecisionTests) ... ok
+test_nonfinite_or_invalid_domain_is_an_error (test_experiment.DecisionTests) ... ok
+test_reversed_interval_is_an_error (test_experiment.DecisionTests) ... ok
+test_ambiguous_owner_is_preserved_without_guessing (test_mapping.MappingTests) ... ok
+test_duplicate_raw_owner_event_is_not_arbitrarily_selected (test_mapping.MappingTests) ... ok
+test_frozen_targets_and_support_exclude_all_target_edges (test_mapping.MappingTests) ... ok
+test_strict_mode_rejects_missing_support_review (test_mapping.MappingTests) ... ok
+test_two_encoded_users_cannot_map_to_one_raw_reviewer (test_mapping.MappingTests) ... ok
+test_validation_and_test_rows_never_create_matches (test_mapping.MappingTests) ... ok
+test_cleaning_is_shared_for_donor_length_and_encoding (test_screen_core.ScreenCoreTests) ... ok
+test_donor_preserves_item_excludes_owner_and_prefers_word_length (test_screen_core.ScreenCoreTests) ... ok
+test_zero_profiles_remain_zero_and_row_scores_match_literal (test_screen_core.ScreenCoreTests) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.007s
+
+OK
+
+(base) sunzixuan@213keg:~$

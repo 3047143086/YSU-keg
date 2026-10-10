@@ -1,0 +1,3 @@
+commit	validation_recall20	sampled_peak_gpu_gib	status	description
+6b2a9276879e236667325ffbeb8b24ecd1958454	0.10546504793740588	NA	keep	baby baseline seed 2026
+6b2a9276879e236667325ffbeb8b24ecd1958454	NA	NA	crash	baby_edge_s2026 failed; see /data/sunzixuan/decoupled_gate_20261008_v1/logs/baby_edge_s2026.log

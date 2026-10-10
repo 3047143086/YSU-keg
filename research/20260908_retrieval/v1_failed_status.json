@@ -1,0 +1,153 @@
+{
+  "root": "/data/sunzixuan/rcmqr_20260908_screen_v1",
+  "checked_unix": 1788871734.7571933,
+  "pipeline_launch.json": {
+    "pid": 3379153,
+    "command": [
+      "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+      "-u",
+      "/data/sunzixuan/rcmqr_20260908_screen_v1/run_pipeline.py"
+    ],
+    "root": "/data/sunzixuan/rcmqr_20260908_screen_v1",
+    "launched_unix": 1788871599.9665766,
+    "process_exists": false
+  },
+  "pipeline_status.json": {
+    "stage": "failed",
+    "pid": 3379153,
+    "updated_unix": 1788871630.6373563,
+    "elapsed_seconds": 30.385093063116074,
+    "error": "Base smoke failed",
+    "traceback": "Traceback (most recent call last):\n  File \"/data/sunzixuan/rcmqr_20260908_screen_v1/run_pipeline.py\", line 323, in <module>\n    main()\n  File \"/data/sunzixuan/rcmqr_20260908_screen_v1/run_pipeline.py\", line 298, in main\n    raise RuntimeError('Base smoke failed')\nRuntimeError: Base smoke failed\n"
+  },
+  "split_manifest.json": {
+    "source_inter_sha256": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+    "split_sha256": "1bb12f1fb90132e8ecc32650fae8f57fd886914200711cf8da4f1a562740e073",
+    "split_seed": 20260906,
+    "source_training_interactions": 118551,
+    "support_interactions": 99106,
+    "development_interactions": 19445,
+    "development_users": 19445,
+    "items": 7050,
+    "users": 19445,
+    "development_items_absent_in_support": 22,
+    "official_validation_included": false,
+    "official_test_included": false,
+    "policy_training": false,
+    "selection_metric": "role1 calibration only",
+    "role_seed": 20260908,
+    "role_counts": {
+      "0": 11667,
+      "1": 3889,
+      "2": 3889
+    },
+    "role_sha256": "86ddc69d172a0999fd1bae0df8642bd617269946c1a2e67dd66e7a15d6267ac6",
+    "role_names": [
+      "retriever_training",
+      "calibration",
+      "internal_development"
+    ],
+    "historical_stage1_development_reused": true,
+    "note": "Internal mechanism screen; not a fresh publication confirmation set."
+  },
+  "summary.json": {
+    "stage": "baby_train_internal_retrieval_screen_not_publication_evidence",
+    "updated_unix": 1788871630.6378317,
+    "seeds": {
+      "2026": {
+        "base": {
+          "status": "pending"
+        },
+        "independent": {
+          "status": "pending"
+        },
+        "hard": {
+          "status": "pending"
+        },
+        "clear": {
+          "status": "pending"
+        },
+        "conditional": {
+          "status": "pending"
+        },
+        "shuffled": {
+          "status": "pending"
+        },
+        "base_user": {
+          "status": "pending"
+        },
+        "feedback": {
+          "status": "pending"
+        }
+      },
+      "2027": {
+        "base": {
+          "status": "pending"
+        },
+        "independent": {
+          "status": "pending"
+        },
+        "hard": {
+          "status": "pending"
+        },
+        "clear": {
+          "status": "pending"
+        },
+        "conditional": {
+          "status": "pending"
+        },
+        "shuffled": {
+          "status": "pending"
+        },
+        "base_user": {
+          "status": "pending"
+        },
+        "feedback": {
+          "status": "pending"
+        }
+      },
+      "2028": {
+        "base": {
+          "status": "pending"
+        },
+        "independent": {
+          "status": "pending"
+        },
+        "hard": {
+          "status": "pending"
+        },
+        "clear": {
+          "status": "pending"
+        },
+        "conditional": {
+          "status": "pending"
+        },
+        "shuffled": {
+          "status": "pending"
+        },
+        "base_user": {
+          "status": "pending"
+        },
+        "feedback": {
+          "status": "pending"
+        }
+      }
+    },
+    "official_test_evaluated": false,
+    "official_validation_evaluated": false,
+    "interpretation": "Internal screen, not proof of improvement or novelty.",
+    "completed_jobs": 0,
+    "total_jobs": 24,
+    "all_complete": false,
+    "aggregate": {},
+    "conditional_vs_controls": {},
+    "decision": "incomplete; no performance conclusion"
+  },
+  "gpu": "0, 11346, 80\n1, 1667, 0\n",
+  "logs": {
+    "pipeline.log": "{\"stage\": \"prepared\", \"pid\": 3379153, \"updated_unix\": 1788871600.5706525, \"elapsed_seconds\": 0.3183891512453556, \"role_counts\": {\"0\": 11667, \"1\": 3889, \"2\": 3889}}\n{\"stage\": \"running\", \"pid\": 3379153, \"updated_unix\": 1788871600.5757837, \"elapsed_seconds\": 0.32352032512426376, \"job\": \"unit_tests\", \"child_pid\": 3379161, \"gpu\": null, \"output\": \"/data/sunzixuan/rcmqr_20260908_screen_v1/unit_tests\"}\n{\"stage\": \"running\", \"pid\": 3379153, \"updated_unix\": 1788871615.6199522, \"elapsed_seconds\": 15.367689423263073, \"job\": \"base_smoke\", \"child_pid\": 3379426, \"gpu\": 1, \"output\": \"/data/sunzixuan/rcmqr_20260908_screen_v1/smoke/base\"}\n{\"stage\": \"failed\", \"pid\": 3379153, \"updated_unix\": 1788871630.6373563, \"elapsed_seconds\": 30.385093063116074, \"error\": \"Base smoke failed\", \"traceback\": \"Traceback (most recent call last):\\n  File \\\"/data/sunzixuan/rcmqr_20260908_screen_v1/run_pipeline.py\\\", line 323, in <module>\\n    main()\\n  File \\\"/data/sunzixuan/rcmqr_20260908_screen_v1/run_pipeline.py\\\", line 298, in main\\n    raise RuntimeError('Base smoke failed')\\nRuntimeError: Base smoke failed\\n\"}\nTraceback (most recent call last):\n  File \"/data/sunzixuan/rcmqr_20260908_screen_v1/run_pipeline.py\", line 323, in <module>\n    main()\n  File \"/data/sunzixuan/rcmqr_20260908_screen_v1/run_pipeline.py\", line 298, in main\n    raise RuntimeError('Base smoke failed')\nRuntimeError: Base smoke failed\n",
+    "smoke/base/stdout.log": "self.dataset_path: /data/sunzixuan/rcmqr_20260908_screen_v1/smoke/base/data/baby, i: baby.inter\nTraceback (most recent call last):\n  File \"/data/sunzixuan/rcmqr_20260908_screen_v1/train_base.py\", line 357, in <module>\n    main()\n  File \"/data/sunzixuan/rcmqr_20260908_screen_v1/train_base.py\", line 164, in main\n    train = TrainDataLoader(config, train_dataset, batch_size=config['train_batch_size'], shuffle=True)\n  File \"/data/sunzixuan/rcmqr_20260908_screen_v1/bridge_src/utils/dataloader.py\", line 108, in __init__\n    super().__init__(config, dataset, additional_dataset=None,\n  File \"/data/sunzixuan/rcmqr_20260908_screen_v1/bridge_src/utils/dataloader.py\", line 53, in __init__\n    self.sparsity = 1 - self.dataset.inter_num / self.dataset.user_num / self.dataset.item_num\nAttributeError: 'RecDataset' object has no attribute 'inter_num'\n",
+    "unit_tests/stdout.log": "test_duplicate_support_pairs_do_not_reweight_history (test_base.BaseProtocolTests) ... ok\ntest_duplicate_targets_rejected (test_base.BaseProtocolTests) ... ok\ntest_leaked_target_rejected (test_base.BaseProtocolTests) ... ok\ntest_role_mismatch_rejected (test_base.BaseProtocolTests) ... ok\ntest_single_target_ranking_metrics (test_base.BaseProtocolTests) ... ok\ntest_support_only_normalized_profile (test_base.BaseProtocolTests) ... ok\ntest_all_variants_finish_with_shared_ranker (test_integration.IntegrationTests) ... ok\ntest_context_derangement_is_reproducible_and_bijective (test_retrieval.RetrievalTests) ... ok\ntest_exact_budget_and_support_exclusion (test_retrieval.RetrievalTests) ... ok\ntest_impossible_budget_raises (test_retrieval.RetrievalTests) ... ok\ntest_metrics_and_net_coverage (test_retrieval.RetrievalTests) ... ok\ntest_model_capacity_and_finite_gradient (test_retrieval.RetrievalTests) ... ok\ntest_prepared_interface_and_target_leak_guard (test_retrieval.RetrievalTests) ... ok\ntest_standardization_handles_history_and_constant_rows (test_retrieval.RetrievalTests) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 5.714s\n\nOK\n"
+  },
+  "results_markdown": "# Retrieval Screen Status\n\nTraining-internal Baby screen. Official validation/test are not evaluated.\n\n| Seed | Job | Status |\n| --- | --- | --- |\n| 2026 | base | pending |\n| 2026 | independent | pending |\n| 2026 | hard | pending |\n| 2026 | clear | pending |\n| 2026 | conditional | pending |\n| 2026 | shuffled | pending |\n| 2026 | base_user | pending |\n| 2026 | feedback | pending |\n| 2027 | base | pending |\n| 2027 | independent | pending |\n| 2027 | hard | pending |\n| 2027 | clear | pending |\n| 2027 | conditional | pending |\n| 2027 | shuffled | pending |\n| 2027 | base_user | pending |\n| 2027 | feedback | pending |\n| 2028 | base | pending |\n| 2028 | independent | pending |\n| 2028 | hard | pending |\n| 2028 | clear | pending |\n| 2028 | conditional | pending |\n| 2028 | shuffled | pending |\n| 2028 | base_user | pending |\n| 2028 | feedback | pending |\n\n## Internal Development Metrics\n\n| Variant | Seeds | R20 | N20 | Candidate R200 | Net Candidate Gain |\n| --- | --- | --- | --- | --- | --- |\n\nincomplete; no performance conclusion\n\nPrimary comparisons are conditional vs hard/independent/shuffled controls with identical labels.\nRaw base has fewer training labels; gains over it alone are not an equal-label comparison.\n\nFull metrics and selected configurations: summary.json and each result.json.\nDo not compare these internal metrics directly to old official-validation results.\n"
+}

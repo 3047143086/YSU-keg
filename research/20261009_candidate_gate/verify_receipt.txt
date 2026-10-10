@@ -1,0 +1,56 @@
+{
+  "deployed": "/data/sunzixuan/candidate_gate_20261009_v1",
+  "files": 18,
+  "carrier_files": 35
+}
+
+test_full_frozen_budget_and_no_plugin_are_required (test_lineage.LineageTests) ... ok
+test_never_reuse_interrupted_test_selected_or_non_original_results (test_lineage.LineageTests) ... ok
+test_finite_adam_update_and_rng_unchanged (test_numerics.NumericTests) ... ok
+test_forward_failure_is_captured (test_numerics.NumericTests) ... ok
+test_invalid_gradient_is_saved_and_never_applied (test_numerics.NumericTests) ... ok
+test_svd_probe_preserves_decomposition_gradient (test_numerics.NumericTests) ... ok
+test_each_coverage_failure_stops_even_with_high_validation_recall (test_pipeline.MechanismTests) ... ok
+test_exact_boundary_passes_even_with_zero_validation_recall (test_pipeline.MechanismTests) ... ok
+test_missing_diagnostics_are_a_technical_error (test_pipeline.MechanismTests) ... ok
+test_candidate_encoder_gradient_and_forward_equal_original_with_all_auxiliary_terms (test_proposal.GradientTests) ... ok
+test_candidate_filters_every_training_positive_without_refilling_raw_topk (test_proposal.GradientTests) ... ok
+test_constructor_consumes_exactly_the_original_rng_draws (test_proposal.GradientTests) ... ok
+test_constructor_rejects_unsupported_mode_sparse_backend_and_invalid_training_matrix (test_proposal.GradientTests) ... ok
+test_diagnostics_report_separate_objectives_coverage_and_reset (test_proposal.GradientTests) ... ok
+test_exception_restores_context_and_does_not_record_partial_diagnostics (test_proposal.GradientTests) ... ok
+test_gate_gradient_matches_independent_candidate_formula_and_original_regularizer (test_proposal.GradientTests) ... ok
+test_joint_and_candidate_gate_gradients_agree_at_fixed_parameters (test_proposal.GradientTests) ... ok
+test_joint_encoder_gradient_matches_independent_candidate_formula_with_original_auxiliaries (test_proposal.GradientTests) ... ok
+test_mixed_rows_use_mean_per_candidate_set_then_mean_over_entire_batch (test_proposal.GradientTests) ... ok
+test_no_valid_candidate_negative_falls_back_without_zero_division (test_proposal.GradientTests) ... ok
+test_original_mode_is_strict_gradient_parity_and_does_not_build_candidates (test_proposal.GradientTests) ... ok
+test_positive_outside_candidates_falls_back_to_original_sampled_gradient (test_proposal.GradientTests) ... ok
+test_prediction_path_is_inherited_and_identical_before_and_after_training_loss (test_proposal.GradientTests) ... ok
+test_rng_and_parameter_checkpoint_schema_are_unchanged (test_proposal.GradientTests) ... ok
+test_wrong_dispatch_and_missing_main_objective_fail_and_restore_context (test_proposal.GradientTests) ... ok
+test_all_metric_gates_cannot_override_technical_failure (test_reporting.ScientificDecisionTests) ... ok
+test_finish_discard_and_crash_preserve_completed_control (test_reporting.ScientificDecisionTests) ... ok
+test_finish_records_controls_kept_candidate_memory_and_formal_count (test_reporting.ScientificDecisionTests) ... ok
+test_finish_rejects_unfinished_test_evaluated_and_invalid_results (test_reporting.ScientificDecisionTests) ... ok
+test_invalid_present_metrics_fail_even_with_missing_control (test_reporting.ScientificDecisionTests) ... ok
+test_joint_comparison_and_exploratory_attribution_are_reported (test_reporting.ScientificDecisionTests) ... ok
+test_missing_control_is_pending_and_invalid_metrics_fail (test_reporting.ScientificDecisionTests) ... ok
+test_partial_report_cannot_claim_success (test_reporting.ScientificDecisionTests) ... ok
+test_requires_every_primary_shortlist_and_matched_control_gate (test_reporting.ScientificDecisionTests) ... ok
+test_snapshot_root_is_the_new_immutable_experiment (test_reporting.ScientificDecisionTests) ... ok
+test_success_requires_the_declared_terminal_pipeline_state (test_reporting.ScientificDecisionTests) ... ok
+test_all_loss_components_checked (test_train_protocol.ProtocolTest) ... ok
+test_invalid_selection_never_updates_state (test_train_protocol.ProtocolTest) ... ok
+test_near_ties_keep_earlier_checkpoint_and_stop_only_after_patience (test_train_protocol.ProtocolTest) ... ok
+test_nonfinite_losses_and_validation_never_finish_successfully (test_train_protocol.ProtocolTest) ... ok
+test_real_improvement_resets_patience_and_checkpoint_is_validation_selected (test_train_protocol.ProtocolTest) ... ok
+test_scalarize_preserves_real_lists_and_refuses_silent_parameter_selection (test_train_protocol.ProtocolTest) ... ok
+test_training_diagnostics_are_recorded_as_finite_json (test_train_protocol.ProtocolTest) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.225s
+
+OK
+
+(base) sunzixuan@213keg:~$

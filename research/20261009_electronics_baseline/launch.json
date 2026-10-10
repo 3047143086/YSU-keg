@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/electronics_baseline_20261009_v1/run_queue.py"
+  ],
+  "deployment_sha256": "58658242005fb07a58f7b677732bdea65ea0aab1feeed191d5310ad939f421d8",
+  "launched_unix": 1791549145.3939755,
+  "pid": 2933472,
+  "root": "/data/sunzixuan/electronics_baseline_20261009_v1"
+}

@@ -1,0 +1,27 @@
+{
+  "model": "SMORE",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "n_ui_layers": 4,
+    "image_knn_k": 40,
+    "text_knn_k": 10,
+    "reg_weight": 1e-05,
+    "dropout_rate": 0
+  },
+  "best_epoch": 46,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0999,
+  "best_valid_result": {
+    "recall@10": 0.0661,
+    "recall@20": 0.0999,
+    "ndcg@10": 0.0354,
+    "ndcg@20": 0.044
+  },
+  "best_test_result": {
+    "recall@10": 0.0678,
+    "recall@20": 0.1039,
+    "ndcg@10": 0.0368,
+    "ndcg@20": 0.046
+  }
+}

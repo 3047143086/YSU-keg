@@ -1,0 +1,225 @@
+{
+  "coverage": 1.0,
+  "coverage_definition": "nonzero candidate residual profile over all 13447 diagnostic users",
+  "deadline_exceeded": false,
+  "decision": {
+    "coverage": 1.0,
+    "formal_training_authorized_by_this_screen": false,
+    "novelty_established": false,
+    "paired_vs_controls": {
+      "item_content": {
+        "mean_delta": -0.062365211571354204,
+        "user_bootstrap_95ci": [
+          -0.06746428106640887,
+          -0.05728740611288765
+        ]
+      },
+      "raw_own": {
+        "mean_delta": -0.04048300736223693,
+        "user_bootstrap_95ci": [
+          -0.04369480646240797,
+          -0.03715466275005577
+        ]
+      },
+      "residual_donor": {
+        "mean_delta": 0.009941808581839816,
+        "user_bootstrap_95ci": [
+          0.006316464638952926,
+          0.013432364096080911
+        ]
+      },
+      "same_item_donor": {
+        "mean_delta": -0.03591879229567933,
+        "user_bootstrap_95ci": [
+          -0.039748991410723584,
+          -0.0320610545102997
+        ]
+      }
+    },
+    "passed": false,
+    "publication_evidence": false,
+    "status": "discard",
+    "user_hash_half_deltas": {
+      "item_content": [
+        -0.06377858002406739,
+        -0.06098323282835711
+      ],
+      "raw_own": [
+        -0.04160085740072202,
+        -0.03938998382115017
+      ],
+      "residual_donor": [
+        0.011573029482551143,
+        0.008346815708192382
+      ],
+      "same_item_donor": [
+        -0.03681558363417569,
+        -0.03504191792910722
+      ]
+    }
+  },
+  "deployment_bundle_sha256": {
+    "PROTOCOL.md": "3e6daadb3a774ce522a8325c2d2a6302bf0cf3b4e4d2e8b62ba9fae2ae56b6c0",
+    "experiment.py": "b51affbeea2781496c47e04b35c27e8b77f55386d56099d6e5670cdfef150607",
+    "input_audit.json": "cf9fe6c594c726da679c55e50facc8f3f5fd2702d328138fcc7ab9fb80101226",
+    "program.md": "f3d88e01ee1f61f6ab27ff0223332af3f17c6fb7b4414d2d6f9184360bb99532",
+    "residual_core.py": "2bd2d5471623e5f5d4d510657ff31cc831d63ce22c6dd4c36e6c3e53e8e7a133",
+    "source_revision.json": "96b377ad8cffd70199e0759b451c7f7c94cf9dbebda13d1e1d72a192770824fb"
+  },
+  "deployment_manifest_sha256": "1abf0db74b575d8bc101d53a949b1a993ebeddc21c2f2786dcab2d045d081a5d",
+  "diagnostic_users": 13447,
+  "elapsed_seconds": 142.86831259727478,
+  "encoding_cache_sha256": {
+    "review_embeddings.npy": "1ca93e46e68853121e17c7089f4aa09da8596bf5863d270a34cd6bfd2d10bebd",
+    "review_index.npz": "2ed46807ff877a09703f96b471c5e820b5fefe204b10ab6c1aa1c3136bac12a2"
+  },
+  "encoding_settings": {
+    "batch_size": 128,
+    "content_bpe_tokens": 75,
+    "context_tokens": 77,
+    "encoder": "CLIP ViT-B/16",
+    "frozen": true,
+    "item_bank_max_chunks": 8,
+    "new_encoding_performed": true,
+    "no_grad": true,
+    "reused_previous_encoded_bank": false,
+    "summary_and_review_text_html_whitespace_cleaned": true,
+    "unit_normalized": true
+  },
+  "heldout_target_hash": "1d019d38c5274cb02b5dfbd434f6e6d2ce5e904fca379cc009ba857e35bdfb1a",
+  "input_audit_sha256": "cf9fe6c594c726da679c55e50facc8f3f5fd2702d328138fcc7ab9fb80101226",
+  "kept_records": 105032,
+  "masking_settings": {
+    "all_diagnostic_users_retained": true,
+    "all_internal_targets_absent_from_support_and_records": true,
+    "degree_preserving_permutation": false,
+    "donor_reuse_allowed": true,
+    "keep_rule": "donors >= 0",
+    "negative_comparisons": 16,
+    "same_mask_all_five_arms": true,
+    "ties_credit": 0.5,
+    "zero_profiles_retained": true
+  },
+  "matching_audit": {
+    "all_targets_absent_from_export": true,
+    "ambiguous_support_fingerprints": 3008,
+    "ambiguous_support_users": 0,
+    "duplicate_raw_event_users": 0,
+    "expected_support_edges": 105104,
+    "globally_removed_target_edges": 13447,
+    "heldout_reviews_used": false,
+    "identity_uses_support_only": true,
+    "matched_support_edges": 105104,
+    "matched_support_users": 19445,
+    "missing_support_fingerprints": 0,
+    "official_test_reviews_used": false,
+    "official_validation_reviews_used": false,
+    "original_train_edges": 118551,
+    "owner_collision_support_users": 0,
+    "ratings_used_only_for_identity": true,
+    "raw_duplicate_owner_fingerprint_records": 0,
+    "raw_duplicate_owner_item_records": 0,
+    "raw_review_records": 160792,
+    "raw_unique_owner_fingerprints": 160792,
+    "reviewer_identity_exported": false,
+    "support_edges": 105104,
+    "support_nonempty_review_text": 105065,
+    "support_nonempty_summary": 105104,
+    "support_review_text_word_count": 10535902,
+    "support_users": 19445,
+    "unresolved_support_users": 0
+  },
+  "metrics": {
+    "item_content": {
+      "mean_auc": 0.5884816315906893,
+      "nonzero_profile_coverage": 1.0
+    },
+    "raw_own": {
+      "mean_auc": 0.5665994273815721,
+      "nonzero_profile_coverage": 1.0
+    },
+    "residual": {
+      "mean_auc": 0.5261164200193351,
+      "nonzero_profile_coverage": 1.0
+    },
+    "residual_donor": {
+      "mean_auc": 0.5161746114374953,
+      "nonzero_profile_coverage": 1.0
+    },
+    "same_item_donor": {
+      "mean_auc": 0.5620352123150145,
+      "nonzero_profile_coverage": 1.0
+    }
+  },
+  "peak_gpu_allocated_bytes": 521625088,
+  "peak_gpu_reserved_bytes": 606076928,
+  "predecessor_source_revision": "9c35573aa6e132940439d8853e440083daf23c73",
+  "projection_alpha": 1.0,
+  "projection_trainable": false,
+  "raw_review_text_exported": false,
+  "residual_formula": "normalize(z - normalize(item_text) * dot(z,normalize(item_text)))",
+  "resources": {
+    "cpu_threads": 4,
+    "cuda_visible_devices": "1",
+    "gpu_free_bytes": 25409093632,
+    "gpu_physical_index": 1,
+    "memory_fraction": 0.55,
+    "ram_available_bytes": 130028855296,
+    "required_gpu_free_bytes": 15032385536,
+    "required_ram_bytes": 12884901888,
+    "wait_seconds": 0.027692079544067383
+  },
+  "runtime_bundle_unchanged": true,
+  "source_hashes_after": {
+    "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+    "/data/sunzixuan/dual_witness_20261009_v1/diagnose.py": "22c9e308a9d05b4d92c43e68765f8a57eb13b28254f74dc5d12ec8f4b64bf673",
+    "/data/sunzixuan/dual_witness_20261009_v1/evidence.py": "26c773bdcf1ff90bf0f9e9298d0a0711227561e63c9d2b04225b29936326d9aa",
+    "/data/sunzixuan/rave_20260905_inputs/baby/item_id_to_asin.json": "451c8cfa29ad517a427f5f7f6278fe0761959f94508562a173f8306c9c02ed2c",
+    "/data/sunzixuan/rave_20260905_inputs/baby/reviews_Baby_5.json.gz": "e54968e4102a3f03f4bb6be581dc09188fe2a31e4a664803ff21a3ad2ac578c3",
+    "/data/sunzixuan/rave_20260906_stage1/features/global_bank.npy": "681ba06261c6fbf3b594aa9e14958a07c42a5e991dd465b9d5e9b22986e24600",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/__init__.py": "d7930eb290ebed432116795c91473200d098451a94c0aedd4ae0f934f97955e8",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/bpe_simple_vocab_16e6.txt.gz": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/clip.py": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/model.py": "9902cbe5ee90a1da2aa3e6f043e8a23dc1f8831193b963785c9af03d5c7bef2c",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/simple_tokenizer.py": "d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad",
+    "/data/sunzixuan/rave_20260906_stage1/weights/ViT-B-16.pt": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+    "/data/sunzixuan/review_signal_20261009_v1/experiment.py": "589c313e1b2c25f0ff6aa5ee63126186890f4bc2e788af0a74b1ed8a04251574",
+    "/data/sunzixuan/review_signal_20261009_v1/input_audit.json": "4c21586fc09dab42f7314df13e096b9a8d1476a867d469fe15d9485ea3686ac2",
+    "/data/sunzixuan/review_signal_20261009_v1/manage.py": "c2dcf322066bf6905ad2f28d625a4d39baf313c62fb6957de7d6ee904a599414",
+    "/data/sunzixuan/review_signal_20261009_v1/mapping.py": "3e2f20498cf92bdc2b2197ba951be538cb7947580958b860f02519ff16e6eb60",
+    "/data/sunzixuan/review_signal_20261009_v1/screen_core.py": "155cbc7b1b7b5766655e61944669edf4b67e59ce7048f062f83479f10aa8baf7"
+  },
+  "source_hashes_before": {
+    "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+    "/data/sunzixuan/dual_witness_20261009_v1/diagnose.py": "22c9e308a9d05b4d92c43e68765f8a57eb13b28254f74dc5d12ec8f4b64bf673",
+    "/data/sunzixuan/dual_witness_20261009_v1/evidence.py": "26c773bdcf1ff90bf0f9e9298d0a0711227561e63c9d2b04225b29936326d9aa",
+    "/data/sunzixuan/rave_20260905_inputs/baby/item_id_to_asin.json": "451c8cfa29ad517a427f5f7f6278fe0761959f94508562a173f8306c9c02ed2c",
+    "/data/sunzixuan/rave_20260905_inputs/baby/reviews_Baby_5.json.gz": "e54968e4102a3f03f4bb6be581dc09188fe2a31e4a664803ff21a3ad2ac578c3",
+    "/data/sunzixuan/rave_20260906_stage1/features/global_bank.npy": "681ba06261c6fbf3b594aa9e14958a07c42a5e991dd465b9d5e9b22986e24600",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/__init__.py": "d7930eb290ebed432116795c91473200d098451a94c0aedd4ae0f934f97955e8",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/bpe_simple_vocab_16e6.txt.gz": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/clip.py": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/model.py": "9902cbe5ee90a1da2aa3e6f043e8a23dc1f8831193b963785c9af03d5c7bef2c",
+    "/data/sunzixuan/rave_20260906_stage1/vendor/clip/simple_tokenizer.py": "d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad",
+    "/data/sunzixuan/rave_20260906_stage1/weights/ViT-B-16.pt": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+    "/data/sunzixuan/review_signal_20261009_v1/experiment.py": "589c313e1b2c25f0ff6aa5ee63126186890f4bc2e788af0a74b1ed8a04251574",
+    "/data/sunzixuan/review_signal_20261009_v1/input_audit.json": "4c21586fc09dab42f7314df13e096b9a8d1476a867d469fe15d9485ea3686ac2",
+    "/data/sunzixuan/review_signal_20261009_v1/manage.py": "c2dcf322066bf6905ad2f28d625a4d39baf313c62fb6957de7d6ee904a599414",
+    "/data/sunzixuan/review_signal_20261009_v1/mapping.py": "3e2f20498cf92bdc2b2197ba951be538cb7947580958b860f02519ff16e6eb60",
+    "/data/sunzixuan/review_signal_20261009_v1/screen_core.py": "155cbc7b1b7b5766655e61944669edf4b67e59ce7048f062f83479f10aa8baf7"
+  },
+  "source_revision": "8ad9e5209e318db3c7efdf114dea7f16356e755f",
+  "stage_seconds": {
+    "audit_mapping_matching": 13.889707326889038,
+    "encoding": 101.03993606567383,
+    "projection_profiles_scoring": 25.238919734954834,
+    "statistics": 0.5093798637390137
+  },
+  "status": "completed",
+  "support_records": 105104,
+  "test_evaluated": false,
+  "time_budget_seconds": 21600,
+  "training_started": false,
+  "unique_encoded_reviews": 105032,
+  "validation_evaluated": false
+}

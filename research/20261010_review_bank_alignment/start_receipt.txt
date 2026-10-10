@@ -1,0 +1,2 @@
+{"pid": 3112371, "command": ["/data/sunzixuan/miniconda3/envs/MMRec/bin/python", "-u", "/data/sunzixuan/review_bank_alignment_20261010_v1/experiment.py"], "root": "/data/sunzixuan/review_bank_alignment_20261010_v1", "launched_unix": 1791599227.635263, "resources": {"available_ram_bytes": 130165342208, "available_cpu_count": 20, "cpu_threads": 4, "required_ram_bytes": 12884901888, "gpu_disabled": true}, "deployment_sha256": "2db6395bfa7baa769b79632a27c95d7f0ed427799ad00e29ee200a9dd2213bd5"}
+(base) sunzixuan@213keg:~$

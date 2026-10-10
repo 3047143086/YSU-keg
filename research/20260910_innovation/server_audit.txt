@@ -1,0 +1,50 @@
+{
+  "checked_unix": 1789054569.283357,
+  "root": "/data/sunzixuan/bridge_official",
+  "inputs": {
+    "baby": {
+      "baby.inter": {
+        "exists": true,
+        "resolved": "/data/sunzixuan/expirement/LOBSTER/data/baby/baby.inter"
+      },
+      "image_feat.npy": {
+        "exists": true,
+        "resolved": "/data/sunzixuan/expirement/LOBSTER/data/baby/image_feat.npy"
+      },
+      "text_feat.npy": {
+        "exists": true,
+        "resolved": "/data/sunzixuan/expirement/LOBSTER/data/baby/text_feat.npy"
+      },
+      "mm_adj_10.pt": {
+        "exists": true,
+        "resolved": "/data/sunzixuan/expirement/LOBSTER/data/baby/mm_adj_10.pt"
+      }
+    },
+    "sports": {
+      "sports.inter": {
+        "exists": true,
+        "resolved": "/data/sunzixuan/expirement/LOBSTER/data/sports/sports.inter"
+      },
+      "image_feat.npy": {
+        "exists": true,
+        "resolved": "/data/sunzixuan/expirement/LOBSTER/data/sports/image_feat.npy"
+      },
+      "text_feat.npy": {
+        "exists": true,
+        "resolved": "/data/sunzixuan/expirement/LOBSTER/data/sports/text_feat.npy"
+      },
+      "mm_adj_10.pt": {
+        "exists": true,
+        "resolved": "/data/sunzixuan/expirement/LOBSTER/data/sports/mm_adj_10.pt"
+      }
+    }
+  },
+  "gpu": "0, NVIDIA GeForce RTX 3090, 3292, 24576, 90\n1, NVIDIA GeForce RTX 3090, 3306, 24576, 91\n",
+  "gpu_processes": "4090001, python, 1636, GPU-30201e9a-a9f2-14b9-78e7-7a1f86a6476f\n4090141, python, 1636, GPU-30201e9a-a9f2-14b9-78e7-7a1f86a6476f\n4078005, python, 1636, GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a\n4102975, python, 1636, GPU-49793ed9-c8db-5cf7-c571-60b8c031e81a\n",
+  "memory": [
+    "MemTotal:       131604308 kB",
+    "MemAvailable:   110619480 kB"
+  ],
+  "disk": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/sdb4       1.6T  1.3T  221G  86% /data\n"
+}
+(base) sunzixuan@213keg:~$

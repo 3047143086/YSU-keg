@@ -1,0 +1,16 @@
+{
+  "deployed": "/data/sunzixuan/rcmqr_20260908_screen_v2",
+  "hashes": {
+    "experiment.json": "5be8862df42d855c4554ec073643f3af503e2489c8fb008a9dea0031cc07ff8d",
+    "INTERFACE.md": "5ae1632529335097ebf874019c868f46afdd0149787ab6fd6694d446ecc02af9",
+    "PROTOCOL.md": "f7e4b92ea7c38bafc487f649905bc339b0aac88d75051f2a51770af0a4829cea",
+    "run_pipeline.py": "4ace6b033dd53c10eb21536c07ef96685cb1850ca7df7d16a8846bb0b974f94b",
+    "run_tests.py": "1e9553571bedb26c26aacdfc9b3531e05ff89e0b717fa95b091c1f0b03652813",
+    "test_base.py": "3bcbc74641780f1d4ebf964fc86424bb2bb40f0b896a86ee2d757239cafab8ed",
+    "test_integration.py": "2aa9334f055d605cabab9260fba1c2f25987b787860f6d75169bfedeb78047e8",
+    "test_retrieval.py": "8cbf14b9927d65d09269d141800728ef7c7d006e7365a6910df696666af0b1e6",
+    "train_base.py": "ab6d0be0af82b606c3a5eae79addec18ddaf9040ba5fea592616fc16437c9208",
+    "train_retrieval.py": "122a172480a1d7b965ca37a9fbad5dbe7e525d2c55378dec589d8f72e1c104f0"
+  }
+}
+(base) sunzixuan@213keg:~$

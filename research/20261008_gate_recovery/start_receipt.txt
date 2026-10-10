@@ -1,0 +1,11 @@
+{
+  "pid": 2567421,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/decoupled_gate_20261008_recovery_v1/run_pipeline.py"
+  ],
+  "root": "/data/sunzixuan/decoupled_gate_20261008_recovery_v1",
+  "launched_unix": 1791460502.723502
+}
+(base) sunzixuan@213keg:~$

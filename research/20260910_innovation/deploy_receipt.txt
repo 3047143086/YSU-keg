@@ -1,0 +1,6 @@
+{
+  "deployed": "/data/sunzixuan/target_isolated_20260910_v1",
+  "files": 11,
+  "carrier_files": 35
+}
+(base) sunzixuan@213keg:~$

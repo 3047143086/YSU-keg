@@ -1,0 +1,6 @@
+arm	mean_auc	nonzero_profile_coverage	status
+residual	0.5261164200	1.0000000000	discard
+raw_own	0.5665994274	1.0000000000	discard
+same_item_donor	0.5620352123	1.0000000000	discard
+item_content	0.5884816316	1.0000000000	discard
+residual_donor	0.5161746114	1.0000000000	discard

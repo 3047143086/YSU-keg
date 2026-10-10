@@ -1,0 +1,11 @@
+{
+  "pid": 4086063,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/bridge_baseline_confirm_20260910_v2/run_confirmation.py"
+  ],
+  "root": "/data/sunzixuan/bridge_baseline_confirm_20260910_v2",
+  "launched_unix": 1789052587.2999804
+}
+(base) sunzixuan@213keg:~$

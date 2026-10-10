@@ -1,0 +1,23 @@
+{
+  "model": "MGCN",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "cl_loss": 0.001
+  },
+  "best_epoch": 43,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0927,
+  "best_valid_result": {
+    "recall@10": 0.0619,
+    "recall@20": 0.0927,
+    "ndcg@10": 0.033,
+    "ndcg@20": 0.0408
+  },
+  "best_test_result": {
+    "recall@10": 0.0629,
+    "recall@20": 0.0964,
+    "ndcg@10": 0.0346,
+    "ndcg@20": 0.0433
+  }
+}

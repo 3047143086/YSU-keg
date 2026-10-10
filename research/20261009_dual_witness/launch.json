@@ -1,0 +1,19 @@
+{
+  "pid": 2874627,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/dual_witness_20261009_v1/run_pipeline.py"
+  ],
+  "root": "/data/sunzixuan/dual_witness_20261009_v1",
+  "launched_unix": 1791540235.493716,
+  "resources": {
+    "available_ram_bytes": 130272772096,
+    "available_cpu_count": 20,
+    "required_ram_bytes": 12884901888,
+    "cpu_threads": 4,
+    "gpu_used": false,
+    "cuda_visible_devices": ""
+  },
+  "deployment_sha256": "455dbec086d1d4950428dc1c6bd863aafffa21bad68c3f020e42a1bcbca7c4e9"
+}

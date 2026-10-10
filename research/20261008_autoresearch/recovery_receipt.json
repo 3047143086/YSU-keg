@@ -1,0 +1,44 @@
+{
+  "checked_unix": 1791433486.9332378,
+  "source_run": "/data/sunzixuan/target_isolated_20260911_soft_v1/runs/baby_edge_s2026",
+  "source_status": "technical_failure",
+  "source_failed_stage": "baby_baseline_s2026",
+  "result_sha256": "c22db15e308c2d6ef910aa55ed2a41d6ba1130942aa7f1ce58cdc91221562055",
+  "config_sha256": "51ab824105cc1af6f5ce6306a077ba8563f7e766314cdb62f43a6cd2d678dc50",
+  "checks_passed": true,
+  "reused_arms": [
+    "baby_edge_s2026"
+  ],
+  "retry_limit_per_missing_arm": 1,
+  "test_evaluated": false,
+  "result": {
+    "status": "completed",
+    "dataset": "baby",
+    "seed": 2026,
+    "model": "TargetIsolatedBRIDGE",
+    "best_epoch": 90,
+    "epochs_completed": 112,
+    "selection_metric": "rounded_4_validation_recall@20",
+    "selection_score": 0.1062,
+    "metrics": {
+      "recall@5": 0.04872644455056386,
+      "ndcg@5": 0.03326414487351061,
+      "recall@10": 0.07106025542127367,
+      "ndcg@10": 0.04054803891227433,
+      "recall@20": 0.1062309444219961,
+      "ndcg@20": 0.04946499163588207,
+      "recall@50": 0.17315621594485053,
+      "ndcg@50": 0.06284018368272888
+    },
+    "validation_users": 19445,
+    "train_interactions": 118551,
+    "validation_interactions": 20559,
+    "test_evaluated": false,
+    "test_loader_constructed": false,
+    "inputs_unchanged": true,
+    "fresh_initialization": true,
+    "checkpoint_sha256": "82195c04aa14fc8b8b52cf76f970ccbc2f322a177b52fc2866e8a1d8e646ef78",
+    "per_user_sha256": "0909dac85bcfae0141c7d065f42cbb96719aa94c6de1a5e9bd4ff4c9395496a9",
+    "elapsed_seconds": 3764.098406985402
+  }
+}

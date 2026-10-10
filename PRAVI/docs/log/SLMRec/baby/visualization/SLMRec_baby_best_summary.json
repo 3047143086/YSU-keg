@@ -1,0 +1,26 @@
+{
+  "model": "SLMRec",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "layer_num": 3,
+    "reg_weight": 0.0001,
+    "ssl_alpha": 0.1,
+    "ssl_temp": 1.0
+  },
+  "best_epoch": 8,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0772,
+  "best_valid_result": {
+    "recall@10": 0.0511,
+    "recall@20": 0.0772,
+    "ndcg@10": 0.0272,
+    "ndcg@20": 0.0338
+  },
+  "best_test_result": {
+    "recall@10": 0.0518,
+    "recall@20": 0.0774,
+    "ndcg@10": 0.0287,
+    "ndcg@20": 0.0353
+  }
+}

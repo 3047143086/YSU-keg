@@ -1,0 +1,19 @@
+PROCESS_EXISTS False
+STDOUT_TAIL
+self.dataset_path: /data/sunzixuan/bridge_official/data/baby, i: baby.inter
+>>>> user_emb_file not found, skip loading: /data/sunzixuan/bridge_official/data/baby/user_emb.npy
+Dual-frequency feature controls: feature_ablation=all, use_image_feature=True, use_text_feature=True, use_item_graph=True
+>>>>>Loaded from:  /data/sunzixuan/bridge_official/data/baby/mm_adj_10.pt
+/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/scipy/sparse/_index.py:125: SparseEfficiencyWarning: Changing the sparsity structure of a csc_matrix is expensive. lil_matrix is more efficient.
+  self._set_arrayXarray(i, j, x)
+BRIDGE behavior branch: BPI=False, BC=True, FRC=False, TCR=True, Gate=True, BGate=True, RGate=False, topk=1000, weight=0.4, eval_topk=200, train_candidate_aware=True, train_topk=200, scope=topk, norm=z, proto_weight=0.0, msr_weight=0.0, msr_delta=0.0, backend=dense
+Traceback (most recent call last):
+  File "/data/sunzixuan/rave_20260905_preflight/preflight.py", line 152, in <module>
+    main()
+  File "/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/data/sunzixuan/rave_20260905_preflight/preflight.py", line 82, in main
+    raise RuntimeError(f'Cached scoring differs from current model: {max_error}')
+RuntimeError: Cached scoring differs from current model: 6.723403930664062e-05
+
+(base) sunzixuan@213keg:~$

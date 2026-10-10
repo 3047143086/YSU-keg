@@ -1,0 +1,48 @@
+{
+  "datasets": {
+    "baby": {
+      "checked_unix": 1791455469.6875849,
+      "source_run": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/baby_baseline_s2026",
+      "checks_passed": true,
+      "result_sha256": "889f2619fef34bd16393e954b663f31b5d8331c23162643ac682d343e3f316f9",
+      "config_sha256": "385775c8f17f4cde9f6445b545dd30280bd117b1a5fc1ccadf1613ec2fbc44f5",
+      "cache": {
+        "path": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/cache/baby/cache.npz",
+        "sha256": "ba1715d5124c7acf435f7dbe5443763a8b4d3e1b2d1ae3b2a40fea62db76bbd6",
+        "size_bytes": 1113936152
+      },
+      "prepare_sha256": "aa5416063eb8b035d95dd33b9c61da98433cd1f88235fb2fc7c403d41c6ff240",
+      "result": {
+        "status": "completed",
+        "dataset": "baby",
+        "seed": 2026,
+        "model": "BRIDGE",
+        "best_epoch": 89,
+        "epochs_completed": 111,
+        "selection_metric": "rounded_4_validation_recall@20",
+        "selection_score": 0.1055,
+        "metrics": {
+          "recall@5": 0.04798075157036329,
+          "ndcg@5": 0.032837760528477825,
+          "recall@10": 0.07111762112919222,
+          "ndcg@10": 0.040386094675721566,
+          "recall@20": 0.10546504793740588,
+          "ndcg@20": 0.04910749907453286,
+          "recall@50": 0.17414190206810415,
+          "ndcg@50": 0.06281293587582008
+        },
+        "validation_users": 19445,
+        "train_interactions": 118551,
+        "validation_interactions": 20559,
+        "test_evaluated": false,
+        "test_loader_constructed": false,
+        "inputs_unchanged": true,
+        "fresh_initialization": true,
+        "checkpoint_sha256": "6deb59326f61137d658565d4c19fc892d7a5cb50578a120abc12497bcbc469a9",
+        "per_user_sha256": "83c162d38cbe181e965fd5a6e488cdaa97646c23d21609028321c86128b4e407",
+        "elapsed_seconds": 2074.1110788409133
+      },
+      "test_evaluated": false
+    }
+  }
+}

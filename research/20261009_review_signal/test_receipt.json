@@ -1,0 +1,23 @@
+{
+  "exit_code": 0,
+  "checked_unix": 1791545101.4142425,
+  "deployment_sha256": "624016aad5dfcfa9bc7dcc2f64a0e780a95fe58d1e70ad259bc8c1c581df5fe4",
+  "test_summary": {
+    "tests": 19,
+    "successful": true,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "resources": {
+    "available_ram_bytes": 130351939584,
+    "available_cpu_count": 20,
+    "required_ram_bytes": 12884901888,
+    "cpu_threads": 4,
+    "gpu_selection_owner": "experiment.py",
+    "tests_cuda_visible_devices": ""
+  },
+  "cuda_visible_devices": "",
+  "stdout": "REVIEW_SIGNAL_TEST_SUMMARY={\"tests\": 19, \"successful\": true, \"failures\": 0, \"errors\": 0, \"skipped\": 0}\n",
+  "stderr": "test_coverage_below_boundary_discards (test_experiment.DecisionTests) ... ok\ntest_each_confidence_lower_bound_must_be_strictly_positive (test_experiment.DecisionTests) ... ok\ntest_each_control_and_half_must_have_positive_delta (test_experiment.DecisionTests) ... ok\ntest_each_control_must_pass_delta (test_experiment.DecisionTests) ... ok\ntest_fixed_gate_passes_at_coverage_and_delta_boundary (test_experiment.DecisionTests) ... ok\ntest_import_and_decision_leave_encoder_unloaded (test_experiment.DecisionTests) ... ok\ntest_missing_control_is_an_error (test_experiment.DecisionTests) ... ok\ntest_missing_half_is_an_error (test_experiment.DecisionTests) ... ok\ntest_nonfinite_or_invalid_domain_is_an_error (test_experiment.DecisionTests) ... ok\ntest_reversed_interval_is_an_error (test_experiment.DecisionTests) ... ok\ntest_ambiguous_owner_is_preserved_without_guessing (test_mapping.MappingTests) ... ok\ntest_duplicate_raw_owner_event_is_not_arbitrarily_selected (test_mapping.MappingTests) ... ok\ntest_frozen_targets_and_support_exclude_all_target_edges (test_mapping.MappingTests) ... ok\ntest_strict_mode_rejects_missing_support_review (test_mapping.MappingTests) ... ok\ntest_two_encoded_users_cannot_map_to_one_raw_reviewer (test_mapping.MappingTests) ... ok\ntest_validation_and_test_rows_never_create_matches (test_mapping.MappingTests) ... ok\ntest_cleaning_is_shared_for_donor_length_and_encoding (test_screen_core.ScreenCoreTests) ... ok\ntest_donor_preserves_item_excludes_owner_and_prefers_word_length (test_screen_core.ScreenCoreTests) ... ok\ntest_zero_profiles_remain_zero_and_row_scores_match_literal (test_screen_core.ScreenCoreTests) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.007s\n\nOK\n"
+}

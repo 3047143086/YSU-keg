@@ -1,0 +1,346 @@
+{
+  "snapshot": "C:\\Users\\zixua\\Desktop\\exp\\exp\\exp\\research\\20261008_autoresearch\\latest_status.json",
+  "remote_root": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1",
+  "checked_utc": "2026-10-08T11:23:21.591860+00:00",
+  "pipeline_status": "closed_validation_gate",
+  "stage": "sports",
+  "completed_formal_arms": 6,
+  "completed": {
+    "runs/baby_edge_s2026": {
+      "metrics": {
+        "recall@5": 0.04872644455056386,
+        "ndcg@5": 0.03326414487351061,
+        "recall@10": 0.07106025542127367,
+        "ndcg@10": 0.04054803891227433,
+        "recall@20": 0.1062309444219961,
+        "ndcg@20": 0.04946499163588207,
+        "recall@50": 0.17315621594485053,
+        "ndcg@50": 0.06284018368272888
+      },
+      "reused_from": "/data/sunzixuan/target_isolated_20260911_soft_v1/runs/baby_edge_s2026"
+    },
+    "runs/baby_baseline_s2026": {
+      "metrics": {
+        "recall@5": 0.04798075157036329,
+        "ndcg@5": 0.032837760528477825,
+        "recall@10": 0.07111762112919222,
+        "ndcg@10": 0.040386094675721566,
+        "recall@20": 0.10546504793740588,
+        "ndcg@20": 0.04910749907453286,
+        "recall@50": 0.17414190206810415,
+        "ndcg@50": 0.06281293587582008
+      },
+      "reused_from": null
+    },
+    "runs/baby_history_s2026": {
+      "metrics": {
+        "recall@5": 0.04837257711004175,
+        "ndcg@5": 0.03317168589410181,
+        "recall@10": 0.07057763655732284,
+        "ndcg@10": 0.04038334653087119,
+        "recall@20": 0.10580189545604822,
+        "ndcg@20": 0.049336485198376724,
+        "recall@50": 0.17449932042757962,
+        "ndcg@50": 0.06303591453321819
+      },
+      "reused_from": null
+    },
+    "runs/sports_baseline_s2026": {
+      "metrics": {
+        "recall@5": 0.05551538959312255,
+        "ndcg@5": 0.038232859523293736,
+        "recall@10": 0.08301179566908366,
+        "ndcg@10": 0.047186443228226675,
+        "recall@20": 0.1195296505011454,
+        "ndcg@20": 0.05647686319160367,
+        "recall@50": 0.18395571151547369,
+        "ndcg@50": 0.0693519084692436
+      },
+      "reused_from": null
+    },
+    "runs/sports_edge_s2026": {
+      "metrics": {
+        "recall@5": 0.056519893591474524,
+        "ndcg@5": 0.038273576120619886,
+        "recall@10": 0.08248203744296609,
+        "ndcg@10": 0.046698591749370834,
+        "recall@20": 0.11877571907205982,
+        "ndcg@20": 0.055922382090289116,
+        "recall@50": 0.18346935129825392,
+        "ndcg@50": 0.06885388038257623
+      },
+      "reused_from": null
+    },
+    "runs/sports_history_s2026": {
+      "metrics": {
+        "recall@5": 0.05598116170266678,
+        "ndcg@5": 0.03868425261270888,
+        "recall@10": 0.0822488782767208,
+        "ndcg@10": 0.04725249204937745,
+        "recall@20": 0.1194870116691083,
+        "ndcg@20": 0.05673559134689602,
+        "recall@50": 0.18430108048127075,
+        "ndcg@50": 0.06968699143692945
+      },
+      "reused_from": null
+    }
+  },
+  "scientific_screens": {
+    "baby": {
+      "dataset": "baby",
+      "passed": true,
+      "seed": 2026,
+      "metrics": {
+        "edge": {
+          "recall@5": 0.04872644455056386,
+          "ndcg@5": 0.03326414487351061,
+          "recall@10": 0.07106025542127367,
+          "ndcg@10": 0.04054803891227433,
+          "recall@20": 0.1062309444219961,
+          "ndcg@20": 0.04946499163588207,
+          "recall@50": 0.17315621594485053,
+          "ndcg@50": 0.06284018368272888
+        },
+        "baseline": {
+          "recall@5": 0.04798075157036329,
+          "ndcg@5": 0.032837760528477825,
+          "recall@10": 0.07111762112919222,
+          "ndcg@10": 0.040386094675721566,
+          "recall@20": 0.10546504793740588,
+          "ndcg@20": 0.04910749907453286,
+          "recall@50": 0.17414190206810415,
+          "ndcg@50": 0.06281293587582008
+        },
+        "history": {
+          "recall@5": 0.04837257711004175,
+          "ndcg@5": 0.03317168589410181,
+          "recall@10": 0.07057763655732284,
+          "ndcg@10": 0.04038334653087119,
+          "recall@20": 0.10580189545604822,
+          "ndcg@20": 0.049336485198376724,
+          "recall@50": 0.17449932042757962,
+          "ndcg@50": 0.06303591453321819
+        }
+      },
+      "relative_vs_baseline": {
+        "recall@20": 0.007262088242208753,
+        "ndcg@20": 0.007279795715245507
+      },
+      "shortlist_absolute_delta": {
+        "recall@10": -5.736570791854689e-05,
+        "ndcg@10": 0.0001619442365527607
+      },
+      "absolute_vs_history": {
+        "recall@20": 0.00042904896594787856,
+        "ndcg@20": 0.0001285064375053449
+      },
+      "paired_exploratory_not_independent_confirmation": {
+        "baseline:recall_10": {
+          "mean_delta": -5.7365707918549265e-05,
+          "user_bootstrap_95ci": [
+            -0.0012954946185211034,
+            0.0011911328043688544
+          ]
+        },
+        "baseline:ndcg_10": {
+          "mean_delta": 0.00016194423655276055,
+          "user_bootstrap_95ci": [
+            -0.00037167681786625284,
+            0.0007131986933027116
+          ]
+        },
+        "baseline:recall_20": {
+          "mean_delta": 0.0007658964845902362,
+          "user_bootstrap_95ci": [
+            -0.0006644810148281478,
+            0.0021632902325239675
+          ]
+        },
+        "baseline:ndcg_20": {
+          "mean_delta": 0.00035749256134921174,
+          "user_bootstrap_95ci": [
+            -0.0001586699112136578,
+            0.000873157441591093
+          ]
+        },
+        "history:recall_10": {
+          "mean_delta": 0.00048261886395082574,
+          "user_bootstrap_95ci": [
+            -0.0010444415873832177,
+            0.0018549265939340506
+          ]
+        },
+        "history:ndcg_10": {
+          "mean_delta": 0.00016469238140313583,
+          "user_bootstrap_95ci": [
+            -0.00044611576262009616,
+            0.0007418757012662959
+          ]
+        },
+        "history:recall_20": {
+          "mean_delta": 0.00042904896594791173,
+          "user_bootstrap_95ci": [
+            -0.0011271749378589182,
+            0.002026638014424077
+          ]
+        },
+        "history:ndcg_20": {
+          "mean_delta": 0.00012850643750535193,
+          "user_bootstrap_95ci": [
+            -0.00042235258802025426,
+            0.0006633755412272336
+          ]
+        }
+      },
+      "test_evaluated": false
+    },
+    "sports": {
+      "dataset": "sports",
+      "passed": false,
+      "seed": 2026,
+      "metrics": {
+        "edge": {
+          "recall@5": 0.056519893591474524,
+          "ndcg@5": 0.038273576120619886,
+          "recall@10": 0.08248203744296609,
+          "ndcg@10": 0.046698591749370834,
+          "recall@20": 0.11877571907205982,
+          "ndcg@20": 0.055922382090289116,
+          "recall@50": 0.18346935129825392,
+          "ndcg@50": 0.06885388038257623
+        },
+        "baseline": {
+          "recall@5": 0.05551538959312255,
+          "ndcg@5": 0.038232859523293736,
+          "recall@10": 0.08301179566908366,
+          "ndcg@10": 0.047186443228226675,
+          "recall@20": 0.1195296505011454,
+          "ndcg@20": 0.05647686319160367,
+          "recall@50": 0.18395571151547369,
+          "ndcg@50": 0.0693519084692436
+        },
+        "history": {
+          "recall@5": 0.05598116170266678,
+          "ndcg@5": 0.03868425261270888,
+          "recall@10": 0.0822488782767208,
+          "ndcg@10": 0.04725249204937745,
+          "recall@20": 0.1194870116691083,
+          "ndcg@20": 0.05673559134689602,
+          "recall@50": 0.18430108048127075,
+          "ndcg@50": 0.06968699143692945
+        }
+      },
+      "relative_vs_baseline": {
+        "recall@20": -0.0063074845941958335,
+        "ndcg@20": -0.009817845219792454
+      },
+      "shortlist_absolute_delta": {
+        "recall@10": -0.0005297582261175743,
+        "ndcg@10": -0.00048785147885584135
+      },
+      "absolute_vs_history": {
+        "recall@20": -0.0007112925970484824,
+        "ndcg@20": -0.0008132092566069046
+      },
+      "paired_exploratory_not_independent_confirmation": {
+        "baseline:recall_10": {
+          "mean_delta": -0.0005297582261175721,
+          "user_bootstrap_95ci": [
+            -0.0016740114144989419,
+            0.0006705959604472157
+          ]
+        },
+        "baseline:ndcg_10": {
+          "mean_delta": -0.0004878514788558284,
+          "user_bootstrap_95ci": [
+            -0.0010707967786603699,
+            0.00012724313232976322
+          ]
+        },
+        "baseline:recall_20": {
+          "mean_delta": -0.0007539314290855931,
+          "user_bootstrap_95ci": [
+            -0.0021349876116174495,
+            0.0005634462476490119
+          ]
+        },
+        "baseline:ndcg_20": {
+          "mean_delta": -0.0005544811013145499,
+          "user_bootstrap_95ci": [
+            -0.001136893875112425,
+            2.6733474355771252e-05
+          ]
+        },
+        "history:recall_10": {
+          "mean_delta": 0.0002331591662452947,
+          "user_bootstrap_95ci": [
+            -0.00093180562578422,
+            0.0014965065140987947
+          ]
+        },
+        "history:ndcg_10": {
+          "mean_delta": -0.0005539003000066068,
+          "user_bootstrap_95ci": [
+            -0.0011708202245206624,
+            7.200513957524379e-05
+          ]
+        },
+        "history:recall_20": {
+          "mean_delta": -0.0007112925970484803,
+          "user_bootstrap_95ci": [
+            -0.0021916727531509266,
+            0.000639926954654774
+          ]
+        },
+        "history:ndcg_20": {
+          "mean_delta": -0.0008132092566069024,
+          "user_bootstrap_95ci": [
+            -0.0013888034928400195,
+            -0.00023572644542938003
+          ]
+        }
+      },
+      "test_evaluated": false
+    }
+  },
+  "error": null,
+  "live_query": false,
+  "upstream": "https://github.com/karpathy/autoresearch",
+  "primary_metric": "validation_recall20",
+  "direction": "higher_is_better",
+  "decisions": {
+    "baby": {
+      "status": "keep",
+      "relative_gain": {
+        "recall@20": 0.007262088242208753,
+        "ndcg@20": 0.007279795715245507
+      },
+      "shortlist_delta": {
+        "recall@10": -5.736570791854689e-05,
+        "ndcg@10": 0.0001619442365527607
+      },
+      "history_delta": {
+        "recall@20": 0.00042904896594787856,
+        "ndcg@20": 0.0001285064375053449
+      },
+      "evidence_level": "single-seed exploratory validation, not final test confirmation"
+    },
+    "sports": {
+      "status": "discard",
+      "relative_gain": {
+        "recall@20": -0.0063074845941958335,
+        "ndcg@20": -0.009817845219792454
+      },
+      "shortlist_delta": {
+        "recall@10": -0.0005297582261175743,
+        "ndcg@10": -0.00048785147885584135
+      },
+      "history_delta": {
+        "recall@20": -0.0007112925970484824,
+        "ndcg@20": -0.0008132092566069046
+      },
+      "evidence_level": "single-seed exploratory validation, not final test confirmation"
+    }
+  },
+  "memory_note": "NA: peak VRAM was not reported by the frozen runner"
+}

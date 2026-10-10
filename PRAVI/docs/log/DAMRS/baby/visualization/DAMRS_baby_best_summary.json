@@ -1,0 +1,28 @@
+{
+  "model": "DAMRS",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "n_ui_layers": 2,
+    "neighbor_weight": 0.001,
+    "kl_weight": 0.1,
+    "n_mm_layers": 1,
+    "learning_rate": 0.001,
+    "knn_k": 10
+  },
+  "best_epoch": 41,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.089,
+  "best_valid_result": {
+    "recall@10": 0.0569,
+    "recall@20": 0.089,
+    "ndcg@10": 0.0303,
+    "ndcg@20": 0.0385
+  },
+  "best_test_result": {
+    "recall@10": 0.0578,
+    "recall@20": 0.0924,
+    "ndcg@10": 0.0316,
+    "ndcg@20": 0.0406
+  }
+}

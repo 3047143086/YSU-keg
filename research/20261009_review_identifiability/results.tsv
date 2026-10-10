@@ -1,0 +1,3 @@
+view	real_user_auc	null_user_auc	delta	coverage	status
+raw	0.5485356751	0.4988611334	0.0496745417	0.5354075598	expression_identifiable
+residual	0.5618260346	0.5006561573	0.0611698773	0.5354075598	expression_identifiable

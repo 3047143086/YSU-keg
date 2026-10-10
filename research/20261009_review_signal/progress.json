@@ -1,0 +1,66 @@
+{
+  "child_pid": 2907096,
+  "counts": {
+    "diagnostic_users": 13447,
+    "donor_pairs": 105032,
+    "encoded_texts": 105032,
+    "items": 7050,
+    "kept_records": 105032,
+    "support_records": 105104,
+    "total_texts": 105032,
+    "train_edges": 118551,
+    "train_users": 19445
+  },
+  "deadline_unix": 1791566725.0616155,
+  "decision": {
+    "coverage": 1.0,
+    "formal_training_authorized_by_this_screen": false,
+    "novelty_established": false,
+    "paired_vs_controls": {
+      "item_content": {
+        "mean_delta": -0.021882204209117274,
+        "user_bootstrap_95ci": [
+          -0.024661750762251803,
+          -0.019070122518033764
+        ]
+      },
+      "same_item_donor": {
+        "mean_delta": 0.004564215066557596,
+        "user_bootstrap_95ci": [
+          0.0026769446716739796,
+          0.006446721387670111
+        ]
+      }
+    },
+    "passed": false,
+    "publication_evidence": false,
+    "status": "discard",
+    "user_hash_half_deltas": {
+      "item_content": [
+        -0.022177722623345365,
+        -0.021593249007206942
+      ],
+      "same_item_donor": [
+        0.0047852737665463295,
+        0.004348065892042947
+      ]
+    }
+  },
+  "peak_gpu_allocated_bytes": 521625088,
+  "peak_gpu_reserved_bytes": 606076928,
+  "resources": {
+    "cpu_threads": 4,
+    "cuda_visible_devices": "1",
+    "gpu_free_bytes": 25409093632,
+    "gpu_physical_index": 1,
+    "memory_fraction": 0.55,
+    "ram_available_bytes": 130039070720,
+    "required_gpu_free_bytes": 15032385536,
+    "required_ram_bytes": 12884901888,
+    "wait_seconds": 0.03374195098876953
+  },
+  "stage": "completed",
+  "started_unix": 1791545125.0616155,
+  "status": "completed",
+  "updated_unix": 1791545252.10471
+}

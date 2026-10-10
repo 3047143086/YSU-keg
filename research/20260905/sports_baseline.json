@@ -1,0 +1,62 @@
+{
+  "purpose": "baseline_reproduction_and_candidate_coverage_only",
+  "new_method_evaluated": false,
+  "test_evaluated": false,
+  "dataset": "sports",
+  "seed": 2026,
+  "users": 35598,
+  "items": 18357,
+  "checkpoint": "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/sports/bridge_sports_s2026_confirm/model.pth",
+  "metrics": {
+    "recall@10": 0.08341019285030572,
+    "ndcg@10": 0.04740489017096658,
+    "recall@20": 0.11984492318284318,
+    "ndcg@20": 0.056665842675942255,
+    "recall@50": 0.184126411759914,
+    "ndcg@50": 0.06949908148340184,
+    "recall@100": 0.25165138418122895,
+    "ndcg@100": 0.08055663997069365,
+    "recall@200": 0.3291910504758573,
+    "ndcg@200": 0.09154867513263726
+  },
+  "historical_baseline_reproduced": true,
+  "cached_vs_direct_max_abs_error": 8.535385131835938e-05,
+  "scoring_interface": "BRIDGE.full_sort_predict; cached scores not used for evaluation",
+  "torch_version": "1.12.1+cu113",
+  "cuda_version": "11.3",
+  "oracle_diagnostic_not_model_performance": {
+    "recall@20": 0.3291910504758573,
+    "ndcg@20": 0.3316632038227708,
+    "fraction_users_with_any_positive_in_top200": 0.3403000168548795
+  },
+  "activity_strata": {
+    "history_1_to_5": {
+      "users": 22639,
+      "recall@20": 0.1178055567825434,
+      "ndcg@20": 0.0553487134491033,
+      "candidate_recall@200": 0.32382172357436284
+    },
+    "history_6_to_15": {
+      "users": 11317,
+      "recall@20": 0.1258283997525846,
+      "ndcg@20": 0.058632307437458106,
+      "candidate_recall@200": 0.34037289034196344
+    },
+    "history_over_15": {
+      "users": 1642,
+      "recall@20": 0.10672324936836254,
+      "ndcg@20": 0.06127242419867804,
+      "candidate_recall@200": 0.32615287140046684
+    }
+  },
+  "sha256": {
+    "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/sports/bridge_sports_s2026_confirm/model.pth": "801b69f240cf65a0decad5b823c8abe522d7b43e79e19d30dab97fcf6a89afcd",
+    "/data/sunzixuan/bridge_official/data/sports/sports.inter": "b8a43979c7984a01a8ab9713ea29a3cf13a65b1784dbadc2162fa932daf1c6a0",
+    "/data/sunzixuan/bridge_official/src/models/bridge.py": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056",
+    "/data/sunzixuan/bridge_official/src/models/dual_frequency_encoder.py": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c",
+    "/data/sunzixuan/bridge_official/src/configs/model/BRIDGE.yaml": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+  },
+  "git_commit": "4ee976f5f1715ff9c186aac8a8ddd44a74a41ece",
+  "diagnostic_script_sha256": "39c61125cca2ad9b1a4c55a665a8d39a25ca173a5cd298f8d0f2b52d7a4a465a",
+  "elapsed_seconds": 47.947151102125645
+}

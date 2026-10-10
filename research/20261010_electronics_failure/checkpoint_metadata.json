@@ -1,0 +1,584 @@
+{
+  "checked_unix": 1791597786.4893577,
+  "read_only": true,
+  "torch_version": "1.12.1+cu113",
+  "gpu_forward_executed": false,
+  "model_instantiated": false,
+  "checkpoint": {
+    "path": "/data/sunzixuan/electronics_baseline_20261009_v1/runs/elec_baseline_s2026/best.pt",
+    "bytes": 3954730163,
+    "sha256": "3f9283407ff51178549c2f78e0f8cf61f895c269164afa6b3b9a0a56d8faacda",
+    "keys": [
+      "config",
+      "epoch",
+      "inputs_sha256",
+      "model",
+      "optimizer",
+      "scheduler",
+      "selection_score",
+      "validation"
+    ],
+    "epoch": 8,
+    "selection_score": 0.0643,
+    "validation": {
+      "recall@5": 0.0259,
+      "recall@10": 0.0419,
+      "recall@20": 0.0643,
+      "recall@50": 0.1049,
+      "ndcg@5": 0.0174,
+      "ndcg@10": 0.0226,
+      "ndcg@20": 0.0283,
+      "ndcg@50": 0.0365,
+      "precision@5": 0.0055,
+      "precision@10": 0.0045,
+      "precision@20": 0.0034,
+      "precision@50": 0.0023,
+      "map@5": 0.0144,
+      "map@10": 0.0165,
+      "map@20": 0.018,
+      "map@50": 0.0193
+    },
+    "config_matches_effective_run_config": true,
+    "inputs_match_run_inputs": true,
+    "seed": 2026,
+    "dataset": "elec",
+    "max_epochs": 300,
+    "train_batch_size": 2048,
+    "learning_rate": 0.0001,
+    "freq_decomp_method": "svd",
+    "num_freq_bands": 3,
+    "run_inputs_sha256": "18dd014949737077a3ce63e004e2bddd82d1870f6caf430f43732b35db3d9b2e",
+    "run_config_sha256": "a8d27ee50f98cb6b8c89acf0a59c9d42846ffbcfbd85f34b8d864f8b95dcb875",
+    "source_revision_sha256": "b4b9ec9c645ad98a7ec8913bc7976d2277d993a076658194f81a8fef16bde201",
+    "source_revision": "06bcd212af31cd7c7ccd6ccc63de9778130b9f6b",
+    "finite_model_state": {
+      "weight_u": {
+        "shape": [
+          192403,
+          3,
+          1
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "weight_i": {
+        "shape": [
+          63001,
+          2,
+          1
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "gate_base_scale": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "gate_behavior_scale": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "gate_residual_scale": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "id_preference": {
+        "shape": [
+          192403,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "v_preference": {
+        "shape": [
+          192403,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "t_preference": {
+        "shape": [
+          192403,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "user_activity_z": {
+        "shape": [
+          192403
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "MLP_v.weight": {
+        "shape": [
+          64,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "MLP_t.weight": {
+        "shape": [
+          64,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "user_id_embedding.weight": {
+        "shape": [
+          192403,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "item_id_embedding.weight": {
+        "shape": [
+          63001,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "image_embedding.weight": {
+        "shape": [
+          63001,
+          4096
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "image_trs.weight": {
+        "shape": [
+          64,
+          4096
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "image_trs.bias": {
+        "shape": [
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "text_embedding.weight": {
+        "shape": [
+          63001,
+          384
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "text_trs.weight": {
+        "shape": [
+          64,
+          384
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "text_trs.bias": {
+        "shape": [
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "MLP_user.weight": {
+        "shape": [
+          64,
+          128
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "MLP_user.bias": {
+        "shape": [
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "v_gcn.preference": {
+        "shape": [
+          192403,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "v_gcn.MLP.weight": {
+        "shape": [
+          256,
+          4096
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "v_gcn.MLP.bias": {
+        "shape": [
+          256
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "v_gcn.MLP_1.weight": {
+        "shape": [
+          64,
+          256
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "v_gcn.MLP_1.bias": {
+        "shape": [
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "t_gcn.preference": {
+        "shape": [
+          192403,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "t_gcn.MLP.weight": {
+        "shape": [
+          256,
+          384
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "t_gcn.MLP.bias": {
+        "shape": [
+          256
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "t_gcn.MLP_1.weight": {
+        "shape": [
+          64,
+          256
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "t_gcn.MLP_1.bias": {
+        "shape": [
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "id_gcn.preference": {
+        "shape": [
+          192403,
+          64
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.freq_weights": {
+        "shape": [
+          3
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.freq_weights": {
+        "shape": [
+          3
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.alpha": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.gate_scale": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.freq_gate.0.weight": {
+        "shape": [
+          3,
+          192
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.freq_gate.0.bias": {
+        "shape": [
+          3
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.freq_gate_raw.weight": {
+        "shape": [
+          3,
+          192
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.freq_gate_raw.bias": {
+        "shape": [
+          3
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.ib_layer.encoder.weight": {
+        "shape": [
+          48,
+          192
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.ib_layer.encoder.bias": {
+        "shape": [
+          48
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.ib_layer.decoder.weight": {
+        "shape": [
+          192,
+          48
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_user.ib_layer.decoder.bias": {
+        "shape": [
+          192
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.freq_weights": {
+        "shape": [
+          3
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.alpha": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.gate_scale": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.freq_gate.0.weight": {
+        "shape": [
+          3,
+          192
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.freq_gate.0.bias": {
+        "shape": [
+          3
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.freq_gate_raw.weight": {
+        "shape": [
+          3,
+          192
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.freq_gate_raw.bias": {
+        "shape": [
+          3
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.ib_layer.encoder.weight": {
+        "shape": [
+          48,
+          192
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.ib_layer.encoder.bias": {
+        "shape": [
+          48
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.ib_layer.decoder.weight": {
+        "shape": [
+          192,
+          48
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "FeqDecomposeOperator.fusion_layer_item.ib_layer.decoder.bias": {
+        "shape": [
+          192
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "behavior_user_bias.weight": {
+        "shape": [
+          192403,
+          1
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      },
+      "behavior_item_bias.weight": {
+        "shape": [
+          63001,
+          1
+        ],
+        "dtype": "torch.float32",
+        "is_sparse": false,
+        "finite": true
+      }
+    },
+    "finite_optimizer_state": true,
+    "all_model_state_finite": true,
+    "optimizer_parameter_groups": 1,
+    "scheduler": {
+      "base_lrs": [
+        0.0001
+      ],
+      "last_epoch": 9,
+      "_step_count": 10,
+      "verbose": false,
+      "_get_lr_called_within_step": false,
+      "_last_lr": [
+        0.0001
+      ],
+      "lr_lambdas": [
+        null
+      ]
+    }
+  },
+  "rng_packet": {
+    "path": "/data/sunzixuan/electronics_baseline_20261009_v1/runs/elec_baseline_s2026/best_rng.pt",
+    "sha256": "240f546252241d0b553d2bcb1a25d20df9c98b4bc34df27b5b3ea251f4132725",
+    "epoch": 8,
+    "keys": [
+      "all_items",
+      "dataframe",
+      "epoch",
+      "loader_inter_pr",
+      "loader_pr",
+      "rng",
+      "test_evaluated"
+    ],
+    "all_items_count": 62989,
+    "dataframe_shape": [
+      1254441,
+      2
+    ],
+    "dataframe_columns": [
+      "userID",
+      "itemID"
+    ],
+    "loader_pr": 0,
+    "loader_inter_pr": 0,
+    "test_evaluated": false,
+    "rng_components": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "cuda_rng_count": 1
+  },
+  "checked_finished_unix": 1791597797.098491
+}

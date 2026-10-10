@@ -1,0 +1,17 @@
+{
+  "started_unix": 1789052587.324247,
+  "status": "completed",
+  "jobs": [
+    {
+      "dataset": "baby",
+      "exit_code": 0,
+      "seconds": 162.38349199295044
+    },
+    {
+      "dataset": "sports",
+      "exit_code": 0,
+      "seconds": 579.0904998779297
+    }
+  ],
+  "finished_unix": 1789053328.7984574
+}

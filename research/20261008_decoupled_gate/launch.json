@@ -1,0 +1,10 @@
+{
+  "pid": 2540694,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/decoupled_gate_20261008_v1/run_pipeline.py"
+  ],
+  "root": "/data/sunzixuan/decoupled_gate_20261008_v1",
+  "launched_unix": 1791453364.6690655
+}

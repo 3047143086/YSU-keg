@@ -1,0 +1,25 @@
+{
+  "model": "BM3",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "n_layers": 1,
+    "reg_weight": 0.1,
+    "dropout": 0.4
+  },
+  "best_epoch": 126,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0845,
+  "best_valid_result": {
+    "recall@10": 0.0535,
+    "recall@20": 0.0845,
+    "ndcg@10": 0.029,
+    "ndcg@20": 0.0368
+  },
+  "best_test_result": {
+    "recall@10": 0.0536,
+    "recall@20": 0.0856,
+    "ndcg@10": 0.0289,
+    "ndcg@20": 0.0371
+  }
+}

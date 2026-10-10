@@ -1,0 +1,22 @@
+{
+  "checked_unix": 1791599187.812072,
+  "cuda_visible_devices": "",
+  "deployment_sha256": "2db6395bfa7baa769b79632a27c95d7f0ed427799ad00e29ee200a9dd2213bd5",
+  "exit_code": 0,
+  "resources": {
+    "available_cpu_count": 20,
+    "available_ram_bytes": 130168479744,
+    "cpu_threads": 4,
+    "gpu_disabled": true,
+    "required_ram_bytes": 12884901888
+  },
+  "stderr": "test_auc_retains_all_16_comparisons_and_half_credit_ties (test_core.BankGeometryTests) ... ok\ntest_blocked_scores_equal_unblocked_and_no_cartesian_expansion (test_core.BankGeometryTests) ... ok\ntest_duplicate_edges_and_nonfinite_reviews_are_rejected (test_core.BankGeometryTests) ... ok\ntest_only_owner_review_leaves_empty_bank_and_neutral_auc (test_core.BankGeometryTests) ... ok\ntest_query_owner_review_is_subtracted_before_normalization (test_core.BankGeometryTests) ... ok\ntest_repeated_candidates_do_not_subtract_owner_twice_from_same_bank (test_core.BankGeometryTests) ... ok\ntest_target_or_negative_support_leakage_is_rejected (test_core.BankGeometryTests) ... ok\ntest_true_target_must_be_column_zero_and_users_unique (test_core.BankGeometryTests) ... ok\ntest_zero_vectors_are_retained_without_content_fallback (test_core.BankGeometryTests) ... ok\ntest_all_eight_controls_must_pass_without_best_arm_selection (test_core.JointGateTests) ... ok\ntest_fixed_coverage_and_above_chance_gates (test_core.JointGateTests) ... ok\ntest_missing_control_and_nonfinite_probability_are_technical_errors (test_core.JointGateTests) ... ok\ntest_negative_hash_half_prevents_passing_positive_overall_delta (test_core.JointGateTests) ... ok\ntest_changed_payload_refused_before_overwrite (test_manage.ImmutableManagerTests) ... ok\ntest_existing_lock_refuses_double_launch (test_manage.ImmutableManagerTests) ... ok\ntest_missing_audit_refuses_deployment (test_manage.ImmutableManagerTests) ... ok\ntest_payload_refuses_dirty_bundle (test_manage.ImmutableManagerTests) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.085s\n\nOK\n",
+  "stdout": "IDENTIFIABILITY_TEST_SUMMARY={\"tests\": 17, \"successful\": true, \"failures\": 0, \"errors\": 0, \"skipped\": 0}\n",
+  "test_summary": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "successful": true,
+    "tests": 17
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/review_identifiability_20261009_v1/experiment.py"
+  ],
+  "deployment_sha256": "6d63ca190a12b143b326021fdf858562ecd0dc3e4023c122793c9be37d9cad88",
+  "launched_unix": 1791598038.6142156,
+  "pid": 3104343,
+  "resources": {
+    "available_cpu_count": 20,
+    "available_ram_bytes": 130179145728,
+    "cpu_threads": 4,
+    "gpu_disabled": true,
+    "required_ram_bytes": 12884901888
+  },
+  "root": "/data/sunzixuan/review_identifiability_20261009_v1"
+}

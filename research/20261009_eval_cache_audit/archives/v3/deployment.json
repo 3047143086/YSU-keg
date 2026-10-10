@@ -1,0 +1,17 @@
+{
+  "sha256": {
+    "eval_cache.py": "c9617ab7bd45a9d97af91a2bfae58118b98e29d3ab2778bfecf980c3f91c0c3c",
+    "test_eval_cache.py": "08747972d01c03dbd17c8a14f6805e6ce371f2aad2dafa3616f06bae86480eb6",
+    "test_cache_lifecycle.py": "a6fe062e718aa021080b69922b363880f9357536f7927ace730786fc82abb80c",
+    "actual_baby_cpu.py": "96da3693d2fc3c12344690376a83063fbd4c4067345bef94a6fbf5095b7d2f08",
+    "PROTOCOL.md": "34b1bf5f0e5aaeb17350906cf02e8b267e094751da7d8d36589149e0c3630680",
+    "CPU_TEST_PLAN.md": "64e8d789433ad824ea0fef85874b4e68b785e63f7ae1c6512edc326c525d7c8d",
+    "program.md": "aa426aa0aa2a08d8c3c931d1c4867d81f110ce2f6bfa0976b1204b35f2fa980e",
+    "manage.py": "2fb9049784fb7989843310c968ecf00eff02cdf8a4551eeb6a47dce734a72e81",
+    "input_audit.json": "09d5634dbd4f98a0494e89c3ec34a75f5edb644518d98855e3bdb6cc58898227",
+    "checkpoint_structure.py": "2388560943161252d738bafdbee423162a1e1d8b11b89a47d9091bde9658c1d3",
+    "test_checkpoint_structure.py": "9f4c8f42c87217367d2461fbe2b2bca243278ab59a5633fb6124ddf195caeca4",
+    "source_revision.json": "b0c414ffe5f8b531b4a0a34083d6e96890f67a4e7c0db9d3f9082eb5fd9bc158"
+  },
+  "unix": 1791599054.3850613
+}

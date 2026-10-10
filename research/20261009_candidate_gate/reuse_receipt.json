@@ -1,0 +1,80 @@
+{
+  "datasets": {
+    "baby": {
+      "checked_unix": 1791521007.6360395,
+      "source_run": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/baby_baseline_s2026",
+      "checks_passed": true,
+      "result_sha256": "889f2619fef34bd16393e954b663f31b5d8331c23162643ac682d343e3f316f9",
+      "config_sha256": "385775c8f17f4cde9f6445b545dd30280bd117b1a5fc1ccadf1613ec2fbc44f5",
+      "result": {
+        "status": "completed",
+        "dataset": "baby",
+        "seed": 2026,
+        "model": "BRIDGE",
+        "best_epoch": 89,
+        "epochs_completed": 111,
+        "selection_metric": "rounded_4_validation_recall@20",
+        "selection_score": 0.1055,
+        "metrics": {
+          "recall@5": 0.04798075157036329,
+          "ndcg@5": 0.032837760528477825,
+          "recall@10": 0.07111762112919222,
+          "ndcg@10": 0.040386094675721566,
+          "recall@20": 0.10546504793740588,
+          "ndcg@20": 0.04910749907453286,
+          "recall@50": 0.17414190206810415,
+          "ndcg@50": 0.06281293587582008
+        },
+        "validation_users": 19445,
+        "train_interactions": 118551,
+        "validation_interactions": 20559,
+        "test_evaluated": false,
+        "test_loader_constructed": false,
+        "inputs_unchanged": true,
+        "fresh_initialization": true,
+        "checkpoint_sha256": "6deb59326f61137d658565d4c19fc892d7a5cb50578a120abc12497bcbc469a9",
+        "per_user_sha256": "83c162d38cbe181e965fd5a6e488cdaa97646c23d21609028321c86128b4e407",
+        "elapsed_seconds": 2074.1110788409133
+      },
+      "test_evaluated": false
+    },
+    "sports": {
+      "checked_unix": 1791525396.820306,
+      "source_run": "/data/sunzixuan/target_isolated_20261008_autoresearch_v1/runs/sports_baseline_s2026",
+      "checks_passed": true,
+      "result_sha256": "7d113c50d90a0bcc83e3861b0471ba667f6a91df9363cdc43dc8d503e31422af",
+      "config_sha256": "e94bd327f79783e797b1db767c71de60655fd0d979191dd9f5cdcebcc66bb179",
+      "result": {
+        "status": "completed",
+        "dataset": "sports",
+        "seed": 2026,
+        "model": "BRIDGE",
+        "best_epoch": 108,
+        "epochs_completed": 130,
+        "selection_metric": "rounded_4_validation_recall@20",
+        "selection_score": 0.1195,
+        "metrics": {
+          "recall@5": 0.05551538959312255,
+          "ndcg@5": 0.038232859523293736,
+          "recall@10": 0.08301179566908366,
+          "ndcg@10": 0.047186443228226675,
+          "recall@20": 0.1195296505011454,
+          "ndcg@20": 0.05647686319160367,
+          "recall@50": 0.18395571151547369,
+          "ndcg@50": 0.0693519084692436
+        },
+        "validation_users": 35598,
+        "train_interactions": 218409,
+        "validation_interactions": 37899,
+        "test_evaluated": false,
+        "test_loader_constructed": false,
+        "inputs_unchanged": true,
+        "fresh_initialization": true,
+        "checkpoint_sha256": "75da60539924743bb9c7a5aeb89689859cce5c8e914def4b9fd8040ee1dd402e",
+        "per_user_sha256": "8f39b8dfec2f81b927c320806e2a11a246aa36b751f73102a06475623f269356",
+        "elapsed_seconds": 5955.562906982144
+      },
+      "test_evaluated": false
+    }
+  }
+}

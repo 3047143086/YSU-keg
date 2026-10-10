@@ -1,0 +1,86 @@
+{
+  "child_pid": 2935432,
+  "counts": {
+    "diagnostic_users": 13447,
+    "encoded_texts": 105032,
+    "kept_records": 105032,
+    "residual_rows": 105032,
+    "support_records": 105104,
+    "total_texts": 105032,
+    "unique_reviews_to_encode": 105032
+  },
+  "deadline_unix": 1791570986.8095431,
+  "decision": {
+    "coverage": 1.0,
+    "formal_training_authorized_by_this_screen": false,
+    "novelty_established": false,
+    "paired_vs_controls": {
+      "item_content": {
+        "mean_delta": -0.062365211571354204,
+        "user_bootstrap_95ci": [
+          -0.06746428106640887,
+          -0.05728740611288765
+        ]
+      },
+      "raw_own": {
+        "mean_delta": -0.04048300736223693,
+        "user_bootstrap_95ci": [
+          -0.04369480646240797,
+          -0.03715466275005577
+        ]
+      },
+      "residual_donor": {
+        "mean_delta": 0.009941808581839816,
+        "user_bootstrap_95ci": [
+          0.006316464638952926,
+          0.013432364096080911
+        ]
+      },
+      "same_item_donor": {
+        "mean_delta": -0.03591879229567933,
+        "user_bootstrap_95ci": [
+          -0.039748991410723584,
+          -0.0320610545102997
+        ]
+      }
+    },
+    "passed": false,
+    "publication_evidence": false,
+    "status": "discard",
+    "user_hash_half_deltas": {
+      "item_content": [
+        -0.06377858002406739,
+        -0.06098323282835711
+      ],
+      "raw_own": [
+        -0.04160085740072202,
+        -0.03938998382115017
+      ],
+      "residual_donor": [
+        0.011573029482551143,
+        0.008346815708192382
+      ],
+      "same_item_donor": [
+        -0.03681558363417569,
+        -0.03504191792910722
+      ]
+    }
+  },
+  "peak_gpu_allocated_bytes": 521625088,
+  "peak_gpu_reserved_bytes": 606076928,
+  "resources": {
+    "cpu_threads": 4,
+    "cuda_visible_devices": "1",
+    "gpu_free_bytes": 25409093632,
+    "gpu_physical_index": 1,
+    "memory_fraction": 0.55,
+    "ram_available_bytes": 130028855296,
+    "required_gpu_free_bytes": 15032385536,
+    "required_ram_bytes": 12884901888,
+    "wait_seconds": 0.027692079544067383
+  },
+  "stage": "completed",
+  "started_unix": 1791549386.8095431,
+  "status": "completed",
+  "updated_unix": 1791549529.7442791
+}

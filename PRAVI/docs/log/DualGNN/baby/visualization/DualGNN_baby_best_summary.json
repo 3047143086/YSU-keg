@@ -1,0 +1,24 @@
+{
+  "model": "DualGNN",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "k": 40,
+    "reg_weight": 0.01
+  },
+  "best_epoch": 5,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0581,
+  "best_valid_result": {
+    "recall@10": 0.0357,
+    "recall@20": 0.0581,
+    "ndcg@10": 0.0189,
+    "ndcg@20": 0.0246
+  },
+  "best_test_result": {
+    "recall@10": 0.0367,
+    "recall@20": 0.0592,
+    "ndcg@10": 0.0192,
+    "ndcg@20": 0.025
+  }
+}

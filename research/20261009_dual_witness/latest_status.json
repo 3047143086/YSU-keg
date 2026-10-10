@@ -1,0 +1,313 @@
+{
+  "root": "/data/sunzixuan/dual_witness_20261009_v1",
+  "checked_unix": 1791540314.0188224,
+  "artifacts": {
+    "launch.json": {
+      "pid": 2874627,
+      "command": [
+        "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+        "-u",
+        "/data/sunzixuan/dual_witness_20261009_v1/run_pipeline.py"
+      ],
+      "root": "/data/sunzixuan/dual_witness_20261009_v1",
+      "launched_unix": 1791540235.493716,
+      "resources": {
+        "available_ram_bytes": 130272772096,
+        "available_cpu_count": 20,
+        "required_ram_bytes": 12884901888,
+        "cpu_threads": 4,
+        "gpu_used": false,
+        "cuda_visible_devices": ""
+      },
+      "deployment_sha256": "455dbec086d1d4950428dc1c6bd863aafffa21bad68c3f020e42a1bcbca7c4e9"
+    },
+    "deployment.json": {
+      "bundle_sha256": {
+        "PROTOCOL.md": "1c8a12d4663a94a106d33838b78b3080ef28ebb15268c715fcb2bd40f4ac9e3c",
+        "diagnose.py": "22c9e308a9d05b4d92c43e68765f8a57eb13b28254f74dc5d12ec8f4b64bf673",
+        "evidence.py": "26c773bdcf1ff90bf0f9e9298d0a0711227561e63c9d2b04225b29936326d9aa",
+        "manage.py": "b8a2d4cb7025ba09d03e7b6804cea6452d835af6e4eb056ed74c2275c3cc59d2",
+        "program.md": "335546c5905f8a79669c0afb6e349f2f112226f7535af25e7aeb78226952ae22",
+        "run_pipeline.py": "0950558f54945c1046e18b97ff6be670f52cf69feac34f7a4a6e8f0b6693329f",
+        "test_diagnose.py": "9b5b303f5d2f8235ff018b8dd5244a720a66f01edb2f8e4ef1a6567d39a176fd",
+        "test_evidence.py": "acfdbc352b7fcbef56ea40dab1556aec18a7914bebdee9f7776658d4deaeb778",
+        "source_revision.json": "78239db1e080ebc59a132df0027990fdae60ee289a3e848a5aa122ef30a380f8",
+        "baseline_audit.json": "d0166c844cf735c54a4643e559dbf13b082eaa7f9134f6601f52c318e2d2481d"
+      },
+      "created_unix": 1791540121.813736,
+      "root": "/data/sunzixuan/dual_witness_20261009_v1",
+      "cpu_threads": 4,
+      "gpu_used": false,
+      "per_dataset_timeout_seconds": 7200,
+      "queue_timeout_seconds": 28800
+    },
+    "pipeline_status.json": {
+      "status": "closed_mechanism_gate",
+      "stage": "baby_discard",
+      "started_unix": 1791540235.5290291,
+      "datasets": {
+        "baby": {
+          "dataset": "baby",
+          "status": "completed",
+          "decision": {
+            "status": "discard",
+            "passed": false,
+            "positive_nonzero_coverage": 0.05793113705659255,
+            "paired_vs_controls": {
+              "itemknn": {
+                "mean_delta": -0.15308479586524876,
+                "user_bootstrap_95ci": [
+                  -0.1576053208894177,
+                  -0.14869714202052503
+                ]
+              },
+              "userknn": {
+                "mean_delta": -0.06551182419870603,
+                "user_bootstrap_95ci": [
+                  -0.0691907349222875,
+                  -0.061859987357774975
+                ]
+              },
+              "min2": {
+                "mean_delta": -0.013004759425894252,
+                "user_bootstrap_95ci": [
+                  -0.014608393136015469,
+                  -0.011547533836543467
+                ]
+              },
+              "shuffled": {
+                "mean_delta": 0.012186733100319773,
+                "user_bootstrap_95ci": [
+                  0.010217718171339332,
+                  0.014239932698743208
+                ]
+              }
+            },
+            "user_hash_half_deltas": {
+              "itemknn": [
+                -0.1520476083032491,
+                -0.15409894837476099
+              ],
+              "userknn": [
+                -0.06680110559566788,
+                -0.06425117664362406
+              ],
+              "min2": [
+                -0.012442651925391094,
+                -0.013554382997499632
+              ]
+            },
+            "formal_training_authorized_by_this_screen": false,
+            "novelty_established": false,
+            "publication_evidence": false
+          },
+          "arms": {
+            "itemknn": {
+              "mean_auc": 0.6782762883914628,
+              "positive_nonzero_coverage": 0.5337249944225477,
+              "neighbor_weights_nnz": null,
+              "seconds": 1.0304601769894361
+            },
+            "userknn": {
+              "mean_auc": 0.59070331672492,
+              "positive_nonzero_coverage": 0.2199003495203391,
+              "neighbor_weights_nnz": 1742230,
+              "seconds": 2.4982918619643897
+            },
+            "min2": {
+              "mean_auc": 0.5381962519521083,
+              "positive_nonzero_coverage": 0.08916486948761805,
+              "neighbor_weights_nnz": 123465,
+              "seconds": 2.554601101903245
+            },
+            "dual": {
+              "mean_auc": 0.525191492526214,
+              "positive_nonzero_coverage": 0.05793113705659255,
+              "neighbor_weights_nnz": 68841,
+              "seconds": 3.2824588760267943
+            },
+            "shuffled": {
+              "mean_auc": 0.5130047594258943,
+              "positive_nonzero_coverage": 0.032497954934186064,
+              "neighbor_weights_nnz": 43700,
+              "seconds": 3.2662540581077337
+            }
+          },
+          "diagnostic_users": 13447,
+          "original_train_edges": 118551,
+          "support_edges": 105104,
+          "source_sha256": {
+            "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+            "/data/sunzixuan/bridge_official/data/baby/image_feat.npy": "36c3be592b98506189a7d5de71b21577cf626f0293b539d861534673b3e9fd70"
+          },
+          "elapsed_seconds": 14.904509139014408,
+          "validation_evaluated": false,
+          "test_evaluated": false,
+          "training_internal_only": true,
+          "all_internal_targets_absent": true,
+          "comparison_ties_count": 0.5,
+          "source_revision": "3b5b026c6a661fafa194c615c820aaa94d510749"
+        }
+      },
+      "updated_unix": 1791540250.6991742,
+      "predecessor": {
+        "root": "/data/sunzixuan/candidate_gate_20261009_v1",
+        "status": "closed_validation_gate",
+        "process_alive": false
+      },
+      "active_job": null,
+      "reason": "baby diagnostic failed"
+    },
+    "source_revision.json": {
+      "commit": "3b5b026c6a661fafa194c615c820aaa94d510749",
+      "local_directory": "C:/Users/zixua/Desktop/exp/exp/exp/research/20261009_dual_witness",
+      "working_tree_clean": true
+    },
+    "test_receipt.json": {
+      "exit_code": 0,
+      "checked_unix": 1791540122.282447,
+      "deployment_sha256": "455dbec086d1d4950428dc1c6bd863aafffa21bad68c3f020e42a1bcbca7c4e9",
+      "test_summary": {
+        "tests": 19,
+        "evidence_tests": 15,
+        "successful": true,
+        "failures": 0,
+        "errors": 0
+      },
+      "resources": {
+        "available_ram_bytes": 130299932672,
+        "available_cpu_count": 20,
+        "required_ram_bytes": 12884901888,
+        "cpu_threads": 4,
+        "gpu_used": false,
+        "cuda_visible_devices": ""
+      },
+      "stdout": "DUAL_WITNESS_TEST_SUMMARY={\"tests\": 19, \"evidence_tests\": 15, \"successful\": true, \"failures\": 0, \"errors\": 0}\n",
+      "stderr": "test_auc_ties_are_half_wins_and_nonfinite_scores_rejected (test_diagnose.DiagnosticTests) ... ok\ntest_decision_gate_rejects_low_coverage_without_adjusting_thresholds (test_diagnose.DiagnosticTests) ... ok\ntest_item_scores_use_original_orientation_and_row_pairs (test_diagnose.DiagnosticTests) ... ok\ntest_targets_removed_globally_and_all_train_positives_excluded (test_diagnose.DiagnosticTests) ... ok\ntest_construction_does_not_change_support_or_add_targets (test_evidence.DualWitnessTests) ... ok\ntest_dual_matches_literal_formula_and_block_size (test_evidence.DualWitnessTests) ... ok\ntest_empty_and_cold_users_keep_square_zero_weights (test_evidence.DualWitnessTests) ... ok\ntest_empty_view_has_zero_witness_without_fallback (test_evidence.DualWitnessTests) ... ok\ntest_invalid_mode_and_block_are_rejected (test_evidence.DualWitnessTests) ... ok\ntest_overlap_control_removes_single_overlap (test_evidence.DualWitnessTests) ... ok\ntest_partition_is_stable_and_boolean (test_evidence.DualWitnessTests) ... ok\ntest_public_modes_and_gather_scores (test_evidence.DualWitnessTests) ... ok\ntest_row_gather_matches_dense_for_different_items_and_repeated_users (test_evidence.DualWitnessTests) ... ok\ntest_row_gather_rejects_cartesian_misuse_and_handles_empty (test_evidence.DualWitnessTests) ... ok\ntest_shuffled_dual_matches_dense_and_excludes_self (test_evidence.DualWitnessTests) ... ok\ntest_shuffling_preserves_degree_and_is_seeded (test_evidence.DualWitnessTests) ... ok\ntest_topk_tie_is_id_deterministic (test_evidence.DualWitnessTests) ... ok\ntest_user_knn_matches_dense_formula_and_block_size (test_evidence.DualWitnessTests) ... ok\ntest_views_are_disjoint_and_reconstruct_input (test_evidence.DualWitnessTests) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.173s\n\nOK\n"
+    }
+  },
+  "diagnostics": {
+    "baby": {
+      "output_exists": true,
+      "diagnosis.json": {
+        "dataset": "baby",
+        "status": "completed",
+        "decision": {
+          "status": "discard",
+          "passed": false,
+          "positive_nonzero_coverage": 0.05793113705659255,
+          "paired_vs_controls": {
+            "itemknn": {
+              "mean_delta": -0.15308479586524876,
+              "user_bootstrap_95ci": [
+                -0.1576053208894177,
+                -0.14869714202052503
+              ]
+            },
+            "userknn": {
+              "mean_delta": -0.06551182419870603,
+              "user_bootstrap_95ci": [
+                -0.0691907349222875,
+                -0.061859987357774975
+              ]
+            },
+            "min2": {
+              "mean_delta": -0.013004759425894252,
+              "user_bootstrap_95ci": [
+                -0.014608393136015469,
+                -0.011547533836543467
+              ]
+            },
+            "shuffled": {
+              "mean_delta": 0.012186733100319773,
+              "user_bootstrap_95ci": [
+                0.010217718171339332,
+                0.014239932698743208
+              ]
+            }
+          },
+          "user_hash_half_deltas": {
+            "itemknn": [
+              -0.1520476083032491,
+              -0.15409894837476099
+            ],
+            "userknn": [
+              -0.06680110559566788,
+              -0.06425117664362406
+            ],
+            "min2": [
+              -0.012442651925391094,
+              -0.013554382997499632
+            ]
+          },
+          "formal_training_authorized_by_this_screen": false,
+          "novelty_established": false,
+          "publication_evidence": false
+        },
+        "arms": {
+          "itemknn": {
+            "mean_auc": 0.6782762883914628,
+            "positive_nonzero_coverage": 0.5337249944225477,
+            "neighbor_weights_nnz": null,
+            "seconds": 1.0304601769894361
+          },
+          "userknn": {
+            "mean_auc": 0.59070331672492,
+            "positive_nonzero_coverage": 0.2199003495203391,
+            "neighbor_weights_nnz": 1742230,
+            "seconds": 2.4982918619643897
+          },
+          "min2": {
+            "mean_auc": 0.5381962519521083,
+            "positive_nonzero_coverage": 0.08916486948761805,
+            "neighbor_weights_nnz": 123465,
+            "seconds": 2.554601101903245
+          },
+          "dual": {
+            "mean_auc": 0.525191492526214,
+            "positive_nonzero_coverage": 0.05793113705659255,
+            "neighbor_weights_nnz": 68841,
+            "seconds": 3.2824588760267943
+          },
+          "shuffled": {
+            "mean_auc": 0.5130047594258943,
+            "positive_nonzero_coverage": 0.032497954934186064,
+            "neighbor_weights_nnz": 43700,
+            "seconds": 3.2662540581077337
+          }
+        },
+        "diagnostic_users": 13447,
+        "original_train_edges": 118551,
+        "support_edges": 105104,
+        "source_sha256": {
+          "/data/sunzixuan/bridge_official/data/baby/baby.inter": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940",
+          "/data/sunzixuan/bridge_official/data/baby/image_feat.npy": "36c3be592b98506189a7d5de71b21577cf626f0293b539d861534673b3e9fd70"
+        },
+        "elapsed_seconds": 14.904509139014408,
+        "validation_evaluated": false,
+        "test_evaluated": false,
+        "training_internal_only": true,
+        "all_internal_targets_absent": true,
+        "comparison_ties_count": 0.5,
+        "source_revision": "3b5b026c6a661fafa194c615c820aaa94d510749"
+      }
+    },
+    "sports": {
+      "output_exists": false
+    }
+  },
+  "logs": {
+    "pipeline.log": "tion_gate\", \"process_alive\": false}}\n{\"stage\": \"diagnostic_running\", \"active_job\": {\"dataset\": \"baby\", \"command\": [\"/data/sunzixuan/miniconda3/envs/MMRec/bin/python\", \"-u\", \"/data/sunzixuan/dual_witness_20261009_v1/diagnose.py\", \"--dataset\", \"baby\", \"--data-root\", \"/data/sunzixuan/bridge_official/data\", \"--output\", \"/data/sunzixuan/dual_witness_20261009_v1/diagnostics/baby\"]}}\n{\"active_job\": {\"dataset\": \"baby\", \"pid\": 2874628, \"elapsed_seconds\": 0.001077720895409584, \"ram_available_bytes\": 130267885568}}\n{\"active_job\": null, \"datasets\": {\"baby\": {\"dataset\": \"baby\", \"status\": \"completed\", \"decision\": {\"status\": \"discard\", \"passed\": false, \"positive_nonzero_coverage\": 0.05793113705659255, \"paired_vs_controls\": {\"itemknn\": {\"mean_delta\": -0.15308479586524876, \"user_bootstrap_95ci\": [-0.1576053208894177, -0.14869714202052503]}, \"userknn\": {\"mean_delta\": -0.06551182419870603, \"user_bootstrap_95ci\": [-0.0691907349222875, -0.061859987357774975]}, \"min2\": {\"mean_delta\": -0.013004759425894252, \"user_bootstrap_95ci\": [-0.014608393136015469, -0.011547533836543467]}, \"shuffled\": {\"mean_delta\": 0.012186733100319773, \"user_bootstrap_95ci\": [0.010217718171339332, 0.014239932698743208]}}, \"user_hash_half_deltas\": {\"itemknn\": [-0.1520476083032491, -0.15409894837476099], \"userknn\": [-0.06680110559566788, -0.06425117664362406], \"min2\": [-0.012442651925391094, -0.013554382997499632]}, \"formal_training_authorized_by_this_screen\": false, \"novelty_established\": false, \"publication_evidence\": false}, \"arms\": {\"itemknn\": {\"mean_auc\": 0.6782762883914628, \"positive_nonzero_coverage\": 0.5337249944225477, \"neighbor_weights_nnz\": null, \"seconds\": 1.0304601769894361}, \"userknn\": {\"mean_auc\": 0.59070331672492, \"positive_nonzero_coverage\": 0.2199003495203391, \"neighbor_weights_nnz\": 1742230, \"seconds\": 2.4982918619643897}, \"min2\": {\"mean_auc\": 0.5381962519521083, \"positive_nonzero_coverage\": 0.08916486948761805, \"neighbor_weights_nnz\": 123465, \"seconds\": 2.554601101903245}, \"dual\": {\"mean_auc\": 0.525191492526214, \"positive_nonzero_coverage\": 0.05793113705659255, \"neighbor_weights_nnz\": 68841, \"seconds\": 3.2824588760267943}, \"shuffled\": {\"mean_auc\": 0.5130047594258943, \"positive_nonzero_coverage\": 0.032497954934186064, \"neighbor_weights_nnz\": 43700, \"seconds\": 3.2662540581077337}}, \"diagnostic_users\": 13447, \"original_train_edges\": 118551, \"support_edges\": 105104, \"source_sha256\": {\"/data/sunzixuan/bridge_official/data/baby/baby.inter\": \"e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940\", \"/data/sunzixuan/bridge_official/data/baby/image_feat.npy\": \"36c3be592b98506189a7d5de71b21577cf626f0293b539d861534673b3e9fd70\"}, \"elapsed_seconds\": 14.904509139014408, \"validation_evaluated\": false, \"test_evaluated\": false, \"training_internal_only\": true, \"all_internal_targets_absent\": true, \"comparison_ties_count\": 0.5, \"source_revision\": \"3b5b026c6a661fafa194c615c820aaa94d510749\"}}}\n{\"status\": \"closed_mechanism_gate\", \"stage\": \"baby_discard\", \"reason\": \"baby diagnostic failed\"}\n",
+    "logs/baby.log": "/data/sunzixuan/miniconda3/envs/MMRec/lib/python3.8/site-packages/scipy/sparse/_index.py:125: SparseEfficiencyWarning: Changing the sparsity structure of a csr_matrix is expensive. lil_matrix is more efficient.\n  self._set_arrayXarray(i, j, x)\n{\"dataset\": \"baby\", \"arm\": \"itemknn\", \"mean_auc\": 0.6782762883914628, \"positive_nonzero_coverage\": 0.5337249944225477, \"neighbor_weights_nnz\": null, \"seconds\": 1.0304601769894361}\n{\"dataset\": \"baby\", \"arm\": \"userknn\", \"mean_auc\": 0.59070331672492, \"positive_nonzero_coverage\": 0.2199003495203391, \"neighbor_weights_nnz\": 1742230, \"seconds\": 2.4982918619643897}\n{\"dataset\": \"baby\", \"arm\": \"min2\", \"mean_auc\": 0.5381962519521083, \"positive_nonzero_coverage\": 0.08916486948761805, \"neighbor_weights_nnz\": 123465, \"seconds\": 2.554601101903245}\n{\"dataset\": \"baby\", \"arm\": \"dual\", \"mean_auc\": 0.525191492526214, \"positive_nonzero_coverage\": 0.05793113705659255, \"neighbor_weights_nnz\": 68841, \"seconds\": 3.2824588760267943}\n{\"dataset\": \"baby\", \"arm\": \"shuffled\", \"mean_auc\": 0.5130047594258943, \"positive_nonzero_coverage\": 0.032497954934186064, \"neighbor_weights_nnz\": 43700, \"seconds\": 3.2662540581077337}\n{\n  \"dataset\": \"baby\",\n  \"decision\": {\n    \"status\": \"discard\",\n    \"passed\": false,\n    \"positive_nonzero_coverage\": 0.05793113705659255,\n    \"paired_vs_controls\": {\n      \"itemknn\": {\n        \"mean_delta\": -0.15308479586524876,\n        \"user_bootstrap_95ci\": [\n          -0.1576053208894177,\n          -0.14869714202052503\n        ]\n      },\n      \"userknn\": {\n        \"mean_delta\": -0.06551182419870603,\n        \"user_bootstrap_95ci\": [\n          -0.0691907349222875,\n          -0.061859987357774975\n        ]\n      },\n      \"min2\": {\n        \"mean_delta\": -0.013004759425894252,\n        \"user_bootstrap_95ci\": [\n          -0.014608393136015469,\n          -0.011547533836543467\n        ]\n      },\n      \"shuffled\": {\n        \"mean_delta\": 0.012186733100319773,\n        \"user_bootstrap_95ci\": [\n          0.010217718171339332,\n          0.014239932698743208\n        ]\n      }\n    },\n    \"user_hash_half_deltas\": {\n      \"itemknn\": [\n        -0.1520476083032491,\n        -0.15409894837476099\n      ],\n      \"userknn\": [\n        -0.06680110559566788,\n        -0.06425117664362406\n      ],\n      \"min2\": [\n        -0.012442651925391094,\n        -0.013554382997499632\n      ]\n    },\n    \"formal_training_authorized_by_this_screen\": false,\n    \"novelty_established\": false,\n    \"publication_evidence\": false\n  }\n}\n"
+  },
+  "resources": {
+    "available_ram_bytes": 130272907264,
+    "available_cpu_count": 20,
+    "required_ram_bytes": 12884901888,
+    "cpu_threads": 4,
+    "gpu_used": false,
+    "cuda_visible_devices": ""
+  },
+  "process_alive": false,
+  "process_command_matches": false
+}

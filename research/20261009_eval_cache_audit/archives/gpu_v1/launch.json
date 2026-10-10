@@ -1,0 +1,10 @@
+{
+  "pid": 3117155,
+  "unix": 1791600145.1928842,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/electronics_eval_cache_gpu_audit_20261010_v1/electronics_gpu_audit.py"
+  ],
+  "time_budget_seconds": 3600
+}

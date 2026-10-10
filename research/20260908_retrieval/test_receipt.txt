@@ -1,0 +1,22 @@
+test_duplicate_support_pairs_do_not_reweight_history (test_base.BaseProtocolTests) ... ok
+test_duplicate_targets_rejected (test_base.BaseProtocolTests) ... ok
+test_leaked_target_rejected (test_base.BaseProtocolTests) ... ok
+test_role_mismatch_rejected (test_base.BaseProtocolTests) ... ok
+test_single_target_ranking_metrics (test_base.BaseProtocolTests) ... ok
+test_support_only_normalized_profile (test_base.BaseProtocolTests) ... ok
+test_all_variants_finish_with_shared_ranker (test_integration.IntegrationTests) ... ok
+test_context_derangement_is_reproducible_and_bijective (test_retrieval.RetrievalTests) ... ok
+test_exact_budget_and_support_exclusion (test_retrieval.RetrievalTests) ... ok
+test_impossible_budget_raises (test_retrieval.RetrievalTests) ... ok
+test_metrics_and_net_coverage (test_retrieval.RetrievalTests) ... ok
+test_model_capacity_and_finite_gradient (test_retrieval.RetrievalTests) ... ok
+test_prepared_interface_and_target_leak_guard (test_retrieval.RetrievalTests) ... ok
+test_standardization_handles_history_and_constant_rows (test_retrieval.RetrievalTests) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 6.316s
+
+OK
+
+REMOTE_TESTS_PASSED
+(base) sunzixuan@213keg:~$

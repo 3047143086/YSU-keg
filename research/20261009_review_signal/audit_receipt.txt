@@ -1,0 +1,252 @@
+{
+  "status": "completed",
+  "checked_unix": 1791544102.2784395,
+  "files": {
+    "interactions": {
+      "path": "/data/sunzixuan/bridge_official/data/baby/baby.inter",
+      "bytes": 4362239,
+      "sha256": "e0abb033ea5cc538bb2becd8c3dc50b619f28f7974ba61f5ed11ce27cf405940"
+    },
+    "item_mapping": {
+      "path": "/data/sunzixuan/rave_20260905_inputs/baby/item_id_to_asin.json",
+      "bytes": 168092,
+      "sha256": "451c8cfa29ad517a427f5f7f6278fe0761959f94508562a173f8306c9c02ed2c"
+    },
+    "reviews": {
+      "path": "/data/sunzixuan/rave_20260905_inputs/baby/reviews_Baby_5.json.gz",
+      "bytes": 38809329,
+      "sha256": "e54968e4102a3f03f4bb6be581dc09188fe2a31e4a664803ff21a3ad2ac578c3"
+    },
+    "global_bank": {
+      "path": "/data/sunzixuan/rave_20260906_stage1/features/global_bank.npy",
+      "sha256": "681ba06261c6fbf3b594aa9e14958a07c42a5e991dd465b9d5e9b22986e24600",
+      "bytes": 57753728
+    },
+    "clip_weights": {
+      "path": "/data/sunzixuan/rave_20260906_stage1/weights/ViT-B-16.pt",
+      "sha256": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+      "bytes": 350837078
+    },
+    "clip_source___init__.py": {
+      "path": "/data/sunzixuan/rave_20260906_stage1/vendor/clip/__init__.py",
+      "sha256": "d7930eb290ebed432116795c91473200d098451a94c0aedd4ae0f934f97955e8",
+      "bytes": 20
+    },
+    "clip_source_clip.py": {
+      "path": "/data/sunzixuan/rave_20260906_stage1/vendor/clip/clip.py",
+      "sha256": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6",
+      "bytes": 9644
+    },
+    "clip_source_model.py": {
+      "path": "/data/sunzixuan/rave_20260906_stage1/vendor/clip/model.py",
+      "sha256": "9902cbe5ee90a1da2aa3e6f043e8a23dc1f8831193b963785c9af03d5c7bef2c",
+      "bytes": 17374
+    },
+    "clip_source_simple_tokenizer.py": {
+      "path": "/data/sunzixuan/rave_20260906_stage1/vendor/clip/simple_tokenizer.py",
+      "sha256": "d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad",
+      "bytes": 4632
+    },
+    "clip_source_bpe_simple_vocab_16e6.txt.gz": {
+      "path": "/data/sunzixuan/rave_20260906_stage1/vendor/clip/bpe_simple_vocab_16e6.txt.gz",
+      "sha256": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+      "bytes": 1356917
+    }
+  },
+  "dependencies": {
+    "dual_witness_diagnose": {
+      "path": "/data/sunzixuan/dual_witness_20261009_v1/diagnose.py",
+      "sha256": "22c9e308a9d05b4d92c43e68765f8a57eb13b28254f74dc5d12ec8f4b64bf673",
+      "bytes": 8012
+    },
+    "dual_witness_evidence": {
+      "path": "/data/sunzixuan/dual_witness_20261009_v1/evidence.py",
+      "sha256": "26c773bdcf1ff90bf0f9e9298d0a0711227561e63c9d2b04225b29936326d9aa",
+      "bytes": 14080
+    }
+  },
+  "baseline_carrier": {
+    "__init__.py": {
+      "path": "/data/sunzixuan/bridge_official/src/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "common/__init__.py": {
+      "path": "/data/sunzixuan/bridge_official/src/common/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "common/abstract_recommender.py": {
+      "path": "/data/sunzixuan/bridge_official/src/common/abstract_recommender.py",
+      "sha256": "2294e003e1ea523c1ef02df165954434545355490e482446c3c889e0a014c156"
+    },
+    "common/encoders.py": {
+      "path": "/data/sunzixuan/bridge_official/src/common/encoders.py",
+      "sha256": "9845154a3fe488d1ed3b4f32e1d85d1c470a672966e0ab6b2b8b97f3b6e0ba45"
+    },
+    "common/init.py": {
+      "path": "/data/sunzixuan/bridge_official/src/common/init.py",
+      "sha256": "1141665794a83eb8f660b0e394f3fb4be9b39906efb5cae1e99359cc3116f32e"
+    },
+    "common/loss.py": {
+      "path": "/data/sunzixuan/bridge_official/src/common/loss.py",
+      "sha256": "729b4b078b266944907e617fabf61244f301b61b4b9b6cb3e5e436fdcccbbf24"
+    },
+    "common/trainer.py": {
+      "path": "/data/sunzixuan/bridge_official/src/common/trainer.py",
+      "sha256": "3b8df986616002d4ea7fecda1cb686a8675001f048ecbfff7365339ce38c3199"
+    },
+    "configs/dataset/baby.yaml": {
+      "path": "/data/sunzixuan/bridge_official/src/configs/dataset/baby.yaml",
+      "sha256": "8426650aed8a0eb60999b2534573d45e03f363b1c1a0f8b996b39dbc650c3caa"
+    },
+    "configs/dataset/elec.yaml": {
+      "path": "/data/sunzixuan/bridge_official/src/configs/dataset/elec.yaml",
+      "sha256": "0c4984031c96cad8d0aa2aedf006208087748daf217d5ee44756c1d401cd5f5e"
+    },
+    "configs/dataset/sports.yaml": {
+      "path": "/data/sunzixuan/bridge_official/src/configs/dataset/sports.yaml",
+      "sha256": "42e1ccd21045441f84f57d0bd19d703539bfcaaeb99bf194967d40ea0db766fb"
+    },
+    "configs/model/BRIDGE.yaml": {
+      "path": "/data/sunzixuan/bridge_official/src/configs/model/BRIDGE.yaml",
+      "sha256": "5edef018d3572e60a9fcacb7586e5c8cb0c3763a9b07ef40491c3965d10994e3"
+    },
+    "configs/model/BRIDGE_C2R.yaml": {
+      "path": "/data/sunzixuan/bridge_official/src/configs/model/BRIDGE_C2R.yaml",
+      "sha256": "1db988faaa1b1deb7c98252a4b406b5c64c7b2259e97808082034ef422d4a9f4"
+    },
+    "configs/model/BRIDGE_CBCR.yaml": {
+      "path": "/data/sunzixuan/bridge_official/src/configs/model/BRIDGE_CBCR.yaml",
+      "sha256": "82aa327e45d353e87edca88cd122fea6098b70f3215313852d2810592051d6c4"
+    },
+    "configs/overall.yaml": {
+      "path": "/data/sunzixuan/bridge_official/src/configs/overall.yaml",
+      "sha256": "e9ba9e64d2936caae9e6e429ede7f9c89a5dbb79df4bc623d97efbd985e2637f"
+    },
+    "diagnose_ecli.py": {
+      "path": "/data/sunzixuan/bridge_official/src/diagnose_ecli.py",
+      "sha256": "99e2297cd877fd72668d2768680fa9cf2ae1fbf22b8aba66532bc19c7206bf88"
+    },
+    "diagnose_tace.py": {
+      "path": "/data/sunzixuan/bridge_official/src/diagnose_tace.py",
+      "sha256": "69d3654527dc1bf22d7a09cf44c6debd8a89710b2c24dbd703dded7648c1f992"
+    },
+    "main.py": {
+      "path": "/data/sunzixuan/bridge_official/src/main.py",
+      "sha256": "d9f0f93d92e1f4d7f0f7292e20f56c1f1b29b099ef843c1f1fad49037410fe36"
+    },
+    "models/__init__.py": {
+      "path": "/data/sunzixuan/bridge_official/src/models/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "models/bridge.py": {
+      "path": "/data/sunzixuan/bridge_official/src/models/bridge.py",
+      "sha256": "8356fd38cec389f71905d1dde2026ed721ef1747089e7bf802763aa857de4056"
+    },
+    "models/bridge_c2r.py": {
+      "path": "/data/sunzixuan/bridge_official/src/models/bridge_c2r.py",
+      "sha256": "de61156ac5758a12834097ea20d4182e7805a0f6610ee3f522a44eb0871ed1af"
+    },
+    "models/bridge_cbcr.py": {
+      "path": "/data/sunzixuan/bridge_official/src/models/bridge_cbcr.py",
+      "sha256": "385762f429e2b29acef8a5f08808b8595496f0f162195d30824cd36e1b4855f4"
+    },
+    "models/dual_frequency_encoder.py": {
+      "path": "/data/sunzixuan/bridge_official/src/models/dual_frequency_encoder.py",
+      "sha256": "287c1627a289707685028d1852105efa69b8da5106cb175c2871cacd7904e90c"
+    },
+    "utils/__init__.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "utils/configurator.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/configurator.py",
+      "sha256": "dde0ebdd2a45fae206da6ffe8728a2fd89b2064d8655e08e11b4869231ed41ac"
+    },
+    "utils/data_utils.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/data_utils.py",
+      "sha256": "7aad1f06787d7141a4a5b4166a8e50c2f5f2707fc1f41070d32246831cae9869"
+    },
+    "utils/dataloader.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/dataloader.py",
+      "sha256": "8fb4deb89ba256adf53cfc773050ee5b9ae8eb55b972613cbebf3ffd7a36f3fb"
+    },
+    "utils/dataset.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/dataset.py",
+      "sha256": "c5814605da7c6e9ec1f52fe11edbfeaf89dec87f3b6f629265b0547412d2d00c"
+    },
+    "utils/ecli.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/ecli.py",
+      "sha256": "fcb99c64f41c236c7600a30aa210573ff48b86f064471560617dfc9ece7727ee"
+    },
+    "utils/logger.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/logger.py",
+      "sha256": "65a09bb943398f72da4c1128603fcf843284f23d779a163e8e812e6a8abcd8e7"
+    },
+    "utils/metrics.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/metrics.py",
+      "sha256": "a722ea36f3a9b78c5e1121819ead2333361cf929bbcbb925cadcf85c77dae13d"
+    },
+    "utils/misc.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/misc.py",
+      "sha256": "06fbc7afddc35e08f9f7ea0370b3c0b0729e0280450a381dec4fdd15961f987d"
+    },
+    "utils/quick_start.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/quick_start.py",
+      "sha256": "7846b35faa5ee9498565c567d57d3ed2dfbeacf547f3c7b2d7e6d035f5c6f8b2"
+    },
+    "utils/tace.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/tace.py",
+      "sha256": "89304b62287d67c057674b6d03c5a68302d1a53dbef78cf8af574822491219e3"
+    },
+    "utils/topk_evaluator.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/topk_evaluator.py",
+      "sha256": "4d23dc2a347372eceb831e74ef8fcc2d02530af969212284345e76e1c1f003f6"
+    },
+    "utils/utils.py": {
+      "path": "/data/sunzixuan/bridge_official/src/utils/utils.py",
+      "sha256": "23a36fc0cb1174eca46107a590715907304de50a3ffd4a0c9866c556d666fc78"
+    }
+  },
+  "identity_matching": {
+    "raw_review_records": 160792,
+    "raw_unique_owner_fingerprints": 160792,
+    "raw_duplicate_owner_fingerprint_records": 0,
+    "raw_duplicate_owner_item_records": 0,
+    "support_edges": 105104,
+    "support_users": 19445,
+    "matched_support_edges": 105104,
+    "matched_support_users": 19445,
+    "unresolved_support_users": 0,
+    "ambiguous_support_users": 0,
+    "duplicate_raw_event_users": 0,
+    "owner_collision_support_users": 0,
+    "ambiguous_support_fingerprints": 3008,
+    "missing_support_fingerprints": 0,
+    "identity_uses_support_only": true,
+    "ratings_used_only_for_identity": true,
+    "reviewer_identity_exported": false,
+    "original_train_edges": 118551,
+    "globally_removed_target_edges": 13447,
+    "expected_support_edges": 105104,
+    "heldout_reviews_used": false,
+    "official_validation_reviews_used": false,
+    "official_test_reviews_used": false,
+    "support_nonempty_review_text": 105065,
+    "support_nonempty_summary": 105104,
+    "support_review_text_word_count": 10535902,
+    "all_targets_absent_from_export": true,
+    "cross_user_same_item_donor_edges": 105035,
+    "support_text_coverage": 0.999628938955701,
+    "strict_identity_passed": true,
+    "same_item_donor_coverage": 0.9993435073831634
+  },
+  "heldout_target_hash": "1d019d38c5274cb02b5dfbd434f6e6d2ce5e904fca379cc009ba857e35bdfb1a",
+  "carrier_manifest": {
+    "path": "/data/sunzixuan/candidate_gate_20261009_v1/deployment.json",
+    "sha256": "bf794462a85f069bd99aab76d1f4c185d97435901ad8495f44767946452543f3"
+  },
+  "encoding_or_training_started": false,
+  "review_text_exported": false,
+  "reviewer_identity_exported": false
+}
+(base) sunzixuan@213keg:~$

@@ -1,0 +1,27 @@
+{
+  "model": "MMSSL",
+  "dataset": "baby",
+  "best_hyper_parameters": {
+    "seed": 2026,
+    "reg_weight": 1e-05,
+    "ssl_alpha": 0.01,
+    "ssl_temp": 0.2,
+    "G_rate": 0.0001,
+    "mmlayer": 2
+  },
+  "best_epoch": 14,
+  "valid_metric": "Recall@20",
+  "best_valid_score": 0.0866,
+  "best_valid_result": {
+    "recall@10": 0.0563,
+    "recall@20": 0.0866,
+    "ndcg@10": 0.0302,
+    "ndcg@20": 0.0378
+  },
+  "best_test_result": {
+    "recall@10": 0.0571,
+    "recall@20": 0.0909,
+    "ndcg@10": 0.0308,
+    "ndcg@20": 0.0395
+  }
+}

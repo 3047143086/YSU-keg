@@ -1,0 +1,15 @@
+{
+  "deployed": "/data/sunzixuan/temporal_20260909_screen_v2",
+  "hashes": {
+    "audit_remote.py": "9b3b0aff84df86bcdb87bb5f0b53ffd1de0707d647be815440450f64288aa28c",
+    "experiment.json": "63a08fb9a0900ec712b268983f7118627c0f972924b3d0eb4419ca2cdad3910c",
+    "manage.py": "85931e2dbeeca4b0b993a3969e6e8aad9f3f172abfa7b0ceb5884eb8ca4ff64b",
+    "prepare_temporal.py": "2a76e73da8c0dd8accf3d9425b71fbe6cc32a9af9b93d0a498f89baf994c14bf",
+    "PROTOCOL.md": "3152a11659fcaba374910f11e1a93ca2d14c89c141551870c6432bbcfb840814",
+    "run_pipeline.py": "0d0545fab17975c3bfe344efa5462c36e7e049696292a76c321ef04f30cd5594",
+    "stats_remote.py": "1692b7e8c898ece2e08e595d16f6766d081e0cd2e71976d314a35da49124f2cb",
+    "temporal_train.py": "24f6e48187a62b571d04697aefc140bce5644a13b0721c9c545cddb593c171e2",
+    "test_temporal.py": "ede7fe0f4d490bd2ef8f8e3c50844192a9d82521a38f615f08b1f44967114645"
+  }
+}
+(base) sunzixuan@213keg:~$

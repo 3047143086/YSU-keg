@@ -1,0 +1,21 @@
+{
+  "purpose": "User-history pairing information: exploratory internal screen",
+  "source_root": "/data/sunzixuan/rcmqr_20260908_screen_v2",
+  "seeds": [2026, 2027, 2028],
+  "variants": ["additive", "marginal_tensor", "paired_moment", "shuffled_cov", "paired_cov"],
+  "epochs": 60,
+  "patience": 8,
+  "batch_size": 256,
+  "allowed_gpus": [1],
+  "gpu_max_used_mb_before_launch": 6000,
+  "gpu_max_utilization_before_launch": 40,
+  "max_run_seconds": 1800,
+  "max_pipeline_seconds": 28800,
+  "primary_variant": "paired_cov",
+  "primary_controls": ["additive", "marginal_tensor", "shuffled_cov"],
+  "primary_metrics": ["recall@20", "ndcg@20"],
+  "minimum_relative_gain": 0.02,
+  "official_validation_evaluated": false,
+  "official_test_evaluated": false,
+  "historical_internal_development_reused": true
+}

@@ -1,0 +1,21 @@
+{
+  "pid": 2183786,
+  "root": "/data/sunzixuan/rave_20260905_preflight_v2",
+  "gpu": 0,
+  "command": [
+    "/data/sunzixuan/miniconda3/envs/MMRec/bin/python",
+    "-u",
+    "/data/sunzixuan/rave_20260905_preflight_v2/preflight.py",
+    "--bridge-root",
+    "/data/sunzixuan/bridge_official",
+    "--checkpoint",
+    "/data/sunzixuan/bridge_official/src/saved_models/BRIDGE/baby/bridge_baby_seed2026_screen/model.pth",
+    "--dataset",
+    "baby",
+    "--gpu-id",
+    "0",
+    "--output",
+    "/data/sunzixuan/rave_20260905_preflight_v2/baby.json"
+  ]
+}
+(base) sunzixuan@213keg:~$

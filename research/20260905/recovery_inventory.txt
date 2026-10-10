@@ -1,0 +1,4 @@
+RECOVERY_FILES {"meta_Baby.json.gz": 25165824, "reviews_Baby_5.json.gz": 38809329}
+PACKAGES {"torch": "1.12.1+cu113", "torchvision": "0.13.1+cu113", "transformers": null, "sentence-transformers": null, "open-clip-torch": null, "clip": null, "Pillow": "10.4.0"}
+MODEL_CACHE []
+(base) sunzixuan@213keg:~$
